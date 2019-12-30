@@ -1,46 +1,41 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Spark : MonoBehaviour
 {
-    [HideInInspector] public Fire ParentFire;
+    [Tooltip("When a collision occurs with these layers, the spark deactivates")]
+    [SerializeField] private LayerMask collidesWith = new LayerMask();
+    [SerializeField] private Fire firePrefab = null;
+    public Fire ParentFire { get; private set; }
+    private Rigidbody2D rb;
 
-    [SerializeField] private Fire newFire;
-    private WaitForSeconds enableCollisionDelay = new WaitForSeconds(0.2f);
-    private WaitForSeconds destroySparkDelay = new WaitForSeconds(5f);
-    private bool checkCollisions = false;
-
-    private void Start()
+    private void Awake()
     {
-        StartCoroutine(SparkCreated());
+        rb = GetComponent<Rigidbody2D>();
     }
+
+    public void Initialize(Fire parentFire) { ParentFire = parentFire; }
+
+    public void AddForce(Vector2 direction) { rb.AddForce(direction); }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(checkCollisions)
+        if(collidesWith == (collidesWith | (1 << other.gameObject.layer)))
         {
-            if(other.gameObject.layer == GameManager.Layers.GROUND)
+            if(other.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
-                Fire fire = Instantiate(newFire, transform.position, Quaternion.identity);
-                fire.HealthModule.Damageable.SetHealth(1);
+                Fire fire = Instantiate(firePrefab, transform.position, Quaternion.identity);
+                fire.FireHealth.SetHealth(1);
             }
-            else if(other.gameObject.TryGetComponent(out Burnable burnable))
+            else if(other.TryGetComponent(out Fire fire))
             {
-                burnable.StartBurning(ParentFire.DamageModule);
+                if(fire == ParentFire) return;
+                fire.FireHealth.ToTreat(ParentFire.Damage);
             }
-            else if(other.gameObject.TryGetComponent(out FireHealth fireHealth))
+            else if(other.TryGetComponent(out Burnable burnable))
             {
-                fireHealth.Damageable.ToTreat(10);
+                burnable.StartBurning(ParentFire);
             }
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
-    }
-
-    private IEnumerator SparkCreated()
-    {
-        yield return enableCollisionDelay;
-        checkCollisions = true; 
-        yield return destroySparkDelay;
-        Destroy(gameObject);
     }
 }

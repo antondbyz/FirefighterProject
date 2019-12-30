@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6534971265117902656}
   - component: {fileID: 6534971265117902659}
   m_Layer: 0
-  m_Name: FoamEffect
+  m_Name: ExtinguishingSubstanceEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4727,8 +4727,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1246239767
-  m_SortingLayer: 1
+  m_SortingLayerID: -1954255049
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0

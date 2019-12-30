@@ -31,9 +31,14 @@ public class FireExtinguisher : MonoBehaviour
 
     private void Start()
     {
-        substance.StopEmit();
         GameManager.OnPaused.AddListener(TurnOff);
         SwipeHandler.OnSwipe.AddListener(Rotate);
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.E)) TurnOn();
+        else if(Input.GetKeyUp(KeyCode.E)) TurnOff();
     }
 
     private void Rotate()

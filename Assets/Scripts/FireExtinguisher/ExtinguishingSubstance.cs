@@ -2,56 +2,53 @@
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
-public class ExtinguishingSubstance : Emitting
+public class ExtinguishingSubstance : MonoBehaviour
 {
     public float Damage => damage;
-
+    [SerializeField] private LayerMask raycastLayerMask = new LayerMask();
     [Header("Damage that takes fire")] [SerializeField] private float damage = 0.5f;
-    [Header("Steam effect that appears at substance's collision point")] [SerializeField] private Emitting steam;
+    [Header("Steam effect that appears at substance's collision point")] [SerializeField] private ParticleSystem steamEffect = null;
 
+    private ParticleSystem substanceEffect;
     private PolygonCollider2D polyCollider;
     private CollisionModule particlesCollision;
-    private Coroutine collisionsCoroutine;
+    private Coroutine checkCollisions;
     private WaitForSeconds delay = new WaitForSeconds(0.3f);
     private RaycastHit2D hit;
 
-    protected override void Awake()
+    private void Awake()
     {
-        emission = GetComponent<ParticleSystem>().emission;
+        substanceEffect = GetComponent<ParticleSystem>();
         polyCollider = GetComponent<PolygonCollider2D>();
         polyCollider.enabled = false;
         particlesCollision = GetComponent<ParticleSystem>().collision;
     }
 
-    public override void StartEmit()
+    public void StartEmit()
     {
-        base.StartEmit();
-        collisionsCoroutine = StartCoroutine(CheckCollisions());
+        substanceEffect.Play();
+        checkCollisions = StartCoroutine(CheckCollisions());
     }
 
-    public override void StopEmit()
+    public void StopEmit()
     {
-        base.StopEmit();
+        substanceEffect.Stop();
         polyCollider.enabled = false;
-        if(collisionsCoroutine != null) StopCoroutine(collisionsCoroutine);
-        steam.StopEmit();
+        if(checkCollisions != null) StopCoroutine(checkCollisions);
+        steamEffect.Stop();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.TryGetComponent(out FireHealth fire))
+        if(other.TryGetComponent(out FireHealth fire))
         {
             fire.StartExtinguishing(this);
-        }
-        else if(other.gameObject.TryGetComponent(out Spark spark))
-        {
-            Destroy(spark.gameObject);
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other.gameObject.TryGetComponent(out FireHealth fire))
+        if(other.TryGetComponent(out FireHealth fire))
         {
             fire.StopExtinguishing(this);
         }
@@ -59,32 +56,24 @@ public class ExtinguishingSubstance : Emitting
 
     private IEnumerator CheckCollisions()
     {
-        yield return delay;
-        polyCollider.enabled = true;
-        for(;;)
+        while(true)
         {
-            int layerMask = 1 << GameManager.Layers.IGNORE_EXTINGUISHING_SUBSTANCE;
-            hit = Physics2D.Raycast(transform.position, transform.up, 2.5f, ~layerMask);
+            yield return delay;
+            if(!polyCollider.enabled) polyCollider.enabled = true;
+            hit = Physics2D.Raycast(transform.position, transform.up, 2.5f, raycastLayerMask);
             if(hit.collider != null)
             {
-                if(!hit.collider.TryGetComponent(out FireHealth fire))
-                {
-                    steam.transform.position = hit.point;
-                    steam.StartEmit();
-                    particlesCollision.enabled = true;
-                }
-                else
-                {
-                    steam.StopEmit();
-                    particlesCollision.enabled = false;
-                }
+                steamEffect.transform.position = hit.point;
+                if(!particlesCollision.enabled) particlesCollision.enabled = true;
+
+                // Delay is needed to ensure that the steam has moved to the desired point
+                if(!steamEffect.isEmitting) StartCoroutine(steamEffect.Play(0.1f));
             }
             else
             {
-                steam.StopEmit();
-                particlesCollision.enabled = false;
+                if(steamEffect.isEmitting) steamEffect.Stop();
+                if(particlesCollision.enabled) particlesCollision.enabled = false;
             }
-            yield return delay;
         }
     }
 }

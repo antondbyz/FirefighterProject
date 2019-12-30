@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public static class Extensions
@@ -19,18 +20,25 @@ public static class Extensions
         }
     }
 
-    // Returns the percentage of a number ranging from minValue to maxValue
-    public static float NumberToPercentage(this float value, float minValue, float maxValue)
+    /// Returns the percentage of a number ranging from minValue to maxValue
+    public static float NumberInRangeToPercentage(this float value, float minValue, float maxValue)
     {
-        if(value > maxValue || value < minValue) return -1;
-        return Mathf.Abs((value - minValue) / (maxValue - minValue));
+        if(value > maxValue || value < minValue) throw new ArgumentException("Value must be in the specified range.");
+        return Mathf.Abs((value - minValue) / (maxValue - minValue)) * 100;
     }
 
     
     // Returns a number ranging from minValue to maxValue converted from percentage
-    public static float PercentageToNumber(this float percentage, float minValue, float maxValue)
+    public static float PercentageToNumberInRange(this float percentage, float minValue, float maxValue)
     {
-        if(percentage > 1 || percentage < 0) return -1;
-        return minValue + (maxValue - minValue) * percentage;
+        if(percentage > 100 || percentage < 0) throw new ArgumentException("Percentage should be in the range from 0 to 100.");
+        return minValue + (maxValue - minValue) * percentage / 100;
+    }
+
+    // Plays particle system after specified delay
+    public static IEnumerator Play(this ParticleSystem ps, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        ps.Play();
     }
 }

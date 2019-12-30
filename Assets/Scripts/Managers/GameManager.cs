@@ -4,12 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public struct Layers
-    {
-        public const int IGNORE_EXTINGUISHING_SUBSTANCE = 8; 
-        public const int GROUND = 9;
-    }
-
     public static UnityEvent OnPaused = new UnityEvent();
     public static bool IsPaused { get; private set; } = false;
 

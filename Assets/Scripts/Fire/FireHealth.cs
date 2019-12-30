@@ -1,65 +1,46 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class FireHealth : MonoBehaviour
+public class FireHealth : Damageable
 {
-    public Damageable Damageable { get; private set; }
-
+    [SerializeField] private Fire fire;
     private float receivingDamage;
-    private Fire fire;
-    private Emitting steam; 
+    private ParticleSystem fireEffect;
+    private BoxCollider2D boxCollider;
     private WaitForSeconds wait = new WaitForSeconds(0.1f);
 
-    private void Awake()
+    protected override void Awake()
     {
-        Damageable = GetComponent<Damageable>();
-        fire = transform.parent.GetComponent<Fire>();
-        steam = transform.GetChild(0).GetComponent<Emitting>();
-    }
-
-    private void Start()
-    {
-        steam.StopEmit();
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.TryGetComponent(out FireHealth fire))
-        {
-            if(fire.Damageable.CurrentHealth > Damageable.CurrentHealth)
-            {
-                
-            }
-        }
+        base.Awake();
+        fireEffect = GetComponent<ParticleSystem>();
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
     public void StartExtinguishing(ExtinguishingSubstance substance)
     {
         receivingDamage += substance.Damage;
-        steam.StartEmit();
         StartCoroutine(ToFadeOut());
     }
 
     public void StopExtinguishing(ExtinguishingSubstance substance)
     {
         receivingDamage -= substance.Damage;
-        steam.StopEmit();
-    }
-
-    public void Die()
-    {
-        steam.transform.SetParent(null);
-        steam.transform.localScale = Vector3.one;
-        steam.Die();
-        Destroy(fire.gameObject);
     }
 
     private IEnumerator ToFadeOut()
     {
         while(receivingDamage > 0)
         {
-            Damageable.TakeDamage(receivingDamage);
+            TakeDamage(receivingDamage);
             yield return wait;
         }
+    }
+
+    public override void Die(float destroyDelay = 2)
+    {
+        Destroy(fire.SparksSpawner);
+        Destroy(gameObject, destroyDelay);
+        boxCollider.enabled = false;
+        fireEffect.Stop();
     }
 }

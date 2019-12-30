@@ -13,10 +13,10 @@ TagManager:
   - UI
   - 
   - 
-  - Ignore Extinguishing Substance
+  - Player
   - Ground
-  - 
-  - 
+  - Fire
+  - Spark
   - 
   - 
   - 
@@ -44,9 +44,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Particle System
+  - name: Spark
+    uniqueID: 481563531
+    locked: 0
+  - name: ExtinguishingSubstance
+    uniqueID: 2340712247
+    locked: 0
+  - name: Fire
     uniqueID: 3048727529
+    locked: 0
+  - name: Steam
+    uniqueID: 4144051055
     locked: 0
   - name: Ground
     uniqueID: 926601881
+    locked: 0
+  - name: UI
+    uniqueID: 916330267
     locked: 0

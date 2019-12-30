@@ -1,17 +1,17 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Burnable : MonoBehaviour
+public class Burnable : Damageable
 {
-    public float ReceivingDamage
+    public virtual float ReceivingDamage
     {
         get { return receivingDamage; }
-        private set
+        protected set
         {
-            if(receivingDamage == 0 && value > 0) burningEffect.StartEmit();
+            if(burningEffect && !burningEffect.isPlaying) burningEffect.Play();
             else if(receivingDamage > 0 && value <= 0)
             {
-                burningEffect.StopEmit();
+                if(burningEffect) burningEffect.Stop();
                 receivingDamage = 0;
                 return;
             }
@@ -19,46 +19,35 @@ public class Burnable : MonoBehaviour
         }
     }
 
-    [SerializeField] private Emitting burningEffect = null;
-    private float receivingDamage;
-    private Damageable damageable;
-    private Coroutine burningCoroutine;
-    private WaitForSeconds delay = new WaitForSeconds(0.1f);
+    [SerializeField] protected ParticleSystem burningEffect = null;
+    protected float receivingDamage;
+    protected Coroutine burningCoroutine;
+    protected WaitForSeconds delay = new WaitForSeconds(0.1f);
 
-    private void Awake()
-    {
-        damageable = GetComponent<Damageable>();
-    }
-
-    private void Start()
-    {
-        burningEffect.StopEmit();
-    }
-
-    public void StartBurning(FireDamage fire)
+    public virtual void StartBurning(Fire fire)
     {
         fire.OnDamageChanged.AddListener(FireDamageChanged);
         ReceivingDamage += fire.Damage; 
         if(burningCoroutine == null) burningCoroutine = StartCoroutine(ToBurn());
     }
 
-    public void StopBurning(FireDamage fire)
+    public virtual void StopBurning(Fire fire)
     {
         fire.OnDamageChanged.RemoveListener(FireDamageChanged);
         ReceivingDamage -= fire.Damage / 2;
     }
 
-    private void FireDamageChanged(float value)
+    protected virtual void FireDamageChanged(float value)
     {
         if(value >= 0) ReceivingDamage += value;
         else receivingDamage += value / 2;
     }
 
-    private IEnumerator ToBurn()
+    protected virtual IEnumerator ToBurn()
     {
         while(receivingDamage > 0)
         {
-            damageable.TakeDamage(receivingDamage);
+            TakeDamage(receivingDamage);
             yield return delay;
         }
     }

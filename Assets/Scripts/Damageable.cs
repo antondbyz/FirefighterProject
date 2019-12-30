@@ -1,59 +1,63 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Damageable : MonoBehaviour
 {
-    public float HealthPercentage => currentHealth.NumberToPercentage(0, maxHealth);
-    public float CurrentHealth 
+    public virtual bool IsAlive => currentHealth > 0;
+    public float HealthPercentage => currentHealth.NumberInRangeToPercentage(0, MaxHealth);
+    public virtual float CurrentHealth 
     {
         get{ return currentHealth; }
-        private set
+        protected set
         {
-            if(currentHealth > value) OnTakeDamage.Invoke();
-            else if(currentHealth < value) OnTreat.Invoke();
-            currentHealth = value;
-            if(currentHealth <= 0)
+            if(IsAlive)
             {
-                currentHealth = 0;
-                OnDie.Invoke();
-            } 
-            else if(currentHealth > maxHealth) currentHealth = maxHealth;
-            if(healthFillArea != null) healthFillArea.fillAmount = currentHealth / maxHealth;
-            if(healthText != null) healthText.text = $"{(int)(currentHealth / (maxHealth / 100))}%";
-            OnHealthChanged.Invoke(HealthPercentage);
+                currentHealth = value;
+                if(currentHealth <= 0)
+                {
+                    currentHealth = 0;
+                    OnDie.Invoke();
+                } 
+                else if(currentHealth > MaxHealth) currentHealth = MaxHealth;
+                if(healthFillArea != null) healthFillArea.fillAmount = currentHealth / MaxHealth;
+                if(healthText != null) healthText.text = $"{(int)HealthPercentage}%";
+                OnHealthChanged.Invoke(HealthPercentage);
+            }
         }
     }
-    public float MaxHealth => maxHealth;
+    public virtual float MaxHealth => maxHealth;
+    public FloatEvent OnHealthChanged { get; protected set; }
+    
+    [SerializeField] protected UnityEvent OnDie = null;
+    [SerializeField] protected float maxHealth = 100;
+    [SerializeField] protected float currentHealth = 100;
+    [SerializeField] protected Image healthFillArea = null;
+    [SerializeField] protected Text healthText = null;
 
-    public UnityEvent OnDie;
-    public UnityEvent OnTakeDamage;
-    public UnityEvent OnTreat;
-    public FloatEvent OnHealthChanged { get; private set; }
-
-    [SerializeField] private float maxHealth = 100;
-    [SerializeField] private float currentHealth = 100;
-    [SerializeField] private Image healthFillArea = null;
-    [SerializeField] private Text healthText = null;
-
-    private void Awake()
+    protected virtual void Awake()
     {
         OnHealthChanged = new FloatEvent();
         CurrentHealth = currentHealth; // Updating HealthFillArea, HealthText and death check
     }
 
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float value)
     {
-        CurrentHealth -= damage;
+        CurrentHealth -= value;
     }
 
-    public void ToTreat(float value)
+    public virtual void ToTreat(float value)
     {
         CurrentHealth += value;
     }
 
-    public void SetHealth(float value)
+    public virtual void SetHealth(float value)
     {
         CurrentHealth = value;
+    }
+
+    public virtual void Die(float destroyDelay)
+    {
+        Destroy(gameObject, destroyDelay);
     }
 }

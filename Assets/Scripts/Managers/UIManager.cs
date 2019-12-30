@@ -1,13 +1,11 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     public enum UI { MainMenu, MainGame }
 
-    [SerializeField] private GameObject mainGameUI = null;
-    [SerializeField] private GameObject gameMenuPanel = null;
-    [SerializeField] private GameObject mainMenuUI = null;
+    [SerializeField] private MainGameUI mainGameUI = null;
+    [SerializeField] private MainMenuUI mainMenuUI = null;
 
     private GameManager gameManager;
 
@@ -16,25 +14,17 @@ public class UIManager : MonoBehaviour
         gameManager = GetComponent<GameManager>();
     }
 
-    public void SetActiveGameMenuPanel(bool value)
-    {
-        gameMenuPanel.SetActive(value);
-        gameManager.SetPause(value);
-    }
-
     public void EnableUI(UI userInterface)
     {
         switch(userInterface)
         {
             case UI.MainGame:
-                mainMenuUI.SetActive(false);
-                mainGameUI.SetActive(true);
+                mainMenuUI.gameObject.SetActive(false);
+                mainGameUI.gameObject.SetActive(true);
                 break;
             case UI.MainMenu:
-                SetActiveGameMenuPanel(false);
-                mainGameUI.SetActive(false);
-                
-                mainMenuUI.SetActive(true);
+                mainGameUI.gameObject.SetActive(false);
+                mainMenuUI.gameObject.SetActive(true);
                 break;
         }
     }
