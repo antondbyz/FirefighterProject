@@ -27,10 +27,6 @@ public class FireExtinguisher : MonoBehaviour
     private void Awake()
     {
         substance = transform.GetChild(0).GetComponent<ExtinguishingSubstance>();
-    }
-
-    private void Start()
-    {
         GameManager.OnPaused.AddListener(TurnOff);
         SwipeHandler.OnSwipe.AddListener(Rotate);
     }

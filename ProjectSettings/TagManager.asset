@@ -14,9 +14,9 @@ TagManager:
   - 
   - 
   - Player
-  - Ground
-  - Fire
-  - Spark
+  - SubstanceOnlyCollision
+  - 
+  - 
   - 
   - 
   - 
@@ -58,7 +58,4 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 926601881
-    locked: 0
-  - name: UI
-    uniqueID: 916330267
     locked: 0

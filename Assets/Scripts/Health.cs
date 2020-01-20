@@ -2,14 +2,12 @@
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class Damageable : MonoBehaviour
+public class Health : MonoBehaviour
 {
-    public virtual bool IsAlive => currentHealth > 0;
-    public float HealthPercentage => currentHealth.NumberInRangeToPercentage(0, MaxHealth);
     public virtual float CurrentHealth 
     {
         get{ return currentHealth; }
-        protected set
+        set
         {
             if(IsAlive)
             {
@@ -17,7 +15,7 @@ public class Damageable : MonoBehaviour
                 if(currentHealth <= 0)
                 {
                     currentHealth = 0;
-                    OnDie.Invoke();
+                    onDie.Invoke();
                 } 
                 else if(currentHealth > MaxHealth) currentHealth = MaxHealth;
                 if(healthFillArea != null) healthFillArea.fillAmount = currentHealth / MaxHealth;
@@ -26,10 +24,12 @@ public class Damageable : MonoBehaviour
             }
         }
     }
-    public virtual float MaxHealth => maxHealth;
-    public FloatEvent OnHealthChanged { get; protected set; }
+    public bool IsAlive => currentHealth > 0;
+    public float HealthPercentage => currentHealth.NumberInRangeToPercentage(0, MaxHealth);
+    public float MaxHealth => maxHealth;
+    public FloatEvent OnHealthChanged { get; protected set; } = new FloatEvent();
     
-    [SerializeField] protected UnityEvent OnDie = null;
+    [SerializeField] protected UnityEvent onDie = null;
     [SerializeField] protected float maxHealth = 100;
     [SerializeField] protected float currentHealth = 100;
     [SerializeField] protected Image healthFillArea = null;
@@ -37,23 +37,7 @@ public class Damageable : MonoBehaviour
 
     protected virtual void Awake()
     {
-        OnHealthChanged = new FloatEvent();
         CurrentHealth = currentHealth; // Updating HealthFillArea, HealthText and death check
-    }
-
-    public virtual void TakeDamage(float value)
-    {
-        CurrentHealth -= value;
-    }
-
-    public virtual void ToTreat(float value)
-    {
-        CurrentHealth += value;
-    }
-
-    public virtual void SetHealth(float value)
-    {
-        CurrentHealth = value;
     }
 
     public virtual void Die(float destroyDelay)

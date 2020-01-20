@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
         rend = GetComponent<SpriteRenderer>();
     }   
 
-    private void Update()
+    private void FixedUpdate()
     {
         if(!fireExtinguisher.IsExtinguishing && Mathf.Abs(movement.x) > 0)
         {
