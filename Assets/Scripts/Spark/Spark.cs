@@ -1,37 +1,52 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Spark : MonoBehaviour
 {
-    [Tooltip("When a collision occurs with these layers, the spark deactivates")]
-    [SerializeField] private LayerMask collidesWith = new LayerMask();
-    //[SerializeField] private Fire firePrefab = null;
-    //public Fire ParentFire { get; private set; }
+    [SerializeField] private Fire firePrefab = null;
     private Rigidbody2D rb;
-
+    private Collider2D coll;
+    private ParticleSystem ps;
+    private WaitForSeconds lifetime = new WaitForSeconds(3);
+    private int groundLayer;
+    private float heatInfluence;
+    
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        coll = GetComponent<Collider2D>();
+        ps = GetComponent<ParticleSystem>();
+        groundLayer = LayerMask.NameToLayer("Ground");
     }
 
-    //public void Initialize(Fire parentFire) { ParentFire = parentFire; }
+    private void SetActive(bool value)
+    {
+        rb.simulated = value;
+        coll.enabled = value;
+        if(value) ps.Play();
+        else ps.Stop();
+    }
 
-    public void AddForce(Vector2 direction) { rb.AddForce(direction); }
+    public IEnumerator Throw(Vector2 force, float heat)
+    {
+        SetActive(true);
+        heatInfluence = heat;
+        rb.velocity = Vector2.zero;
+        rb.AddForce(force);
+        yield return lifetime;
+        SetActive(false);
+    }
 
-    // private void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     if(collidesWith == (collidesWith | (1 << other.gameObject.layer)))
-    //     {
-    //         if(other.gameObject.layer == LayerMask.NameToLayer("Ground"))
-    //         {
-    //             Fire fire = Instantiate(firePrefab, transform.position, Quaternion.identity);
-    //             fire.FireHealth.CurrentHealth = 1;
-    //         }
-    //         else if(other.TryGetComponent(out Fire fire))
-    //         {
-    //             if(fire == ParentFire) return;
-    //             fire.FireHealth.CurrentHealth = ParentFire.Damage;
-    //         }
-    //         gameObject.SetActive(false);
-    //     }
-    // }
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        other.GetComponent<Heat>()?.ToHeat(heatInfluence);
+        if(other.gameObject.layer == groundLayer)
+        {
+            Fire newFire = Instantiate(firePrefab, transform.position, Quaternion.identity);
+            newFire.ToHeat(heatInfluence);
+            SetActive(false);
+        }
+        else if(!other.isTrigger || other.GetComponent<Fire>() || other.GetComponent<ExtinguishingSubstance>())
+            SetActive(false);
+    }
 }

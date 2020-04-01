@@ -4,44 +4,43 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public virtual float CurrentHealth 
+    public const float MAX_HEALTH = 100;
+    public UnityEvent OnDie = new UnityEvent();
+    public float CurrentHealth
     {
-        get{ return currentHealth; }
-        set
+        get => currentHealth;
+        private set
         {
             if(IsAlive)
             {
-                currentHealth = value;
-                if(currentHealth <= 0)
+                if(value < 0) value = 0;
+                else if(value > MAX_HEALTH) value = MAX_HEALTH;
+                if(currentHealth != value)
                 {
-                    currentHealth = 0;
-                    onDie.Invoke();
-                } 
-                else if(currentHealth > MaxHealth) currentHealth = MaxHealth;
-                if(healthFillArea != null) healthFillArea.fillAmount = currentHealth / MaxHealth;
-                if(healthText != null) healthText.text = $"{(int)HealthPercentage}%";
-                OnHealthChanged.Invoke(HealthPercentage);
+                    currentHealth = value;
+                    if(currentHealth == 0) OnDie.Invoke();
+                    if(healthFillArea != null) healthFillArea.fillAmount = currentHealth / MAX_HEALTH;
+                    if(healthValueText != null) healthValueText.text = $"{Mathf.Ceil(HealthPercentage)}";
+                }
             }
         }
     }
     public bool IsAlive => currentHealth > 0;
-    public float HealthPercentage => currentHealth.NumberInRangeToPercentage(0, MaxHealth);
-    public float MaxHealth => maxHealth;
-    public FloatEvent OnHealthChanged { get; protected set; } = new FloatEvent();
-    
-    [SerializeField] protected UnityEvent onDie = null;
-    [SerializeField] protected float maxHealth = 100;
-    [SerializeField] protected float currentHealth = 100;
-    [SerializeField] protected Image healthFillArea = null;
-    [SerializeField] protected Text healthText = null;
+    public float HealthPercentage => currentHealth / MAX_HEALTH * 100;
+    [Range(0, MAX_HEALTH)] [SerializeField] private float currentHealth = MAX_HEALTH;
+    [Range(1, 100)] [SerializeField] private float damageDefense = 1;
+    [SerializeField] private Image healthFillArea = null;
+    [SerializeField] private Text healthValueText = null;
 
-    protected virtual void Awake()
+    private void Start()
     {
-        CurrentHealth = currentHealth; // Updating HealthFillArea, HealthText and death check
+        if(currentHealth == 0) OnDie.Invoke();
+        if(healthFillArea != null) healthFillArea.fillAmount = currentHealth / MAX_HEALTH;
+        if(healthValueText != null) healthValueText.text = $"{Mathf.Ceil(HealthPercentage)}";
     }
 
-    public virtual void Die(float destroyDelay)
+    public void TakeDamage(float damage) 
     {
-        Destroy(gameObject, destroyDelay);
+        CurrentHealth -= damage;
     }
 }
