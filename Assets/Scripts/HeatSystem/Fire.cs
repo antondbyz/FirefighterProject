@@ -35,14 +35,14 @@ public class Fire : Heat
         {
             if(sparkingCorouine == null) sparkingCorouine = StartCoroutine(Sparking());
             if(burningCoroutine == null) burningCoroutine = StartCoroutine(Burning());
-            if(!ps.isPlaying) ps.Play();
+            if(ps != null && !ps.isPlaying) ps.Play();
             myTransform.localScale = Vector2.Lerp(MinScale, Vector2.one, CurrentHeat / MAX_HEAT);
         } 
         else
         {
             if(sparkingCorouine != null) StopCoroutine(sparkingCorouine);
             if(burningCoroutine != null) StopCoroutine(burningCoroutine);
-            if(ps.isPlaying) ps.Stop();
+            if(ps != null && ps.isPlaying) ps.Stop();
             Destroy(gameObject, 2);
         }
     }

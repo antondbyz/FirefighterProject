@@ -46,7 +46,7 @@ public class Spark : MonoBehaviour
             newFire.ToHeat(heatInfluence);
             SetActive(false);
         }
-        else if(!other.isTrigger || other.GetComponent<Fire>() || other.GetComponent<ExtinguishingSubstance>())
+        else if(!other.isTrigger || other.GetComponent<Fire>() || other.GetComponent<Extinguisher>())
             SetActive(false);
     }
 }

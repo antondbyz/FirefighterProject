@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class SparksPool : ObjectsPool<Spark>
+public class SparksPool : ObjectPool<Spark>
 {
     public void ThrowSpark(Vector2 direction, float sparkHeat) 
     {
