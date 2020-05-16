@@ -1,10 +1,11 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Extinguisher : MonoBehaviour
 {
     public const float EFFICIENCY = 3;
-    private System.Action<float> OnExtinguish;
+    private List<Heat> objectsToExtinguish = new List<Heat>();
     private Transform myTransform;
     private ParticleSystem ps;
     private Collider2D coll;
@@ -16,14 +17,24 @@ public class Extinguisher : MonoBehaviour
         ps = GetComponent<ParticleSystem>();
         coll = GetComponent<Collider2D>();
         playerMovement = myTransform.parent.GetComponent<PlayerMovement>();
-        playerMovement.DirectionChanged += UpdateDirection;
-        PauseManager.OnPaused += StopEmit;
     }
 
     private void Start() 
     {
         StopEmit();
         StartCoroutine(Extinguishing());
+    }
+
+    private void OnEnable() 
+    {
+        playerMovement.DirectionChanged += UpdateDirection;
+        PauseManager.OnPaused += StopEmit;
+    }
+
+    private void OnDisable() 
+    {
+        playerMovement.DirectionChanged -= UpdateDirection; 
+        PauseManager.OnPaused -= StopEmit;   
     }
 
     private void Update()
@@ -34,12 +45,14 @@ public class Extinguisher : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        if(other.TryGetComponent(out Heat heat)) OnExtinguish += heat.ToHeat;   
+        if(other.TryGetComponent(out Heat heat)) 
+            objectsToExtinguish.Add(heat);   
     }
 
     private void OnTriggerExit2D(Collider2D other) 
     {
-        if(other.TryGetComponent(out Heat heat)) OnExtinguish -= heat.ToHeat;    
+        if(other.TryGetComponent(out Heat heat)) 
+            objectsToExtinguish.Remove(heat);    
     }
 
     public void StartEmit() 
@@ -65,13 +78,8 @@ public class Extinguisher : MonoBehaviour
         while(true)
         {   
             yield return delay;
-            OnExtinguish?.Invoke(-EFFICIENCY);
-        }
-    }
-
-    private void OnDisable() 
-    {
-        playerMovement.DirectionChanged -= UpdateDirection; 
-        PauseManager.OnPaused -= StopEmit;   
+            for(int i = 0; i < objectsToExtinguish.Count; i++)
+                objectsToExtinguish[i].CurrentHeat -= EFFICIENCY;
+        }   
     }
 }

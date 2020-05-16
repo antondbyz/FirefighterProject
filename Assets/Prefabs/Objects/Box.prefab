@@ -4983,7 +4983,9 @@ GameObject:
   - component: {fileID: 7835328753525692482}
   - component: {fileID: 7835328753525692511}
   - component: {fileID: 7835328753525692504}
-  - component: {fileID: 335964737509850220}
+  - component: {fileID: 1413801312765646155}
+  - component: {fileID: 7103306557742673132}
+  - component: {fileID: 4417192296164732593}
   m_Layer: 0
   m_Name: Box
   m_TagString: Untagged
@@ -5116,11 +5118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3583719ea6adc58468434972edcf4bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
   currentHealth: 100
-  damageDefense: 20
   healthFillArea: {fileID: 5282415867253323440}
   healthText: {fileID: 0}
---- !u!114 &335964737509850220
+--- !u!114 &1413801312765646155
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5129,12 +5131,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 7835328753525692483}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 168ba401ceb001a44880a39f65fbe1d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 5dd14d3b9cfb5d6438525e04a954bcbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHeat: 100
   currentHeat: 0
-  heatResistance: 7
-  burningEffect: {fileID: 0}
+--- !u!114 &7103306557742673132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7835328753525692483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42bed65837cdd5b45bc604d51a8a434a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4417192296164732593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7835328753525692483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aac5ca93c6294f44bae4095bcafe4ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coolingCoefficient: 0.01
 --- !u!1001 &175519031576830425
 PrefabInstance:
   m_ObjectHideFlags: 0

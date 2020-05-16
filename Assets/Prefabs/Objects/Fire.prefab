@@ -57,7 +57,10 @@ GameObject:
   - component: {fileID: 1622503270259640856}
   - component: {fileID: 1622503270259640858}
   - component: {fileID: 1622503270259640857}
-  - component: {fileID: 1622503270259640861}
+  - component: {fileID: 571815115222753761}
+  - component: {fileID: 7509613262454464446}
+  - component: {fileID: 5486386695742681975}
+  - component: {fileID: 7117285335982598848}
   m_Layer: 0
   m_Name: Fire
   m_TagString: Untagged
@@ -4828,7 +4831,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &1622503270259640861
+--- !u!114 &571815115222753761
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4837,8 +4840,49 @@ MonoBehaviour:
   m_GameObject: {fileID: 1622503270259640860}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8dea347082c01478d9b0df6f389f3f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5dd14d3b9cfb5d6438525e04a954bcbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHeat: 100
   currentHeat: 1
-  sparksPool: {fileID: 876559363536627127}
+--- !u!114 &7509613262454464446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622503270259640860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a485763bc991c4f932719ee2aeff79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  burningParticles: {fileID: 1622503270259640856}
+  heatingCoefficient: 0.01
+  heatForBurning: 1
+--- !u!114 &5486386695742681975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622503270259640860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb43efd219aecfb43acbb7f048fc63df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7117285335982598848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622503270259640860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e12cb19caefd8341bae58e4a8db8230, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minScale: {x: 0.1, y: 0.1}
+  maxScale: {x: 1, y: 1}

@@ -1,32 +1,31 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-public abstract class Heat : MonoBehaviour
+public class Heat : MonoBehaviour 
 {
-    public const float MAX_HEAT = 100;
-    public event System.Action OnHeatChanged;
+    public const float MAX_POSSIBLE_HEAT = 1000;
+    public event System.Action HeatChanged;
+    public float HeatRatio => CurrentHeat / MaxHeat;
+    public float MaxHeat => maxHeat;
     public float CurrentHeat 
-    {
-        get => currentHeat;
-        protected set
+    { 
+        get => currentHeat; 
+        set 
         {
-            if(value > MAX_HEAT) value = MAX_HEAT;
+            if(value > MaxHeat) value = MaxHeat;
             else if(value < 0) value = 0;
             if(currentHeat != value)
             {
                 currentHeat = value;
-                OnHeatChanged?.Invoke();
+                HeatChanged?.Invoke();
             }
-        }
+        } 
     }
-    [Range(0, MAX_HEAT)] [SerializeField] private float currentHeat = 0;
+
+    [Range(1, MAX_POSSIBLE_HEAT)] [SerializeField] private float maxHeat = 100;
+    [Range(0, MAX_POSSIBLE_HEAT)] [SerializeField] private float currentHeat = 0;
 
     private void Start() 
     {
-        OnHeatChanged?.Invoke();    
-    }
-
-    public virtual void ToHeat(float heat) 
-    {
-        CurrentHeat += heat; 
+        HeatChanged?.Invoke();    
     }
 }

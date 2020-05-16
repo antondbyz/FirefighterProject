@@ -39,14 +39,10 @@ public class Spark : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        other.GetComponent<Heat>()?.ToHeat(heatInfluence);
-        if(other.gameObject.layer == groundLayer)
-        {
-            Fire newFire = Instantiate(firePrefab, transform.position, Quaternion.identity);
-            newFire.ToHeat(heatInfluence);
-            SetActive(false);
-        }
-        else if(!other.isTrigger || other.GetComponent<Fire>() || other.GetComponent<Extinguisher>())
+        Heat heat = other.GetComponent<Heat>();
+        if(heat != null)
+            heat.CurrentHeat += heatInfluence;
+        if(!other.isTrigger || other.GetComponent<Fire>() || other.GetComponent<Extinguisher>())
             SetActive(false);
     }
 }

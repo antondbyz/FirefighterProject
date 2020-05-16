@@ -1,71 +1,72 @@
-﻿using System.Collections;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Fire : Heat
+[RequireComponent(typeof(Heat), typeof(Burnable))]
+public class Fire : MonoBehaviour 
 {
-    [SerializeField] private SparksPool sparksPool = null;
-    private System.Action<float> OnBurn;
-    private Transform myTransform;
-    private ParticleSystem ps;
-    private Coroutine sparkingCorouine, burningCoroutine;
-    private static Vector2 MinScale = new Vector2(0.1f, 0.1f);
+    private Heat heat;
+    private Burnable burnable;
+    private List<Heat> objectsToHeat = new List<Heat>();
+    private Coroutine heatingObjectsCoroutine;
 
     private void Awake() 
-    { 
-        myTransform = GetComponent<Transform>();
-        ps = GetComponent<ParticleSystem>();
-        OnHeatChanged += UpdateState;
+    {
+        heat = GetComponent<Heat>();
+        burnable = GetComponent<Burnable>();    
+    }
+
+    private void OnEnable() 
+    {
+        heat.HeatChanged += CheckBurning;
+    }
+
+    private void OnDisable() 
+    {
+        heat.HeatChanged -= CheckBurning;
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        if(other.TryGetComponent(out HeatController heatController))
-            OnBurn += heatController.ToHeat;
+        Heat heat = other.GetComponent<Heat>();
+        if(heat != null)
+        {
+            objectsToHeat.Add(heat);
+        }    
     }
 
     private void OnTriggerExit2D(Collider2D other) 
     {
-        if(other.TryGetComponent(out HeatController heatController))
-            OnBurn -= heatController.ToHeat;
+        Heat heat = other.GetComponent<Heat>();
+        if(heat != null)
+        {
+            objectsToHeat.Remove(heat);
+        }
     }
 
-    private void UpdateState()
+    private void CheckBurning()
     {
-        if(CurrentHeat > 0)
+        if(burnable.IsBurning)
         {
-            if(sparkingCorouine == null) sparkingCorouine = StartCoroutine(Sparking());
-            if(burningCoroutine == null) burningCoroutine = StartCoroutine(Burning());
-            if(ps != null && !ps.isPlaying) ps.Play();
-            myTransform.localScale = Vector2.Lerp(MinScale, Vector2.one, CurrentHeat / MAX_HEAT);
-        } 
+            if(heatingObjectsCoroutine == null) 
+                heatingObjectsCoroutine = StartCoroutine(HeatingEnteredObjects());
+        }
         else
         {
-            if(sparkingCorouine != null) StopCoroutine(sparkingCorouine);
-            if(burningCoroutine != null) StopCoroutine(burningCoroutine);
-            if(ps != null && ps.isPlaying) ps.Stop();
             Destroy(gameObject, 2);
         }
     }
 
-    private IEnumerator Burning()
+    private IEnumerator HeatingEnteredObjects()
     {
-        WaitForSeconds delay = new WaitForSeconds(0.5f);
-        while(true)
+        yield return null; // this is necessary so that the coroutine variable is not null
+        WaitForSeconds delay = new WaitForSeconds(0.3f);
+        while(burnable.IsBurning)
         {
+            for(int i = 0; i < objectsToHeat.Count; i++)
+                objectsToHeat[i].CurrentHeat += heat.CurrentHeat / 10;
+                
             yield return delay;
-            OnBurn?.Invoke(CurrentHeat);
-            CurrentHeat++;
-        }
-    }
-
-    private IEnumerator Sparking()
-    {
-        WaitForSeconds delay = new WaitForSeconds(5);
-        while(true)
-        {
-            yield return delay;
-            int side = Random.Range(0, 2) == 1 ? 1 : -1;
-            sparksPool.ThrowSpark(new Vector2(side * 100, 200), CurrentHeat / 10);
         }
     }
 }

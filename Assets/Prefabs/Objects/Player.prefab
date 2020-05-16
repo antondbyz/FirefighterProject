@@ -87,20 +87,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cae9e9bf134682347b721a349ca4d756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnScreenTouched:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5740652146877895353}
-        m_MethodName: UpdateDirection
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &2316649297941190791
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +585,7 @@ GameObject:
   - component: {fileID: 5740652146082767495}
   - component: {fileID: 5740652146082767492}
   - component: {fileID: 5740652146082767493}
-  - component: {fileID: 1957266677879872486}
+  - component: {fileID: 4704617308387166666}
   m_Layer: 8
   m_Name: BurningEffect
   m_TagString: Untagged
@@ -5343,7 +5329,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &1957266677879872486
+--- !u!114 &4704617308387166666
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5352,9 +5338,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5740652146082767496}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b29ce9b3822eb6548b33682a77797de7, type: 3}
+  m_Script: {fileID: 11500000, guid: e2e4e3fea42c76940bec0167d3a06e86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scaleMultiplier: 2
 --- !u!1 &5740652146877895357
 GameObject:
   m_ObjectHideFlags: 0
@@ -5370,7 +5357,10 @@ GameObject:
   - component: {fileID: 7893392320401674183}
   - component: {fileID: 5740652146877895353}
   - component: {fileID: 5740652146877895354}
-  - component: {fileID: 1767735960631175690}
+  - component: {fileID: 4487976510716018469}
+  - component: {fileID: 1605677816590436782}
+  - component: {fileID: 8420043419524998665}
+  - component: {fileID: 2640886748178282946}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -5560,11 +5550,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3583719ea6adc58468434972edcf4bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
   currentHealth: 100
-  damageDefense: 10
   healthFillArea: {fileID: 3719914533159548130}
   healthText: {fileID: 5760438650619917829}
---- !u!114 &1767735960631175690
+--- !u!114 &4487976510716018469
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5573,12 +5563,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 5740652146877895357}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 168ba401ceb001a44880a39f65fbe1d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 5dd14d3b9cfb5d6438525e04a954bcbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHeat: 100
   currentHeat: 0
-  heatResistance: 1
-  burningEffect: {fileID: 1957266677879872486}
+--- !u!114 &1605677816590436782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5740652146877895357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42bed65837cdd5b45bc604d51a8a434a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8420043419524998665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5740652146877895357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aac5ca93c6294f44bae4095bcafe4ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coolingCoefficient: 0.01
+--- !u!114 &2640886748178282946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5740652146877895357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a485763bc991c4f932719ee2aeff79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  burningParticles: {fileID: 5740652146082767492}
+  heatingCoefficient: 0.02
+  heatForBurning: 10
 --- !u!1 &5740652147449737558
 GameObject:
   m_ObjectHideFlags: 0
@@ -13168,6 +13197,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23d3d90c2b1b05c4ebc2466af3043b3d, type: 3}
+--- !u!224 &1421405888774187991 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8086783033706255875, guid: 23d3d90c2b1b05c4ebc2466af3043b3d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7170820554209836500}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4255232297979820872 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6381108606110271132, guid: 23d3d90c2b1b05c4ebc2466af3043b3d,
@@ -13180,12 +13215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &1421405888774187991 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8086783033706255875, guid: 23d3d90c2b1b05c4ebc2466af3043b3d,
-    type: 3}
-  m_PrefabInstance: {fileID: 7170820554209836500}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8065737482539151412
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13520,12 +13549,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52299814fa0f8ab43aee5cc90760f9e7, type: 3}
---- !u!224 &3917522850613261707 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5684497478196303360, guid: 52299814fa0f8ab43aee5cc90760f9e7,
-    type: 3}
-  m_PrefabInstance: {fileID: 8700587313597113227}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3719914533159548130 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5413740853316310889, guid: 52299814fa0f8ab43aee5cc90760f9e7,
@@ -13538,3 +13561,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &3917522850613261707 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5684497478196303360, guid: 52299814fa0f8ab43aee5cc90760f9e7,
+    type: 3}
+  m_PrefabInstance: {fileID: 8700587313597113227}
+  m_PrefabAsset: {fileID: 0}
