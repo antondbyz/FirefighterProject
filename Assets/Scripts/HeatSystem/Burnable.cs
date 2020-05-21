@@ -4,12 +4,13 @@ using UnityEngine;
 [RequireComponent(typeof(Heat))]
 public class Burnable : MonoBehaviour 
 {
-    public bool IsBurning => heat.CurrentHeat >= heatForBurning;
+    public bool IsBurning => heat.CurrentHeat >= HeatForBurning;
+    public float HeatForBurning => heat.MaxHeat * heatCoefficientForBurning;
 
     [SerializeField] private ParticleSystem burningParticles = null;
+    [Range(0, 1)] [SerializeField] private float heatCoefficientForBurning = 0.1f;
     [Tooltip("0 - the object does not heat at all, 1 - the object heats immediately")]
     [Range(0, 1)] [SerializeField] private float heatingCoefficient = 0.02f;
-    [Range(0, Heat.MAX_POSSIBLE_HEAT)] [SerializeField] private float heatForBurning = 10f;
 
     private Heat heat;
     private Coroutine heatingCoroutine;
@@ -40,8 +41,8 @@ public class Burnable : MonoBehaviour
             if(burningEffectScaler != null)
             {
                 float scale;
-                if(heatForBurning >= heat.MaxHeat) scale = 1;
-                else scale = (heat.CurrentHeat - heatForBurning) / (heat.MaxHeat - heatForBurning);
+                if(HeatForBurning >= heat.MaxHeat) scale = 1;
+                else scale = (heat.CurrentHeat - HeatForBurning) / (heat.MaxHeat - HeatForBurning);
                 burningEffectScaler.LerpScale(scale);
             }
         }

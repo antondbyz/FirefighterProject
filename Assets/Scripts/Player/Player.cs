@@ -23,8 +23,19 @@ public class Player : MonoBehaviour
     {
         PauseManager.IsPaused = false;
         health = GetComponent<Health>();
-        health.Died += FailLevel;
         EarnedMoney = 0;    
+    }
+
+    private void OnEnable() 
+    {
+        if(health != null)
+            health.Died += FailLevel;
+    }
+
+    private void OnDisable() 
+    {
+        if(health != null)
+            health.Died -= FailLevel;    
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
@@ -47,10 +58,5 @@ public class Player : MonoBehaviour
     {
         PauseManager.IsPaused = true;
         levelCompleted.Invoke();
-    }
-
-    private void OnDisable() 
-    {
-        health.Died -= FailLevel;    
     }
 }

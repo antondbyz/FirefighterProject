@@ -4,7 +4,6 @@ public class Heat : MonoBehaviour
 {
     public const float MAX_POSSIBLE_HEAT = 1000;
     public event System.Action HeatChanged;
-    public float HeatRatio => CurrentHeat / MaxHeat;
     public float MaxHeat => maxHeat;
     public float CurrentHeat 
     { 

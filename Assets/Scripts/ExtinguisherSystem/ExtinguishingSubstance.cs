@@ -2,21 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Extinguisher : MonoBehaviour
+public class ExtinguishingSubstance : MonoBehaviour
 {
-    public const float EFFICIENCY = 3;
+    [SerializeField] private float efficiency = 1;
     private List<Heat> objectsToExtinguish = new List<Heat>();
-    private Transform myTransform;
     private ParticleSystem ps;
     private Collider2D coll;
-    private PlayerMovement playerMovement;
 
-    private void Awake()
+    public void StartEmit() 
     {
-        myTransform = GetComponent<Transform>();
-        ps = GetComponent<ParticleSystem>();
+        ps.Play();
+        coll.enabled = true;
+    }
+
+    public void StopEmit() 
+    {
+        ps.Stop();
+        coll.enabled = false;
+    }
+
+    private void Awake() 
+    {
+        ps = GetComponent<ParticleSystem>();    
         coll = GetComponent<Collider2D>();
-        playerMovement = myTransform.parent.GetComponent<PlayerMovement>();
     }
 
     private void Start() 
@@ -27,20 +35,12 @@ public class Extinguisher : MonoBehaviour
 
     private void OnEnable() 
     {
-        playerMovement.DirectionChanged += UpdateDirection;
         PauseManager.OnPaused += StopEmit;
     }
 
     private void OnDisable() 
     {
-        playerMovement.DirectionChanged -= UpdateDirection; 
         PauseManager.OnPaused -= StopEmit;   
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.E)) StartEmit();
-        else if(Input.GetKeyUp(KeyCode.E)) StopEmit();
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
@@ -55,22 +55,13 @@ public class Extinguisher : MonoBehaviour
             objectsToExtinguish.Remove(heat);    
     }
 
-    public void StartEmit() 
+#if UNITY_EDITOR
+    private void Update()
     {
-        ps.Play();
-        coll.enabled = true;
+        if(Input.GetKeyDown(KeyCode.E)) StartEmit();
+        else if(Input.GetKeyUp(KeyCode.E)) StopEmit();
     }
-
-    public void StopEmit() 
-    {
-        ps.Stop();
-        coll.enabled = false;
-    }
-    
-    private void UpdateDirection()
-    {
-        myTransform.rotation = Quaternion.LookRotation(myTransform.forward, playerMovement.CurrentDirection);
-    }
+#endif
 
     private IEnumerator Extinguishing()
     {
@@ -79,7 +70,7 @@ public class Extinguisher : MonoBehaviour
         {   
             yield return delay;
             for(int i = 0; i < objectsToExtinguish.Count; i++)
-                objectsToExtinguish[i].CurrentHeat -= EFFICIENCY;
+                objectsToExtinguish[i].CurrentHeat -= efficiency;
         }   
     }
 }

@@ -30,7 +30,7 @@ public class HeatResponse : MonoBehaviour
 
     private void Response()
     {
-        rend.color = Color.Lerp(Color.white, Color.red, heat.HeatRatio);
+        rend.color = Color.Lerp(Color.white, Color.red, heat.CurrentHeat / heat.MaxHeat);
         
         if(IsDamaging && damagingCoroutine == null)
             damagingCoroutine = StartCoroutine(Damaging());
@@ -42,7 +42,7 @@ public class HeatResponse : MonoBehaviour
         WaitForSeconds delay = new WaitForSeconds(0.1f);
         while(IsDamaging)
         {
-            health.CurrentHealth -= heat.HeatRatio;
+            health.CurrentHealth -= heat.CurrentHeat / heat.MaxHeat;
             yield return delay;
         }
         damagingCoroutine = null;
