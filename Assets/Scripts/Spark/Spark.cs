@@ -42,7 +42,7 @@ public class Spark : MonoBehaviour
         Heat heat = other.GetComponent<Heat>();
         if(heat != null)
             heat.CurrentHeat += heatInfluence;
-        if(!other.isTrigger || other.GetComponent<Fire>() || other.GetComponent<Extinguisher>())
+        if(!other.isTrigger || other.GetComponent<Fire>() || other.GetComponent<ExtinguishingSubstance>())
             SetActive(false);
     }
 }
