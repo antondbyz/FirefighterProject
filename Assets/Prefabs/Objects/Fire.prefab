@@ -1,50 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &876559363536627080
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 876559363536627126}
-  - component: {fileID: 876559363536627127}
-  m_Layer: 0
-  m_Name: SparksPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &876559363536627126
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 876559363536627080}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1622503270356250871}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &876559363536627127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 876559363536627080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2a1513bb5b9c0d488a4049a1226db53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 3325447498530552677, guid: 608d88773613ea64686e6298f7d35257, type: 3}
-  poolSize: 1
 --- !u!1 &1622503270259640860
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,9 +11,9 @@ GameObject:
   - component: {fileID: 1622503270356250871}
   - component: {fileID: 1622503270259640856}
   - component: {fileID: 1622503270259640858}
+  - component: {fileID: 5132515690628935471}
   - component: {fileID: 1622503270259640857}
-  - component: {fileID: 571815115222753761}
-  - component: {fileID: 5486386695742681975}
+  - component: {fileID: 1061668730074584523}
   - component: {fileID: 7117285335982598848}
   m_Layer: 0
   m_Name: Fire
@@ -77,8 +32,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 876559363536627126}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1353,7 +1307,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.7264151, g: 0.12712266, b: 0, a: 0.19607843}
+        key0: {r: 0.6981132, g: 0.11977433, b: 0, a: 0.19607843}
         key1: {r: 0, g: 0, b: 0, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -1361,9 +1315,9 @@ ParticleSystem:
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
-        ctime0: 0
+        ctime0: 13107
         ctime1: 42598
-        ctime2: 0
+        ctime2: 42598
         ctime3: 0
         ctime4: 0
         ctime5: 0
@@ -4766,6 +4720,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 2.5}
   m_EdgeRadius: 0
+--- !u!114 &5132515690628935471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622503270259640860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec31170ca0d461745b8ba8fd894f53a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHeat: 100
+  currentHeat: 100
 --- !u!199 &1622503270259640857
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -4830,7 +4798,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &571815115222753761
+--- !u!114 &1061668730074584523
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4839,21 +4807,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1622503270259640860}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dd14d3b9cfb5d6438525e04a954bcbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHeat: 100
-  currentHeat: 54
---- !u!114 &5486386695742681975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1622503270259640860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb43efd219aecfb43acbb7f048fc63df, type: 3}
+  m_Script: {fileID: 11500000, guid: b1e7e936f65df1742a606254eb657372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &7117285335982598848
