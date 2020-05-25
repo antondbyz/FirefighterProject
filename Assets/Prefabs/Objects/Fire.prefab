@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1622503270356250871}
   - component: {fileID: 1622503270259640856}
   - component: {fileID: 1622503270259640858}
-  - component: {fileID: 5132515690628935471}
+  - component: {fileID: 2515974890974632963}
+  - component: {fileID: 5664970715629237338}
   - component: {fileID: 1622503270259640857}
   - component: {fileID: 1061668730074584523}
-  - component: {fileID: 7117285335982598848}
   m_Layer: 0
   m_Name: Fire
   m_TagString: Untagged
@@ -4707,7 +4707,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.25}
+  m_Offset: {x: 0, y: 1.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4718,9 +4718,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 2.5}
+  m_Size: {x: 3, y: 3}
   m_EdgeRadius: 0
---- !u!114 &5132515690628935471
+--- !u!114 &2515974890974632963
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4729,11 +4729,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1622503270259640860}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec31170ca0d461745b8ba8fd894f53a7, type: 3}
+  m_Script: {fileID: 11500000, guid: a1561fda20207b3478b8abea0fa9b1e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHeat: 100
   currentHeat: 100
+  isHeatable: 0
+  isExtinguishable: 1
+--- !u!114 &5664970715629237338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622503270259640860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c91acf8e1dd61ab48b8d87227d285ab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!199 &1622503270259640857
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -4810,17 +4824,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e7e936f65df1742a606254eb657372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7117285335982598848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1622503270259640860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e12cb19caefd8341bae58e4a8db8230, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minScale: {x: 0.1, y: 0.1}
-  maxScale: {x: 1, y: 1}
+  heatingSpeed: 0

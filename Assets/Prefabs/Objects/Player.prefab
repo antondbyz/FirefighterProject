@@ -608,8 +608,10 @@ GameObject:
   - component: {fileID: 1789337649281076415}
   - component: {fileID: 1789337649281076400}
   - component: {fileID: 1789337649281076401}
-  - component: {fileID: 6793080840628516528}
-  - component: {fileID: 2014610444462633276}
+  - component: {fileID: 5288633965985272007}
+  - component: {fileID: 4474598922873687056}
+  - component: {fileID: 2706154354725883993}
+  - component: {fileID: 8443901043302989064}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -747,7 +749,7 @@ MonoBehaviour:
   keyboardMovement: 1
   speed: 7
   jumpForce: 400
---- !u!114 &6793080840628516528
+--- !u!114 &5288633965985272007
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -756,12 +758,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 1789337649281076405}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36124691d4b9d5944bbf737d68d43e52, type: 3}
+  m_Script: {fileID: 11500000, guid: a1561fda20207b3478b8abea0fa9b1e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHeat: 100
   currentHeat: 0
---- !u!114 &2014610444462633276
+  isHeatable: 1
+  isExtinguishable: 1
+--- !u!114 &4474598922873687056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789337649281076405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81b85c22e552cce4a91be967d68ff08e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2706154354725883993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789337649281076405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3acb91649ced735499d5a368c4e71821, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8443901043302989064
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -789,7 +817,7 @@ GameObject:
   - component: {fileID: 1789337649854492504}
   - component: {fileID: 1789337649854492505}
   - component: {fileID: 1789337649854492506}
-  - component: {fileID: 1789337649854492511}
+  - component: {fileID: 2330590154526969778}
   m_Layer: 8
   m_Name: ExtinguishingSubstance
   m_TagString: Untagged
@@ -5580,7 +5608,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 2.8}
   m_EdgeRadius: 0
---- !u!114 &1789337649854492511
+--- !u!114 &2330590154526969778
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5589,10 +5617,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1789337649854492510}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fe88205c65762a42ac30a3f28b4edeb, type: 3}
+  m_Script: {fileID: 11500000, guid: bd7dd08b8a1d8cb4f80ef48cc58dcb92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  efficiency: 3
+  efficiency: 1
 --- !u!1 &1789337650667519104
 GameObject:
   m_ObjectHideFlags: 0
@@ -5604,7 +5632,7 @@ GameObject:
   - component: {fileID: 1789337650667519119}
   - component: {fileID: 1789337650667519116}
   - component: {fileID: 1789337650667519117}
-  - component: {fileID: 1600410843534481346}
+  - component: {fileID: 5039861273852813378}
   m_Layer: 8
   m_Name: BurningEffect
   m_TagString: Untagged
@@ -10348,7 +10376,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &1600410843534481346
+--- !u!114 &5039861273852813378
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10357,7 +10385,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1789337650667519104}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2e4e3fea42c76940bec0167d3a06e86, type: 3}
+  m_Script: {fileID: 11500000, guid: d5e8a36500ae89041ab694da9f2da714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   scaleMultiplier: 2

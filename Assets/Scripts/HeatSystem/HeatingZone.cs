@@ -1,41 +1,36 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeatingZone : MonoBehaviour 
+public class HeatingZone : MonoBehaviour
 {
-    private List<Heatable> objectsToHeat = new List<Heatable>();
-    private Coroutine heatingCoroutine;
-    private float currentHeatInfluence;
-
-    public void StartHeatingEnteredObjects(float newHeatInfluence)
+    public float HeatingSpeed 
     {
-        currentHeatInfluence = newHeatInfluence;
-        if(heatingCoroutine == null)
-            heatingCoroutine = StartCoroutine(HeatingEnteredObjects());
+        get => heatingSpeed;
+        set { heatingSpeed = value; }
     }
 
-    public void StopHeatingEnteredObjects()
+    [SerializeField] private float heatingSpeed = 0;
+
+    private List<Heat> objectsToHeat = new List<Heat>();
+
+    private void Start() 
     {
-        if(heatingCoroutine != null)
-        {
-            StopCoroutine(heatingCoroutine);
-            heatingCoroutine = null;
-        }
+        StartCoroutine(HeatingEnteredObjects());
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        Heatable heatable = other.GetComponent<Heatable>();
-        if(heatable != null)
-            objectsToHeat.Add(heatable);
+        Heat heat = other.GetComponent<Heat>();
+        if(heat != null && heat.IsHeatable)
+            objectsToHeat.Add(heat);
     }
 
     private void OnTriggerExit2D(Collider2D other) 
     {
-        Heatable heatable = other.GetComponent<Heatable>();
-        if(heatable != null)
-            objectsToHeat.Remove(heatable);
+        Heat heat = other.GetComponent<Heat>();
+        if(heat != null)
+            objectsToHeat.Remove(heat);
     }
 
     private IEnumerator HeatingEnteredObjects()
@@ -46,7 +41,7 @@ public class HeatingZone : MonoBehaviour
         {
             yield return delay;
             for(int i = 0; i < objectsToHeat.Count; i++)
-                objectsToHeat[i].CurrentHeat += currentHeatInfluence * timeDelay;
+                objectsToHeat[i].CurrentHeat += heatingSpeed * timeDelay;
         }
     }    
 }

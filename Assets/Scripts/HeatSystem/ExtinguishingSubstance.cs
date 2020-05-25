@@ -1,34 +1,36 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ExtinguishingSubstance : MonoBehaviour
 {
-    public event System.Action<float> Extinguish;
-    public bool IsExtinguishing { get; private set; }
-
     [SerializeField] private float efficiency = 1;
+
     private ParticleSystem ps;
+    private List<Heat> objectsToExtinguish = new List<Heat>();
+    private Coroutine extinguishingCoroutine;
 
     public void Play()
     {
         ps.Play();
-        IsExtinguishing = true;
+        if(extinguishingCoroutine == null)
+            extinguishingCoroutine = StartCoroutine(Extinguishing());
     }
 
     public void Stop()
     {
         ps.Stop();
-        IsExtinguishing = false;
+        if(extinguishingCoroutine != null)
+        {
+            StopCoroutine(extinguishingCoroutine);
+            extinguishingCoroutine = null;
+        }
     }
 
     private void Awake() 
     {
-        ps = GetComponent<ParticleSystem>();  
-    }
-
-    private void Start() 
-    {
-        StartCoroutine(Extinguishing());    
+        ps = GetComponent<ParticleSystem>();
+        Stop();
     }
 
     private void OnEnable() 
@@ -39,6 +41,20 @@ public class ExtinguishingSubstance : MonoBehaviour
     private void OnDisable() 
     {
         PauseManager.OnPaused -= Stop;   
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        Heat heat = other.GetComponent<Heat>();
+        if(heat != null && heat.IsExtinguishable)
+            objectsToExtinguish.Add(heat);
+    }
+
+    private void OnTriggerExit2D(Collider2D other) 
+    {
+        Heat heat = other.GetComponent<Heat>();
+        if(heat != null)
+            objectsToExtinguish.Remove(heat);
     }
 
 #if UNITY_EDITOR
@@ -55,7 +71,8 @@ public class ExtinguishingSubstance : MonoBehaviour
         while(true)
         {   
             yield return delay;
-            if(IsExtinguishing) Extinguish?.Invoke(efficiency);
+            for(int i = 0; i < objectsToExtinguish.Count; i++)
+                objectsToExtinguish[i].CurrentHeat -= efficiency;
         }   
     }
 }

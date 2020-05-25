@@ -1,35 +1,39 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Heatable))]
+[RequireComponent(typeof(Heat))]
 public class Burnable : MonoBehaviour 
 {
-    public bool IsBurning => heatable.CurrentHeat >= heatForBurning;
+    public bool IsBurning => heat.CurrentHeat >= heatForBurning;
 
     [SerializeField] private ParticleSystem burningParticles = null;
     [SerializeField] private float heatForBurning = 10;
     [Tooltip("0 - the object does not heat at all, 1 - the object heats immediately")]
     [Range(0, 1)] [SerializeField] private float heatingCoefficient = 0.02f;
 
-    private Heatable heatable;
+    private Heat heat;
+    private ParticlesScaler particlesScaler;
     private Coroutine heatingCoroutine;
-    private IScalable particlesScaler;
 
     private void Awake() 
     {
-        heatable = GetComponent<Heatable>();
-        particlesScaler = burningParticles.GetComponent<IScalable>();
-        CheckBurning();
+        heat = GetComponent<Heat>();
+        particlesScaler = burningParticles.GetComponent<ParticlesScaler>();
+    }
+
+    private void Start() 
+    {
+        CheckBurning();    
     }
 
     private void OnEnable() 
     {
-        heatable.HeatChanged += CheckBurning;    
+        heat.HeatChanged += CheckBurning;    
     }
 
     private void OnDisable() 
     {
-        heatable.HeatChanged -= CheckBurning;    
+        heat.HeatChanged -= CheckBurning;    
     }
 
     private void CheckBurning()
@@ -40,11 +44,11 @@ public class Burnable : MonoBehaviour
             if(particlesScaler != null) 
             {
                 float scale;
-                if(heatForBurning == heatable.MaxHeat) scale = 1;
-                else scale = (heatable.CurrentHeat - heatForBurning) / (heatable.MaxHeat - heatForBurning);
-                particlesScaler.LerpScale(heatable.CurrentHeat / heatable.MaxHeat);
+                if(heatForBurning == heat.MaxHeat) scale = 1;
+                else scale = (heat.CurrentHeat - heatForBurning) / (heat.MaxHeat - heatForBurning);
+                particlesScaler.LerpScale(heat.CurrentHeat / heat.MaxHeat);
             }
-            if(heatingCoefficient > 0 && heatingCoroutine == null) 
+            if(heatingCoroutine == null) 
                 heatingCoroutine = StartCoroutine(HeatingUp());
         }
         else burningParticles.Stop();
@@ -56,7 +60,7 @@ public class Burnable : MonoBehaviour
         WaitForSeconds delay = new WaitForSeconds(0.3f);
         while(IsBurning)
         {
-            heatable.CurrentHeat += heatable.MaxHeat * heatingCoefficient;
+            heat.CurrentHeat += heat.MaxHeat * heatingCoefficient;
             yield return delay;
         }
         heatingCoroutine = null;

@@ -1,7 +1,7 @@
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
-public class ParticlesScaler : MonoBehaviour, IScalable
+public class ParticlesScaler : MonoBehaviour
 {
     [SerializeField] private float scaleMultiplier = 2;
 
