@@ -609,9 +609,9 @@ GameObject:
   - component: {fileID: 1789337649281076400}
   - component: {fileID: 1789337649281076401}
   - component: {fileID: 5288633965985272007}
-  - component: {fileID: 4474598922873687056}
   - component: {fileID: 2706154354725883993}
   - component: {fileID: 8443901043302989064}
+  - component: {fileID: 4474598922873687056}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -765,18 +765,6 @@ MonoBehaviour:
   currentHeat: 0
   isHeatable: 1
   isExtinguishable: 1
---- !u!114 &4474598922873687056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1789337649281076405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81b85c22e552cce4a91be967d68ff08e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2706154354725883993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -804,6 +792,18 @@ MonoBehaviour:
   burningParticles: {fileID: 1789337650667519116}
   heatForBurning: 10
   heatingCoefficient: 0.02
+--- !u!114 &4474598922873687056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789337649281076405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81b85c22e552cce4a91be967d68ff08e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1789337649854492510
 GameObject:
   m_ObjectHideFlags: 0
@@ -11623,6 +11623,7 @@ GameObject:
   - component: {fileID: 5713657339588061160}
   - component: {fileID: 8889256345362464537}
   - component: {fileID: 6382923554258800801}
+  - component: {fileID: 7840178780280867696}
   m_Layer: 8
   m_Name: Extinguish
   m_TagString: Untagged
@@ -11687,6 +11688,60 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7840178780280867696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7699531379793063898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2330590154526969778}
+          m_MethodName: Play
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1789337649281076401}
+          m_MethodName: SetMovementX
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2330590154526969778}
+          m_MethodName: Stop
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &7911714588126879655
 GameObject:
   m_ObjectHideFlags: 0
