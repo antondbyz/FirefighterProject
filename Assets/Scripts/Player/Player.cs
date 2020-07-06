@@ -4,26 +4,18 @@ using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
-    public int EarnedMoney
-    {
-        get => earnedMoney;
-        private set
-        {
-            earnedMoney = value;
-            moneyText.text = $"{earnedMoney}$";
-        }
-    }
-    [SerializeField] private TextMeshProUGUI moneyText = null;
+    public Extinguisher Extinguisher => extinguisher;
+
     [SerializeField] private UnityEvent levelFailed = null;
     [SerializeField] private UnityEvent levelCompleted = null;
-    private int earnedMoney;
+    [SerializeField] private Extinguisher extinguisher = null;
+
     private Health health;
 
     private void Awake() 
     {
         PauseManager.IsPaused = false;
         health = GetComponent<Health>();
-        EarnedMoney = 0;    
     }
 
     private void OnEnable() 
@@ -43,7 +35,6 @@ public class Player : MonoBehaviour
         Finish finish = other.GetComponent<Finish>();
         if(finish != null)
         {
-            EarnedMoney += finish.Reward;
             CompleteLevel();
         }        
     }

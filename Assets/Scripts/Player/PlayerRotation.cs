@@ -3,29 +3,18 @@
 public class PlayerRotation : MonoBehaviour
 {
     [SerializeField] private Transform rotateBone = null;
-    [SerializeField] private float minRotation, maxRotation = 0;
 
     private PlayerMovement movement;
 
     public void UpdateDirection()
     {
         LookAtTouchPosition();
-        ClampRotation();
+        ClampRotation(-45, 60);
     }
 
     private void Awake() 
     {
         movement = GetComponent<PlayerMovement>();    
-    }
-
-    private void OnEnable() 
-    {
-        ScreenTouchesHandler.Instance.ScreenTouched += UpdateDirection;    
-    }
-
-    private void OnDisable() 
-    {
-        ScreenTouchesHandler.Instance.ScreenTouched -= UpdateDirection;
     }
 
     private void LookAtTouchPosition()
@@ -39,7 +28,7 @@ public class PlayerRotation : MonoBehaviour
         rotateBone.rotation = Quaternion.LookRotation(rotateBone.forward, convertedDirection);
     }
 
-    private void ClampRotation()
+    private void ClampRotation(float minRotation, float maxRotation)
     {
         Vector3 convertedRotation = rotateBone.localEulerAngles;
         if(rotateBone.localEulerAngles.z >= 180) convertedRotation.z -= 360;
@@ -54,4 +43,14 @@ public class PlayerRotation : MonoBehaviour
             rotateBone.localEulerAngles = convertedRotation;
         }
     } 
+
+    private void OnEnable() 
+    {
+        ScreenTouchesHandler.Instance.ScreenTouched += UpdateDirection;    
+    }
+
+    private void OnDisable() 
+    {
+        ScreenTouchesHandler.Instance.ScreenTouched -= UpdateDirection;
+    }
 }

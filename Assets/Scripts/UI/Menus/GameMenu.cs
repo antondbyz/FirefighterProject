@@ -11,10 +11,12 @@ public class GameMenu : MonoBehaviour
     public void RestartCurrentScene()
     {
         SceneManager.LoadScene(gameObject.scene.buildIndex);
+        PauseManager.IsPaused = false;
     }
 
     public void OpenTheMainMenu()
     {
         SceneManager.LoadScene(0);
+        PauseManager.IsPaused = false;
     }
 }
