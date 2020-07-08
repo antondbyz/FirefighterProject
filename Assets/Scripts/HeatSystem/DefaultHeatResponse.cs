@@ -5,11 +5,15 @@ using UnityEngine;
 public class DefaultHeatResponse : MonoBehaviour, IHeatResponse
 {
     public bool IsDamaging => health != null && heat.CurrentHeat > 0;
+    public bool IsCooling => heat.CurrentHeat > 0 && (burnable == null || !burnable.IsBurning);
 
     private Heat heat;
     private SpriteRenderer spriteRenderer;
     private Health health;
+    private Burnable burnable;
+    private Coroutine coolingCoroutine;
     private Coroutine damagingCoroutine;
+    private float latestHeat;
 
     public void Response()
     {
@@ -18,6 +22,16 @@ public class DefaultHeatResponse : MonoBehaviour, IHeatResponse
         
         if(IsDamaging && damagingCoroutine == null)
             damagingCoroutine = StartCoroutine(Damaging());
+
+        if(heat.CurrentHeat > latestHeat && coolingCoroutine != null)
+        {
+            StopCoroutine(coolingCoroutine);
+            coolingCoroutine = null;
+        }
+        if(IsCooling && coolingCoroutine == null)
+            coolingCoroutine =  StartCoroutine(Cooling());
+        
+        latestHeat = heat.CurrentHeat;
     }
 
     private void Awake() 
@@ -25,6 +39,7 @@ public class DefaultHeatResponse : MonoBehaviour, IHeatResponse
         heat = GetComponent<Heat>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         health = GetComponent<Health>();
+        burnable = GetComponent<Burnable>();  
     }
 
     private IEnumerator Damaging()
@@ -37,5 +52,16 @@ public class DefaultHeatResponse : MonoBehaviour, IHeatResponse
             yield return delay;
         }
         damagingCoroutine = null;
+    }
+
+    private IEnumerator Cooling()
+    {
+        yield return new WaitForSeconds(1);
+        WaitForSeconds delay = new WaitForSeconds(0.3f);
+        while(true)
+        {
+            heat.CurrentHeat -= heat.MaxHeat / 100;
+            yield return delay;
+        }
     }
 }

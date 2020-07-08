@@ -3,6 +3,7 @@
 public class PlayerRotation : MonoBehaviour
 {
     [SerializeField] private Transform rotateBone = null;
+    [SerializeField] private ScreenTouchesHandler screenTouchesHandler = null;
 
     private PlayerMovement movement;
 
@@ -14,17 +15,15 @@ public class PlayerRotation : MonoBehaviour
 
     private void Awake() 
     {
-        movement = GetComponent<PlayerMovement>();    
+        movement = GetComponent<PlayerMovement>();   
     }
 
     private void LookAtTouchPosition()
     {
-        Vector2 direction = ScreenTouchesHandler.Instance.WorldTouchPosition - (Vector2)rotateBone.position;
+        Vector2 direction = screenTouchesHandler.WorldTouchPosition - (Vector2)rotateBone.position;
         Vector2 convertedDirection = Quaternion.Euler(0, 0, 180) * direction;
-        if((convertedDirection.x > 0 && !movement.FlipX) || (convertedDirection.x < 0 && movement.FlipX))
-        {
-            convertedDirection.x = -convertedDirection.x;
-        }
+        if(convertedDirection.x > 0 && !movement.FlipX) convertedDirection.x = -1;
+        else if(convertedDirection.x < 0 && movement.FlipX) convertedDirection.x = 1;
         rotateBone.rotation = Quaternion.LookRotation(rotateBone.forward, convertedDirection);
     }
 
@@ -46,11 +45,11 @@ public class PlayerRotation : MonoBehaviour
 
     private void OnEnable() 
     {
-        ScreenTouchesHandler.Instance.ScreenTouched += UpdateDirection;    
+        screenTouchesHandler.ScreenTouched += UpdateDirection;    
     }
 
     private void OnDisable() 
     {
-        ScreenTouchesHandler.Instance.ScreenTouched -= UpdateDirection;
+        screenTouchesHandler.ScreenTouched -= UpdateDirection;
     }
 }

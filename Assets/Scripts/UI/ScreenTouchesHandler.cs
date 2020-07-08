@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ScreenTouchesHandler : Singleton<ScreenTouchesHandler>, IDragHandler, IPointerDownHandler
+public class ScreenTouchesHandler : MonoBehaviour, IDragHandler, IPointerDownHandler
 {
     public event System.Action ScreenTouched;
     public Vector2 WorldTouchPosition { get; private set; }
     private Camera mainCamera;
 
-    protected override void Awake() 
+    private void Awake() 
     {
-        base.Awake();
         mainCamera = Camera.main;    
     }
 

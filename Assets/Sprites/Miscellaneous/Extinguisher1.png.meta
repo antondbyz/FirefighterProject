@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: 3da0627d41f18c24db40817a3ffd2f5b
+guid: 68ff6392c89b6c246ad1024683d23a43
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1332791589049893811
+      213: -3961781407446926520
     second: Extinguisher1_Hose
   - first:
-      213: 1992792016691766599
+      213: 7897695477387798467
     second: Extinguisher1_Balloon
   externalObjects: {}
   serializedVersion: 11
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 85
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -108,10 +108,10 @@ TextureImporter:
       name: Extinguisher1_Hose
       rect:
         serializedVersion: 2
-        x: 8
-        y: 4
-        width: 156
-        height: 80
+        x: 84
+        y: 19
+        width: 204
+        height: 97
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b382f883e60f7210800000000000000
-      internalID: 1332791589049893811
+      spriteID: 84bf063eccce409c0800000000000000
+      internalID: -3961781407446926520
       vertices: []
       indices: 
       edges: []
@@ -129,10 +129,10 @@ TextureImporter:
       name: Extinguisher1_Balloon
       rect:
         serializedVersion: 2
-        x: 173
-        y: 2
-        width: 44
-        height: 69
+        x: 13
+        y: 28
+        width: 62
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 745a52ae7c1d7ab10800000000000000
-      internalID: 1992792016691766599
+      spriteID: 3c7a8e161304a9d60800000000000000
+      internalID: 7897695477387798467
       vertices: []
       indices: 
       edges: []

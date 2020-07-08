@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Extinguisher : MonoBehaviour
 {
+    public const float MAX_SUBSTANCE_AMOUNT = 100;
+
     public event System.Action TurnedOn;
     public float CurrentSubstanceAmount
     {
@@ -27,7 +29,6 @@ public class Extinguisher : MonoBehaviour
     private List<Heat> objectsToExtinguish = new List<Heat>();
     private Coroutine extinguishingCoroutine;
     private Coroutine decreasingSubstanceCoroutine;
-    private const float MAX_SUBSTANCE_AMOUNT = 100;
 
     public void TurnOn()
     {
