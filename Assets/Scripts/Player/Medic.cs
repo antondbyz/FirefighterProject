@@ -15,7 +15,7 @@ public class Medic : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) 
     {
         Wounded enteredWounded = other.GetComponent<Wounded>();
-        if(enteredWounded != null)
+        if(enteredWounded != null && enteredWounded.CurrentHealth < enteredWounded.MaxHealth)
         {
             wounded.Add(enteredWounded);
             treatButton.SetActive(true);
@@ -47,15 +47,22 @@ public class Medic : MonoBehaviour
         StopCoroutine(treatingCoroutine);
         treatingCoroutine = null;
         treatmentProgress.SetActive(false);
+        if(wounded.Count == 0) treatButton.SetActive(false); 
     }
 
-    private IEnumerator Treating(Wounded wounded)
+    private IEnumerator Treating(Wounded currentWounded)
     {
         WaitForSeconds delay = new WaitForSeconds(0.1f);
         while(true)
         {
-            wounded.CurrentHealth++;
-            treatmentProgressFill.fillAmount = wounded.CurrentHealth / wounded.MaxHealth;
+            currentWounded.CurrentHealth++;
+            treatmentProgressFill.fillAmount = currentWounded.CurrentHealth / currentWounded.MaxHealth;
+            if(currentWounded.CurrentHealth >= currentWounded.MaxHealth) 
+            {
+                wounded.Remove(currentWounded);
+                if(wounded.Count == 0) StopTreating();
+                else currentWounded = wounded[wounded.Count - 1];
+            }
             yield return delay;
         }
     }
