@@ -22,8 +22,7 @@ public class PlayerRotation : MonoBehaviour
     {
         Vector2 direction = screenTouchesHandler.WorldTouchPosition - (Vector2)rotateBone.position;
         Vector2 convertedDirection = Quaternion.Euler(0, 0, 180) * direction;
-        if(convertedDirection.x > 0 && !movement.FlipX) convertedDirection.x = -1;
-        else if(convertedDirection.x < 0 && movement.FlipX) convertedDirection.x = 1;
+        convertedDirection.x = movement.FlipX ? 1 : -1;
         rotateBone.rotation = Quaternion.LookRotation(rotateBone.forward, convertedDirection);
     }
 

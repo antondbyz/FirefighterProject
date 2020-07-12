@@ -41,6 +41,16 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("Running", false);
     }
 
+    public void StopMovingRight() 
+    {
+        if(movement.x > 0) StopMoving();
+    }
+
+    public void StopMovingLeft()
+    {
+        if(movement.x < 0) StopMoving();
+    }
+
     public void Jump()
     {
         if(IsGrounded())
@@ -67,7 +77,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.RightArrow)) StartMoving(1);
         else if(Input.GetKeyDown(KeyCode.LeftArrow)) StartMoving(-1);
-        else if(Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow)) StopMoving();
+        else if(Input.GetKeyUp(KeyCode.RightArrow)) StopMovingRight();
+        else if(Input.GetKeyUp(KeyCode.LeftArrow)) StopMovingLeft();
 
         if(Input.GetKeyDown(KeyCode.UpArrow)) Jump();
     }

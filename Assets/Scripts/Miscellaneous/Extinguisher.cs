@@ -13,19 +13,22 @@ public class Extinguisher : MonoBehaviour
         get => currentSubstanceAmount;
         set
         {
+            if(value > MAX_SUBSTANCE_AMOUNT) value = MAX_SUBSTANCE_AMOUNT;
+            else if(value <= 0)
+            {
+                value = 0;
+                TurnOff();
+            }
             currentSubstanceAmount = value;
-            substanceAmountFillArea.fillAmount = currentSubstanceAmount / MAX_SUBSTANCE_AMOUNT;
-            if(currentSubstanceAmount <= 0) TurnOff();
-            else if(currentSubstanceAmount > MAX_SUBSTANCE_AMOUNT) 
-                currentSubstanceAmount = MAX_SUBSTANCE_AMOUNT;
+            substanceAmountFill.fillAmount = currentSubstanceAmount / MAX_SUBSTANCE_AMOUNT;
         }
     }
     private float currentSubstanceAmount;
 
     [SerializeField] private float efficiency = 1;
-    [SerializeField] private Image substanceAmountFillArea = null;
+    [SerializeField] private Image substanceAmountFill = null;
 
-    private ParticleSystem ps;
+    private ParticleSystem particles;
     private List<Heat> objectsToExtinguish = new List<Heat>();
     private Coroutine extinguishingCoroutine;
     private Coroutine decreasingSubstanceCoroutine;
@@ -34,7 +37,7 @@ public class Extinguisher : MonoBehaviour
     {
         if(CurrentSubstanceAmount > 0)
         {
-            ps.Play();
+            particles.Play();
             if(extinguishingCoroutine == null)
                 extinguishingCoroutine = StartCoroutine(Extinguishing());
             if(decreasingSubstanceCoroutine == null)
@@ -45,7 +48,7 @@ public class Extinguisher : MonoBehaviour
 
     public void TurnOff()
     {
-        ps.Stop();
+        particles.Stop();
         if(extinguishingCoroutine != null)
         {
             StopCoroutine(extinguishingCoroutine);
@@ -60,7 +63,7 @@ public class Extinguisher : MonoBehaviour
 
     private void Awake() 
     {
-        ps = GetComponent<ParticleSystem>();
+        particles = GetComponent<ParticleSystem>();
         CurrentSubstanceAmount = MAX_SUBSTANCE_AMOUNT;
         TurnOff();
     }
@@ -106,15 +109,5 @@ public class Extinguisher : MonoBehaviour
             CurrentSubstanceAmount--;
             yield return delay;
         }
-    }
-
-    private void OnEnable() 
-    {
-        PauseManager.OnPaused += TurnOff;
-    }
-
-    private void OnDisable() 
-    {
-        PauseManager.OnPaused -= TurnOff;   
     }
 }

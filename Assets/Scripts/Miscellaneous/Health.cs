@@ -17,7 +17,7 @@ public class Health : MonoBehaviour
 
                 currentHealth = value;
                 if(currentHealth == 0) Died?.Invoke();
-                if(healthFillArea != null) healthFillArea.fillAmount = currentHealth / maxHealth;
+                if(healthFill != null) healthFill.fillAmount = currentHealth / maxHealth;
                 if(healthText != null) healthText.text = $"{Mathf.Ceil(HealthPercentage)}%";
             }
         }
@@ -26,7 +26,7 @@ public class Health : MonoBehaviour
     public float HealthPercentage => currentHealth / maxHealth * 100;
     [Range(1, 1000)] [SerializeField] private float maxHealth = 100;
     [Range(0, 1000)] [SerializeField] private float currentHealth = 100;
-    [SerializeField] private Image healthFillArea = null;
+    [SerializeField] private Image healthFill = null;
     [SerializeField] private TextMeshProUGUI healthText = null;
 
     private void Start()
