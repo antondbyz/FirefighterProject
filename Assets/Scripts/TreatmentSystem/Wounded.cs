@@ -12,6 +12,7 @@ public class Wounded : MonoBehaviour
 
     public void Recover()
     {
+        Recovered?.Invoke();
         animator.SetBool("Idle", true);
         Destroy(myCollider);
         Destroy(gameObject, 5);
