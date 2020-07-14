@@ -559,8 +559,8 @@ MonoBehaviour:
   - {fileID: 833208328911117866}
   - {fileID: 833208330049575609}
   m_Bounds:
-    m_Center: {x: 0.19103223, y: 0.103185534, z: 0}
-    m_Extent: {x: 0.5279483, y: 0.3287621, z: 0}
+    m_Center: {x: 0.19103214, y: 0.103185296, z: 0}
+    m_Extent: {x: 0.5279484, y: 0.32876235, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &833208329175778028
@@ -768,8 +768,8 @@ MonoBehaviour:
   - {fileID: 833208330742013736}
   - {fileID: 833208329181569293}
   m_Bounds:
-    m_Center: {x: 0.015150577, y: -0.030564636, z: 0}
-    m_Extent: {x: 0.22753477, y: 0.45800263, z: 0}
+    m_Center: {x: 0.015151039, y: -0.030564398, z: 0}
+    m_Extent: {x: 0.22753498, y: 0.4580024, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &833208329366329321
@@ -873,8 +873,8 @@ MonoBehaviour:
   - {fileID: 833208330944351020}
   - {fileID: 833208329753273837}
   m_Bounds:
-    m_Center: {x: -0.0011700094, y: -0.001444757, z: 0}
-    m_Extent: {x: 0.23257002, y: 0.5331452, z: 0}
+    m_Center: {x: -0.001169771, y: -0.001444757, z: 0}
+    m_Extent: {x: 0.23256975, y: 0.5331452, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &833208329421237793
@@ -1273,8 +1273,8 @@ MonoBehaviour:
   - {fileID: 833208329540726026}
   - {fileID: 833208330511944437}
   m_Bounds:
-    m_Center: {x: 0.18474017, y: 0.14350006, z: 0}
-    m_Extent: {x: 0.4023439, y: 0.39091223, z: 0}
+    m_Center: {x: 0.18474062, y: 0.14349982, z: 0}
+    m_Extent: {x: 0.40234414, y: 0.390912, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &833208330159407871
@@ -1378,7 +1378,7 @@ MonoBehaviour:
   - {fileID: 833208329421237794}
   - {fileID: 833208329545109085}
   m_Bounds:
-    m_Center: {x: -0.0013948083, y: -0.0002988577, z: 0}
+    m_Center: {x: -0.0013942719, y: -0.0002988577, z: 0}
     m_Extent: {x: 0.37861854, y: 0.48671114, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1549,7 +1549,6 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 100
   healthFill: {fileID: 4661610515709996158}
-  healthText: {fileID: 0}
 --- !u!114 &833208330203528550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1590,9 +1589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a485763bc991c4f932719ee2aeff79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  burningParticles: {fileID: 833208330499704141}
-  heatForBurning: 10
-  heatingCoefficient: 0.02
+  burningEffect: {fileID: 8127091544804744206}
 --- !u!114 &822084683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2094,7 +2091,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 833208328878422348}
   m_Bounds:
-    m_Center: {x: 0.022098094, y: -0.003644973, z: 0}
+    m_Center: {x: 0.022098452, y: -0.003644973, z: 0}
     m_Extent: {x: 0.33659098, y: 0.3797292, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -2228,7 +2225,7 @@ GameObject:
   - component: {fileID: 833208330499704138}
   - component: {fileID: 833208330499704141}
   - component: {fileID: 833208330499704140}
-  - component: {fileID: 833208330499704139}
+  - component: {fileID: 8127091544804744206}
   m_Layer: 8
   m_Name: BurningEffect
   m_TagString: Untagged
@@ -2883,7 +2880,7 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: -0.2, z: 0}
+    m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
     m_Scale: {x: 0.7, y: 1, z: 1}
     placementMode: 0
@@ -6972,7 +6969,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &833208330499704139
+--- !u!114 &8127091544804744206
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6981,10 +6978,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 833208330499704137}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5e8a36500ae89041ab694da9f2da714, type: 3}
+  m_Script: {fileID: 11500000, guid: 5cc05911a303d9f41a0c1e9078616d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleMultiplier: 2
 --- !u!1 &833208330511944436
 GameObject:
   m_ObjectHideFlags: 0
@@ -7444,7 +7440,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 833208330723840830}
   m_Bounds:
-    m_Center: {x: 0.03000024, y: 0.1539083, z: 0}
+    m_Center: {x: 0.03000009, y: 0.1539083, z: 0}
     m_Extent: {x: 0.29875636, y: 0.2024433, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -8173,6 +8169,11 @@ PrefabInstance:
       propertyPath: substanceAmountFill
       value: 
       objectReference: {fileID: 4661610516145860819}
+    - target: {fileID: 3390386658015839470, guid: b432e8054254a4e40841072cc030d222,
+        type: 3}
+      propertyPath: efficiency
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b432e8054254a4e40841072cc030d222, type: 3}
 --- !u!114 &2638322390667408229 stripped

@@ -1,10 +1,8 @@
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
-public class ParticlesScaler : MonoBehaviour
+public class BurningEffect : MonoBehaviour 
 {
-    [SerializeField] private float scaleMultiplier = 2;
-
     private ParticleSystem ps;
     private MainModule main;
     private float minParticlesGravity;
@@ -18,9 +16,13 @@ public class ParticlesScaler : MonoBehaviour
         minParticlesSize = main.startSize.constant;    
     }
 
-    public void LerpScale(float coefficient)
+    public void Play() => ps.Play();
+
+    public void Stop() => ps.Stop();
+
+    public void Scale(float coefficient)
     {
-        main.gravityModifier = Mathf.Lerp(minParticlesGravity, minParticlesGravity * scaleMultiplier, coefficient);
-        main.startSize = Mathf.Lerp(minParticlesSize, minParticlesSize * scaleMultiplier, coefficient);
+        main.gravityModifier = Mathf.Lerp(minParticlesGravity, minParticlesGravity * 2, coefficient);
+        main.startSize = Mathf.Lerp(minParticlesSize, minParticlesSize * 2, coefficient);
     }
 }

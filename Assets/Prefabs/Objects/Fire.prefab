@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2515974890974632963}
   - component: {fileID: 5664970715629237338}
   - component: {fileID: 1622503270259640857}
-  - component: {fileID: 1061668730074584523}
   m_Layer: 0
   m_Name: Fire
   m_TagString: Untagged
@@ -4787,7 +4786,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1246239767
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_RenderMode: 0
   m_SortMode: 0
@@ -4812,16 +4811,3 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &1061668730074584523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1622503270259640860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1e7e936f65df1742a606254eb657372, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heatingSpeed: 0

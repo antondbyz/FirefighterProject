@@ -6,7 +6,6 @@ public class Player : MonoBehaviour
 
     private Health health;
     private GameController gameController;
-    private Wounded wounded;
 
     public void PauseLevel() => gameController.PauseLevel();
 
@@ -14,7 +13,6 @@ public class Player : MonoBehaviour
     {
         health = GetComponent<Health>();
         gameController = GameObject.FindObjectOfType<GameController>();    
-        wounded = GameObject.FindObjectOfType<Wounded>();
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
@@ -25,17 +23,16 @@ public class Player : MonoBehaviour
             extinguisher.CurrentSubstanceAmount += substance.Amount;
             Destroy(substance.gameObject);
         }
+        else if(other.CompareTag("Finish")) gameController.CompleteLevel();
     }
 
     private void OnEnable() 
     {
-        health.Died += gameController.FailLevel; 
-        wounded.Recovered += gameController.CompleteLevel;   
+        health.Died += gameController.FailLevel;  
     }
 
     private void OnDisable() 
     {
         health.Died -= gameController.FailLevel;    
-        wounded.Recovered -= gameController.CompleteLevel;
     }
 }

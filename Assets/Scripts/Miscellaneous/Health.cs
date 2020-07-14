@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class Health : MonoBehaviour
 {
@@ -10,7 +9,7 @@ public class Health : MonoBehaviour
         get => currentHealth;
         set
         {
-            if(IsAlive)
+            if(currentHealth > 0)
             {
                 if(value < 0) value = 0;
                 else if(value > maxHealth) value = maxHealth;
@@ -18,24 +17,15 @@ public class Health : MonoBehaviour
                 currentHealth = value;
                 if(currentHealth == 0) Died?.Invoke();
                 if(healthFill != null) healthFill.fillAmount = currentHealth / maxHealth;
-                if(healthText != null) healthText.text = $"{Mathf.Ceil(HealthPercentage)}%";
             }
         }
     }
-    public bool IsAlive => currentHealth > 0;
-    public float HealthPercentage => currentHealth / maxHealth * 100;
-    [Range(1, 1000)] [SerializeField] private float maxHealth = 100;
-    [Range(0, 1000)] [SerializeField] private float currentHealth = 100;
+    [SerializeField] private float maxHealth = 100;
+    [SerializeField] private float currentHealth = 100;
     [SerializeField] private Image healthFill = null;
-    [SerializeField] private TextMeshProUGUI healthText = null;
 
     private void Start()
     {
-        CurrentHealth = currentHealth; // Update UI and death check
-    }
-
-    public void TakeDamage(float damage) 
-    {
-        CurrentHealth -= damage;
+        CurrentHealth = currentHealth;
     }
 }

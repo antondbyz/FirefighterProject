@@ -15,7 +15,6 @@ public class Heat : MonoBehaviour
             {
                 if(!IsHeatable && value > currentHeat) return;
                 currentHeat = value;
-                heatResponse?.Response();
                 HeatChanged?.Invoke();
             }
         } 
@@ -28,15 +27,8 @@ public class Heat : MonoBehaviour
     [SerializeField] private bool isHeatable = true;
     [SerializeField] private bool isExtinguishable = true;
 
-    private IHeatResponse heatResponse;
-
-    private void Awake() 
-    {
-        heatResponse = GetComponent<IHeatResponse>();    
-    }
-
     private void Start() 
     {
-        heatResponse?.Response();    
+        HeatChanged?.Invoke();   
     }
 }
