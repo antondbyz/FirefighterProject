@@ -1,24 +1,18 @@
-using UnityEngine;
+﻿using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
-public class BurningEffect : MonoBehaviour 
+public class ParticlesScaler : MonoBehaviour
 {
-    private ParticleSystem ps;
     private MainModule main;
     private float minParticlesGravity;
     private float minParticlesSize;
 
     private void Awake() 
     {
-        ps = GetComponent<ParticleSystem>();
-        main = ps.main;
+        main = GetComponent<ParticleSystem>().main;
         minParticlesGravity = main.gravityModifier.constant;
         minParticlesSize = main.startSize.constant;    
     }
-
-    public void Play() => ps.Play();
-
-    public void Stop() => ps.Stop();
 
     public void Scale(float coefficient)
     {

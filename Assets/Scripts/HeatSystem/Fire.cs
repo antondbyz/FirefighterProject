@@ -22,7 +22,7 @@ public class Fire : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) 
     {
         Heat heat = other.GetComponent<Heat>();
-        if(heat != null && heat.IsHeatable)
+        if(heat != null)
             objectsToHeat.Add(heat);
     }
 
@@ -59,7 +59,10 @@ public class Fire : MonoBehaviour
         {
             yield return delay;
             for(int i = 0; i < objectsToHeat.Count; i++)
-                objectsToHeat[i].CurrentHeat += heat.CurrentHeat * timeDelay;
+            {
+                if(objectsToHeat[i].IsHeatable)
+                    objectsToHeat[i].CurrentHeat += heat.CurrentHeat * timeDelay;
+            }
         }
     } 
 }

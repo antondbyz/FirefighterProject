@@ -30,6 +30,7 @@ public class Extinguisher : MonoBehaviour
 
     private ParticleSystem particles;
     private List<Heat> objectsToExtinguish = new List<Heat>();
+    private Collider2D myCollider;
     private Coroutine extinguishingCoroutine;
     private Coroutine decreasingSubstanceCoroutine;
 
@@ -37,6 +38,7 @@ public class Extinguisher : MonoBehaviour
     {
         if(CurrentSubstanceAmount > 0)
         {
+            myCollider.enabled = true;
             particles.Play();
             if(extinguishingCoroutine == null)
                 extinguishingCoroutine = StartCoroutine(Extinguishing());
@@ -48,6 +50,7 @@ public class Extinguisher : MonoBehaviour
 
     public void TurnOff()
     {
+        myCollider.enabled = false;
         particles.Stop();
         if(extinguishingCoroutine != null)
         {
@@ -64,6 +67,7 @@ public class Extinguisher : MonoBehaviour
     private void Awake() 
     {
         particles = GetComponent<ParticleSystem>();
+        myCollider = GetComponent<Collider2D>();
         CurrentSubstanceAmount = MAX_SUBSTANCE_AMOUNT;
         TurnOff();
     }
@@ -71,7 +75,7 @@ public class Extinguisher : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) 
     {
         Heat heat = other.GetComponent<Heat>();
-        if(heat != null && heat.IsExtinguishable)
+        if(heat != null)
             objectsToExtinguish.Add(heat);
     }
 
@@ -96,7 +100,10 @@ public class Extinguisher : MonoBehaviour
         while(true)
         {   
             for(int i = 0; i < objectsToExtinguish.Count; i++)
-                objectsToExtinguish[i].CurrentHeat -= efficiency;
+            {
+                if(objectsToExtinguish[i].IsExtinguishable)
+                    objectsToExtinguish[i].CurrentHeat -= efficiency;
+            }
             yield return delay;
         }   
     }

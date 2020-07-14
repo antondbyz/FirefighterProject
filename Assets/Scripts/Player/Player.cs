@@ -17,11 +17,10 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        ExtinguishingSubstance substance = other.GetComponent<ExtinguishingSubstance>();
-        if(substance != null)
+        if(other.CompareTag("ExtinguisherRefill"))
         {
-            extinguisher.CurrentSubstanceAmount += substance.Amount;
-            Destroy(substance.gameObject);
+            extinguisher.CurrentSubstanceAmount = Extinguisher.MAX_SUBSTANCE_AMOUNT;
+            Destroy(other.gameObject);
         }
         else if(other.CompareTag("Finish")) gameController.CompleteLevel();
     }

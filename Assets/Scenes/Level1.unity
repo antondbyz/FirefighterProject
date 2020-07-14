@@ -173,7 +173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 677531288}
   m_Layer: 0
-  m_Name: ExtinguishingSubstances
+  m_Name: ExtinguisherRefills
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -358,6 +358,11 @@ PrefabInstance:
         type: 3}
       propertyPath: currentHeat
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515974890974632963, guid: c83c897c25aed754abb431bad0422f93,
+        type: 3}
+      propertyPath: isExtinguishable
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5132515690628935471, guid: c83c897c25aed754abb431bad0422f93,
         type: 3}
@@ -711,6 +716,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 833208330203528550, guid: 30ab64c9273e09f408fe8f99e318a2ef,
+        type: 3}
+      propertyPath: isHeatable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 833208330203528572, guid: 30ab64c9273e09f408fe8f99e318a2ef,
         type: 3}
       propertyPath: m_Name
@@ -728,7 +738,7 @@ PrefabInstance:
     - target: {fileID: 1578056039263420170, guid: a80a4b9b5fec45040a71bb37f0c0903c,
         type: 3}
       propertyPath: m_Name
-      value: ExtinguishingSubstance
+      value: ExtinguisherRefill
       objectReference: {fileID: 0}
     - target: {fileID: 1578056039263420174, guid: a80a4b9b5fec45040a71bb37f0c0903c,
         type: 3}

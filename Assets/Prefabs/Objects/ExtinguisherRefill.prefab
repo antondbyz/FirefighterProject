@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 1578056039263420174}
   - component: {fileID: 1578056039263420169}
   - component: {fileID: 1578056039263420168}
-  - component: {fileID: 1578056039263420171}
   m_Layer: 0
-  m_Name: ExtinguishingSubstance
-  m_TagString: Untagged
+  m_Name: ExtinguisherRefill
+  m_TagString: ExtinguisherRefill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,16 +108,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 1.25}
   m_EdgeRadius: 0
---- !u!114 &1578056039263420171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1578056039263420170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 773d5363f2e5cb64db7d99d911826453, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  amount: 100

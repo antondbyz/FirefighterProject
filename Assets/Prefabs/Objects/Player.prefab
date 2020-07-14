@@ -1589,7 +1589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a485763bc991c4f932719ee2aeff79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  burningEffect: {fileID: 8127091544804744206}
+  burningEffect: {fileID: 833208330499704141}
 --- !u!114 &822084683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2225,7 +2225,7 @@ GameObject:
   - component: {fileID: 833208330499704138}
   - component: {fileID: 833208330499704141}
   - component: {fileID: 833208330499704140}
-  - component: {fileID: 8127091544804744206}
+  - component: {fileID: 4134891324249483304}
   m_Layer: 8
   m_Name: BurningEffect
   m_TagString: Untagged
@@ -6969,7 +6969,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &8127091544804744206
+--- !u!114 &4134891324249483304
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6978,7 +6978,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 833208330499704137}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cc05911a303d9f41a0c1e9078616d1c, type: 3}
+  m_Script: {fileID: 11500000, guid: d5e8a36500ae89041ab694da9f2da714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &833208330511944436

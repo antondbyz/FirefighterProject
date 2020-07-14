@@ -7,14 +7,16 @@ public class Burnable : MonoBehaviour
     public bool IsBurning => heat.CurrentHeat >= HeatForBurning;
     public float HeatForBurning => heat.MaxHeat / 10;
 
-    [SerializeField] private BurningEffect burningEffect = null;
+    [SerializeField] private ParticleSystem burningEffect = null;
 
     private Heat heat;
+    private ParticlesScaler burningEffectScaler;
     private Coroutine heatingCoroutine;
 
     private void Awake() 
     {
         heat = GetComponent<Heat>();
+        burningEffectScaler = burningEffect.GetComponent<ParticlesScaler>();
     }
 
     private void Start() 
@@ -31,7 +33,7 @@ public class Burnable : MonoBehaviour
         if(IsBurning)
         {
             burningEffect.Play();
-            burningEffect.Scale(heat.CurrentHeat / heat.MaxHeat);
+            burningEffectScaler?.Scale(heat.CurrentHeat / heat.MaxHeat);
             if(heatingCoroutine == null) 
                 heatingCoroutine = StartCoroutine(HeatingUp());
         }
