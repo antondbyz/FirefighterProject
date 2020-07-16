@@ -7,7 +7,6 @@ public class Extinguisher : MonoBehaviour
 {
     public const float MAX_SUBSTANCE_AMOUNT = 100;
 
-    public event System.Action TurnedOn;
     public float CurrentSubstanceAmount
     {
         get => currentSubstanceAmount;
@@ -30,44 +29,34 @@ public class Extinguisher : MonoBehaviour
 
     private ParticleSystem particles;
     private List<Heat> objectsToExtinguish = new List<Heat>();
-    private Collider2D myCollider;
     private Coroutine extinguishingCoroutine;
-    private Coroutine decreasingSubstanceCoroutine;
 
     public void TurnOn()
     {
-        if(CurrentSubstanceAmount > 0)
+        if(CurrentSubstanceAmount > 0 && gameObject.activeSelf)
         {
-            myCollider.enabled = true;
             particles.Play();
             if(extinguishingCoroutine == null)
-                extinguishingCoroutine = StartCoroutine(Extinguishing());
-            if(decreasingSubstanceCoroutine == null)
-                decreasingSubstanceCoroutine = StartCoroutine(DecreasingSubstanceAmount());
-            TurnedOn?.Invoke();
+                extinguishingCoroutine = StartCoroutine(ExtinguishingEnteredObjects());
         }
     }
 
     public void TurnOff()
     {
-        myCollider.enabled = false;
-        particles.Stop();
-        if(extinguishingCoroutine != null)
+        if(gameObject.activeSelf)
         {
-            StopCoroutine(extinguishingCoroutine);
-            extinguishingCoroutine = null;
-        }
-        if(decreasingSubstanceCoroutine != null)
-        {
-            StopCoroutine(decreasingSubstanceCoroutine);
-            decreasingSubstanceCoroutine = null;
+            particles.Stop();
+            if(extinguishingCoroutine != null)
+            {
+                StopCoroutine(extinguishingCoroutine);
+                extinguishingCoroutine = null;
+            }
         }
     }
 
     private void Awake() 
     {
         particles = GetComponent<ParticleSystem>();
-        myCollider = GetComponent<Collider2D>();
         CurrentSubstanceAmount = MAX_SUBSTANCE_AMOUNT;
         TurnOff();
     }
@@ -94,9 +83,9 @@ public class Extinguisher : MonoBehaviour
     }
 #endif
 
-    private IEnumerator Extinguishing()
+    private IEnumerator ExtinguishingEnteredObjects()
     {
-        WaitForSeconds delay = new WaitForSeconds(0.3f);
+        WaitForSeconds delay = new WaitForSeconds(0.2f);
         while(true)
         {   
             for(int i = 0; i < objectsToExtinguish.Count; i++)
@@ -104,17 +93,8 @@ public class Extinguisher : MonoBehaviour
                 if(objectsToExtinguish[i].IsExtinguishable)
                     objectsToExtinguish[i].CurrentHeat -= efficiency;
             }
-            yield return delay;
-        }   
-    }
-
-    private IEnumerator DecreasingSubstanceAmount()
-    {
-        WaitForSeconds delay = new WaitForSeconds(0.1f);
-        while(true)
-        {
             CurrentSubstanceAmount--;
             yield return delay;
-        }
+        }   
     }
 }

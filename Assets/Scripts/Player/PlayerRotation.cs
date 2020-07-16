@@ -5,12 +5,34 @@ public class PlayerRotation : MonoBehaviour
     [SerializeField] private Transform rotateBone = null;
     [SerializeField] private ScreenDragHandler screenDragHandler = null;
 
-    public void UpdateRotation()
+    private PlayerMovement movement;
+
+    public void ResetRotation() => rotateBone.localRotation = Quaternion.Euler(0, 0, 0);
+
+    private void Awake() 
     {
-        Vector3 newRotation = rotateBone.localEulerAngles;
-        newRotation.z += screenDragHandler.Delta.y;
-        rotateBone.localEulerAngles = newRotation;
-        ClampRotation(-45, 60);
+        movement = GetComponent<PlayerMovement>();    
+    }
+
+    private void OnEnable() 
+    {
+        screenDragHandler.Dragged += UpdateRotation;    
+    }
+
+    private void OnDisable() 
+    {
+        screenDragHandler.Dragged -= UpdateRotation;
+    }
+
+    private void UpdateRotation()
+    {
+        if(!movement.IsMoving)
+        {
+            Vector3 newRotation = rotateBone.localEulerAngles;
+            newRotation.z += screenDragHandler.Delta.y;
+            rotateBone.localEulerAngles = newRotation;
+            ClampRotation(-45, 60);   
+        }
     }
 
     private void ClampRotation(float minRotation, float maxRotation)
@@ -28,14 +50,4 @@ public class PlayerRotation : MonoBehaviour
             rotateBone.localEulerAngles = convertedRotation;
         }
     } 
-
-    private void OnEnable() 
-    {
-        screenDragHandler.Dragged += UpdateRotation;    
-    }
-
-    private void OnDisable() 
-    {
-        screenDragHandler.Dragged -= UpdateRotation;
-    }
 }

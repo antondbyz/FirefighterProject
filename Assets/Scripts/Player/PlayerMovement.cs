@@ -17,12 +17,12 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float speed = 5;
     [SerializeField] private float jumpForce = 250;
-    [SerializeField] private Extinguisher extinguisher = null;
     
     private Transform myTransform;
     private Rigidbody2D rb;
     private BoxCollider2D coll;
     private Animator animator;
+    private PlayerRotation rotation;
     private Vector2 movement;
 
     /// direction that is greater or equals 0 is right
@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
         movement.x = direction >= 0 ? speed : -speed;
         FlipX = direction < 0;
         animator.SetBool("Running", true);
-        extinguisher.TurnOff();
+        rotation.ResetRotation();
     }
 
     public void StopMoving()
@@ -70,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
+        rotation = GetComponent<PlayerRotation>();
     }
 
     #if UNITY_EDITOR
@@ -88,15 +89,5 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.y = rb.velocity.y;  
         rb.velocity = movement;
-    }
-
-    private void OnEnable() 
-    {
-        extinguisher.TurnedOn += StopMoving;
-    }
-
-    private void OnDisable() 
-    {
-        extinguisher.TurnedOn -= StopMoving;    
     }
 }

@@ -583,6 +583,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartFireEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 8699003458593472812, guid: f70b2bd578cc7d84ab0d7c6aaf176ecb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f70b2bd578cc7d84ab0d7c6aaf176ecb, type: 3}
 --- !u!1001 &424145490666533527
@@ -652,6 +657,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FinishFireEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5629887302622782633, guid: ed2ea1f737a41ec48a1485cfb7589ca0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed2ea1f737a41ec48a1485cfb7589ca0, type: 3}
 --- !u!1001 &833208330524050448
@@ -715,11 +725,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 833208330203528550, guid: 30ab64c9273e09f408fe8f99e318a2ef,
-        type: 3}
-      propertyPath: isHeatable
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 833208330203528572, guid: 30ab64c9273e09f408fe8f99e318a2ef,
         type: 3}
@@ -956,6 +961,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wounded
+      objectReference: {fileID: 0}
+    - target: {fileID: 7836517175129876135, guid: 35193e43e35180047a29f7d71fd8f500,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7836517175129876154, guid: 35193e43e35180047a29f7d71fd8f500,
         type: 3}
