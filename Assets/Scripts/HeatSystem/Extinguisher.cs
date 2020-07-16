@@ -7,6 +7,7 @@ public class Extinguisher : MonoBehaviour
 {
     public const float MAX_SUBSTANCE_AMOUNT = 100;
 
+    public bool IsTurnedOn { get; private set; }
     public float CurrentSubstanceAmount
     {
         get => currentSubstanceAmount;
@@ -26,6 +27,7 @@ public class Extinguisher : MonoBehaviour
 
     [SerializeField] private float efficiency = 1;
     [SerializeField] private Image substanceAmountFill = null;
+    [SerializeField] private PlayerMovement movement = null;
 
     private ParticleSystem particles;
     private List<Heat> objectsToExtinguish = new List<Heat>();
@@ -33,8 +35,9 @@ public class Extinguisher : MonoBehaviour
 
     public void TurnOn()
     {
-        if(CurrentSubstanceAmount > 0 && gameObject.activeSelf)
+        if(!movement.IsMoving && CurrentSubstanceAmount > 0)
         {
+            IsTurnedOn = true;
             particles.Play();
             if(extinguishingCoroutine == null)
                 extinguishingCoroutine = StartCoroutine(ExtinguishingEnteredObjects());
@@ -43,14 +46,12 @@ public class Extinguisher : MonoBehaviour
 
     public void TurnOff()
     {
-        if(gameObject.activeSelf)
+        IsTurnedOn = false;
+        particles.Stop();
+        if(extinguishingCoroutine != null)
         {
-            particles.Stop();
-            if(extinguishingCoroutine != null)
-            {
-                StopCoroutine(extinguishingCoroutine);
-                extinguishingCoroutine = null;
-            }
+            StopCoroutine(extinguishingCoroutine);
+            extinguishingCoroutine = null;
         }
     }
 

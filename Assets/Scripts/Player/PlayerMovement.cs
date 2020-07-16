@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float speed = 5;
     [SerializeField] private float jumpForce = 250;
+    [SerializeField] private Extinguisher extinguisher = null;
     
     private Transform myTransform;
     private Rigidbody2D rb;
@@ -29,26 +30,19 @@ public class PlayerMovement : MonoBehaviour
     /// direction that is less than 0 is left
     public void StartMoving(int direction)
     {
-        movement.x = direction >= 0 ? speed : -speed;
-        FlipX = direction < 0;
-        animator.SetBool("Running", true);
-        rotation.ResetRotation();
+        if(!extinguisher.IsTurnedOn)
+        {
+            movement.x = direction >= 0 ? speed : -speed;
+            FlipX = direction < 0;
+            animator.SetBool("Running", true);
+            rotation.ResetRotation();
+        }
     }
 
     public void StopMoving()
     {
         movement.x = 0;
         animator.SetBool("Running", false);
-    }
-
-    public void StopMovingRight() 
-    {
-        if(movement.x > 0) StopMoving();
-    }
-
-    public void StopMovingLeft()
-    {
-        if(movement.x < 0) StopMoving();
     }
 
     public void Jump()
@@ -78,8 +72,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.RightArrow)) StartMoving(1);
         else if(Input.GetKeyDown(KeyCode.LeftArrow)) StartMoving(-1);
-        else if(Input.GetKeyUp(KeyCode.RightArrow)) StopMovingRight();
-        else if(Input.GetKeyUp(KeyCode.LeftArrow)) StopMovingLeft();
+        else if(Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow)) StopMoving();
 
         if(Input.GetKeyDown(KeyCode.UpArrow)) Jump();
     }
