@@ -2,7 +2,7 @@
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Extinguisher extinguisher = null;
+    [SerializeField] private ExtinguishingSubstance extinguishingSubstance = null;
 
     private Health health;
     private GameController gameController;
@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     {
         if(other.CompareTag("ExtinguisherRefill"))
         {
-            extinguisher.CurrentSubstanceAmount = Extinguisher.MAX_SUBSTANCE_AMOUNT;
+            extinguishingSubstance.CurrentSubstanceAmount = ExtinguishingSubstance.MAX_SUBSTANCE_AMOUNT;
             Destroy(other.gameObject);
         }
         else if(other.CompareTag("Finish")) gameController.CompleteLevel();

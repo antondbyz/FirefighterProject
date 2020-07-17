@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Extinguisher : MonoBehaviour
+public class ExtinguishingSubstance : MonoBehaviour
 {
     public const float MAX_SUBSTANCE_AMOUNT = 100;
 
-    public bool IsTurnedOn { get; private set; }
+    public bool IsTurnedOn => extinguishingCoroutine != null;
     public float CurrentSubstanceAmount
     {
         get => currentSubstanceAmount;
@@ -27,7 +27,6 @@ public class Extinguisher : MonoBehaviour
 
     [SerializeField] private float efficiency = 1;
     [SerializeField] private Image substanceAmountFill = null;
-    [SerializeField] private PlayerMovement movement = null;
 
     private ParticleSystem particles;
     private List<Heat> objectsToExtinguish = new List<Heat>();
@@ -35,9 +34,8 @@ public class Extinguisher : MonoBehaviour
 
     public void TurnOn()
     {
-        if(!movement.IsMoving && CurrentSubstanceAmount > 0)
+        if(CurrentSubstanceAmount > 0)
         {
-            IsTurnedOn = true;
             particles.Play();
             if(extinguishingCoroutine == null)
                 extinguishingCoroutine = StartCoroutine(ExtinguishingEnteredObjects());
@@ -46,7 +44,6 @@ public class Extinguisher : MonoBehaviour
 
     public void TurnOff()
     {
-        IsTurnedOn = false;
         particles.Stop();
         if(extinguishingCoroutine != null)
         {

@@ -2,26 +2,36 @@
 
 public class PlayerRotation : MonoBehaviour
 {
+    public bool IsAiming => animator.GetBool("Aiming");
+
     [SerializeField] private Transform rotateBone = null;
-    [SerializeField] private ScreenDragHandler screenDragHandler = null;
+    [SerializeField] private ScreenEventsHandler screenEventsHandler = null;
 
     private PlayerMovement movement;
+    private Animator animator;
 
     public void ResetRotation() => rotateBone.localRotation = Quaternion.Euler(0, 0, 0);
 
     private void Awake() 
     {
-        movement = GetComponent<PlayerMovement>();    
+        movement = GetComponent<PlayerMovement>();
+        animator = GetComponent<Animator>();    
     }
 
     private void OnEnable() 
     {
-        screenDragHandler.Dragged += UpdateRotation;    
+        screenEventsHandler.Touched += PlayAimAnimation;
+        screenEventsHandler.Dragged += UpdateRotation;  
+        screenEventsHandler.Dragged += PlayAimAnimation;
+        screenEventsHandler.Untouched += StopAimAnimation;  
     }
 
     private void OnDisable() 
     {
-        screenDragHandler.Dragged -= UpdateRotation;
+        screenEventsHandler.Touched -= PlayAimAnimation;
+        screenEventsHandler.Dragged -= UpdateRotation;
+        screenEventsHandler.Dragged -= PlayAimAnimation;
+        screenEventsHandler.Untouched -= StopAimAnimation;
     }
 
     private void UpdateRotation()
@@ -29,7 +39,7 @@ public class PlayerRotation : MonoBehaviour
         if(!movement.IsMoving)
         {
             Vector3 newRotation = rotateBone.localEulerAngles;
-            newRotation.z += screenDragHandler.Delta.y;
+            newRotation.z += screenEventsHandler.Delta.y;
             rotateBone.localEulerAngles = newRotation;
             ClampRotation(-45, 60);   
         }
@@ -50,4 +60,15 @@ public class PlayerRotation : MonoBehaviour
             rotateBone.localEulerAngles = convertedRotation;
         }
     } 
+
+    private void PlayAimAnimation() 
+    {
+        if(!movement.IsMoving) animator.SetBool("Aiming", true);
+    }
+
+    private void StopAimAnimation()
+    { 
+        animator.SetBool("Aiming", false);
+        ResetRotation();
+    }
 }

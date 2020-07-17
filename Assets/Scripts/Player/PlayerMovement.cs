@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float speed = 5;
     [SerializeField] private float jumpForce = 250;
-    [SerializeField] private Extinguisher extinguisher = null;
     
     private Transform myTransform;
     private Rigidbody2D rb;
@@ -30,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     /// direction that is less than 0 is left
     public void StartMoving(int direction)
     {
-        if(!extinguisher.IsTurnedOn)
+        if(!rotation.IsAiming)
         {
             movement.x = direction >= 0 ? speed : -speed;
             FlipX = direction < 0;
