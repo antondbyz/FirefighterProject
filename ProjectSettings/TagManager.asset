@@ -14,9 +14,9 @@ TagManager:
   - UI
   - 
   - 
-  - Player
-  - Spark
-  - Ground
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -45,24 +45,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: ExtinguisherRefill
+    uniqueID: 29179345
+    locked: 0
   - name: Player
     uniqueID: 643186173
     locked: 0
-  - name: Spark
-    uniqueID: 481563531
-    locked: 0
-  - name: ExtinguishingSubstance
-    uniqueID: 2340712247
-    locked: 0
-  - name: Fire
+  - name: Particles
     uniqueID: 3048727529
     locked: 0
-  - name: Steam
-    uniqueID: 4144051055
-    locked: 0
-  - name: Explosion
-    uniqueID: 3064845281
-    locked: 0
-  - name: Ground
+  - name: Foreground
     uniqueID: 926601881
     locked: 0

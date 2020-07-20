@@ -5,45 +5,56 @@ public class PlayerRotation : MonoBehaviour
     public bool IsAiming => animator.GetBool("Aiming");
 
     [SerializeField] private Transform rotateBone = null;
-    [SerializeField] private ScreenEventsHandler screenEventsHandler = null;
+    [SerializeField] private GameObject extinguishButton = null;
+    [SerializeField] private GameObject extinguisherHose = null;
+    [SerializeField] private GameObject extinguisherHoseHidden = null;
 
     private PlayerMovement movement;
     private Animator animator;
 
     public void ResetRotation() => rotateBone.localRotation = Quaternion.Euler(0, 0, 0);
 
+    public void StartAiming()
+    {
+        if(!movement.IsMoving)
+        {
+            extinguishButton.SetActive(true);
+            extinguisherHose.SetActive(true);
+            extinguisherHoseHidden.SetActive(false);
+            animator.SetBool("Aiming", true);
+        }
+    }
+
+    public void StopAiming()
+    {
+        extinguishButton.SetActive(false);
+        extinguisherHose.SetActive(false);
+        extinguisherHoseHidden.SetActive(true);
+        animator.SetBool("Aiming", false);
+        ResetRotation();
+    }
+
+    public void UpdateRotation()
+    {
+        if(IsAiming)
+        {
+            Vector3 newRotation = rotateBone.localEulerAngles;
+            newRotation.z += ScreenEventsHandler.DragDelta.y;
+            rotateBone.localEulerAngles = newRotation;
+            ClampRotation(-45, 60);  
+        }
+    }
+
     private void Awake() 
     {
         movement = GetComponent<PlayerMovement>();
         animator = GetComponent<Animator>();    
+        StopAiming();
     }
 
-    private void OnEnable() 
-    {
-        screenEventsHandler.Touched += PlayAimAnimation;
-        screenEventsHandler.Dragged += UpdateRotation;  
-        screenEventsHandler.Dragged += PlayAimAnimation;
-        screenEventsHandler.Untouched += StopAimAnimation;  
-    }
+    private void OnEnable() => ScreenEventsHandler.ScreenDragged += UpdateRotation;
 
-    private void OnDisable() 
-    {
-        screenEventsHandler.Touched -= PlayAimAnimation;
-        screenEventsHandler.Dragged -= UpdateRotation;
-        screenEventsHandler.Dragged -= PlayAimAnimation;
-        screenEventsHandler.Untouched -= StopAimAnimation;
-    }
-
-    private void UpdateRotation()
-    {
-        if(!movement.IsMoving)
-        {
-            Vector3 newRotation = rotateBone.localEulerAngles;
-            newRotation.z += screenEventsHandler.Delta.y;
-            rotateBone.localEulerAngles = newRotation;
-            ClampRotation(-45, 60);   
-        }
-    }
+    private void OnDisable() => ScreenEventsHandler.ScreenDragged -= UpdateRotation;
 
     private void ClampRotation(float minRotation, float maxRotation)
     {
@@ -60,15 +71,4 @@ public class PlayerRotation : MonoBehaviour
             rotateBone.localEulerAngles = convertedRotation;
         }
     } 
-
-    private void PlayAimAnimation() 
-    {
-        if(!movement.IsMoving) animator.SetBool("Aiming", true);
-    }
-
-    private void StopAimAnimation()
-    { 
-        animator.SetBool("Aiming", false);
-        ResetRotation();
-    }
 }

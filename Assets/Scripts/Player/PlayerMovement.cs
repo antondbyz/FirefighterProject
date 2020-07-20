@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private bool flipX;
 
-    public bool IsMoving => movement.x != 0;
+    public bool IsMoving => movement.x != 0 || !IsGrounded();
 
     [SerializeField] private float speed = 5;
     [SerializeField] private float jumpForce = 250;
@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(!rotation.IsAiming)
         {
-            movement.x = direction >= 0 ? speed : -speed;
+            movement.x += direction >= 0 ? speed : -speed;
             FlipX = direction < 0;
             animator.SetBool("Running", true);
             rotation.ResetRotation();
@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        if(IsGrounded())
+        if(!rotation.IsAiming && IsGrounded())
             rb.AddForce(Vector2.up * jumpForce);
     }
 

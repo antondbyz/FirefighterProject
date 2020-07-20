@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 98278c57e92916c48b8479c49e1aa78f
+guid: 97cae8fae1d9b4a4794a8e30723dfabe
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -7,6 +7,9 @@ TextureImporter:
     second: Extinguisher_Balloon
   - first:
       213: 7897695477387798467
+    second: Extinguisher_HoseHidden
+  - first:
+      213: 1253212077573078219
     second: Extinguisher_Hose
   externalObjects: {}
   serializedVersion: 11
@@ -108,12 +111,12 @@ TextureImporter:
       name: Extinguisher_Balloon
       rect:
         serializedVersion: 2
-        x: 46
-        y: 2
-        width: 76
-        height: 99
+        x: 3
+        y: 17
+        width: 61
+        height: 126
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -126,15 +129,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Extinguisher_Hose
+      name: Extinguisher_HoseHidden
       rect:
         serializedVersion: 2
-        x: 4
-        y: 107
-        width: 178
-        height: 21
+        x: 93
+        y: 6
+        width: 84
+        height: 152
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -142,6 +145,27 @@ TextureImporter:
       bones: []
       spriteID: 3c7a8e161304a9d60800000000000000
       internalID: 7897695477387798467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Extinguisher_Hose
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 24
+        width: 219
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bccf8f7aebd446110800000000000000
+      internalID: 1253212077573078219
       vertices: []
       indices: 
       edges: []
