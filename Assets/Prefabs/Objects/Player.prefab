@@ -737,8 +737,8 @@ MonoBehaviour:
   - {fileID: 4439380020981617409}
   - {fileID: 4439380022124861330}
   m_Bounds:
-    m_Center: {x: 0.20243546, y: 0.11096719, z: 0}
-    m_Extent: {x: 0.5378502, y: 0.32104287, z: 0}
+    m_Center: {x: 0.20243523, y: 0.110967666, z: 0}
+    m_Extent: {x: 0.53784996, y: 0.32104263, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &4439380020709609415
@@ -946,8 +946,8 @@ MonoBehaviour:
   - {fileID: 4439380021172343299}
   - {fileID: 4439380020719528998}
   m_Bounds:
-    m_Center: {x: 0.015151039, y: -0.030564398, z: 0}
-    m_Extent: {x: 0.22753498, y: 0.4580024, z: 0}
+    m_Center: {x: 0.0151508, y: -0.030564845, z: 0}
+    m_Extent: {x: 0.22753474, y: 0.45800242, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &4439380020870339266
@@ -1051,8 +1051,8 @@ MonoBehaviour:
   - {fileID: 4439380021372651015}
   - {fileID: 4439380020214933702}
   m_Bounds:
-    m_Center: {x: 0.007165715, y: -0.0020930767, z: 0}
-    m_Extent: {x: 0.22561724, y: 0.5335816, z: 0}
+    m_Center: {x: 0.0071652383, y: -0.0020929575, z: 0}
+    m_Extent: {x: 0.22561724, y: 0.53358126, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &4439380020947219552
@@ -1426,7 +1426,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 4439380021182160405}
   m_Bounds:
-    m_Center: {x: 0.03000009, y: 0.1539083, z: 0}
+    m_Center: {x: 0.03000009, y: 0.15390818, z: 0}
     m_Extent: {x: 0.29875636, y: 0.2024433, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1561,7 +1561,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 4439380020947219559}
   m_Bounds:
-    m_Center: {x: 0.022098452, y: -0.003644973, z: 0}
+    m_Center: {x: 0.022098452, y: -0.0036447346, z: 0}
     m_Extent: {x: 0.33659098, y: 0.3797292, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -6712,7 +6712,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 4439380021703536727}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 981b65192f301c0478cea96ca62af50d, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -6745,7 +6745,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 2
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 981b65192f301c0478cea96ca62af50d, type: 2}
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -7508,8 +7508,8 @@ MonoBehaviour:
   - {fileID: 4439380020537614369}
   - {fileID: 4439380021512505310}
   m_Bounds:
-    m_Center: {x: 0.21475348, y: 0.13819948, z: 0}
-    m_Extent: {x: 0.407227, y: 0.3953995, z: 0}
+    m_Center: {x: 0.214753, y: 0.1381999, z: 0}
+    m_Extent: {x: 0.407227, y: 0.39539945, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &4439380022200618964
@@ -7613,8 +7613,8 @@ MonoBehaviour:
   - {fileID: 4439380020388635401}
   - {fileID: 4439380020541604726}
   m_Bounds:
-    m_Center: {x: -0.0013942719, y: -0.0002988577, z: 0}
-    m_Extent: {x: 0.37861854, y: 0.48671114, z: 0}
+    m_Center: {x: -0.0013944209, y: -0.0002990365, z: 0}
+    m_Extent: {x: 0.37861854, y: 0.48671094, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &4743883028326230622
@@ -8218,7 +8218,7 @@ PrefabInstance:
     - target: {fileID: 1697849133913039873, guid: b432e8054254a4e40841072cc030d222,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 1697849133913039873, guid: b432e8054254a4e40841072cc030d222,
         type: 3}

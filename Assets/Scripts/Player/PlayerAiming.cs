@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerRotation : MonoBehaviour
+public class PlayerAiming : MonoBehaviour
 {
     public bool IsAiming => animator.GetBool("Aiming");
 
@@ -9,14 +9,14 @@ public class PlayerRotation : MonoBehaviour
     [SerializeField] private GameObject extinguisherHose = null;
     [SerializeField] private GameObject extinguisherHoseHidden = null;
 
-    private PlayerMovement movement;
+    private PlayerController controller;
     private Animator animator;
 
     public void ResetRotation() => rotateBone.localRotation = Quaternion.Euler(0, 0, 0);
 
     public void StartAiming()
     {
-        if(!movement.IsMoving)
+        if(!controller.IsMoving)
         {
             extinguishButton.SetActive(true);
             extinguisherHose.SetActive(true);
@@ -47,7 +47,7 @@ public class PlayerRotation : MonoBehaviour
 
     private void Awake() 
     {
-        movement = GetComponent<PlayerMovement>();
+        controller = GetComponent<PlayerController>();
         animator = GetComponent<Animator>();    
         StopAiming();
     }
