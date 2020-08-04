@@ -7,7 +7,6 @@ public class ExtinguishingSubstance : MonoBehaviour
 {
     public const float MAX_SUBSTANCE_AMOUNT = 100;
 
-    public bool IsTurnedOn => extinguishingCoroutine != null;
     public float CurrentSubstanceAmount
     {
         get => currentSubstanceAmount;
@@ -72,14 +71,6 @@ public class ExtinguishingSubstance : MonoBehaviour
         if(heat != null)
             objectsToExtinguish.Remove(heat);
     }
-
-#if UNITY_EDITOR
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.E)) TurnOn();
-        else if(Input.GetKeyUp(KeyCode.E)) TurnOff();
-    }
-#endif
 
     private IEnumerator ExtinguishingEnteredObjects()
     {

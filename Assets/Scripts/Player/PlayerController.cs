@@ -38,7 +38,6 @@ public class PlayerController : MonoBehaviour
         if(!aiming.IsAiming)
         {
             newVelocity.x = value * speed;
-            if(isOnSlope) newVelocity.x *= 0.9f;
             if(value > 0) FlipX = false;
             else if(value < 0) FlipX = true;
             animator.SetBool("Running", value != 0);
@@ -48,8 +47,9 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
-        if(!aiming.IsAiming && IsGrounded)
+        if(!aiming.IsAiming && IsGrounded )
         {
+            newVelocity.Set(0, 0);
             rb.velocity = Vector2.up * jumpForce;
             isJumping = true;
         }
@@ -63,15 +63,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         aiming = GetComponent<PlayerAiming>();
         FlipX = false;
-    }
-
-#if UNITY_EDITOR
-    private void Update() 
-    {
-        SetVelocityX(Input.GetAxisRaw("Horizontal"));
-        if(Input.GetKeyDown(KeyCode.UpArrow)) Jump();
-    }
-#endif 
+    } 
 
     private void FixedUpdate() 
     {
@@ -91,9 +83,15 @@ public class PlayerController : MonoBehaviour
                 Vector2 rayOrigin = new Vector2(cc.bounds.center.x, cc.bounds.center.y - cc.size.y / 2 + 0.2f);
                 RaycastHit2D hitFront = Physics2D.Raycast(rayOrigin, Vector2.right, 0.5f);
                 RaycastHit2D hitBack = Physics2D.Raycast(rayOrigin, Vector2.left, 0.5f);
-                if(newVelocity.x > 0 && slopeNormalDotProduct < 0 && !hitFront) newVelocity.y = 0;
-                else if(newVelocity.x < 0 && slopeNormalDotProduct > 0 && !hitBack) newVelocity.y = 0;
-                else newVelocity.Set(newVelocity.x * -slopeNormalPerpendicular.x, newVelocity.x * -slopeNormalPerpendicular.y);
+                if((newVelocity.x > 0 && slopeNormalDotProduct < 0 && !hitFront) ||
+                   (newVelocity.x < 0 && slopeNormalDotProduct > 0 && !hitBack))   
+                {
+                    newVelocity.y = 0;
+                }
+                else
+                {
+                    newVelocity.Set(newVelocity.x * -slopeNormalPerpendicular.x, newVelocity.x * -slopeNormalPerpendicular.y);
+                }
             }
             else newVelocity.y = 0;
         }
@@ -111,7 +109,7 @@ public class PlayerController : MonoBehaviour
     private void SlopeCheck()
     {
         Vector2 rayOrigin = new Vector2(cc.bounds.center.x, cc.bounds.center.y - cc.size.y / 2);
-        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down); 
+        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down);
         isOnSlope = Vector2.Angle(hit.normal, Vector2.up) > 0;
         if(isOnSlope)
         {
