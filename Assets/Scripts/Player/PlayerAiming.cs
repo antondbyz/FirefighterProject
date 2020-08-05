@@ -2,7 +2,8 @@
 
 public class PlayerAiming : MonoBehaviour
 {
-    public bool IsAiming => animator.GetBool("Aiming");
+    public static event System.Action StoppedAiming;
+    public static bool IsAiming { get; private set; }
 
     [SerializeField] private Transform rotateBone = null;
     [SerializeField] private GameObject extinguishButton = null;
@@ -18,6 +19,7 @@ public class PlayerAiming : MonoBehaviour
     {
         if(!controller.IsMoving)
         {
+            IsAiming = true;
             extinguishButton.SetActive(true);
             extinguisherHose.SetActive(true);
             extinguisherHoseHidden.SetActive(false);
@@ -27,11 +29,13 @@ public class PlayerAiming : MonoBehaviour
 
     public void StopAiming()
     {
+        IsAiming = false;
         extinguishButton.SetActive(false);
         extinguisherHose.SetActive(false);
         extinguisherHoseHidden.SetActive(true);
         animator.SetBool("Aiming", false);
         ResetRotation();
+        StoppedAiming?.Invoke();
     }
 
     public void UpdateRotation()
@@ -52,23 +56,27 @@ public class PlayerAiming : MonoBehaviour
         StopAiming();
     }
 
-    private void OnEnable() => ScreenEventsHandler.ScreenDragged += UpdateRotation;
+    private void OnEnable()
+    { 
+        ScreenEventsHandler.PointerDown += StartAiming;
+        ScreenEventsHandler.Drag += StartAiming;
+        ScreenEventsHandler.Drag += UpdateRotation;
+        ScreenEventsHandler.PointerUp += StopAiming;
+    }
 
-    private void OnDisable() => ScreenEventsHandler.ScreenDragged -= UpdateRotation;
+    private void OnDisable() 
+    { 
+        ScreenEventsHandler.PointerDown -= StartAiming;
+        ScreenEventsHandler.Drag -= StartAiming;
+        ScreenEventsHandler.Drag -= UpdateRotation;
+        ScreenEventsHandler.PointerUp -= StopAiming;
+    }
 
     private void ClampRotation(float minRotation, float maxRotation)
     {
         Vector3 convertedRotation = rotateBone.localEulerAngles;
         if(rotateBone.localEulerAngles.z >= 180) convertedRotation.z -= 360;
-        if(convertedRotation.z > maxRotation) 
-        {
-            convertedRotation.z = maxRotation;
-            rotateBone.localEulerAngles = convertedRotation;
-        }
-        else if(convertedRotation.z < minRotation)
-        {
-            convertedRotation.z = minRotation;
-            rotateBone.localEulerAngles = convertedRotation;
-        }
+        convertedRotation.z = Mathf.Clamp(convertedRotation.z, minRotation, maxRotation);
+        rotateBone.localEulerAngles = convertedRotation;
     } 
 }

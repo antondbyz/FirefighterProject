@@ -21,4 +21,9 @@ public class CustomButton : MonoBehaviour, IPointerDownHandler, IPointerClickHan
     {
         Hold = false;
     }
+
+    private void OnDisable() 
+    {
+        Hold = false;    
+    }
 }

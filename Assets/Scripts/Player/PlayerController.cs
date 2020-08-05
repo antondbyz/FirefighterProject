@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
     public void SetVelocityX(float value)
     {
-        if(!aiming.IsAiming)
+        if(!PlayerAiming.IsAiming)
         {
             newVelocity.x = value * speed;
             if(value > 0) FlipX = false;
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
-        if(!aiming.IsAiming && IsGrounded )
+        if(!PlayerAiming.IsAiming && IsGrounded)
         {
             newVelocity.Set(0, 0);
             rb.velocity = Vector2.up * jumpForce;

@@ -5228,7 +5228,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 5951417131201038596}
   m_Bounds:
-    m_Center: {x: 0.022098452, y: -0.0036447346, z: 0}
+    m_Center: {x: 0.022098929, y: -0.0036447346, z: 0}
     m_Extent: {x: 0.33659098, y: 0.3797292, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -5709,7 +5709,6 @@ GameObject:
   - component: {fileID: 5951417130546614091}
   - component: {fileID: 5951417130546614090}
   - component: {fileID: 5951417130546614093}
-  - component: {fileID: 5951417130546614092}
   m_Layer: 8
   m_Name: ScreenEventsHandler
   m_TagString: Untagged
@@ -5785,64 +5784,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671b666fc7c331e4eb3c853da38c8086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5951417130546614092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5951417130546614094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5951417131162638178}
-          m_MethodName: StartAiming
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5951417131162638178}
-          m_MethodName: StopAiming
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 5
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5951417131162638178}
-          m_MethodName: StartAiming
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
 --- !u!1 &5951417130658965287
 GameObject:
   m_ObjectHideFlags: 0
@@ -5944,8 +5885,8 @@ MonoBehaviour:
   - {fileID: 5951417131837368231}
   - {fileID: 5951417130376499802}
   m_Bounds:
-    m_Center: {x: 0.20243523, y: 0.110967726, z: 0}
-    m_Extent: {x: 0.53784996, y: 0.3210427, z: 0}
+    m_Center: {x: 0.20243546, y: 0.110967666, z: 0}
+    m_Extent: {x: 0.5378502, y: 0.32104263, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5951417130737556959
@@ -6050,7 +5991,7 @@ MonoBehaviour:
   - {fileID: 5951417131206515001}
   m_Bounds:
     m_Center: {x: -0.0013944209, y: -0.0002990365, z: 0}
-    m_Extent: {x: 0.37861854, y: 0.48671097, z: 0}
+    m_Extent: {x: 0.37861854, y: 0.4867109, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5951417130817082710
@@ -6540,7 +6481,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 3
-  m_Material: {fileID: 6200000, guid: 981b65192f301c0478cea96ca62af50d, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -6576,7 +6517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 331574ebd388bbf4a8109651c457f599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inEditor: 1
+  inputType: 0
   moveRightButton: {fileID: 5123467251555423247}
   moveLeftButton: {fileID: 3112579369236738009}
   jumpButton: {fileID: 3834581606811856802}
@@ -7149,7 +7090,7 @@ MonoBehaviour:
   - {fileID: 5951417130026395429}
   m_Bounds:
     m_Center: {x: 0.0071652383, y: -0.002093017, z: 0}
-    m_Extent: {x: 0.22561724, y: 0.5335813, z: 0}
+    m_Extent: {x: 0.22561724, y: 0.53358126, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5951417131686646896
@@ -7253,8 +7194,8 @@ MonoBehaviour:
   - {fileID: 5951417131054732589}
   - {fileID: 5951417130124378600}
   m_Bounds:
-    m_Center: {x: 0.21475324, y: 0.13819996, z: 0}
-    m_Extent: {x: 0.40722677, y: 0.3953995, z: 0}
+    m_Center: {x: 0.21475348, y: 0.13819984, z: 0}
+    m_Extent: {x: 0.407227, y: 0.3953995, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5951417131793384691
@@ -7757,8 +7698,8 @@ MonoBehaviour:
   - {fileID: 5951417129913563986}
   - {fileID: 5951417131335539903}
   m_Bounds:
-    m_Center: {x: 0.0151508, y: -0.030564845, z: 0}
-    m_Extent: {x: 0.22753474, y: 0.45800242, z: 0}
+    m_Center: {x: 0.0151508, y: -0.030564815, z: 0}
+    m_Extent: {x: 0.22753474, y: 0.45800245, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1001 &5951417130947333987
@@ -7845,12 +7786,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b432e8054254a4e40841072cc030d222, type: 3}
---- !u!4 &4978824581400570722 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1697849133913039873, guid: b432e8054254a4e40841072cc030d222,
-    type: 3}
-  m_PrefabInstance: {fileID: 5951417130947333987}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &9050754116812819341 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3390386658015839470, guid: b432e8054254a4e40841072cc030d222,
@@ -7863,6 +7798,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd7dd08b8a1d8cb4f80ef48cc58dcb92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &4978824581400570722 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1697849133913039873, guid: b432e8054254a4e40841072cc030d222,
+    type: 3}
+  m_PrefabInstance: {fileID: 5951417130947333987}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5951417131053924269
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2,7 +2,9 @@
 
 public class PlayerInput : MonoBehaviour
 {
-    [SerializeField] private bool keyboardInput = true;
+    private enum InputType { KEYBOARD, BUTTONS }
+
+    [SerializeField] private InputType inputType = InputType.KEYBOARD;
     [Space]
     [Header("Buttons")]
     [SerializeField] private CustomButton moveRightButton = null;
@@ -22,7 +24,7 @@ public class PlayerInput : MonoBehaviour
 
     private void OnEnable() 
     {
-        if(!keyboardInput)
+        if(inputType == InputType.BUTTONS)
         {
             jumpButton.PointerDown += controller.Jump;    
         }
@@ -30,34 +32,32 @@ public class PlayerInput : MonoBehaviour
 
     private void OnDisable() 
     {
-        if(!keyboardInput)
-        {
-            jumpButton.PointerDown -= controller.Jump; 
-        }   
+        jumpButton.PointerDown -= controller.Jump;   
     }
 
     private void Update() 
     {
-        if(keyboardInput)
+        switch(inputType)
         {
-            if(Input.GetKeyDown(KeyCode.UpArrow)) controller.Jump();
+            case InputType.KEYBOARD:
+                if(Input.GetKeyDown(KeyCode.UpArrow)) controller.Jump();
 
-            controller.SetVelocityX(Input.GetAxisRaw("Horizontal"));
-            
-            if(Input.GetKeyDown(KeyCode.E)) substance.TurnOn();
-            else if(Input.GetKeyUp(KeyCode.E)) substance.TurnOff();
-        }
-        else
-        {
-            if(moveRightButton.Hold ^ moveLeftButton.Hold)
-            {
-                if(moveRightButton.Hold) controller.SetVelocityX(1);
-                else controller.SetVelocityX(-1);
-            }
-            else controller.SetVelocityX(0);
-            
-            if(extinguishButton.Hold) substance.TurnOn();
-            else substance.TurnOff();
+                controller.SetVelocityX(Input.GetAxisRaw("Horizontal"));
+
+                if(Input.GetKeyDown(KeyCode.E)) substance.TurnOn();
+                else if(Input.GetKeyUp(KeyCode.E)) substance.TurnOff();
+                break;
+            case InputType.BUTTONS:
+                if(moveRightButton.Hold ^ moveLeftButton.Hold)
+                {
+                    if(moveRightButton.Hold) controller.SetVelocityX(1);
+                    else controller.SetVelocityX(-1);
+                }
+                else controller.SetVelocityX(0);
+                
+                if(extinguishButton.Hold) substance.TurnOn();
+                else substance.TurnOff();
+                break;
         }
     }
 }

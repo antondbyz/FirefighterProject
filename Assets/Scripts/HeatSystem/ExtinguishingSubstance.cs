@@ -33,11 +33,13 @@ public class ExtinguishingSubstance : MonoBehaviour
 
     public void TurnOn()
     {
-        if(CurrentSubstanceAmount > 0)
+        if(CurrentSubstanceAmount > 0 && PlayerAiming.IsAiming)
         {
-            particles.Play();
             if(extinguishingCoroutine == null)
+            {
+                particles.Play();
                 extinguishingCoroutine = StartCoroutine(ExtinguishingEnteredObjects());
+            }
         }
     }
 
@@ -57,6 +59,10 @@ public class ExtinguishingSubstance : MonoBehaviour
         CurrentSubstanceAmount = MAX_SUBSTANCE_AMOUNT;
         TurnOff();
     }
+
+    private void OnEnable() => PlayerAiming.StoppedAiming += TurnOff;
+
+    private void OnDisable() => PlayerAiming.StoppedAiming -= TurnOff;
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
