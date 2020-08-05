@@ -5228,7 +5228,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 5951417131201038596}
   m_Bounds:
-    m_Center: {x: 0.022098929, y: -0.0036447346, z: 0}
+    m_Center: {x: 0.022098452, y: -0.0036447346, z: 0}
     m_Extent: {x: 0.33659098, y: 0.3797292, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -5886,7 +5886,7 @@ MonoBehaviour:
   - {fileID: 5951417130376499802}
   m_Bounds:
     m_Center: {x: 0.20243546, y: 0.110967666, z: 0}
-    m_Extent: {x: 0.5378502, y: 0.32104263, z: 0}
+    m_Extent: {x: 0.5378502, y: 0.32104275, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5951417130737556959
@@ -6518,6 +6518,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputType: 0
+  controller: {fileID: 5951417131162638179}
+  substance: {fileID: 9050754116812819341}
+  medic: {fileID: 5951417131162638201}
   moveRightButton: {fileID: 5123467251555423247}
   moveLeftButton: {fileID: 3112579369236738009}
   jumpButton: {fileID: 3834581606811856802}
@@ -7194,8 +7197,8 @@ MonoBehaviour:
   - {fileID: 5951417131054732589}
   - {fileID: 5951417130124378600}
   m_Bounds:
-    m_Center: {x: 0.21475348, y: 0.13819984, z: 0}
-    m_Extent: {x: 0.407227, y: 0.3953995, z: 0}
+    m_Center: {x: 0.214753, y: 0.1381999, z: 0}
+    m_Extent: {x: 0.407227, y: 0.39539945, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5951417131793384691
@@ -7698,7 +7701,7 @@ MonoBehaviour:
   - {fileID: 5951417129913563986}
   - {fileID: 5951417131335539903}
   m_Bounds:
-    m_Center: {x: 0.0151508, y: -0.030564815, z: 0}
+    m_Center: {x: 0.015151277, y: -0.030564815, z: 0}
     m_Extent: {x: 0.22753474, y: 0.45800245, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -7782,7 +7785,7 @@ PrefabInstance:
     - target: {fileID: 3390386658015839470, guid: b432e8054254a4e40841072cc030d222,
         type: 3}
       propertyPath: efficiency
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b432e8054254a4e40841072cc030d222, type: 3}
@@ -7815,6 +7818,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SubstanceAmountBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423223648708890257, guid: 52299814fa0f8ab43aee5cc90760f9e7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423223648708890257, guid: 52299814fa0f8ab43aee5cc90760f9e7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5413740853316310889, guid: 52299814fa0f8ab43aee5cc90760f9e7,
         type: 3}
@@ -7987,6 +8000,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423223648708890257, guid: 52299814fa0f8ab43aee5cc90760f9e7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423223648708890257, guid: 52299814fa0f8ab43aee5cc90760f9e7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5413740853316310889, guid: 52299814fa0f8ab43aee5cc90760f9e7,
         type: 3}

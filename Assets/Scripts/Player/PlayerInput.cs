@@ -6,21 +6,17 @@ public class PlayerInput : MonoBehaviour
 
     [SerializeField] private InputType inputType = InputType.KEYBOARD;
     [Space]
+    [Header("Classes")]
+    [SerializeField] private PlayerController controller;
+    [SerializeField] private ExtinguishingSubstance substance;
+    [SerializeField] private Medic medic;
+    [Space]
     [Header("Buttons")]
     [SerializeField] private CustomButton moveRightButton = null;
     [SerializeField] private CustomButton moveLeftButton = null;
     [SerializeField] private CustomButton jumpButton = null;
     [SerializeField] private CustomButton extinguishButton = null;
     [SerializeField] private CustomButton treatButton = null;
-
-    private PlayerController controller;
-    private ExtinguishingSubstance substance;
-
-    private void Awake() 
-    {
-        controller = GetComponent<PlayerController>();    
-        substance = transform.GetComponentInChildren<ExtinguishingSubstance>();
-    }
 
     private void OnEnable() 
     {
@@ -46,6 +42,9 @@ public class PlayerInput : MonoBehaviour
 
                 if(Input.GetKeyDown(KeyCode.E)) substance.TurnOn();
                 else if(Input.GetKeyUp(KeyCode.E)) substance.TurnOff();
+
+                if(Input.GetKeyDown(KeyCode.M)) medic.StartTreating();
+                else if(Input.GetKeyUp(KeyCode.M)) medic.StopTreating();
                 break;
             case InputType.BUTTONS:
                 if(moveRightButton.Hold ^ moveLeftButton.Hold)
@@ -57,6 +56,9 @@ public class PlayerInput : MonoBehaviour
                 
                 if(extinguishButton.Hold) substance.TurnOn();
                 else substance.TurnOff();
+
+                if(treatButton.Hold) medic.StartTreating();
+                else medic.StopTreating();
                 break;
         }
     }
