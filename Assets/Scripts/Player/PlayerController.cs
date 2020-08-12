@@ -74,12 +74,11 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        rb.sharedMaterial = noFriction;
+        rb.sharedMaterial = IsMoving ? noFriction : fullFriction;
         if(IsGrounded && !isJumping)
         {
             if(isOnSlope)
             {
-                if(newVelocity.x == 0) rb.sharedMaterial = fullFriction;
                 Vector2 rayOrigin = new Vector2(cc.bounds.center.x, cc.bounds.center.y - cc.size.y / 2 + 0.2f);
                 RaycastHit2D hitFront = Physics2D.Raycast(rayOrigin, Vector2.right, 0.5f);
                 RaycastHit2D hitBack = Physics2D.Raycast(rayOrigin, Vector2.left, 0.5f);
@@ -90,13 +89,14 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    newVelocity.Set(newVelocity.x * -slopeNormalPerpendicular.x, newVelocity.x * -slopeNormalPerpendicular.y);
+                    newVelocity = -slopeNormalPerpendicular * newVelocity.x;
                 }
             }
-            else newVelocity.y = 0;
+            else newVelocity.y = rb.velocity.y;
         }
         else newVelocity.y = rb.velocity.y;
         rb.velocity = newVelocity;
+        newVelocity.Set(0, 0);
         if(rb.velocity.y <= 0 || IsGrounded) isJumping = false;
     }
 
