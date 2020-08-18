@@ -2,8 +2,8 @@
 
 public class PlayerAiming : MonoBehaviour
 {
-    public static event System.Action StoppedAiming;
-    public static bool IsAiming { get; private set; }
+    public event System.Action StoppedAiming;
+    public bool IsAiming { get; private set; }
 
     [SerializeField] private Transform rotateBone = null;
     [SerializeField] private GameObject extinguishButton = null;
@@ -11,48 +11,12 @@ public class PlayerAiming : MonoBehaviour
     [SerializeField] private GameObject extinguisherHoseHidden = null;
 
     private PlayerController controller;
-    private Animator animator;
 
     public void ResetRotation() => rotateBone.localRotation = Quaternion.Euler(0, 0, 0);
 
-    public void StartAiming()
-    {
-        if(!controller.IsMoving)
-        {
-            IsAiming = true;
-            extinguishButton.SetActive(true);
-            extinguisherHose.SetActive(true);
-            extinguisherHoseHidden.SetActive(false);
-            animator.SetBool("Aiming", true);
-        }
-    }
-
-    public void StopAiming()
-    {
-        IsAiming = false;
-        extinguishButton.SetActive(false);
-        extinguisherHose.SetActive(false);
-        extinguisherHoseHidden.SetActive(true);
-        animator.SetBool("Aiming", false);
-        ResetRotation();
-        StoppedAiming?.Invoke();
-    }
-
-    public void UpdateRotation()
-    {
-        if(IsAiming)
-        {
-            Vector3 newRotation = rotateBone.localEulerAngles;
-            newRotation.z += ScreenEventsHandler.DragDelta.y;
-            rotateBone.localEulerAngles = newRotation;
-            ClampRotation(-45, 60);  
-        }
-    }
-
     private void Awake() 
     {
-        controller = GetComponent<PlayerController>();
-        animator = GetComponent<Animator>();    
+        controller = GetComponent<PlayerController>(); 
         StopAiming();
     }
 
@@ -70,6 +34,38 @@ public class PlayerAiming : MonoBehaviour
         ScreenEventsHandler.Drag -= StartAiming;
         ScreenEventsHandler.Drag -= UpdateRotation;
         ScreenEventsHandler.PointerUp -= StopAiming;
+    }
+
+    private void StartAiming()
+    {
+        if(!controller.IsMoving && controller.IsGrounded)
+        {
+            IsAiming = true;
+            extinguishButton.SetActive(true);
+            extinguisherHose.SetActive(true);
+            extinguisherHoseHidden.SetActive(false);
+        }
+    }
+
+    private void StopAiming()
+    {
+        IsAiming = false;
+        extinguishButton.SetActive(false);
+        extinguisherHose.SetActive(false);
+        extinguisherHoseHidden.SetActive(true);
+        ResetRotation();
+        StoppedAiming?.Invoke();
+    }
+
+    private void UpdateRotation()
+    {
+        if(IsAiming)
+        {
+            Vector3 newRotation = rotateBone.localEulerAngles;
+            newRotation.z += ScreenEventsHandler.DragDelta.y;
+            rotateBone.localEulerAngles = newRotation;
+            ClampRotation(-45, 60);  
+        }
     }
 
     private void ClampRotation(float minRotation, float maxRotation)

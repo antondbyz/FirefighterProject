@@ -3,12 +3,12 @@ using UnityEngine.EventSystems;
 
 public class CustomButton : MonoBehaviour, IPointerDownHandler, IPointerClickHandler, IPointerExitHandler
 {
-    public event System.Action PointerDown;
+    public bool Pressed { get; private set; }
     public bool Hold { get; private set; }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        PointerDown?.Invoke();
+        Pressed = true;
         Hold = true;
     }
 
@@ -24,6 +24,11 @@ public class CustomButton : MonoBehaviour, IPointerDownHandler, IPointerClickHan
 
     private void OnDisable() 
     {
-        Hold = false;    
+        Hold = false;   
+    }
+
+    private void FixedUpdate() 
+    {
+        Pressed = false;
     }
 }

@@ -28,41 +28,30 @@ public class ExtinguishingSubstance : MonoBehaviour
     [SerializeField] private Image substanceAmountFill = null;
 
     private ParticleSystem particles;
+    private PlayerInput input;
+    private PlayerAiming aiming;
     private List<Heat> objectsToExtinguish = new List<Heat>();
     private Coroutine extinguishingCoroutine;
-
-    public void TurnOn()
-    {
-        if(CurrentSubstanceAmount > 0 && PlayerAiming.IsAiming)
-        {
-            if(extinguishingCoroutine == null)
-            {
-                particles.Play();
-                extinguishingCoroutine = StartCoroutine(ExtinguishingEnteredObjects());
-            }
-        }
-    }
-
-    public void TurnOff()
-    {
-        particles.Stop();
-        if(extinguishingCoroutine != null)
-        {
-            StopCoroutine(extinguishingCoroutine);
-            extinguishingCoroutine = null;
-        }
-    }
 
     private void Awake() 
     {
         particles = GetComponent<ParticleSystem>();
+        Transform myRoot = transform.root;
+        input = myRoot.GetComponent<PlayerInput>();
+        aiming = myRoot.GetComponent<PlayerAiming>();
         CurrentSubstanceAmount = MAX_SUBSTANCE_AMOUNT;
         TurnOff();
     }
 
-    private void OnEnable() => PlayerAiming.StoppedAiming += TurnOff;
+    private void OnEnable() => aiming.StoppedAiming += TurnOff;
 
-    private void OnDisable() => PlayerAiming.StoppedAiming -= TurnOff;
+    private void OnDisable() => aiming.StoppedAiming -= TurnOff;
+
+    private void Update() 
+    {
+        if(input.ExtinguishHeld) TurnOn();
+        else TurnOff();    
+    }
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
@@ -76,6 +65,25 @@ public class ExtinguishingSubstance : MonoBehaviour
         Heat heat = other.GetComponent<Heat>();
         if(heat != null)
             objectsToExtinguish.Remove(heat);
+    }
+
+    private void TurnOn()
+    {
+        if(extinguishingCoroutine == null && CurrentSubstanceAmount > 0 && aiming.IsAiming)
+        {
+            particles.Play();
+            extinguishingCoroutine = StartCoroutine(ExtinguishingEnteredObjects());
+        }
+    }
+
+    private void TurnOff()
+    {
+        if(extinguishingCoroutine != null)
+        {
+            particles.Stop();
+            StopCoroutine(extinguishingCoroutine);
+            extinguishingCoroutine = null;
+        }
     }
 
     private IEnumerator ExtinguishingEnteredObjects()

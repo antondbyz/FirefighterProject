@@ -13,8 +13,15 @@ public class PlayerController : MonoBehaviour
     }
     private bool flipX;
 
-    public bool IsGrounded { get; private set; }  
-    public bool IsMoving => newVelocity.x != 0 || newVelocity.y != 0;
+    public bool IsGrounded 
+    {
+        get
+        {
+            float distance = cc.size.y / 2 - cc.size.x / 2 + groundCheckDistance;
+            return Physics2D.CircleCast(cc.bounds.center, cc.size.x / 2, Vector2.down, distance);
+        }
+    }  
+    public bool IsMoving => newVelocity.x != 0;
 
     [SerializeField] private float speed = 5;
     [SerializeField] private float jumpForce = 8;
@@ -25,96 +32,69 @@ public class PlayerController : MonoBehaviour
     private Transform myTransform;
     private Rigidbody2D rb;
     private CapsuleCollider2D cc;
-    private Animator animator;
+    private PlayerInput input;
     private PlayerAiming aiming;
     private Vector2 newVelocity;
-    private Vector2 slopeNormalPerpendicular;
-    private bool isOnSlope;
-    private float slopeNormalDotProduct;
-    private bool isJumping;
-
-    public void SetVelocityX(float value)
-    {
-        if(!PlayerAiming.IsAiming)
-        {
-            newVelocity.x = value * speed;
-            if(value > 0) FlipX = false;
-            else if(value < 0) FlipX = true;
-            animator.SetBool("Running", value != 0);
-            if(value != 0) aiming.ResetRotation();
-        }
-    }
-
-    public void Jump()
-    {
-        if(!PlayerAiming.IsAiming && IsGrounded)
-        {
-            newVelocity.Set(0, 0);
-            rb.velocity = Vector2.up * jumpForce;
-            isJumping = true;
-        }
-    }
 
     private void Awake()
     {
         myTransform = GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
         cc = GetComponent<CapsuleCollider2D>();
-        animator = GetComponent<Animator>();
+        input = GetComponent<PlayerInput>();
         aiming = GetComponent<PlayerAiming>();
         FlipX = false;
     } 
 
+    private void Update() 
+    {
+        CheckInput();
+        rb.sharedMaterial = IsMoving ? noFriction : fullFriction;
+    }
+
     private void FixedUpdate() 
     {
-        GroundCheck();
-        SlopeCheck();
-        Move();
-    }
-
-    private void Move()
-    {
-        rb.sharedMaterial = IsMoving ? noFriction : fullFriction;
-        if(IsGrounded && !isJumping)
-        {
-            if(isOnSlope)
-            {
-                Vector2 rayOrigin = new Vector2(cc.bounds.center.x, cc.bounds.center.y - cc.size.y / 2 + 0.2f);
-                RaycastHit2D hitFront = Physics2D.Raycast(rayOrigin, Vector2.right, 0.5f);
-                RaycastHit2D hitBack = Physics2D.Raycast(rayOrigin, Vector2.left, 0.5f);
-                if((newVelocity.x > 0 && slopeNormalDotProduct < 0 && !hitFront) ||
-                   (newVelocity.x < 0 && slopeNormalDotProduct > 0 && !hitBack))   
-                {
-                    newVelocity.y = 0;
-                }
-                else
-                {
-                    newVelocity = -slopeNormalPerpendicular * newVelocity.x;
-                }
-            }
-            else newVelocity.y = rb.velocity.y;
-        }
+        if(IsGrounded) GroundMovement();
         else newVelocity.y = rb.velocity.y;
         rb.velocity = newVelocity;
-        newVelocity.Set(0, 0);
-        if(rb.velocity.y <= 0 || IsGrounded) isJumping = false;
     }
 
-    private void GroundCheck()
-    {
-        float distance = cc.size.y / 2 - cc.size.x / 2 + groundCheckDistance;
-        IsGrounded = Physics2D.CircleCast(cc.bounds.center, cc.size.x / 2, Vector2.down, distance);
-    }
-
-    private void SlopeCheck()
+    private void GroundMovement()
     {
         Vector2 rayOrigin = new Vector2(cc.bounds.center.x, cc.bounds.center.y - cc.size.y / 2);
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down);
-        isOnSlope = Vector2.Angle(hit.normal, Vector2.up) > 0;
-        if(isOnSlope)
+        if(Vector2.Angle(hit.normal, Vector2.up) > 0)
         {
-            slopeNormalDotProduct = Vector2.Dot(hit.normal, Vector2.right);
-            slopeNormalPerpendicular = Vector2.Perpendicular(hit.normal).normalized;
+            float groundNormalDot = Vector2.Dot(hit.normal, Vector2.right);
+            RaycastHit2D hitFront = Physics2D.Raycast(rayOrigin + Vector2.up * 0.2f, Vector2.right, 0.5f);
+            RaycastHit2D hitBack = Physics2D.Raycast(rayOrigin + Vector2.up * 0.2f, Vector2.left, 0.5f);
+            if((newVelocity.x > 0 && groundNormalDot < 0 && !hitFront) ||
+               (newVelocity.x < 0 && groundNormalDot > 0 && !hitBack))   
+            {
+                newVelocity.y = 0;
+            }
+            else
+            {
+                newVelocity = -Vector2.Perpendicular(hit.normal).normalized * newVelocity.x;
+            }
+        }
+        else newVelocity.y = rb.velocity.y;
+        if(input.JumpPressed && !aiming.IsAiming)
+        {
+            newVelocity.y = jumpForce;
+        }
+    }
+
+    private void CheckInput()
+    {
+        if(!aiming.IsAiming)
+        {
+            newVelocity.x = input.Horizontal * speed;
+            if(input.Horizontal != 0)
+            {
+                aiming.ResetRotation();
+                FlipX = input.Horizontal < 0;
+            }
         }
     }
 }

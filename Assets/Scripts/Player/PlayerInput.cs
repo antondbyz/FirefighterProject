@@ -2,64 +2,50 @@
 
 public class PlayerInput : MonoBehaviour
 {
-    private enum InputType { KEYBOARD, BUTTONS }
+    public float Horizontal { get; private set; }
+    public bool JumpPressed { get; private set; }
+    public bool MedicHeld { get; private set; }
+    public bool ExtinguishHeld { get; private set; }
 
-    [SerializeField] private InputType inputType = InputType.KEYBOARD;
-    [Space]
-    [Header("Classes")]
-    [SerializeField] private PlayerController controller;
-    [SerializeField] private ExtinguishingSubstance substance;
-    [SerializeField] private Medic medic;
-    [Space]
-    [Header("Buttons")]
     [SerializeField] private CustomButton moveRightButton = null;
     [SerializeField] private CustomButton moveLeftButton = null;
     [SerializeField] private CustomButton jumpButton = null;
     [SerializeField] private CustomButton extinguishButton = null;
     [SerializeField] private CustomButton treatButton = null;
 
-    private void OnEnable() 
+    public void CheckCustomButtonsInput()
     {
-        if(inputType == InputType.BUTTONS)
+        if(moveRightButton.Hold ^ moveLeftButton.Hold)
         {
-            jumpButton.PointerDown += controller.Jump;    
+            if(moveRightButton.Hold) Horizontal = 1;
+            else Horizontal = -1;
         }
+        else Horizontal = 0;
+        JumpPressed = jumpButton.Pressed;
+        MedicHeld = treatButton.Hold;
+        ExtinguishHeld = extinguishButton.Hold;
     }
 
-    private void OnDisable() 
+    public void CheckKeyboardInput()
     {
-        jumpButton.PointerDown -= controller.Jump;   
+        Horizontal = Input.GetAxisRaw("Horizontal");
+        if(Input.GetKeyDown(KeyCode.UpArrow)) JumpPressed = true;
+        MedicHeld = Input.GetKey(KeyCode.M);
+        ExtinguishHeld = Input.GetKey(KeyCode.E);
+
     }
 
     private void Update() 
     {
-        switch(inputType)
-        {
-            case InputType.KEYBOARD:
-                if(Input.GetKeyDown(KeyCode.UpArrow)) controller.Jump();
+        //#if UNITY_EDITOR
+        CheckKeyboardInput();
+        //#else
+        //CheckCustomButtonsInput();
+        //#endif
+    }
 
-                controller.SetVelocityX(Input.GetAxisRaw("Horizontal"));
-
-                if(Input.GetKeyDown(KeyCode.E)) substance.TurnOn();
-                else if(Input.GetKeyUp(KeyCode.E)) substance.TurnOff();
-
-                if(Input.GetKeyDown(KeyCode.M)) medic.StartTreating();
-                else if(Input.GetKeyUp(KeyCode.M)) medic.StopTreating();
-                break;
-            case InputType.BUTTONS:
-                if(moveRightButton.Hold ^ moveLeftButton.Hold)
-                {
-                    if(moveRightButton.Hold) controller.SetVelocityX(1);
-                    else controller.SetVelocityX(-1);
-                }
-                else controller.SetVelocityX(0);
-                
-                if(extinguishButton.Hold) substance.TurnOn();
-                else substance.TurnOff();
-
-                if(treatButton.Hold) medic.StartTreating();
-                else medic.StopTreating();
-                break;
-        }
+    private void FixedUpdate() 
+    {
+        JumpPressed = false;
     }
 }

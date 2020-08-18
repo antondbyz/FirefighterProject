@@ -5885,8 +5885,8 @@ MonoBehaviour:
   - {fileID: 5951417131837368231}
   - {fileID: 5951417130376499802}
   m_Bounds:
-    m_Center: {x: 0.20243546, y: 0.110967666, z: 0}
-    m_Extent: {x: 0.5378502, y: 0.32104275, z: 0}
+    m_Center: {x: 0.20243523, y: 0.110967726, z: 0}
+    m_Extent: {x: 0.53784996, y: 0.3210427, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5951417130737556959
@@ -5991,7 +5991,7 @@ MonoBehaviour:
   - {fileID: 5951417131206515001}
   m_Bounds:
     m_Center: {x: -0.0013944209, y: -0.0002990365, z: 0}
-    m_Extent: {x: 0.37861854, y: 0.4867109, z: 0}
+    m_Extent: {x: 0.37861854, y: 0.48671097, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5951417130817082710
@@ -6419,6 +6419,7 @@ GameObject:
   - component: {fileID: 4074622442298275747}
   - component: {fileID: 5951417131162638176}
   - component: {fileID: 5951417131162638179}
+  - component: {fileID: 7100069072501263037}
   - component: {fileID: 5951417131162638178}
   - component: {fileID: 5951417131162638181}
   - component: {fileID: 5951417131162638180}
@@ -6517,10 +6518,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 331574ebd388bbf4a8109651c457f599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputType: 0
-  controller: {fileID: 5951417131162638179}
-  substance: {fileID: 9050754116812819341}
-  medic: {fileID: 5951417131162638201}
   moveRightButton: {fileID: 5123467251555423247}
   moveLeftButton: {fileID: 3112579369236738009}
   jumpButton: {fileID: 3834581606811856802}
@@ -6556,6 +6553,18 @@ MonoBehaviour:
   groundCheckDistance: 0.08
   noFriction: {fileID: 6200000, guid: 981b65192f301c0478cea96ca62af50d, type: 2}
   fullFriction: {fileID: 6200000, guid: 6a87770e4e4e51348b2eb2c769cdba42, type: 2}
+--- !u!114 &7100069072501263037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5951417131162638203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 272376676fb9b644ea4501936eb3ae39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5951417131162638178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7093,7 +7102,7 @@ MonoBehaviour:
   - {fileID: 5951417130026395429}
   m_Bounds:
     m_Center: {x: 0.0071652383, y: -0.002093017, z: 0}
-    m_Extent: {x: 0.22561724, y: 0.53358126, z: 0}
+    m_Extent: {x: 0.22561724, y: 0.5335813, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5951417131686646896
@@ -7197,8 +7206,8 @@ MonoBehaviour:
   - {fileID: 5951417131054732589}
   - {fileID: 5951417130124378600}
   m_Bounds:
-    m_Center: {x: 0.214753, y: 0.1381999, z: 0}
-    m_Extent: {x: 0.407227, y: 0.39539945, z: 0}
+    m_Center: {x: 0.21475324, y: 0.13819996, z: 0}
+    m_Extent: {x: 0.40722677, y: 0.3953995, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5951417131793384691
@@ -7701,8 +7710,8 @@ MonoBehaviour:
   - {fileID: 5951417129913563986}
   - {fileID: 5951417131335539903}
   m_Bounds:
-    m_Center: {x: 0.015151277, y: -0.030564815, z: 0}
-    m_Extent: {x: 0.22753474, y: 0.45800245, z: 0}
+    m_Center: {x: 0.0151508, y: -0.030564845, z: 0}
+    m_Extent: {x: 0.22753474, y: 0.45800242, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1001 &5951417130947333987

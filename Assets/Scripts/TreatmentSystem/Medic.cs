@@ -9,33 +9,20 @@ public class Medic : MonoBehaviour
     [SerializeField] private GameObject treatmentProgress = null;
     [SerializeField] private Image treatmentProgressFill = null;
 
+    private PlayerInput input;
     private List<Wounded> wounded = new List<Wounded>(); 
     private Coroutine treatingCoroutine;
 
-    public void StartTreating()
-    {
-        if(wounded.Count > 0)
-        {
-            treatingCoroutine = StartCoroutine(Treating(wounded[wounded.Count - 1]));
-            treatmentProgress.SetActive(true);
-        }
-    }
-
-    public void StopTreating()
-    {
-        treatmentProgress.SetActive(false);
-        treatmentProgressFill.fillAmount = 0;
-        if(treatingCoroutine != null)
-        {
-            StopCoroutine(treatingCoroutine);
-            treatingCoroutine = null;
-        }
-        if(wounded.Count == 0) treatButton.SetActive(false); 
-    }
-
     private void Awake() 
     {
+        input = GetComponent<PlayerInput>();
         StopTreating();    
+    }
+
+    private void Update() 
+    {
+        if(input.MedicHeld) StartTreating();    
+        else StopTreating();
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
@@ -54,6 +41,27 @@ public class Medic : MonoBehaviour
         if(wounded.Remove(exitedWounded)) 
             StopTreating();
     } 
+
+    private void StartTreating()
+    {
+        if(treatingCoroutine == null && wounded.Count > 0)
+        {
+            treatingCoroutine = StartCoroutine(Treating(wounded[wounded.Count - 1]));
+            treatmentProgress.SetActive(true);
+        }
+    }
+
+    private void StopTreating()
+    {
+        treatmentProgress.SetActive(false);
+        treatmentProgressFill.fillAmount = 0;
+        if(treatingCoroutine != null)
+        {
+            StopCoroutine(treatingCoroutine);
+            treatingCoroutine = null;
+        }
+        if(wounded.Count == 0) treatButton.SetActive(false); 
+    }
 
     private IEnumerator Treating(Wounded currentWounded)
     {
