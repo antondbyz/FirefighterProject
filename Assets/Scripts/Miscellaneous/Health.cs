@@ -13,7 +13,6 @@ public class Health : MonoBehaviour
             {
                 if(value < 0) value = 0;
                 else if(value > maxHealth) value = maxHealth;
-
                 currentHealth = value;
                 if(currentHealth == 0) Died?.Invoke();
                 if(healthFill != null) healthFill.fillAmount = currentHealth / maxHealth;
@@ -24,7 +23,7 @@ public class Health : MonoBehaviour
     [SerializeField] private float currentHealth = 100;
     [SerializeField] private Image healthFill = null;
 
-    private void Start()
+    protected virtual void Awake()
     {
         CurrentHealth = currentHealth;
     }

@@ -4,7 +4,7 @@ public class PlayerAnimations : MonoBehaviour
 {
     private Animator animator;
     private PlayerController controller;
-    private PlayerAiming aiming;
+    private PlayerAim aim;
     private int runningAnimation;
     private int aimingAnimation;
 
@@ -12,7 +12,7 @@ public class PlayerAnimations : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         controller = GetComponent<PlayerController>();
-        aiming = GetComponent<PlayerAiming>();
+        aim = GetComponent<PlayerAim>();
         runningAnimation = Animator.StringToHash("Running");  
         aimingAnimation = Animator.StringToHash("Aiming");  
     }
@@ -20,6 +20,6 @@ public class PlayerAnimations : MonoBehaviour
     private void Update() 
     {
         animator.SetBool(runningAnimation, controller.IsMoving);
-        animator.SetBool(aimingAnimation, aiming.IsAiming);
+        animator.SetBool(aimingAnimation, aim.IsAiming);
     }
 }

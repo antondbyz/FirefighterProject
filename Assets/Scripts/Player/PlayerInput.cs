@@ -29,7 +29,7 @@ public class PlayerInput : MonoBehaviour
     public void CheckKeyboardInput()
     {
         Horizontal = Input.GetAxisRaw("Horizontal");
-        if(Input.GetKeyDown(KeyCode.UpArrow)) JumpPressed = true;
+        JumpPressed = Input.GetKey(KeyCode.UpArrow);
         MedicHeld = Input.GetKey(KeyCode.M);
         ExtinguishHeld = Input.GetKey(KeyCode.E);
 
@@ -37,15 +37,10 @@ public class PlayerInput : MonoBehaviour
 
     private void Update() 
     {
-        //#if UNITY_EDITOR
+        #if UNITY_EDITOR
         CheckKeyboardInput();
-        //#else
-        //CheckCustomButtonsInput();
-        //#endif
-    }
-
-    private void FixedUpdate() 
-    {
-        JumpPressed = false;
+        #else
+        CheckCustomButtonsInput();
+        #endif
     }
 }

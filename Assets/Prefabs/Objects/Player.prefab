@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5951417129913563986}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: L_UpperLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 5951417130015905581}
   - component: {fileID: 5951417130015905579}
   - component: {fileID: 5951417130015905578}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5951417130026395429}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: R_LowerLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5951417130124378600}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: R_LowerArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 5951417130194027885}
   - component: {fileID: 5951417130194027883}
   - component: {fileID: 5951417130194027882}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: BurningEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -4944,7 +4944,7 @@ GameObject:
   - component: {fileID: 5951417130208309464}
   - component: {fileID: 5951417130208309467}
   - component: {fileID: 3834581606811856802}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Jump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5032,7 +5032,7 @@ GameObject:
   - component: {fileID: 5951417130244510916}
   - component: {fileID: 5951417130244510919}
   - component: {fileID: 5951417130244510918}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5139,7 +5139,7 @@ GameObject:
   - component: {fileID: 5951417130268665922}
   - component: {fileID: 5951417130268665920}
   - component: {fileID: 5951417130268665923}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Char1_Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5228,7 +5228,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 5951417131201038596}
   m_Bounds:
-    m_Center: {x: 0.022098452, y: -0.0036447346, z: 0}
+    m_Center: {x: 0.022096545, y: -0.0036444962, z: 0}
     m_Extent: {x: 0.33659098, y: 0.3797292, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -5241,7 +5241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5951417130376499802}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: L_LowerArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5273,7 +5273,7 @@ GameObject:
   - component: {fileID: 5951417130407896621}
   - component: {fileID: 5951417130407896619}
   - component: {fileID: 5951417130407896618}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5345,7 +5345,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5951417130421465364}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Pelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5379,7 +5379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5951417130441410340}
   - component: {fileID: 5951417130441410341}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Extinguisher_Balloon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5461,7 +5461,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5951417130442696682}
   - component: {fileID: 5951417130442696685}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Extinguisher_HoseHidden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5545,7 +5545,7 @@ GameObject:
   - component: {fileID: 5951417130509820031}
   - component: {fileID: 5951417130509820030}
   - component: {fileID: 5951417130509820017}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Pause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5672,7 +5672,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5951417130525578996}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Extinguisher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5709,7 +5709,7 @@ GameObject:
   - component: {fileID: 5951417130546614091}
   - component: {fileID: 5951417130546614090}
   - component: {fileID: 5951417130546614093}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: ScreenEventsHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5795,7 +5795,7 @@ GameObject:
   - component: {fileID: 5951417130658965284}
   - component: {fileID: 5951417130658965282}
   - component: {fileID: 5951417130658965285}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Char1_L Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5885,8 +5885,8 @@ MonoBehaviour:
   - {fileID: 5951417131837368231}
   - {fileID: 5951417130376499802}
   m_Bounds:
-    m_Center: {x: 0.20243523, y: 0.110967726, z: 0}
-    m_Extent: {x: 0.53784996, y: 0.3210427, z: 0}
+    m_Center: {x: 0.20243785, y: 0.110967666, z: 0}
+    m_Extent: {x: 0.5378507, y: 0.32104287, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5951417130737556959
@@ -5900,7 +5900,7 @@ GameObject:
   - component: {fileID: 5951417130737556956}
   - component: {fileID: 5951417130737556954}
   - component: {fileID: 5951417130737556957}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Char1_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5990,8 +5990,8 @@ MonoBehaviour:
   - {fileID: 5951417131355725050}
   - {fileID: 5951417131206515001}
   m_Bounds:
-    m_Center: {x: -0.0013944209, y: -0.0002990365, z: 0}
-    m_Extent: {x: 0.37861854, y: 0.48671097, z: 0}
+    m_Center: {x: -0.0013932586, y: -0.0002990365, z: 0}
+    m_Extent: {x: 0.37861842, y: 0.48671097, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5951417130817082710
@@ -6005,7 +6005,7 @@ GameObject:
   - component: {fileID: 5951417130817082711}
   - component: {fileID: 5951417130817082709}
   - component: {fileID: 5951417130817082708}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Char1_Pelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6094,7 +6094,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 5951417130421465364}
   m_Bounds:
-    m_Center: {x: 0.03000009, y: 0.15390818, z: 0}
+    m_Center: {x: 0.029999137, y: 0.15390818, z: 0}
     m_Extent: {x: 0.29875636, y: 0.2024433, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -6110,7 +6110,7 @@ GameObject:
   - component: {fileID: 5951417130888413660}
   - component: {fileID: 5951417130888413663}
   - component: {fileID: 5770442103558060345}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Extinguish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6197,7 +6197,7 @@ GameObject:
   - component: {fileID: 5951417130925186211}
   - component: {fileID: 5951417130925186209}
   - component: {fileID: 5951417130925186208}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6270,7 +6270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5951417130974311868}
   - component: {fileID: 5951417130974311869}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Extinguisher_Hose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6351,7 +6351,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5951417131017946300}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6382,7 +6382,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5951417131054732589}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: R_UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6419,14 +6419,11 @@ GameObject:
   - component: {fileID: 4074622442298275747}
   - component: {fileID: 5951417131162638176}
   - component: {fileID: 5951417131162638179}
+  - component: {fileID: 7747547681563994498}
   - component: {fileID: 7100069072501263037}
   - component: {fileID: 5951417131162638178}
-  - component: {fileID: 5951417131162638181}
-  - component: {fileID: 5951417131162638180}
-  - component: {fileID: 5951417131162638183}
-  - component: {fileID: 5951417131162638182}
   - component: {fileID: 5951417131162638201}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -6480,8 +6477,8 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_AngularDrag: 0
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -6535,7 +6532,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b598c568aacab45844a06dbc56585f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extinguishingSubstance: {fileID: 9050754116812819341}
 --- !u!114 &5951417131162638179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6548,11 +6544,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d50b55021f46e4f90af85442592dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  jumpForce: 9
+  speed: 12
+  jumpForce: 16
   groundCheckDistance: 0.08
   noFriction: {fileID: 6200000, guid: 981b65192f301c0478cea96ca62af50d, type: 2}
   fullFriction: {fileID: 6200000, guid: 6a87770e4e4e51348b2eb2c769cdba42, type: 2}
+--- !u!114 &7747547681563994498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5951417131162638203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a199bf13497dba74bbdb35e88ce2ad90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 100
+  healthFill: {fileID: 1852904443482788644}
+  spikesDamage: 30
+  spikesPushForce: 8
 --- !u!114 &7100069072501263037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6581,62 +6594,6 @@ MonoBehaviour:
   extinguishButton: {fileID: 5951417130888413648}
   extinguisherHose: {fileID: 5951417130974311871}
   extinguisherHoseHidden: {fileID: 5951417130442696684}
---- !u!114 &5951417131162638181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5951417131162638203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3583719ea6adc58468434972edcf4bad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
-  healthFill: {fileID: 1852904443482788644}
---- !u!114 &5951417131162638180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5951417131162638203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1561fda20207b3478b8abea0fa9b1e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHeat: 100
-  currentHeat: 0
-  isHeatable: 1
-  isExtinguishable: 0
---- !u!114 &5951417131162638183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5951417131162638203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81b85c22e552cce4a91be967d68ff08e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5951417131162638182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5951417131162638203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70a485763bc991c4f932719ee2aeff79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  burningEffect: {fileID: 5951417130194027885}
 --- !u!114 &5951417131162638201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6661,7 +6618,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5951417131201038596}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6691,7 +6648,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5951417131206515001}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: UpperBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6727,7 +6684,7 @@ GameObject:
   - component: {fileID: 5951417131257071358}
   - component: {fileID: 5951417131257071356}
   - component: {fileID: 5951417131257071359}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: TreatmentProgress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6800,7 +6757,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5951417131335539903}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: L_LowerLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6830,7 +6787,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5951417131355725050}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: LowerBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6863,7 +6820,7 @@ GameObject:
   - component: {fileID: 5951417131433244295}
   - component: {fileID: 5951417131433244293}
   - component: {fileID: 5951417131433244292}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6937,7 +6894,7 @@ GameObject:
   - component: {fileID: 5951417131439392879}
   - component: {fileID: 5951417131439392878}
   - component: {fileID: 5951417131439392865}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FillArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7011,7 +6968,7 @@ GameObject:
   - component: {fileID: 5951417131684516615}
   - component: {fileID: 5951417131684516613}
   - component: {fileID: 5951417131684516612}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Char1_R Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7101,8 +7058,8 @@ MonoBehaviour:
   - {fileID: 5951417131793384688}
   - {fileID: 5951417130026395429}
   m_Bounds:
-    m_Center: {x: 0.0071652383, y: -0.002093017, z: 0}
-    m_Extent: {x: 0.22561724, y: 0.5335813, z: 0}
+    m_Center: {x: 0.0071642846, y: -0.002093017, z: 0}
+    m_Extent: {x: 0.22561724, y: 0.53358126, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5951417131686646896
@@ -7116,7 +7073,7 @@ GameObject:
   - component: {fileID: 5951417131686646897}
   - component: {fileID: 5951417131686646911}
   - component: {fileID: 5951417131686646910}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Char1_R Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7206,8 +7163,8 @@ MonoBehaviour:
   - {fileID: 5951417131054732589}
   - {fileID: 5951417130124378600}
   m_Bounds:
-    m_Center: {x: 0.21475324, y: 0.13819996, z: 0}
-    m_Extent: {x: 0.40722677, y: 0.3953995, z: 0}
+    m_Center: {x: 0.21475467, y: 0.1382002, z: 0}
+    m_Extent: {x: 0.40722343, y: 0.39539975, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5951417131793384691
@@ -7219,7 +7176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5951417131793384688}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: R_UpperLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7250,7 +7207,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5951417131837368231}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: L_UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7284,7 +7241,7 @@ GameObject:
   - component: {fileID: 5951417131874763444}
   - component: {fileID: 5951417131874763447}
   - component: {fileID: 5123467251555423247}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: MoveRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7372,7 +7329,7 @@ GameObject:
   - component: {fileID: 5951417131915498913}
   - component: {fileID: 5951417131915498912}
   - component: {fileID: 3112579369236738009}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: MoveLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7459,7 +7416,7 @@ GameObject:
   - component: {fileID: 5951417131939479337}
   - component: {fileID: 5951417131939479511}
   - component: {fileID: 5951417131939479510}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7534,7 +7491,7 @@ GameObject:
   - component: {fileID: 5951417132002328398}
   - component: {fileID: 5951417132002328385}
   - component: {fileID: 6733207711038280411}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Treat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7620,7 +7577,7 @@ GameObject:
   - component: {fileID: 5951417132007364809}
   - component: {fileID: 5951417132007364855}
   - component: {fileID: 5951417132007364854}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Char1_L Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7710,8 +7667,8 @@ MonoBehaviour:
   - {fileID: 5951417129913563986}
   - {fileID: 5951417131335539903}
   m_Bounds:
-    m_Center: {x: 0.0151508, y: -0.030564845, z: 0}
-    m_Extent: {x: 0.22753474, y: 0.45800242, z: 0}
+    m_Center: {x: 0.015148893, y: -0.030564845, z: 0}
+    m_Extent: {x: 0.22753283, y: 0.45800245, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1001 &5951417130947333987
@@ -7786,6 +7743,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1697849133913039874, guid: b432e8054254a4e40841072cc030d222,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3390386658015839470, guid: b432e8054254a4e40841072cc030d222,
         type: 3}
       propertyPath: substanceAmountFill
@@ -7798,18 +7760,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b432e8054254a4e40841072cc030d222, type: 3}
---- !u!114 &9050754116812819341 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3390386658015839470, guid: b432e8054254a4e40841072cc030d222,
-    type: 3}
-  m_PrefabInstance: {fileID: 5951417130947333987}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd7dd08b8a1d8cb4f80ef48cc58dcb92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &4978824581400570722 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1697849133913039873, guid: b432e8054254a4e40841072cc030d222,
@@ -7831,12 +7781,12 @@ PrefabInstance:
     - target: {fileID: 1035583889246657320, guid: 52299814fa0f8ab43aee5cc90760f9e7,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2375836245955314714, guid: 52299814fa0f8ab43aee5cc90760f9e7,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4423223648708890257, guid: 52299814fa0f8ab43aee5cc90760f9e7,
         type: 3}
@@ -8033,12 +7983,12 @@ PrefabInstance:
     - target: {fileID: 1035583889246657320, guid: 52299814fa0f8ab43aee5cc90760f9e7,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2375836245955314714, guid: 52299814fa0f8ab43aee5cc90760f9e7,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4423223648708890257, guid: 52299814fa0f8ab43aee5cc90760f9e7,
         type: 3}

@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
             return Physics2D.CircleCast(cc.bounds.center, cc.size.x / 2, Vector2.down, distance);
         }
     }  
-    public bool IsMoving => newVelocity.x != 0;
+    public bool IsMoving => input.Horizontal != 0;
 
     [SerializeField] private float speed = 5;
     [SerializeField] private float jumpForce = 8;
@@ -33,16 +33,24 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private CapsuleCollider2D cc;
     private PlayerInput input;
-    private PlayerAiming aiming;
+    private PlayerAim aim;
     private Vector2 newVelocity;
+    private bool pushing;
+    private float pushingTimer;
+
+    public void Push(Vector2 force)
+    {
+        pushing = true;
+        rb.velocity = force;
+    }
 
     private void Awake()
     {
-        myTransform = GetComponent<Transform>();
+        myTransform = transform;
         rb = GetComponent<Rigidbody2D>();
         cc = GetComponent<CapsuleCollider2D>();
         input = GetComponent<PlayerInput>();
-        aiming = GetComponent<PlayerAiming>();
+        aim = GetComponent<PlayerAim>();
         FlipX = false;
     } 
 
@@ -54,8 +62,18 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate() 
     {
+        newVelocity.y = rb.velocity.y;
         if(IsGrounded) GroundMovement();
-        else newVelocity.y = rb.velocity.y;
+        if(pushing)
+        {
+            newVelocity = rb.velocity;
+            pushingTimer += Time.fixedDeltaTime;
+            if(IsGrounded && pushingTimer >= 0.1f)
+            {
+                pushing = false;
+                pushingTimer = 0;
+            }
+        }
         rb.velocity = newVelocity;
     }
 
@@ -75,24 +93,21 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                newVelocity = -Vector2.Perpendicular(hit.normal).normalized * newVelocity.x;
+                newVelocity = -Vector2.Perpendicular(hit.normal) * newVelocity.x;
             }
         }
-        else newVelocity.y = rb.velocity.y;
-        if(input.JumpPressed && !aiming.IsAiming)
-        {
+        if(input.JumpPressed && !aim.IsAiming)
             newVelocity.y = jumpForce;
-        }
     }
 
     private void CheckInput()
     {
-        if(!aiming.IsAiming)
+        if(!aim.IsAiming)
         {
             newVelocity.x = input.Horizontal * speed;
             if(input.Horizontal != 0)
             {
-                aiming.ResetRotation();
+                aim.ResetRotation();
                 FlipX = input.Horizontal < 0;
             }
         }

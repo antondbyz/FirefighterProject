@@ -29,7 +29,7 @@ public class ExtinguishingSubstance : MonoBehaviour
 
     private ParticleSystem particles;
     private PlayerInput input;
-    private PlayerAiming aiming;
+    private PlayerAim aim;
     private List<Heat> objectsToExtinguish = new List<Heat>();
     private Coroutine extinguishingCoroutine;
 
@@ -38,14 +38,14 @@ public class ExtinguishingSubstance : MonoBehaviour
         particles = GetComponent<ParticleSystem>();
         Transform myRoot = transform.root;
         input = myRoot.GetComponent<PlayerInput>();
-        aiming = myRoot.GetComponent<PlayerAiming>();
+        aim = myRoot.GetComponent<PlayerAim>();
         CurrentSubstanceAmount = MAX_SUBSTANCE_AMOUNT;
         TurnOff();
     }
 
-    private void OnEnable() => aiming.StoppedAiming += TurnOff;
+    private void OnEnable() => aim.StoppedAiming += TurnOff;
 
-    private void OnDisable() => aiming.StoppedAiming -= TurnOff;
+    private void OnDisable() => aim.StoppedAiming -= TurnOff;
 
     private void Update() 
     {
@@ -69,7 +69,7 @@ public class ExtinguishingSubstance : MonoBehaviour
 
     private void TurnOn()
     {
-        if(extinguishingCoroutine == null && CurrentSubstanceAmount > 0 && aiming.IsAiming)
+        if(extinguishingCoroutine == null && CurrentSubstanceAmount > 0 && aim.IsAiming)
         {
             particles.Play();
             extinguishingCoroutine = StartCoroutine(ExtinguishingEnteredObjects());

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CustomButton : MonoBehaviour, IPointerDownHandler, IPointerClickHandler, IPointerExitHandler
+public class CustomButton : MonoBehaviour, IPointerDownHandler, IPointerExitHandler
 {
     public bool Pressed { get; private set; }
     public bool Hold { get; private set; }
@@ -10,11 +10,6 @@ public class CustomButton : MonoBehaviour, IPointerDownHandler, IPointerClickHan
     {
         Pressed = true;
         Hold = true;
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        Hold = false;
     }
 
     public void OnPointerExit(PointerEventData eventData)

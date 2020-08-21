@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerAiming : MonoBehaviour
+public class PlayerAim : MonoBehaviour
 {
     public event System.Action StoppedAiming;
     public bool IsAiming { get; private set; }
