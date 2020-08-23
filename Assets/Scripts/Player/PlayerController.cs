@@ -22,10 +22,12 @@ public class PlayerController : MonoBehaviour
         }
     }  
     public bool IsMoving => input.Horizontal != 0;
+    public bool IsHoldingLedge { get; private set; }
 
     [SerializeField] private float speed = 5;
     [SerializeField] private float jumpForce = 8;
     [SerializeField] private float groundCheckDistance = 0.05f;
+    [SerializeField] private LayerMask whatCanGrab = new LayerMask();
     [SerializeField] private PhysicsMaterial2D noFriction = null;
     [SerializeField] private PhysicsMaterial2D fullFriction = null;
     
@@ -35,12 +37,14 @@ public class PlayerController : MonoBehaviour
     private PlayerInput input;
     private PlayerAim aim;
     private Vector2 newVelocity;
-    private bool pushing;
+    private bool isJumping;
+    private bool isPushing;
     private float pushingTimer;
+    private float defaultGravity;
 
     public void Push(Vector2 force)
     {
-        pushing = true;
+        isPushing = true;
         rb.velocity = force;
     }
 
@@ -52,52 +56,82 @@ public class PlayerController : MonoBehaviour
         input = GetComponent<PlayerInput>();
         aim = GetComponent<PlayerAim>();
         FlipX = false;
+        defaultGravity = rb.gravityScale;
     } 
 
     private void Update() 
     {
+        rb.sharedMaterial = noFriction;
+        newVelocity.y = rb.velocity.y;
         CheckInput();
-        rb.sharedMaterial = IsMoving ? noFriction : fullFriction;
+        if(IsGrounded) CheckSlope();
+        else CheckLedgeGrab();
+        CheckPushing();
+        if(IsGrounded || rb.velocity.y < 0) isJumping = false;
     }
 
     private void FixedUpdate() 
     {
-        newVelocity.y = rb.velocity.y;
-        if(IsGrounded) GroundMovement();
-        if(pushing)
-        {
-            newVelocity = rb.velocity;
-            pushingTimer += Time.fixedDeltaTime;
-            if(IsGrounded && pushingTimer >= 0.1f)
-            {
-                pushing = false;
-                pushingTimer = 0;
-            }
-        }
         rb.velocity = newVelocity;
     }
 
-    private void GroundMovement()
+    private void CheckSlope()
     {
-        Vector2 rayOrigin = new Vector2(cc.bounds.center.x, cc.bounds.center.y - cc.size.y / 2);
-        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down);
-        if(Vector2.Angle(hit.normal, Vector2.up) > 0)
+        if(!isJumping)
         {
-            float groundNormalDot = Vector2.Dot(hit.normal, Vector2.right);
-            RaycastHit2D hitFront = Physics2D.Raycast(rayOrigin + Vector2.up * 0.2f, Vector2.right, 0.5f);
-            RaycastHit2D hitBack = Physics2D.Raycast(rayOrigin + Vector2.up * 0.2f, Vector2.left, 0.5f);
-            if((newVelocity.x > 0 && groundNormalDot < 0 && !hitFront) ||
-               (newVelocity.x < 0 && groundNormalDot > 0 && !hitBack))   
+            Vector2 rayOrigin = new Vector2(cc.bounds.center.x, cc.bounds.center.y - cc.size.y / 2);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down);
+            if(Vector2.Angle(hit.normal, Vector2.up) > 0)
             {
-                newVelocity.y = 0;
-            }
-            else
-            {
-                newVelocity = -Vector2.Perpendicular(hit.normal) * newVelocity.x;
+                if(!IsMoving) rb.sharedMaterial = fullFriction;
+                float groundNormalDot = Vector2.Dot(hit.normal, Vector2.right);
+                RaycastHit2D hitFront = Physics2D.Raycast(rayOrigin + Vector2.up * 0.2f, Vector2.right, 0.5f);
+                RaycastHit2D hitBack = Physics2D.Raycast(rayOrigin + Vector2.up * 0.2f, Vector2.left, 0.5f);
+                if((newVelocity.x > 0 && groundNormalDot < 0 && !hitFront) ||
+                   (newVelocity.x < 0 && groundNormalDot > 0 && !hitBack))   
+                {
+                    newVelocity.y = 0;
+                }
+                else newVelocity = -Vector2.Perpendicular(hit.normal) * newVelocity.x;
             }
         }
-        if(input.JumpPressed && !aim.IsAiming)
-            newVelocity.y = jumpForce;
+    }
+
+    private void CheckLedgeGrab()
+    {
+        Vector2 rayDirection = FlipX ? Vector2.left : Vector2.right;
+        Vector2 upperRayOrigin = new Vector2(cc.bounds.center.x, cc.bounds.center.y + 0.3f);
+        RaycastHit2D upperHit = Physics2D.Raycast(upperRayOrigin, rayDirection, cc.size.x / 2 * 1.5f, whatCanGrab);
+        RaycastHit2D bottomHit = Physics2D.Raycast(cc.bounds.center, rayDirection, cc.size.x / 2 * 1.5f, whatCanGrab);
+        IsHoldingLedge = bottomHit && !isJumping && (!upperHit || IsHoldingLedge);
+        if(IsHoldingLedge) 
+        {
+            newVelocity.Set(0, 0);
+            rb.velocity = newVelocity;
+            rb.gravityScale = 0;
+            if(!upperHit)
+            {
+                Vector2 verticalRayOrigin = new Vector2(upperRayOrigin.x + rayDirection.x * cc.size.x / 2 * 1.5f, upperRayOrigin.y);                
+                RaycastHit2D verticalHit = Physics2D.Raycast(verticalRayOrigin, Vector2.down, 0.5f, whatCanGrab);
+                float offset = verticalRayOrigin.y - verticalHit.point.y;
+                rb.position = new Vector2(rb.position.x, rb.position.y - offset);
+            }
+        }
+        else rb.gravityScale = defaultGravity;
+    }
+
+    private void CheckPushing()
+    {
+        if(isPushing)
+        {
+            newVelocity = rb.velocity;
+            pushingTimer += Time.deltaTime;
+            if(IsGrounded && pushingTimer >= 0.1f)
+            {
+                isPushing = false;
+                pushingTimer = 0;
+            }
+        }
     }
 
     private void CheckInput()
@@ -105,10 +139,12 @@ public class PlayerController : MonoBehaviour
         if(!aim.IsAiming)
         {
             newVelocity.x = input.Horizontal * speed;
-            if(input.Horizontal != 0)
+            if(input.Horizontal != 0) FlipX = input.Horizontal < 0;
+            if(input.JumpPressed && (IsGrounded || IsHoldingLedge))
             {
-                aim.ResetRotation();
-                FlipX = input.Horizontal < 0;
+                newVelocity.y = jumpForce;
+                rb.velocity = newVelocity;
+                isJumping = true;
             }
         }
     }

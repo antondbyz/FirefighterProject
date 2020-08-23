@@ -7,6 +7,7 @@ public class PlayerAnimations : MonoBehaviour
     private PlayerAim aim;
     private int runningAnimation;
     private int aimingAnimation;
+    private int holdingLedgeAnimation;
 
     private void Awake() 
     {
@@ -15,11 +16,13 @@ public class PlayerAnimations : MonoBehaviour
         aim = GetComponent<PlayerAim>();
         runningAnimation = Animator.StringToHash("Running");  
         aimingAnimation = Animator.StringToHash("Aiming");  
+        holdingLedgeAnimation = Animator.StringToHash("HoldingLedge");
     }
 
     private void Update() 
     {
         animator.SetBool(runningAnimation, controller.IsMoving);
         animator.SetBool(aimingAnimation, aim.IsAiming);
+        animator.SetBool(holdingLedgeAnimation, controller.IsHoldingLedge);
     }
 }
