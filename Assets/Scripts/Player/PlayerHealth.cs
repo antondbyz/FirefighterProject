@@ -34,7 +34,7 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         LifesLeft--;
-        if(lifesLeft > 0) player.MoveToLastSavedPosition();
+        if(lifesLeft > 0) player.MoveToLastCheckpoint();
         else gameController.FailLevel();
     }
 }
