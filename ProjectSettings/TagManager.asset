@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ExtinguisherRefill
   - Spikes
+  - Wounded
   layers:
   - Default
   - TransparentFX

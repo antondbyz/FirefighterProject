@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class Medic : MonoBehaviour 
 {
+    [SerializeField] private float recoveringTime = 10;
     [SerializeField] private GameObject treatButton = null;   
     [SerializeField] private GameObject treatmentProgress = null;
     [SerializeField] private Image treatmentProgressFill = null;
 
     private PlayerInput input;
-    private List<Wounded> wounded = new List<Wounded>(); 
+    private List<GameObject> wounded = new List<GameObject>(); 
     private Coroutine treatingCoroutine;
 
     private void Awake() 
@@ -27,19 +28,20 @@ public class Medic : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        Wounded enteredWounded = other.GetComponent<Wounded>();
-        if(enteredWounded != null)
+        if(other.CompareTag("Wounded"))
         {
-            wounded.Add(enteredWounded);
+            wounded.Add(other.gameObject);
             treatButton.SetActive(true);
         }     
     }
 
     private void OnTriggerExit2D(Collider2D other) 
     {
-        Wounded exitedWounded = other.GetComponent<Wounded>();
-        if(wounded.Remove(exitedWounded)) 
+        if(other.CompareTag("Wounded")) 
+        {
+            wounded.Remove(other.gameObject);
             StopTreating();
+        }
     } 
 
     private void StartTreating()
@@ -63,7 +65,7 @@ public class Medic : MonoBehaviour
         if(wounded.Count == 0) treatButton.SetActive(false); 
     }
 
-    private IEnumerator Treating(Wounded currentWounded)
+    private IEnumerator Treating(GameObject currentWounded)
     {
         float timeDelay = 0.1f;
         float timer = 0;
@@ -72,10 +74,10 @@ public class Medic : MonoBehaviour
         {
             yield return delay;
             timer += timeDelay;
-            treatmentProgressFill.fillAmount = timer / currentWounded.TimeToRecover;
-            if(timer >= currentWounded.TimeToRecover)
+            treatmentProgressFill.fillAmount = timer / recoveringTime;
+            if(timer >= recoveringTime)
             { 
-                currentWounded.Recover();
+                Destroy(currentWounded);
                 StopTreating();
             }
         }

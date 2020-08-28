@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
             return Physics2D.CircleCast(cc.bounds.center, cc.size.x / 2, Vector2.down, distance);
         }
     }  
-    public bool IsMoving => input.Horizontal != 0;
+    public bool IsMoving => newVelocity.x != 0;
     public bool IsHoldingLedge { get; private set; }
 
     [SerializeField] private float speed = 5;
@@ -38,15 +38,7 @@ public class PlayerController : MonoBehaviour
     private PlayerAim aim;
     private Vector2 newVelocity;
     private bool isJumping;
-    private bool isPushing;
-    private float pushingTimer;
     private float defaultGravity;
-
-    public void Push(Vector2 force)
-    {
-        isPushing = true;
-        rb.velocity = force;
-    }
 
     private void Awake()
     {
@@ -61,13 +53,13 @@ public class PlayerController : MonoBehaviour
 
     private void Update() 
     {
-        rb.sharedMaterial = noFriction;
         newVelocity.y = rb.velocity.y;
+        bool isGrounded = IsGrounded;
         CheckInput();
-        if(IsGrounded) CheckSlope();
+        rb.sharedMaterial = IsMoving || !isGrounded ? noFriction : fullFriction;
+        if(isGrounded) CheckSlope();
         else CheckLedgeGrab();
-        CheckPushing();
-        if(IsGrounded || rb.velocity.y < 0) isJumping = false;
+        if(isGrounded || rb.velocity.y < 0) isJumping = false;
     }
 
     private void FixedUpdate() 
@@ -83,7 +75,6 @@ public class PlayerController : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down);
             if(Vector2.Angle(hit.normal, Vector2.up) > 0)
             {
-                if(!IsMoving) rb.sharedMaterial = fullFriction;
                 float groundNormalDot = Vector2.Dot(hit.normal, Vector2.right);
                 RaycastHit2D hitFront = Physics2D.Raycast(rayOrigin + Vector2.up * 0.2f, Vector2.right, 0.5f);
                 RaycastHit2D hitBack = Physics2D.Raycast(rayOrigin + Vector2.up * 0.2f, Vector2.left, 0.5f);
@@ -100,10 +91,10 @@ public class PlayerController : MonoBehaviour
     private void CheckLedgeGrab()
     {
         Vector2 rayDirection = FlipX ? Vector2.left : Vector2.right;
-        Vector2 upperRayOrigin = new Vector2(cc.bounds.center.x, cc.bounds.center.y + 0.3f);
-        RaycastHit2D upperHit = Physics2D.Raycast(upperRayOrigin, rayDirection, cc.size.x / 2 * 1.5f, whatCanGrab);
-        RaycastHit2D bottomHit = Physics2D.Raycast(cc.bounds.center, rayDirection, cc.size.x / 2 * 1.5f, whatCanGrab);
-        IsHoldingLedge = bottomHit && !isJumping && (!upperHit || IsHoldingLedge);
+        Vector2 upperRayOrigin = new Vector2(cc.bounds.center.x, cc.bounds.center.y + 0.5f);
+        RaycastHit2D upperHit = Physics2D.Raycast(upperRayOrigin, rayDirection, cc.size.x / 2 * 1.3f, whatCanGrab);
+        RaycastHit2D bottomHit = Physics2D.Raycast(cc.bounds.center, rayDirection, cc.size.x / 2 * 1.3f, whatCanGrab);
+        IsHoldingLedge = !isJumping && bottomHit && (!upperHit || IsHoldingLedge);
         if(IsHoldingLedge) 
         {
             newVelocity.Set(0, 0);
@@ -118,20 +109,6 @@ public class PlayerController : MonoBehaviour
             }
         }
         else rb.gravityScale = defaultGravity;
-    }
-
-    private void CheckPushing()
-    {
-        if(isPushing)
-        {
-            newVelocity = rb.velocity;
-            pushingTimer += Time.deltaTime;
-            if(IsGrounded && pushingTimer >= 0.1f)
-            {
-                isPushing = false;
-                pushingTimer = 0;
-            }
-        }
     }
 
     private void CheckInput()

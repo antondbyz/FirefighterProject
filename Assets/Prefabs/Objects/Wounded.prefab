@@ -906,10 +906,9 @@ GameObject:
   - component: {fileID: 7836517175129876154}
   - component: {fileID: 7836517175129876155}
   - component: {fileID: 7836517175129876128}
-  - component: {fileID: 7836517175129876129}
   m_Layer: 0
   m_Name: Wounded
-  m_TagString: Untagged
+  m_TagString: Wounded
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -974,19 +973,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7836517175129876129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7836517175129876135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c5a69fac1efc9347acec4b83b35ccdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToRecover: 5
 --- !u!1 &7836517175516987747
 GameObject:
   m_ObjectHideFlags: 0

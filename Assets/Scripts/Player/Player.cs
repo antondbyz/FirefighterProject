@@ -3,7 +3,6 @@
 public class Player : MonoBehaviour
 {
     private GameController gameController;
-    private PlayerHealth health;
     private ExtinguishingSubstance extinguishingSubstance;
 
     public void PauseLevel() => gameController.PauseLevel();
@@ -11,13 +10,8 @@ public class Player : MonoBehaviour
     private void Awake() 
     {
         gameController = GameObject.FindObjectOfType<GameController>();    
-        health = GetComponent<PlayerHealth>();
         extinguishingSubstance = transform.GetComponentInChildren<ExtinguishingSubstance>();
     }
-
-    private void OnEnable() => health.Died += gameController.FailLevel;
-
-    private void OnDisable() => health.Died -= gameController.FailLevel;
 
     private void OnTriggerEnter2D(Collider2D other) 
     {

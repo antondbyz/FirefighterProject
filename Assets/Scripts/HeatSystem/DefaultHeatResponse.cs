@@ -9,7 +9,7 @@ public class DefaultHeatResponse : MonoBehaviour
 
     private Heat heat;
     private SpriteRenderer spriteRenderer;
-    private Health health;
+    private PlayerHealth health;
     private Burnable burnable;
     private Coroutine coolingCoroutine;
     private Coroutine damagingCoroutine;
@@ -19,7 +19,7 @@ public class DefaultHeatResponse : MonoBehaviour
     {
         heat = GetComponent<Heat>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        health = GetComponent<Health>();
+        health = GetComponent<PlayerHealth>();
         burnable = GetComponent<Burnable>();  
     }
     
@@ -52,7 +52,6 @@ public class DefaultHeatResponse : MonoBehaviour
         while(IsDamaging)
         {
             yield return delay;
-            health.CurrentHealth -= heat.CurrentHeat / heat.MaxHeat;
         }
         damagingCoroutine = null;
     }

@@ -1,30 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerHealth : Health
+public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private float spikesDamage = 40;
-    [SerializeField] private float spikesPushForce = 15;
+    private GameController gameController;
 
-    private Transform myTransform;
-    private PlayerController controller;
-
-    protected override void Awake() 
+    private void Awake()
     {
-        base.Awake();
-        myTransform = transform;
-        controller = GetComponent<PlayerController>();
+        gameController = GameObject.FindObjectOfType<GameController>();
     }
 
-    private void OnCollisionEnter2D(Collision2D other) 
+    private void OnTriggerEnter2D(Collider2D other) 
     {
-        if(other.gameObject.CompareTag("Spikes"))
-        {
-            CurrentHealth -= spikesDamage;
-            Vector2 force = new Vector2(spikesPushForce, spikesPushForce);
-            if(myTransform.position.x < other.transform.position.x) force.x = -force.x;
-            controller.Push(force);
-        }
+        if(other.CompareTag("Spikes")) Die();
+    }
+
+    private void Die()
+    {
+        gameController.FailLevel();
     }
 }

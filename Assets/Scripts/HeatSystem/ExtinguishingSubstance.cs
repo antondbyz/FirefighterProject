@@ -25,6 +25,7 @@ public class ExtinguishingSubstance : MonoBehaviour
     private float currentSubstanceAmount;
 
     [SerializeField] private float efficiency = 1;
+    [SerializeField] private float substanceDecreasingSpeed = 1;
     [SerializeField] private Image substanceAmountFill = null;
 
     private ParticleSystem particles;
@@ -88,7 +89,8 @@ public class ExtinguishingSubstance : MonoBehaviour
 
     private IEnumerator ExtinguishingEnteredObjects()
     {
-        WaitForSeconds delay = new WaitForSeconds(0.2f);
+        float timeDelay = 0.1f;
+        WaitForSeconds delay = new WaitForSeconds(timeDelay);
         while(true)
         {   
             for(int i = 0; i < objectsToExtinguish.Count; i++)
@@ -96,7 +98,7 @@ public class ExtinguishingSubstance : MonoBehaviour
                 if(objectsToExtinguish[i].IsExtinguishable)
                     objectsToExtinguish[i].CurrentHeat -= efficiency;
             }
-            CurrentSubstanceAmount--;
+            CurrentSubstanceAmount -= substanceDecreasingSpeed * timeDelay;
             yield return delay;
         }   
     }
