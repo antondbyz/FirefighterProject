@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 5983961009158539846}
   - component: {fileID: 5983961009158539841}
   m_Layer: 0
-  m_Name: Pipe
+  m_Name: GasPipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
