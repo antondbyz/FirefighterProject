@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private UnityEvent levelPaused = null;
 
     private GameObject playerCharacter;
-    private PlayerHealth playerHealth;
+    private PlayerLifes playerLifes;
     private Player player;
 
     public void SetGamePause(bool value) => PauseManager.IsPaused = value;
@@ -41,13 +41,13 @@ public class GameController : MonoBehaviour
     {
         PauseManager.IsPaused = false;
         playerCharacter = GameObject.FindWithTag("Player").transform.GetChild(0).gameObject;
-        playerHealth = playerCharacter.GetComponent<PlayerHealth>();  
+        playerLifes = playerCharacter.GetComponent<PlayerLifes>();  
         player = playerCharacter.GetComponent<Player>(); 
     }
 
-    private void OnEnable() => playerHealth.Died += PlayerDied;
+    private void OnEnable() => playerLifes.Died += PlayerDied;
 
-    private void OnDisable() => playerHealth.Died -= PlayerDied;
+    private void OnDisable() => playerLifes.Died -= PlayerDied;
 
     private void PlayerDied()
     {
@@ -57,8 +57,12 @@ public class GameController : MonoBehaviour
 
     private IEnumerator MovePlayerToCurrentCheckpoint()
     {
-        yield return new WaitForSeconds(2);
-        player.MoveToCurrentCheckpoint();
-        playerCharacter.SetActive(true);
+        yield return new WaitForSeconds(1);
+        if(playerLifes.LifesLeft > 0)
+        {
+            player.MoveToCurrentCheckpoint();
+            playerCharacter.SetActive(true);
+        }
+        else FailLevel();
     }
 }

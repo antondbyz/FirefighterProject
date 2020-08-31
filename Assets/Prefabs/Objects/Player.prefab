@@ -681,7 +681,7 @@ RectTransform:
   - {fileID: 5950847092449933911}
   - {fileID: 2051041842945742084}
   - {fileID: 3291399847839351768}
-  m_Father: {fileID: 5950847092380134342}
+  m_Father: {fileID: 9221799522365304826}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -849,7 +849,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 5950847092406482349}
   m_Bounds:
-    m_Center: {x: 0.022096545, y: -0.0036435425, z: 0}
+    m_Center: {x: 0.022096545, y: -0.0036444962, z: 0}
     m_Extent: {x: 0.33659098, y: 0.3797292, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1506,8 +1506,8 @@ MonoBehaviour:
   - {fileID: 5950847093046467342}
   - {fileID: 5950847091585609459}
   m_Bounds:
-    m_Center: {x: 0.043527305, y: -0.061007082, z: 0}
-    m_Extent: {x: 0.3954328, y: 0.48755568, z: 0}
+    m_Center: {x: 0.04352635, y: -0.061006606, z: 0}
+    m_Extent: {x: 0.39543185, y: 0.4875552, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5950847091930374518
@@ -1611,8 +1611,8 @@ MonoBehaviour:
   - {fileID: 5950847092552736851}
   - {fileID: 5950847092403037584}
   m_Bounds:
-    m_Center: {x: -0.0013937354, y: -0.0002988577, z: 0}
-    m_Extent: {x: 0.3786186, y: 0.48671114, z: 0}
+    m_Center: {x: -0.0013925135, y: -0.00029933453, z: 0}
+    m_Extent: {x: 0.3786185, y: 0.48671067, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5950847092017768959
@@ -1641,11 +1641,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5950847092017768959}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.068, y: -0.1880002, z: 0}
+  m_LocalPosition: {x: -0.06800079, y: -0.18800068, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5950847091610111421}
-  m_Father: {fileID: 5950847092222834709}
+  m_Father: {fileID: 5950847092380134342}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5950847092017768956
@@ -1963,37 +1963,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &5950847092222834710
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5950847092222834709}
-  m_Layer: 0
-  m_Name: Rig
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5950847092222834709
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5950847092222834710}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 5950847092017768958}
-  m_Father: {fileID: 5950847092380134342}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5950847092251781509
 GameObject:
   m_ObjectHideFlags: 0
@@ -2060,8 +2029,7 @@ Transform:
   m_LocalPosition: {x: 29.76, y: 8.44, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5950847092222834709}
-  - {fileID: 5950847091449423984}
+  - {fileID: 5950847092017768958}
   m_Father: {fileID: 9221799522365304826}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2179,7 +2147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3583719ea6adc58468434972edcf4bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthText: {fileID: 5506700718856510051}
+  lifesText: {fileID: 5506700718856510051}
   deathEffect: {fileID: 0}
 --- !u!114 &5950847092380134352
 MonoBehaviour:
@@ -2647,7 +2615,7 @@ MonoBehaviour:
   - {fileID: 5950847091337690433}
   m_Bounds:
     m_Center: {x: 0.06696637, y: -0.018616676, z: 0}
-    m_Extent: {x: 0.2635979, y: 0.5522171, z: 0}
+    m_Extent: {x: 0.2635979, y: 0.5522162, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5950847092898312111
@@ -2751,8 +2719,8 @@ MonoBehaviour:
   - {fileID: 5950847092990441561}
   - {fileID: 5950847091231267724}
   m_Bounds:
-    m_Center: {x: 0.007166192, y: -0.0020925999, z: 0}
-    m_Extent: {x: 0.22561724, y: 0.5335816, z: 0}
+    m_Center: {x: 0.0071642846, y: -0.0020925999, z: 0}
+    m_Extent: {x: 0.22561724, y: 0.53358114, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5950847092990441562
@@ -3168,8 +3136,8 @@ MonoBehaviour:
   - {fileID: 5950847091110070267}
   - {fileID: 5950847092540416022}
   m_Bounds:
-    m_Center: {x: 0.0151508, y: -0.030564398, z: 0}
-    m_Extent: {x: 0.22753283, y: 0.45800287, z: 0}
+    m_Center: {x: 0.015149847, y: -0.03056392, z: 0}
+    m_Extent: {x: 0.22753379, y: 0.45800287, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5950847093215609835
@@ -3289,6 +3257,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5950847092380134342}
+  - {fileID: 5950847091449423984}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

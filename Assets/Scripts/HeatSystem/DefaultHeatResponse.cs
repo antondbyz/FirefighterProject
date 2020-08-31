@@ -9,7 +9,7 @@ public class DefaultHeatResponse : MonoBehaviour
 
     private Heat heat;
     private SpriteRenderer spriteRenderer;
-    private PlayerHealth health;
+    private PlayerLifes health;
     private Burnable burnable;
     private Coroutine coolingCoroutine;
     private Coroutine damagingCoroutine;
@@ -19,7 +19,7 @@ public class DefaultHeatResponse : MonoBehaviour
     {
         heat = GetComponent<Heat>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        health = GetComponent<PlayerHealth>();
+        health = GetComponent<PlayerLifes>();
         burnable = GetComponent<Burnable>();  
     }
     

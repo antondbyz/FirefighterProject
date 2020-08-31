@@ -1,7 +1,7 @@
-﻿using UnityEngine;
 using TMPro;
+using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerLifes : MonoBehaviour
 {
     public event System.Action Died;
     public float LifesLeft
@@ -10,11 +10,11 @@ public class PlayerHealth : MonoBehaviour
         private set
         {
             lifesLeft = value;
-            healthText.text = lifesLeft.ToString();
+            lifesText.text = lifesLeft.ToString();
         }
     }
 
-    [SerializeField] private TextMeshProUGUI healthText = null;
+    [SerializeField] private TextMeshProUGUI lifesText = null;
     [SerializeField] private ParticleSystem deathEffect = null;
 
     private Transform myTransform;
@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         myTransform = transform;
-        healthText.text = lifesLeft.ToString();
+        lifesText.text = lifesLeft.ToString();
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
