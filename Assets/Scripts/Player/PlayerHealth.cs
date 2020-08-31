@@ -3,6 +3,7 @@ using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public event System.Action Died;
     public float LifesLeft
     {
         get => lifesLeft;
@@ -14,27 +15,27 @@ public class PlayerHealth : MonoBehaviour
     }
 
     [SerializeField] private TextMeshProUGUI healthText = null;
+    [SerializeField] private ParticleSystem deathEffect = null;
 
+    private Transform myTransform;
     private float lifesLeft = 3;
-    private Player player;
-    private GameController gameController;
+
+    public void Die()
+    {
+        LifesLeft--;
+        // deathEffect.transform.position = myTransform.position;
+        // deathEffect.Play();
+        Died?.Invoke();
+    }
 
     private void Awake()
     {
-        player = GetComponent<Player>();
-        gameController = GameObject.FindObjectOfType<GameController>();
-        LifesLeft = lifesLeft;
+        myTransform = transform;
+        healthText.text = lifesLeft.ToString();
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        if(other.CompareTag("Spikes")) Die();
-    }
-
-    private void Die()
-    {
-        LifesLeft--;
-        if(lifesLeft > 0) player.MoveToLastCheckpoint();
-        else gameController.FailLevel();
+        if(other.CompareTag("DeathZone")) Die();
     }
 }

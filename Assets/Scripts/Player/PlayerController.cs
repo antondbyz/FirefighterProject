@@ -51,6 +51,12 @@ public class PlayerController : MonoBehaviour
         defaultGravity = rb.gravityScale;
     } 
 
+    private void OnDisable() 
+    { 
+        newVelocity.Set(0, 0);
+        rb.velocity = newVelocity;
+    }
+
     private void Update() 
     {
         newVelocity.y = rb.velocity.y;

@@ -37,9 +37,9 @@ public class ExtinguishingSubstance : MonoBehaviour
     private void Awake() 
     {
         particles = GetComponent<ParticleSystem>();
-        Transform myRoot = transform.root;
-        input = myRoot.GetComponent<PlayerInput>();
-        aim = myRoot.GetComponent<PlayerAim>();
+        Transform playerCharacter = transform.root.GetChild(0);
+        input = playerCharacter.GetComponent<PlayerInput>();
+        aim = playerCharacter.GetComponent<PlayerAim>();
         CurrentSubstanceAmount = MAX_SUBSTANCE_AMOUNT;
         TurnOff();
     }

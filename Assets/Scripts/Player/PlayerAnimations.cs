@@ -11,9 +11,10 @@ public class PlayerAnimations : MonoBehaviour
 
     private void Awake() 
     {
+        Transform child = transform.GetChild(0);
+        controller = child.GetComponent<PlayerController>();
+        aim = child.GetComponent<PlayerAim>();
         animator = GetComponent<Animator>();
-        controller = GetComponent<PlayerController>();
-        aim = GetComponent<PlayerAim>();
         runningAnimation = Animator.StringToHash("Running");  
         aimingAnimation = Animator.StringToHash("Aiming");  
         holdingLedgeAnimation = Animator.StringToHash("HoldingLedge");

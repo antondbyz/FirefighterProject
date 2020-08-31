@@ -2,21 +2,21 @@
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    private Transform myTransform;
     private GameController gameController;
     private ExtinguishingSubstance extinguishingSubstance;
-    private Vector2 lastCheckpoint;
+    private Vector2 currentCheckpoint;
 
     public void PauseLevel() => gameController.PauseLevel();
 
-    public void MoveToLastCheckpoint() => rb.position = lastCheckpoint;
+    public void MoveToCurrentCheckpoint() => myTransform.position = currentCheckpoint;
 
     private void Awake() 
     {
-        rb = GetComponent<Rigidbody2D>();
-        gameController = GameObject.FindObjectOfType<GameController>();    
-        extinguishingSubstance = transform.GetComponentInChildren<ExtinguishingSubstance>();
-        lastCheckpoint = rb.position;
+        myTransform = transform;
+        gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();    
+        extinguishingSubstance = myTransform.GetComponentInChildren<ExtinguishingSubstance>();
+        currentCheckpoint = myTransform.position;
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
