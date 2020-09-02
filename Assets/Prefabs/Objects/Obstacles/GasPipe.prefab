@@ -173,7 +173,7 @@ PrefabInstance:
     - target: {fileID: 1130827988572135601, guid: c3820d16b3662fc4bb3123fbd0476a66,
         type: 3}
       propertyPath: m_Name
-      value: GasParticles
+      value: GasEffect
       objectReference: {fileID: 0}
     - target: {fileID: 1130827988572135601, guid: c3820d16b3662fc4bb3123fbd0476a66,
         type: 3}

@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 8275626389947499245}
   - component: {fileID: 8275626389947499242}
   m_Layer: 0
-  m_Name: AlternatingGasPipe
+  m_Name: SwitchingGasPipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,7 +185,7 @@ PrefabInstance:
     - target: {fileID: 1130827988572135601, guid: c3820d16b3662fc4bb3123fbd0476a66,
         type: 3}
       propertyPath: m_Name
-      value: GasParticles
+      value: GasEffect
       objectReference: {fileID: 0}
     - target: {fileID: 1130827988572135601, guid: c3820d16b3662fc4bb3123fbd0476a66,
         type: 3}

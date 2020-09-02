@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class AlternatingGas : MonoBehaviour 
+public class SwitchingGas : MonoBehaviour 
 {
     private Collider2D coll;
     private ParticleSystem ps;
@@ -10,10 +10,10 @@ public class AlternatingGas : MonoBehaviour
     {
         coll = GetComponent<Collider2D>();
         ps = GetComponent<ParticleSystem>();
-        StartCoroutine(Alternating());
+        StartCoroutine(Switching());
     }
 
-    private IEnumerator Alternating()
+    private IEnumerator Switching()
     {
         WaitForSeconds delay = new WaitForSeconds(3);
         while(true)
