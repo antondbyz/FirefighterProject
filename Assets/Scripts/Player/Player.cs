@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
             extinguishingSubstance.CurrentSubstanceAmount = ExtinguishingSubstance.MAX_SUBSTANCE_AMOUNT;
             Destroy(other.gameObject);
         }
+        else if(other.CompareTag("Wounded")) Destroy(other.gameObject);
         else if(other.CompareTag("Finish")) gameController.CompleteLevel();
     }
 }

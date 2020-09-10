@@ -1,18 +1,18 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CustomButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class CustomButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public bool Pressed { get; private set; }
     public bool Hold { get; private set; }
 
-    public void OnPointerDown(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData)
     {
         Pressed = true;
         Hold = true;
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    public void OnPointerExit(PointerEventData eventData)
     {
         Hold = false;
     }

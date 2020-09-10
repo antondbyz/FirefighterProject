@@ -19,13 +19,17 @@ public class PlayerLifes : MonoBehaviour
 
     private Transform myTransform;
     private float lifesLeft = 3;
+    private bool canDie = true;
 
     public void Die()
     {
-        LifesLeft--;
-        // deathEffect.transform.position = myTransform.position;
-        // deathEffect.Play();
-        Died?.Invoke();
+        if(canDie)
+        {
+            canDie = false;
+            LifesLeft--;
+            // deathEffect.Play();
+            Died?.Invoke();
+        }
     }
 
     private void Awake()
@@ -33,6 +37,8 @@ public class PlayerLifes : MonoBehaviour
         myTransform = transform;
         lifesText.text = lifesLeft.ToString();
     }
+
+    private void OnEnable() => canDie = true;
 
     private void OnTriggerEnter2D(Collider2D other) 
     {

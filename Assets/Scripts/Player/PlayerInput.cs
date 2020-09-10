@@ -4,14 +4,12 @@ public class PlayerInput : MonoBehaviour
 {
     public float Horizontal { get; private set; }
     public bool JumpPressed { get; private set; }
-    public bool MedicHeld { get; private set; }
     public bool ExtinguishHeld { get; private set; }
 
     [SerializeField] private CustomButton moveRightButton = null;
     [SerializeField] private CustomButton moveLeftButton = null;
     [SerializeField] private CustomButton jumpButton = null;
     [SerializeField] private CustomButton extinguishButton = null;
-    [SerializeField] private CustomButton treatButton = null;
 
     public void CheckCustomButtonsInput()
     {
@@ -22,7 +20,6 @@ public class PlayerInput : MonoBehaviour
         }
         else Horizontal = 0;
         JumpPressed = jumpButton.Pressed;
-        MedicHeld = treatButton.Hold;
         ExtinguishHeld = extinguishButton.Hold;
     }
 
@@ -30,7 +27,6 @@ public class PlayerInput : MonoBehaviour
     {
         Horizontal = Input.GetAxisRaw("Horizontal");
         JumpPressed = Input.GetKey(KeyCode.UpArrow);
-        MedicHeld = Input.GetKey(KeyCode.M);
         ExtinguishHeld = Input.GetKey(KeyCode.E);
 
     }
