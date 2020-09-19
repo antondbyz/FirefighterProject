@@ -10,14 +10,14 @@ public class SwingingWire : MonoBehaviour
     [SerializeField] private float hardness = 1;
 
     private Rigidbody2D rb;
-    private HingeJoint2D joint;
+    private HingeJoint2D hinge;
     private JointMotor2D newMotor = new JointMotor2D();
     private int dir = 1;
 
     private void Awake() 
     {
         rb = GetComponent<Rigidbody2D>();
-        joint = GetComponent<HingeJoint2D>();
+        hinge = GetComponent<HingeJoint2D>();
         newMotor.maxMotorTorque = 10000;
     }
 
@@ -28,6 +28,6 @@ public class SwingingWire : MonoBehaviour
         if(rotation <= -maxRotationAngle) dir = -1;
         else if(rotation >= maxRotationAngle) dir = 1;
         newMotor.motorSpeed = (maxRotationAngle - Mathf.Abs(rotation) + hardness) / maxRotationAngle * speed * dir;
-        joint.motor = newMotor;
+        hinge.motor = newMotor;
     }
 }

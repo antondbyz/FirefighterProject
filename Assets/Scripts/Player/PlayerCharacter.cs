@@ -1,21 +1,17 @@
 ﻿using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerCharacter : MonoBehaviour
 {
-    private Transform myTransform;
-    private GameController gameController;
-    private ExtinguishingSubstance extinguishingSubstance;
-    private Vector2 currentCheckpoint;
+    [SerializeField] private ExtinguishingSubstance extinguishingSubstance = null;
 
-    public void PauseLevel() => gameController.PauseLevel();
+    private Transform myTransform;
+    private Vector2 currentCheckpoint;
 
     public void MoveToCurrentCheckpoint() => myTransform.position = currentCheckpoint;
 
     private void Awake() 
     {
-        myTransform = transform;
-        gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();    
-        extinguishingSubstance = myTransform.GetComponentInChildren<ExtinguishingSubstance>();
+        myTransform = transform;  
         currentCheckpoint = myTransform.position;
     }
 
@@ -27,6 +23,6 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
         }
         else if(other.CompareTag("Wounded")) Destroy(other.gameObject);
-        else if(other.CompareTag("Finish")) gameController.CompleteLevel();
+        else if(other.CompareTag("Finish")) GameController.Instance.CompleteLevel();
     }
 }

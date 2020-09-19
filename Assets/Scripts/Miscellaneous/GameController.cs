@@ -5,13 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour 
 {
+    public static GameController Instance;
+
     [SerializeField] private UnityEvent levelFailed = null;
     [SerializeField] private UnityEvent levelCompleted = null;
     [SerializeField] private UnityEvent levelPaused = null;
-
-    private GameObject playerCharacter;
-    private PlayerLifes playerLifes;
-    private Player player;
 
     public void SetGamePause(bool value) => PauseManager.IsPaused = value;
 
@@ -19,8 +17,9 @@ public class GameController : MonoBehaviour
 
     public void OpenTheMainMenu() => SceneManager.LoadScene(0);
 
-    public void FailLevel()
+    public IEnumerator FailLevel(float delay)
     {
+        yield return new WaitForSeconds(delay);
         PauseManager.IsPaused = true;
         levelFailed.Invoke();
     }
@@ -39,30 +38,9 @@ public class GameController : MonoBehaviour
 
     private void Awake() 
     {
+        if(Instance == null) Instance = this;
+        else Destroy(this);
+
         PauseManager.IsPaused = false;
-        playerCharacter = GameObject.FindWithTag("Player").transform.GetChild(0).gameObject;
-        playerLifes = playerCharacter.GetComponent<PlayerLifes>();  
-        player = playerCharacter.GetComponent<Player>(); 
-    }
-
-    private void OnEnable() => playerLifes.Died += PlayerDied;
-
-    private void OnDisable() => playerLifes.Died -= PlayerDied;
-
-    private void PlayerDied()
-    {
-        playerCharacter.SetActive(false);
-        StartCoroutine(MovePlayerToCurrentCheckpoint());
-    }
-
-    private IEnumerator MovePlayerToCurrentCheckpoint()
-    {
-        yield return new WaitForSeconds(1);
-        if(playerLifes.LifesLeft > 0)
-        {
-            player.MoveToCurrentCheckpoint();
-            playerCharacter.SetActive(true);
-        }
-        else FailLevel();
     }
 }

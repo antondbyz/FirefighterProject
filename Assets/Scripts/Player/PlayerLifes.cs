@@ -1,25 +1,26 @@
-using TMPro;
 using UnityEngine;
+using TMPro;
 
-public class PlayerLifes : MonoBehaviour
+public class PlayerLifes : MonoBehaviour 
 {
     public event System.Action Died;
-    public float LifesLeft
+    public int LifesLeft
     {
         get => lifesLeft;
         private set
         {
+            if(value > maxLifes) value = maxLifes;
+            else if(value < 0) value = 0;
             lifesLeft = value;
-            lifesText.text = lifesLeft.ToString();
+            lifesText.text = "Lifes: " + lifesLeft;
         }
     }
 
     [SerializeField] private TextMeshProUGUI lifesText = null;
-    [SerializeField] private ParticleSystem deathEffect = null;
+    [SerializeField] private int maxLifes = 3;
 
-    private Transform myTransform;
-    private float lifesLeft = 3;
-    private bool canDie = true;
+    private int lifesLeft;
+    private bool canDie;
 
     public void Die()
     {
@@ -27,21 +28,16 @@ public class PlayerLifes : MonoBehaviour
         {
             canDie = false;
             LifesLeft--;
-            // deathEffect.Play();
             Died?.Invoke();
         }
     }
 
-    private void Awake()
-    {
-        myTransform = transform;
-        lifesText.text = lifesLeft.ToString();
-    }
+    private void Awake() => LifesLeft = maxLifes;
 
     private void OnEnable() => canDie = true;
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        if(other.CompareTag("DeathZone")) Die();
+        if(other.CompareTag("DeathZone")) Die();    
     }
 }

@@ -22,17 +22,17 @@ public class ExtinguishingSubstance : MonoBehaviour
             substanceAmountFill.fillAmount = currentSubstanceAmount / MAX_SUBSTANCE_AMOUNT;
         }
     }
-    private float currentSubstanceAmount;
+    public bool IsTurnedOn { get; private set; }
 
     [SerializeField] private float efficiency = 1;
-    [SerializeField] private float substanceDecreasingSpeed = 1;
+    [SerializeField] private float substanceDecreasingSpeed = 0.1f;
     [SerializeField] private Image substanceAmountFill = null;
 
     private ParticleSystem particles;
     private PlayerInput input;
     private PlayerAim aim;
-    private List<Heat> objectsToExtinguish = new List<Heat>();
-    private Coroutine extinguishingCoroutine;
+    private List<Fire> enteredFires = new List<Fire>();
+    private float currentSubstanceAmount;
 
     private void Awake() 
     {
@@ -44,7 +44,11 @@ public class ExtinguishingSubstance : MonoBehaviour
         TurnOff();
     }
 
-    private void OnEnable() => aim.StoppedAiming += TurnOff;
+    private void OnEnable() 
+    { 
+        StartCoroutine(Extinguishing());
+        aim.StoppedAiming += TurnOff;
+    }
 
     private void OnDisable() => aim.StoppedAiming -= TurnOff;
 
@@ -56,50 +60,45 @@ public class ExtinguishingSubstance : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        Heat heat = other.GetComponent<Heat>();
-        if(heat != null)
-            objectsToExtinguish.Add(heat);
+        Fire fire = other.GetComponent<Fire>();
+        if(fire != null) enteredFires.Add(fire);
     }
 
     private void OnTriggerExit2D(Collider2D other) 
     {
-        Heat heat = other.GetComponent<Heat>();
-        if(heat != null)
-            objectsToExtinguish.Remove(heat);
+        Fire fire = other.GetComponent<Fire>();
+        if(fire != null) enteredFires.Remove(fire);
     }
 
     private void TurnOn()
     {
-        if(extinguishingCoroutine == null && CurrentSubstanceAmount > 0 && aim.IsAiming)
+        if(!IsTurnedOn && CurrentSubstanceAmount > 0 && aim.IsAiming)
         {
             particles.Play();
-            extinguishingCoroutine = StartCoroutine(ExtinguishingEnteredObjects());
+            IsTurnedOn = true;
         }
     }
 
     private void TurnOff()
     {
-        if(extinguishingCoroutine != null)
+        if(IsTurnedOn)
         {
             particles.Stop();
-            StopCoroutine(extinguishingCoroutine);
-            extinguishingCoroutine = null;
+            IsTurnedOn = false;
         }
     }
 
-    private IEnumerator ExtinguishingEnteredObjects()
+    private IEnumerator Extinguishing()
     {
-        float timeDelay = 0.1f;
-        WaitForSeconds delay = new WaitForSeconds(timeDelay);
+        WaitForSeconds delay = new WaitForSeconds(0.1f);
         while(true)
         {   
-            for(int i = 0; i < objectsToExtinguish.Count; i++)
-            {
-                if(objectsToExtinguish[i].IsExtinguishable)
-                    objectsToExtinguish[i].CurrentHeat -= efficiency;
-            }
-            CurrentSubstanceAmount -= substanceDecreasingSpeed * timeDelay;
             yield return delay;
+            if(IsTurnedOn)
+            {
+                for(int i = 0; i < enteredFires.Count; i++) enteredFires[i].CurrentHeat -= efficiency;
+                CurrentSubstanceAmount -= substanceDecreasingSpeed;
+            }
         }   
     }
 }
