@@ -13,8 +13,7 @@ public class Fire : MonoBehaviour
         get => currentHeat;
         set
         {
-            if(value > MAX_HEAT) value = MAX_HEAT;
-            else if(value < 0) value = 0;
+            value = Mathf.Clamp(value, 0, MAX_HEAT);
             currentHeat = value;
             if(currentHeat > 0)
             {

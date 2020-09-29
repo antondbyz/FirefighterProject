@@ -3,29 +3,27 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour 
 {
-    private GameObject playerCharacterGO;
-    private PlayerLifes playerLifes;
-    private PlayerCharacter playerCharacter;
+    private PlayerLifes lifes;
+    private PlayerCharacter character;
 
     public void PauseLevel() => GameController.Instance.PauseLevel();
 
     private void Awake() 
     {
-        playerCharacterGO = transform.GetChild(0).gameObject;
-        playerLifes = playerCharacterGO.GetComponent<PlayerLifes>();
-        playerCharacter = playerCharacterGO.GetComponent<PlayerCharacter>();
+        character = transform.GetChild(0).GetComponent<PlayerCharacter>();
+        lifes = character.GetComponent<PlayerLifes>();
     }
 
-    private void OnEnable() => playerLifes.Died += PlayerDied;
+    private void OnEnable() => lifes.Died += PlayerDied;
 
-    private void OnDisable() => playerLifes.Died -= PlayerDied;
+    private void OnDisable() => lifes.Died -= PlayerDied;
 
     private void PlayerDied()
     {
-        playerCharacterGO.SetActive(false);
-        if(playerLifes.LifesLeft > 0)
+        character.gameObject.SetActive(false);
+        if(lifes.LifesLeft > 0)
         {
-            StartCoroutine(MovePlayerToCurrentCheckpoint());
+            StartCoroutine(MoveCharacterToCurrentCheckpoint());
         }
         else
         { 
@@ -33,10 +31,10 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private IEnumerator MovePlayerToCurrentCheckpoint()
+    private IEnumerator MoveCharacterToCurrentCheckpoint()
     {
         yield return new WaitForSeconds(1);
-        playerCharacter.MoveToCurrentCheckpoint();
-        playerCharacterGO.SetActive(true);
+        character.MoveToCurrentCheckpoint();
+        character.gameObject.SetActive(true);
     }
 }

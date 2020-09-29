@@ -19,7 +19,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         if(other.CompareTag("ExtinguisherRefill"))
         {
-            extinguishingSubstance.CurrentSubstanceAmount = ExtinguishingSubstance.MAX_SUBSTANCE_AMOUNT;
+            extinguishingSubstance.Refill();
             Destroy(other.gameObject);
         }
         else if(other.CompareTag("Wounded")) Destroy(other.gameObject);

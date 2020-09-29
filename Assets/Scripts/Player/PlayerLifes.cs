@@ -3,38 +3,39 @@ using TMPro;
 
 public class PlayerLifes : MonoBehaviour 
 {
+    public const int MAX_LIFES = 3;
+
     public event System.Action Died;
+    public bool IsAlive => gameObject.activeSelf;
     public int LifesLeft
     {
         get => lifesLeft;
         private set
         {
-            if(value > maxLifes) value = maxLifes;
-            else if(value < 0) value = 0;
+            value = Mathf.Clamp(value, 0, MAX_LIFES);
             lifesLeft = value;
             lifesText.text = "Lifes: " + lifesLeft;
         }
     }
 
     [SerializeField] private TextMeshProUGUI lifesText = null;
-    [SerializeField] private int maxLifes = 3;
 
     private int lifesLeft;
-    private bool canDie;
+    private float currentHealth;
 
     public void Die()
     {
-        if(canDie)
+        if(IsAlive)
         {
-            canDie = false;
             LifesLeft--;
             Died?.Invoke();
         }
     }
 
-    private void Awake() => LifesLeft = maxLifes;
-
-    private void OnEnable() => canDie = true;
+    private void Awake() 
+    {
+        LifesLeft = MAX_LIFES;
+    }
 
     private void OnTriggerEnter2D(Collider2D other) 
     {

@@ -152,10 +152,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -24, y: -24}
-        - {x: 24, y: -24}
-        - {x: 24, y: 24}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 445b1d32c87e65d00800000000000000
@@ -197,11 +194,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -24, y: 24}
-        - {x: -24, y: -24}
-        - {x: 13, y: -24}
-        - {x: 13, y: 24}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 71802ec9e3fc058e0800000000000000
@@ -227,27 +220,6 @@ TextureImporter:
       bones: []
       spriteID: dfa55baf3256ed0c0800000000000000
       internalID: -4549087368393172227
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Building_5
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d8303a2f081a88550800000000000000
-      internalID: 6163353665255179149
       vertices: []
       indices: 
       edges: []

@@ -2,7 +2,6 @@
 
 public class PlayerAim : MonoBehaviour
 {
-    public event System.Action StoppedAiming;
     public bool IsAiming { get; private set; }
 
     [SerializeField] private Transform rotateBone = null;
@@ -52,7 +51,6 @@ public class PlayerAim : MonoBehaviour
         extinguisherHose.SetActive(false);
         extinguisherHoseHidden.SetActive(true);
         ResetRotation();
-        StoppedAiming?.Invoke();
     }
 
     private void UpdateRotation()

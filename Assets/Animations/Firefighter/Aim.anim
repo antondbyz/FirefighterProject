@@ -391,6 +391,39 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
+    path: Character/Rig/Char1_Pelvis/Pelvis/Char1_Body/LowerBody/UpperBody/Char1_R
+      Arm/R_UpperArm
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Character/Rig/Char1_Pelvis/Pelvis/Char1_Body/LowerBody/UpperBody/Char1_R
+      Arm/R_UpperArm
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Character/Rig/Char1_Pelvis/Pelvis/Char1_Body/LowerBody/UpperBody/Char1_R
+      Arm/R_UpperArm
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
     path: Character/Rig/Char1_Pelvis/Pelvis/Char1_Body/LowerBody/UpperBody/Char1_L
       Arm/L_UpperArm/L_LowerArm
     classID: 4
@@ -448,39 +481,6 @@ AnimationClip:
     attribute: m_LocalEulerAngles.x
     path: Character/Rig/Char1_Pelvis/Pelvis/Char1_Body/LowerBody/UpperBody/Char1_L
       Arm/L_UpperArm
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: Character/Rig/Char1_Pelvis/Pelvis/Char1_Body/LowerBody/UpperBody/Char1_R
-      Arm/R_UpperArm
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.y
-    path: Character/Rig/Char1_Pelvis/Pelvis/Char1_Body/LowerBody/UpperBody/Char1_R
-      Arm/R_UpperArm
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Character/Rig/Char1_Pelvis/Pelvis/Char1_Body/LowerBody/UpperBody/Char1_R
-      Arm/R_UpperArm
     classID: 4
     script: {fileID: 0}
   - curve:

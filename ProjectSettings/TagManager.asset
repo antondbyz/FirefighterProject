@@ -7,6 +7,8 @@ TagManager:
   - ExtinguisherRefill
   - Wounded
   - DeathZone
+  - Wall
+  - PlayerCharacter
   layers:
   - Default
   - TransparentFX
@@ -46,9 +48,6 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: ExtinguisherRefill
-    uniqueID: 29179345
     locked: 0
   - name: Player
     uniqueID: 643186173

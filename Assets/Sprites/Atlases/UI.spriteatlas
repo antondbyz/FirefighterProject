@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 663d19477e736c146b37d465b97e9960, type: 3}
-    totalSpriteSurfaceArea: 563061
+    totalSpriteSurfaceArea: 462052
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -53,6 +53,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 9a5b6894a020e414884dbb4e8500780f, type: 3}
   - {fileID: 21300000, guid: 8714e2d47c8e4ca48adda165fee501f1, type: 3}
   - {fileID: 21300000, guid: 7c62fee6fc0b36546a0dd0dfa8e9d55a, type: 3}
+  - {fileID: 21300000, guid: 942a6899f485f8142a7264a5d665ad4d, type: 3}
   - {fileID: 21300000, guid: a74dacc9bfcf47749a8630eac3456429, type: 3}
   - {fileID: 21300000, guid: c356d10b4a98a33448a9da4bb7bc4990, type: 3}
   - {fileID: 21300000, guid: 105aa01b1530a1e48ba3df5d4a1cae8b, type: 3}
@@ -65,6 +66,7 @@ SpriteAtlas:
   - Medic
   - Lock
   - Exit
+  - Square
   - RoundRect
   - Triangle
   - Circle
