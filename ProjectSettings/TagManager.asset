@@ -46,14 +46,17 @@ TagManager:
   - name: Background
     uniqueID: 1077175209
     locked: 0
-  - name: Default
-    uniqueID: 0
+  - name: Wounded
+    uniqueID: 3907665773
     locked: 0
   - name: Player
     uniqueID: 643186173
     locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
   - name: Particles
-    uniqueID: 3048727529
+    uniqueID: 3969788601
     locked: 0
   - name: Foreground
     uniqueID: 926601881

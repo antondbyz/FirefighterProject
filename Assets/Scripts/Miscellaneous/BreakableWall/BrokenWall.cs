@@ -3,10 +3,11 @@
 public class BrokenWall : MonoBehaviour
 {
     [SerializeField] private GameObject spike = null;
+    [SerializeField] private LayerMask whatIsGround = new LayerMask();
 
-    private void OnTriggerEnter2D(Collider2D other) 
+    private void OnCollisionEnter2D(Collision2D other) 
     {
-        if(spike != null && other.CompareTag("Wall")) 
+        if(spike != null && ((whatIsGround.value & (1 << other.gameObject.layer)) == 1)) 
         {
             spike.SetActive(true);
             gameObject.SetActive(false);

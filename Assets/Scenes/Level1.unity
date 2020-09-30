@@ -755,7 +755,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 926601881
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -1311,9 +1311,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 926601881
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayerID: -325178695
+  m_SortingLayer: 1
+  m_SortingOrder: 2
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -6313,8 +6313,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 926601881
-  m_SortingLayer: 3
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c10b19b33a166194daceafb668c14545, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6383,7 +6383,7 @@ GameObject:
   - component: {fileID: 1314704726}
   m_Layer: 0
   m_Name: Walls
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6673,8 +6673,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 926601881
-  m_SortingLayer: 3
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -12434,6 +12434,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 677531288}
     m_Modifications:
+    - target: {fileID: 1578056039263420169, guid: a80a4b9b5fec45040a71bb37f0c0903c,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578056039263420169, guid: a80a4b9b5fec45040a71bb37f0c0903c,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1578056039263420170, guid: a80a4b9b5fec45040a71bb37f0c0903c,
         type: 3}
       propertyPath: m_Name
@@ -12684,6 +12694,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spike: {fileID: 167629150}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!212 &1491329492
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12720,8 +12733,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 926601881
-  m_SortingLayer: 3
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c10b19b33a166194daceafb668c14545, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -13218,7 +13231,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1077175209
-  m_SortingLayer: -1
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -26824,9 +26837,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 926601881
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayerID: -325178695
+  m_SortingLayer: 1
+  m_SortingOrder: 2
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -31652,8 +31665,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1246239767
-  m_SortingLayer: 2
+  m_SortingLayerID: -325178695
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -36402,31 +36415,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ElectricWire
-      objectReference: {fileID: 0}
-    - target: {fileID: 3362670385839639167, guid: 41b64889863c56a418fe75a3b6c92754,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4915449415059737406, guid: 41b64889863c56a418fe75a3b6c92754,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4915449415059737406, guid: 41b64889863c56a418fe75a3b6c92754,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4915449415059737406, guid: 41b64889863c56a418fe75a3b6c92754,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4915449415059737407, guid: 41b64889863c56a418fe75a3b6c92754,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41b64889863c56a418fe75a3b6c92754, type: 3}
