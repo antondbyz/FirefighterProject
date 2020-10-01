@@ -29,13 +29,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4979396982435567560}
-  m_LocalRotation: {x: -0.7313539, y: -0.68199825, z: -0, w: 0}
-  m_LocalPosition: {x: 0.83000183, y: 0.23999941, z: 0}
+  m_LocalRotation: {x: -0.7071068, y: -0.70710677, z: -0, w: 0}
+  m_LocalPosition: {x: 0.83000183, y: 0.23999894, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5950847092380134342}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -180, y: 0, z: -86}
+  m_LocalEulerAnglesHint: {x: -180, y: 0, z: -90}
 --- !u!198 &4979396982435567601
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4829,12 +4829,12 @@ ParentConstraint:
   m_GameObject: {fileID: 4979396982435567560}
   m_Enabled: 1
   m_Weight: 1
-  m_TranslationAtRest: {x: 0.83, y: 0.24, z: 0}
-  m_RotationAtRest: {x: 0, y: -180, z: 94.000015}
+  m_TranslationAtRest: {x: 0.83000183, y: 0.23999941, z: 0}
+  m_RotationAtRest: {x: 0, y: -180, z: 90}
   m_TranslationOffsets:
-  - {x: -0.12234068, y: 0.85207367, z: 0}
+  - {x: -0.122341156, y: 0.85207367, z: 0}
   m_RotationOffsets:
-  - {x: 0, y: 0, z: -4.4459662}
+  - {x: 0, y: 0, z: -8.445985}
   m_AffectTranslationX: 1
   m_AffectTranslationY: 1
   m_AffectTranslationZ: 1
@@ -6490,7 +6490,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5950847092380134342}
-  - component: {fileID: 388896522845996907}
+  - component: {fileID: 5154955658224931706}
   - component: {fileID: 5950847092380134343}
   - component: {fileID: 4074066864670608138}
   - component: {fileID: 5950847092380134345}
@@ -6522,7 +6522,7 @@ Transform:
   m_Father: {fileID: 9221799522365304826}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &388896522845996907
+--- !u!61 &5154955658224931706
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6535,7 +6535,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.27}
+  m_Offset: {x: 0, y: 0.3}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6546,7 +6546,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7, y: 2.35}
+  m_Size: {x: 0.7, y: 2.45}
   m_EdgeRadius: 0
 --- !u!50 &5950847092380134343
 Rigidbody2D:
@@ -6611,8 +6611,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 12
-  jumpForce: 18
-  groundCheckDistance: 0.08
+  jumpForce: 17
+  groundCheckDistance: 0.2
   noFriction: {fileID: 6200000, guid: 981b65192f301c0478cea96ca62af50d, type: 2}
   fullFriction: {fileID: 6200000, guid: 6a87770e4e4e51348b2eb2c769cdba42, type: 2}
 --- !u!114 &8812254630478001301

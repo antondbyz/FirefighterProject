@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     }
     private bool flipX;
 
-    public bool IsGrounded => Physics2D.BoxCast(cc.bounds.center, cc.size, 0, Vector2.down, groundCheckDistance); 
+    public bool IsGrounded => Physics2D.BoxCast(bc.bounds.center, bc.size, 0, Vector2.down, groundCheckDistance);
     public bool IsMoving => newVelocity.x != 0;
     public bool IsHoldingLedge { get; private set; }
 
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     
     private Transform myTransform;
     private Rigidbody2D rb;
-    private BoxCollider2D cc;
+    private BoxCollider2D bc;
     private PlayerInput input;
     private PlayerAim aim;
     private Vector2 newVelocity;
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     {
         myTransform = transform;
         rb = GetComponent<Rigidbody2D>();
-        cc = GetComponent<BoxCollider2D>();
+        bc = GetComponent<BoxCollider2D>();
         input = GetComponent<PlayerInput>();
         aim = GetComponent<PlayerAim>();
         FlipX = false;
@@ -69,29 +69,29 @@ public class PlayerController : MonoBehaviour
     {
         if(!isJumping)
         {
-            Vector2 rayOrigin = new Vector2(cc.bounds.center.x, cc.bounds.center.y - cc.size.y / 2);
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down);
-            if(Vector2.Angle(hit.normal, Vector2.up) > 0)
+            Vector2 rayOrigin = new Vector2(bc.bounds.center.x, bc.bounds.center.y - bc.size.y / 2);
+            RaycastHit2D hitDown = Physics2D.Raycast(rayOrigin, Vector2.down);
+            if(Vector2.Angle(hitDown.normal, Vector2.up) > 0)
             {
-                float groundNormalDot = Vector2.Dot(hit.normal, Vector2.right);
-                RaycastHit2D hitFront = Physics2D.Raycast(rayOrigin, Vector2.right, 0.5f);
-                RaycastHit2D hitBack = Physics2D.Raycast(rayOrigin, Vector2.left, 0.5f);
-                if((newVelocity.x > 0 && groundNormalDot < 0 && !hitFront) ||
-                   (newVelocity.x < 0 && groundNormalDot > 0 && !hitBack))   
+                float groundNormalDot = Vector2.Dot(hitDown.normal, Vector2.right);
+                rayOrigin.y += 0.3f;
+                RaycastHit2D hitFront = Physics2D.Raycast(rayOrigin, myTransform.right, 1);
+                if(!hitFront && ((newVelocity.x > 0 && groundNormalDot < 0) ||
+                                (newVelocity.x < 0 && groundNormalDot > 0)))   
                 {
                     newVelocity.y = 0;
                 }
-                else newVelocity = -Vector2.Perpendicular(hit.normal) * newVelocity.x;
+                else newVelocity = -Vector2.Perpendicular(hitDown.normal) * newVelocity.x;
             }
         }
     }
 
     private void CheckLedgeGrab()
     {
-        float rayDistance = cc.size.x / 2 * 1.3f;
-        Vector2 upperRayOrigin = new Vector2(cc.bounds.center.x, cc.bounds.center.y + 0.5f);
+        float rayDistance = bc.size.x / 2 * 1.3f;
+        Vector2 upperRayOrigin = new Vector2(bc.bounds.center.x, bc.bounds.center.y + 0.5f);
         RaycastHit2D upperHit = Physics2D.Raycast(upperRayOrigin, myTransform.right, rayDistance);
-        RaycastHit2D bottomHit = Physics2D.Raycast(cc.bounds.center, myTransform.right, rayDistance);
+        RaycastHit2D bottomHit = Physics2D.Raycast(bc.bounds.center, myTransform.right, rayDistance);
         IsHoldingLedge = !isJumping && bottomHit && (!upperHit || IsHoldingLedge);
         if(IsHoldingLedge) 
         {
