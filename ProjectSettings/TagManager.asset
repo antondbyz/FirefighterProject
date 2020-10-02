@@ -7,8 +7,6 @@ TagManager:
   - ExtinguisherRefill
   - Wounded
   - DeathZone
-  - Wall
-  - PlayerCharacter
   layers:
   - Default
   - TransparentFX
@@ -18,7 +16,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - PlayerCharacter
   - 
   - 
   - 

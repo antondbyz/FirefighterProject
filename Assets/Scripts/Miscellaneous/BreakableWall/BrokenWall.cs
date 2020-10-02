@@ -7,7 +7,7 @@ public class BrokenWall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
-        if(spike != null && ((whatIsGround.value & (1 << other.gameObject.layer)) == 1)) 
+        if(spike != null && whatIsGround.ContainsLayer(other.gameObject.layer)) 
         {
             spike.SetActive(true);
             gameObject.SetActive(false);

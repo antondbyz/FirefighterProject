@@ -3,32 +3,33 @@ using UnityEngine;
 
 public class BreakableWall : MonoBehaviour
 {
-    [SerializeField] private GameObject destroyedWall = null;
-    [SerializeField] private ParticleSystem wallDestroyingEffect = null;
+    [SerializeField] private LayerMask whatCausesDestruction = new LayerMask();
+    [SerializeField] private GameObject brokenWall = null;
+    [SerializeField] private ParticleSystem wallBreakingEffect = null;
     [SerializeField] private float delay = 1;
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        if(other.CompareTag("PlayerCharacter")) 
+        if(whatCausesDestruction.ContainsLayer(other.gameObject.layer)) 
         {
-            StartCoroutine(Destroy());
+            StartCoroutine(Break());
         }
     }
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
-        if(other.gameObject.CompareTag("PlayerCharacter")) 
+        if(whatCausesDestruction.ContainsLayer(other.gameObject.layer)) 
         {
-            StartCoroutine(Destroy());
+            StartCoroutine(Break());
         }
     }
 
-    private IEnumerator Destroy()
+    private IEnumerator Break()
     {
-        wallDestroyingEffect.Play();
+        wallBreakingEffect.Play();
         yield return new WaitForSeconds(delay);
-        wallDestroyingEffect.Stop();
-        destroyedWall.SetActive(true);
+        wallBreakingEffect.Stop();
+        brokenWall.SetActive(true);
         Destroy(gameObject);
     }
 }
