@@ -39,9 +39,10 @@ public class PlayerController : MonoBehaviour
         bc = GetComponent<BoxCollider2D>();
         input = GetComponent<PlayerInput>();
         aim = GetComponent<PlayerAim>();
-        FlipX = false;
         defaultGravity = rb.gravityScale;
     } 
+
+    private void OnEnable() => FlipX = false;
 
     private void OnDisable() 
     { 
