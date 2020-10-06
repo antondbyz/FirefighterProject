@@ -1,36 +1,22 @@
+using System.Collections;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
 public class Fire : MonoBehaviour
 {
-    [System.Serializable]
-    private struct Constraint
-    {
-        public float Min;
-        public float Max;
-
-        public Constraint(float min, float max)
-        {
-            Min = min;
-            Max = max;
-        }
-    }
-
     public const float MAX_HEAT = 100;
 
     public float CurrentHeat
     {
         get => currentHeat;
-        set
+        private set
         {
             value = Mathf.Clamp(value, 0, MAX_HEAT);
             currentHeat = value;
-            main.startSize = Mathf.Lerp(particlesSize.Min, particlesSize.Max, currentHeat / MAX_HEAT);
-            main.startSpeed = Mathf.Lerp(particlesSpeed.Min, particlesSpeed.Max, currentHeat / MAX_HEAT);
-            float newColliderSizeY = Mathf.Lerp(colliderSizeY.Min, colliderSizeY.Max, currentHeat / MAX_HEAT);
-            float newColliderOffsetY = Mathf.Lerp(colliderOffsetY.Min, colliderOffsetY.Max, currentHeat / MAX_HEAT);
-            myCollider.size = new Vector2(myCollider.size.x, newColliderSizeY);
-            myCollider.offset = new Vector2(myCollider.offset.x, newColliderOffsetY);
+            main.startSize = Mathf.Lerp(minParticlesSize, maxParticlesSize, currentHeat / MAX_HEAT);
+            main.startSpeed = Mathf.Lerp(minParticlesSpeed, maxParticlesSpeed, currentHeat / MAX_HEAT);
+            myCollider.size = Vector2.Lerp(minColliderSize, maxColliderSize, currentHeat / MAX_HEAT);
+            myCollider.offset = Vector2.Lerp(minColliderOffset, maxColliderOffset, currentHeat / MAX_HEAT);
             if(currentHeat == 0)
             {
                 ps.Stop();
@@ -40,21 +26,53 @@ public class Fire : MonoBehaviour
         }
     }
 
-    [SerializeField] private Constraint particlesSize = new Constraint();
-    [SerializeField] private Constraint particlesSpeed = new Constraint();
-    [SerializeField] private Constraint colliderSizeY = new Constraint();
-    [SerializeField] private Constraint colliderOffsetY = new Constraint();
+    [SerializeField] private float heatingSpeed = 1;
+    [Header("Min values")]
+    [SerializeField] private float minParticlesSize = 0;
+    [SerializeField] private float minParticlesSpeed = 0;
+    [SerializeField] private Vector2 minColliderSize = new Vector2();
+    [SerializeField] private Vector2 minColliderOffset = new Vector2();
 
+    private static WaitForSeconds delay = new WaitForSeconds(1);
     private BoxCollider2D myCollider;
     private ParticleSystem ps;
     private MainModule main;
     private float currentHeat;
+    private Coroutine heatingCoroutine;
+
+#region max values
+    private float maxParticlesSize;
+    private float maxParticlesSpeed;
+    private Vector2 maxColliderSize;
+    private Vector2 maxColliderOffset;
+#endregion
+
+    public void CoolDown(float value)
+    {
+        CurrentHeat -= value;
+        if(heatingCoroutine != null) StopCoroutine(heatingCoroutine);
+        if(currentHeat > 0) heatingCoroutine = StartCoroutine(HeatingUp());
+    }
 
     private void Awake()
     {
         myCollider = GetComponent<BoxCollider2D>();
         ps = GetComponent<ParticleSystem>();
         main = ps.main;
+        maxParticlesSize = main.startSize.constant;
+        maxParticlesSpeed = main.startSpeed.constant;
+        maxColliderSize = myCollider.size;
+        maxColliderOffset = myCollider.offset;
         CurrentHeat = MAX_HEAT;
+    }
+
+    private IEnumerator HeatingUp()
+    {
+        yield return delay;
+        while(currentHeat < MAX_HEAT)
+        {
+            CurrentHeat += heatingSpeed;
+            yield return delay;
+        }
     }
 }

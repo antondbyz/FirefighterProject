@@ -4768,18 +4768,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723c0a34cdb248b459a3e67a3dbf49e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particlesSize:
-    Min: 1
-    Max: 6
-  particlesSpeed:
-    Min: 0
-    Max: -3
-  colliderSizeY:
-    Min: 0.5
-    Max: 4
-  colliderOffsetY:
-    Min: 0.25
-    Max: 2
+  heatingSpeed: 10
+  minParticlesSize: 1
+  minParticlesSpeed: 0
+  minColliderSize: {x: 3, y: 0.5}
+  minColliderOffset: {x: 0, y: 0.25}
 --- !u!61 &3193529570586023415
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4804,5 +4797,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 4}
+  m_Size: {x: 4, y: 4}
   m_EdgeRadius: 0
