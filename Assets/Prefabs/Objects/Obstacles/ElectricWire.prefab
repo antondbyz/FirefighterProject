@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1585271127324048263}
   m_Layer: 0
   m_Name: ElectricWire
-  m_TagString: Untagged
+  m_TagString: DeathZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,7 +84,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.05065918, y: -1.7394228}
+  m_ConnectedAnchor: {x: 0, y: -1.6999998}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -121,7 +121,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4915449415059737401}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1293411, y: 2.369423, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1585271127324048263}
@@ -213,7 +213,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 1.8}
-  m_ConnectedAnchor: {x: 39.45, y: 12.179423}
+  m_ConnectedAnchor: {x: 40.57934, y: 12.3}
   m_UseMotor: 1
   m_Motor:
     m_MotorSpeed: 0
@@ -237,6 +237,7 @@ MonoBehaviour:
   speed: 180
   maxRotationAngle: 50
   hardness: 3
+  direction: 1
 --- !u!1001 &4915449415489826391
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -247,12 +248,12 @@ PrefabInstance:
     - target: {fileID: 7682496466150925352, guid: 9755dc1a8266a09498ed04236c8d6f5a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.18
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7682496466150925352, guid: 9755dc1a8266a09498ed04236c8d6f5a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.63
+      value: -1.7
       objectReference: {fileID: 0}
     - target: {fileID: 7682496466150925352, guid: 9755dc1a8266a09498ed04236c8d6f5a,
         type: 3}

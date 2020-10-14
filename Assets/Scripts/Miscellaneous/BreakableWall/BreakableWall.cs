@@ -3,14 +3,13 @@ using UnityEngine;
 
 public class BreakableWall : MonoBehaviour
 {
-    [SerializeField] private LayerMask whatCausesDestruction = new LayerMask();
     [SerializeField] private GameObject brokenWall = null;
     [SerializeField] private ParticleSystem wallBreakingEffect = null;
     [SerializeField] private float delay = 1;
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        if(whatCausesDestruction.ContainsLayer(other.gameObject.layer)) 
+        if(other.CompareTag("PlayerCharacter")) 
         {
             StartCoroutine(Break());
         }
@@ -18,7 +17,7 @@ public class BreakableWall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
-        if(whatCausesDestruction.ContainsLayer(other.gameObject.layer)) 
+        if(other.gameObject.CompareTag("PlayerCharacter")) 
         {
             StartCoroutine(Break());
         }

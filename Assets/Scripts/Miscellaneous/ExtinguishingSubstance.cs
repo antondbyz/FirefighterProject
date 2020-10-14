@@ -1,35 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ExtinguishingSubstance : MonoBehaviour
 {
-    public float MaxSubstanceAmount => maxSubstanceAmount;
-
-    public float CurrentSubstanceAmount
-    {
-        get => currentSubstanceAmount;
-        private set
-        {
-            value = Mathf.Clamp(value, 0, maxSubstanceAmount);
-            currentSubstanceAmount = value;
-            substanceAmountFill.fillAmount = currentSubstanceAmount / maxSubstanceAmount;
-        }
-    }
     public bool IsTurnedOn { get; private set; }
 
     [SerializeField] private float efficiency = 1;
-    [SerializeField] private float maxSubstanceAmount = 100;
-    [SerializeField] private Image substanceAmountFill = null;
 
     private ParticleSystem particles;
     private PlayerInput input;
     private PlayerAim aim;
     private List<Fire> enteredFires = new List<Fire>();
-    private float currentSubstanceAmount;
-
-    public void Refill() => CurrentSubstanceAmount = maxSubstanceAmount;
 
     private void Awake() 
     {
@@ -37,7 +19,6 @@ public class ExtinguishingSubstance : MonoBehaviour
         Transform parent = transform.parent;
         input = parent.GetComponent<PlayerInput>();
         aim = parent.GetComponent<PlayerAim>();
-        CurrentSubstanceAmount = maxSubstanceAmount;
         TurnOff();
     }
 
@@ -45,7 +26,7 @@ public class ExtinguishingSubstance : MonoBehaviour
 
     private void Update() 
     {
-        if(input.ExtinguishHeld && CurrentSubstanceAmount > 0 && aim.IsAiming) TurnOn();
+        if(input.ExtinguishHeld && aim.IsAiming) TurnOn();
         else TurnOff();    
     }
 
@@ -89,7 +70,6 @@ public class ExtinguishingSubstance : MonoBehaviour
             if(IsTurnedOn)
             {
                 for(int i = 0; i < enteredFires.Count; i++) enteredFires[i].CoolDown(efficiency);
-                CurrentSubstanceAmount -= timeDelay;
             }
         }   
     }

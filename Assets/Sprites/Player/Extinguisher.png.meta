@@ -10,7 +10,19 @@ TextureImporter:
     second: Extinguisher_HoseHidden
   - first:
       213: 4720522218622057588
-    second: Extinguisher_Hose
+    second: Extinguisher_HoseReady
+  - first:
+      213: -3961781407446926520
+    second: Extinguisher_Balloon
+  - first:
+      213: 7897695477387798467
+    second: Extinguisher_HoseHidden
+  - first:
+      213: 1253212077573078219
+    second: Extinguisher_HoseReady
+  - first:
+      213: -3986203330568798747
+    second: Extinguisher_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -54,7 +66,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 105
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -111,10 +123,10 @@ TextureImporter:
       name: Extinguisher_Balloon
       rect:
         serializedVersion: 2
-        x: 3
-        y: 14
-        width: 59
-        height: 126
+        x: 13
+        y: 15
+        width: 57
+        height: 118
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -122,8 +134,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17d0383afc3dff3a0800000000000000
-      internalID: -6629347237711114895
+      spriteID: 84bf063eccce409c0800000000000000
+      internalID: -3961781407446926520
       vertices: []
       indices: 
       edges: []
@@ -132,10 +144,10 @@ TextureImporter:
       name: Extinguisher_HoseHidden
       rect:
         serializedVersion: 2
-        x: 91
-        y: 3
-        width: 85
-        height: 152
+        x: 99
+        y: 4
+        width: 79
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,20 +155,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9eb34334a0d96260800000000000000
-      internalID: 7091428491924848283
+      spriteID: 3c7a8e161304a9d60800000000000000
+      internalID: 7897695477387798467
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Extinguisher_Hose
+      name: Extinguisher_HoseReady
       rect:
         serializedVersion: 2
-        x: 191
-        y: 22
-        width: 207
-        height: 109
+        x: 193
+        y: 23
+        width: 196
+        height: 102
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,8 +176,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47c7e4b82f9a28140800000000000000
-      internalID: 4720522218622057588
+      spriteID: bccf8f7aebd446110800000000000000
+      internalID: 1253212077573078219
       vertices: []
       indices: 
       edges: []

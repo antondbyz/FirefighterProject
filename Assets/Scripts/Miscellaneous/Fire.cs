@@ -40,7 +40,7 @@ public class Fire : MonoBehaviour
     private float currentHeat;
     private Coroutine heatingCoroutine;
 
-#region max values
+#region Max values
     private float maxParticlesSize;
     private float maxParticlesSpeed;
     private Vector2 maxColliderSize;
@@ -59,10 +59,12 @@ public class Fire : MonoBehaviour
         myCollider = GetComponent<BoxCollider2D>();
         ps = GetComponent<ParticleSystem>();
         main = ps.main;
+#region Initializing max values
         maxParticlesSize = main.startSize.constant;
         maxParticlesSpeed = main.startSpeed.constant;
         maxColliderSize = myCollider.size;
         maxColliderOffset = myCollider.offset;
+#endregion
         CurrentHeat = MAX_HEAT;
     }
 

@@ -148,9 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd0c6dc6a0c299d42b498e9a85bba80f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whatCausesDestruction:
-    serializedVersion: 2
-    m_Bits: 256
   brokenWall: {fileID: 1636810888454888374}
   wallBreakingEffect: {fileID: 1636810887939712309}
   delay: 0.5
@@ -359,9 +356,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spike: {fileID: 6261097614865273805}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 1
 --- !u!1001 &1636810887984595019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -378,6 +372,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4635608982789510022, guid: 5561ce2237c42e544b13d066b2df8405,
+        type: 3}
+      propertyPath: m_TagString
+      value: DeathZone
       objectReference: {fileID: 0}
     - target: {fileID: 4635608982789510043, guid: 5561ce2237c42e544b13d066b2df8405,
         type: 3}

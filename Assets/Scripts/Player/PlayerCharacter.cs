@@ -2,8 +2,6 @@
 
 public class PlayerCharacter : MonoBehaviour
 {
-    [SerializeField] private ExtinguishingSubstance extinguishingSubstance = null;
-
     private Transform myTransform;
     private Vector2 currentCheckpoint;
 
@@ -17,12 +15,7 @@ public class PlayerCharacter : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        if(other.CompareTag("ExtinguisherRefill"))
-        {
-            extinguishingSubstance.Refill();
-            Destroy(other.gameObject);
-        }
-        else if(other.CompareTag("Wounded")) Destroy(other.gameObject);
+        if(other.CompareTag("Victim")) Destroy(other.gameObject);
         else if(other.CompareTag("Finish")) GameController.Instance.CompleteLevel();
     }
 }

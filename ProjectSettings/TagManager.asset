@@ -4,9 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - ExtinguisherRefill
-  - Wounded
   - DeathZone
+  - PlayerCharacter
+  - Victim
+  - Walls
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - UI
   - 
   - 
-  - PlayerCharacter
+  - 
   - 
   - 
   - 
@@ -44,7 +45,7 @@ TagManager:
   - name: Background
     uniqueID: 1077175209
     locked: 0
-  - name: Wounded
+  - name: Character
     uniqueID: 3907665773
     locked: 0
   - name: Player
