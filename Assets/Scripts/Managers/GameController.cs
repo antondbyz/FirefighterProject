@@ -6,18 +6,27 @@ public class GameController : MonoBehaviour
 {
     public static GameController Instance;
 
+    public bool IsPaused
+    {
+        get => isPaused;
+        set
+        {
+            isPaused = value;
+            Time.timeScale = isPaused ? 0 : 1;
+        }
+    }
+
     [SerializeField] private UnityEvent levelFailed = null;
     [SerializeField] private UnityEvent levelCompleted = null;
 
     private PlayerLifes playerLifes;
     private Player player;
+    private bool isPaused;
     private WaitForSeconds delay = new WaitForSeconds(1);
-
-    public void SetPause(bool value) => PauseManager.IsPaused = value;
 
     public void CompleteLevel()
     {
-        PauseManager.IsPaused = true;
+        IsPaused = true;
         levelCompleted.Invoke();
     } 
     private void Awake() 
@@ -27,7 +36,7 @@ public class GameController : MonoBehaviour
 
         player = transform.GetChild(0).GetComponent<Player>();
         playerLifes = player.GetComponent<PlayerLifes>();
-        PauseManager.IsPaused = false;
+        IsPaused = false;
     }
 
     private void OnEnable() => playerLifes.Died += PlayerDied;
@@ -50,7 +59,7 @@ public class GameController : MonoBehaviour
     private IEnumerator FailLevel()
     {
         yield return delay;
-        PauseManager.IsPaused = true;
+        IsPaused = true;
         levelFailed.Invoke();
     }
 

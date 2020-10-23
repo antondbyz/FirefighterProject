@@ -7224,7 +7224,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 346420576946013968}
-        m_MethodName: SetPause
+        m_MethodName: set_IsPaused
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9292,7 +9292,7 @@ PrefabInstance:
     - target: {fileID: 2472532927376628373, guid: 71b9c925cb3640a4e9841c2335a8ad86,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetPause
+      value: set_IsPaused
       objectReference: {fileID: 0}
     - target: {fileID: 2472532927376628373, guid: 71b9c925cb3640a4e9841c2335a8ad86,
         type: 3}
