@@ -4,30 +4,38 @@ using UnityEngine;
 
 public class ExtinguishingSubstance : MonoBehaviour
 {
-    public bool IsTurnedOn { get; private set; }
+    public bool IsTurnedOn 
+    {
+        get => isTurnedOn;
+        private set
+        {
+            if(isTurnedOn != value)
+            {
+                isTurnedOn = value;
+                if(isTurnedOn) ps.Play();
+                else ps.Stop();
+            }
+        }
+    }
 
     [SerializeField] private float efficiency = 1;
 
-    private ParticleSystem particles;
-    private PlayerInput input;
+    private ParticleSystem ps;
     private PlayerAim aim;
     private List<Fire> enteredFires = new List<Fire>();
+    private bool isTurnedOn;
 
     private void Awake() 
     {
-        particles = GetComponent<ParticleSystem>();
-        Transform parent = transform.parent;
-        input = parent.GetComponent<PlayerInput>();
-        aim = parent.GetComponent<PlayerAim>();
-        TurnOff();
+        ps = GetComponent<ParticleSystem>();
+        aim = transform.parent.GetComponent<PlayerAim>();
     }
 
     private void OnEnable() => StartCoroutine(Extinguishing());
 
     private void Update() 
     {
-        if(input.ExtinguishHeld && aim.IsAiming) TurnOn();
-        else TurnOff();    
+        IsTurnedOn = InputManager.ExtinguishHeld && aim.IsAiming;  
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
@@ -40,24 +48,6 @@ public class ExtinguishingSubstance : MonoBehaviour
     {
         Fire fire = other.GetComponent<Fire>();
         if(fire != null) enteredFires.Remove(fire);
-    }
-
-    private void TurnOn()
-    {
-        if(!IsTurnedOn)
-        {
-            particles.Play();
-            IsTurnedOn = true;
-        }
-    }
-
-    private void TurnOff()
-    {
-        if(IsTurnedOn)
-        {
-            particles.Stop();
-            IsTurnedOn = false;
-        }
     }
 
     private IEnumerator Extinguishing()

@@ -6,7 +6,6 @@ public class PlayerLifes : MonoBehaviour
     public const int MAX_LIFES = 3;
 
     public event System.Action Died;
-    public bool IsAlive => gameObject.activeSelf;
     public int LifesLeft
     {
         get => lifesLeft;
@@ -25,7 +24,7 @@ public class PlayerLifes : MonoBehaviour
 
     public void Die()
     {
-        if(IsAlive)
+        if(gameObject.activeSelf)
         {
             LifesLeft--;
             Died?.Invoke();

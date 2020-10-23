@@ -1,0 +1,63 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class GameController : MonoBehaviour 
+{
+    public static GameController Instance;
+
+    [SerializeField] private UnityEvent levelFailed = null;
+    [SerializeField] private UnityEvent levelCompleted = null;
+
+    private PlayerLifes playerLifes;
+    private Player player;
+    private WaitForSeconds delay = new WaitForSeconds(1);
+
+    public void SetPause(bool value) => PauseManager.IsPaused = value;
+
+    public void CompleteLevel()
+    {
+        PauseManager.IsPaused = true;
+        levelCompleted.Invoke();
+    } 
+    private void Awake() 
+    {
+        if(Instance == null) Instance = this;
+        else Debug.LogWarning("More than one instance of GameController!");
+
+        player = transform.GetChild(0).GetComponent<Player>();
+        playerLifes = player.GetComponent<PlayerLifes>();
+        PauseManager.IsPaused = false;
+    }
+
+    private void OnEnable() => playerLifes.Died += PlayerDied;
+
+    private void OnDisable() => playerLifes.Died -= PlayerDied;
+
+    private void PlayerDied()
+    {
+        player.gameObject.SetActive(false);
+        if(playerLifes.LifesLeft > 0)
+        {
+            StartCoroutine(MoveCharacterToCurrentCheckpoint());
+        }
+        else
+        { 
+            StartCoroutine(FailLevel());
+        }
+    }
+
+    private IEnumerator FailLevel()
+    {
+        yield return delay;
+        PauseManager.IsPaused = true;
+        levelFailed.Invoke();
+    }
+
+    private IEnumerator MoveCharacterToCurrentCheckpoint()
+    {
+        yield return delay;
+        player.MoveToCurrentCheckpoint();
+        player.gameObject.SetActive(true);
+    }    
+}
