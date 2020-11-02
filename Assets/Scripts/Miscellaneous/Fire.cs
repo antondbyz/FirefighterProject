@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
@@ -9,7 +8,7 @@ public class Fire : MonoBehaviour
     public float CurrentHeat
     {
         get => currentHeat;
-        private set
+        set
         {
             value = Mathf.Clamp(value, 0, MAX_HEAT);
             currentHeat = value;
@@ -26,19 +25,16 @@ public class Fire : MonoBehaviour
         }
     }
 
-    [SerializeField] private float heatingSpeed = 1;
     [Header("Min values")]
     [SerializeField] private float minParticlesSize = 0;
     [SerializeField] private float minParticlesSpeed = 0;
     [SerializeField] private Vector2 minColliderSize = new Vector2();
     [SerializeField] private Vector2 minColliderOffset = new Vector2();
 
-    private static WaitForSeconds delay = new WaitForSeconds(1);
     private BoxCollider2D myCollider;
     private ParticleSystem ps;
     private MainModule main;
     private float currentHeat;
-    private Coroutine heatingCoroutine;
 
 #region Max values
     private float maxParticlesSize;
@@ -46,13 +42,6 @@ public class Fire : MonoBehaviour
     private Vector2 maxColliderSize;
     private Vector2 maxColliderOffset;
 #endregion
-
-    public void CoolDown(float value)
-    {
-        CurrentHeat -= value;
-        if(heatingCoroutine != null) StopCoroutine(heatingCoroutine);
-        if(currentHeat > 0) heatingCoroutine = StartCoroutine(HeatingUp());
-    }
 
     private void Awake()
     {
@@ -66,15 +55,5 @@ public class Fire : MonoBehaviour
         maxColliderOffset = myCollider.offset;
 #endregion
         CurrentHeat = MAX_HEAT;
-    }
-
-    private IEnumerator HeatingUp()
-    {
-        yield return delay;
-        while(currentHeat < MAX_HEAT)
-        {
-            CurrentHeat += heatingSpeed;
-            yield return delay;
-        }
     }
 }

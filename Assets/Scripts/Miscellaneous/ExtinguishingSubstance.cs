@@ -59,7 +59,7 @@ public class ExtinguishingSubstance : MonoBehaviour
             yield return delay;
             if(IsTurnedOn)
             {
-                for(int i = 0; i < enteredFires.Count; i++) enteredFires[i].CoolDown(efficiency);
+                for(int i = 0; i < enteredFires.Count; i++) enteredFires[i].CurrentHeat -= efficiency;
             }
         }   
     }
