@@ -8,12 +8,14 @@ public class PlayerAim : MonoBehaviour
     [SerializeField] private GameObject extinguisherHose = null;
     [SerializeField] private GameObject extinguisherHoseHidden = null;
 
+    private Transform myTransform;
+    private BoxCollider2D myCollider;
     private PlayerController controller;
-
-    public void ResetRotation() => rotateBone.localRotation = Quaternion.Euler(0, 0, 0);
 
     private void Awake() 
     {
+        myTransform = transform;
+        myCollider = GetComponent<BoxCollider2D>();
         controller = GetComponent<PlayerController>(); 
         StopAiming();
     }
@@ -37,7 +39,8 @@ public class PlayerAim : MonoBehaviour
 
     private void StartAiming()
     {
-        if(!controller.IsMoving && controller.IsGrounded)
+        RaycastHit2D hit = Physics2D.Raycast(myCollider.bounds.center, myTransform.right, myCollider.size.x / 2 + 0.3f);
+        if(!controller.IsMoving && controller.IsGrounded && (!hit || hit.collider.isTrigger))
         {
             IsAiming = true;
             extinguisherHose.SetActive(true);
@@ -50,7 +53,7 @@ public class PlayerAim : MonoBehaviour
         IsAiming = false;
         extinguisherHose.SetActive(false);
         extinguisherHoseHidden.SetActive(true);
-        ResetRotation();
+        rotateBone.localRotation = Quaternion.Euler(0, 0, 0);
     }
 
     private void UpdateRotation()

@@ -55,12 +55,13 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: ab58069271fa0b544a22489f1cf23b9f, type: 3}
-    totalSpriteSurfaceArea: 36064
+    totalSpriteSurfaceArea: 36814
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 965dccc2aa734ed4f908ea4aedb58a8e, type: 3}
   - {fileID: 21300000, guid: c10b19b33a166194daceafb668c14545, type: 3}
   - {fileID: -4549087368393172227, guid: d762c544ede626d4a81f0d272528c693, type: 3}
   - {fileID: 8527704022205132460, guid: d762c544ede626d4a81f0d272528c693, type: 3}
@@ -70,6 +71,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 59520c0700806f84096d2d39d348f771, type: 3}
   - {fileID: 21300000, guid: a299e97f1d0a4ca4588f80d12cc6f05e, type: 3}
   m_PackedSpriteNamesToIndex:
+  - Door
   - BrokenWall
   - Building_4
   - Building_2

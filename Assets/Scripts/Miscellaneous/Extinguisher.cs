@@ -1,8 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ExtinguishingSubstance : MonoBehaviour
+public class Extinguisher : MonoBehaviour
 {
     public bool IsTurnedOn 
     {
@@ -18,15 +17,17 @@ public class ExtinguishingSubstance : MonoBehaviour
         }
     }
 
+    [SerializeField] private float distance = 1;
     [SerializeField] private float efficiency = 1;
 
+    private Transform myTransform;
     private ParticleSystem ps;
     private PlayerAim aim;
-    private List<Fire> enteredFires = new List<Fire>();
     private bool isTurnedOn;
 
     private void Awake() 
     {
+        myTransform = transform;
         ps = GetComponent<ParticleSystem>();
         aim = transform.parent.GetComponent<PlayerAim>();
     }
@@ -38,28 +39,20 @@ public class ExtinguishingSubstance : MonoBehaviour
         IsTurnedOn = InputManager.ExtinguishHeld && aim.IsAiming;  
     }
 
-    private void OnTriggerEnter2D(Collider2D other) 
-    {
-        Fire fire = other.GetComponent<Fire>();
-        if(fire != null) enteredFires.Add(fire);
-    }
-
-    private void OnTriggerExit2D(Collider2D other) 
-    {
-        Fire fire = other.GetComponent<Fire>();
-        if(fire != null) enteredFires.Remove(fire);
-    }
-
     private IEnumerator Extinguishing()
     {
-        float timeDelay = 0.1f;
-        WaitForSeconds delay = new WaitForSeconds(timeDelay);
+        WaitForSeconds delay = new WaitForSeconds(0.5f);
         while(true)
         {   
             yield return delay;
             if(IsTurnedOn)
             {
-                for(int i = 0; i < enteredFires.Count; i++) enteredFires[i].CurrentHeat -= efficiency;
+                RaycastHit2D hit = Physics2D.Raycast(myTransform.position, myTransform.right, distance);
+                if(hit) 
+                {
+                    Fire fire = hit.collider.GetComponent<Fire>();
+                    if(fire != null) fire.CurrentHeat -= efficiency;
+                }
             }
         }   
     }
