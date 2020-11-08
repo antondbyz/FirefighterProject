@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float groundCheckDistance = 0.05f;
     [SerializeField] private PhysicsMaterial2D noFriction = null;
     [SerializeField] private PhysicsMaterial2D fullFriction = null;
+    [SerializeField] private LayerMask canGrab = new LayerMask();
     
     private Transform myTransform;
     private Rigidbody2D rb;
@@ -101,8 +102,8 @@ public class PlayerController : MonoBehaviour
     {
         float rayDistance = bc.size.x / 2 * 1.3f;
         Vector2 upperRayOrigin = new Vector2(bc.bounds.center.x, bc.bounds.center.y + 0.5f);
-        RaycastHit2D upperHit = Physics2D.Raycast(upperRayOrigin, myTransform.right, rayDistance);
-        RaycastHit2D bottomHit = Physics2D.Raycast(bc.bounds.center, myTransform.right, rayDistance);
+        RaycastHit2D upperHit = Physics2D.Raycast(upperRayOrigin, myTransform.right, rayDistance, canGrab);
+        RaycastHit2D bottomHit = Physics2D.Raycast(bc.bounds.center, myTransform.right, rayDistance, canGrab);
         IsHoldingLedge = !isJumping && bottomHit && (!upperHit || IsHoldingLedge);
         if(IsHoldingLedge) 
         {
@@ -112,7 +113,7 @@ public class PlayerController : MonoBehaviour
             if(!upperHit)
             {
                 Vector2 verticalRayOrigin = new Vector2(upperRayOrigin.x + myTransform.right.x * rayDistance, upperRayOrigin.y);                
-                RaycastHit2D verticalHit = Physics2D.Raycast(verticalRayOrigin, Vector2.down, 0.5f);
+                RaycastHit2D verticalHit = Physics2D.Raycast(verticalRayOrigin, Vector2.down, 0.5f, canGrab);
                 float offset = verticalHit.point.y - verticalRayOrigin.y - 0.05f;
                 rb.position = new Vector2(rb.position.x, rb.position.y + offset);
             }
