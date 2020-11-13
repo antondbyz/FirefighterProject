@@ -7,9 +7,12 @@ public class PlayerAim : MonoBehaviour
     [SerializeField] private Transform rotateBone = null;
     [SerializeField] private GameObject extinguisherHose = null;
     [SerializeField] private GameObject extinguisherHoseHidden = null;
+    [SerializeField] private LayerMask whatIsObstacle = new LayerMask();
+    [SerializeField] private float minDistanceToObstacle = 0.8f;
 
     private Player player;
     private PlayerController controller;
+
 
     private void Awake() 
     {
@@ -37,7 +40,7 @@ public class PlayerAim : MonoBehaviour
 
     private void StartAiming()
     {
-        RaycastHit2D hit = player.WhatIsInFront(0.8f);
+        RaycastHit2D hit = player.WhatIsInFront(minDistanceToObstacle, whatIsObstacle);
         if(!controller.IsMoving && controller.IsGrounded && (!hit || hit.collider.isTrigger))
         {
             IsAiming = true;

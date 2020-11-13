@@ -25,6 +25,7 @@ public class Fire : MonoBehaviour
         }
     }
 
+    [SerializeField] private float currentHeat = MAX_HEAT;
     [Header("Min values")]
     [SerializeField] private float minParticlesSize = 0;
     [SerializeField] private float minParticlesSpeed = 0;
@@ -34,7 +35,6 @@ public class Fire : MonoBehaviour
     private BoxCollider2D myCollider;
     private ParticleSystem ps;
     private MainModule main;
-    private float currentHeat;
 
 #region Max values
     private float maxParticlesSize;
@@ -54,6 +54,6 @@ public class Fire : MonoBehaviour
         maxColliderSize = myCollider.size;
         maxColliderOffset = myCollider.offset;
 #endregion
-        CurrentHeat = MAX_HEAT;
+        CurrentHeat = currentHeat;
     }
 }

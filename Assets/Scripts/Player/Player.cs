@@ -8,9 +8,9 @@ public class Player : MonoBehaviour
     private BoxCollider2D bc;
     private Vector2 currentCheckpoint;
 
-    public RaycastHit2D WhatIsInFront(float distance)
+    public RaycastHit2D WhatIsInFront(float distance, int mask = -1)
     {
-        return Physics2D.Raycast(bc.bounds.center, myTransform.right, bc.size.x / 2 + distance);
+        return Physics2D.Raycast(bc.bounds.center, myTransform.right, bc.size.x / 2 + distance, mask);
     }
 
     public void MoveToCurrentCheckpoint() => myTransform.position = currentCheckpoint;
@@ -25,6 +25,10 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) 
     {
         if(other.CompareTag("Victim")) Destroy(other.gameObject);
-        else if(other.CompareTag("Finish")) GameController.Instance.CompleteLevel();
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) 
+    {
+        if(other.gameObject.CompareTag("Finish")) GameController.Instance.CompleteLevel();
     }
 }
