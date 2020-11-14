@@ -7569,7 +7569,7 @@ MonoBehaviour:
   groundCheckDistance: 0.25
   noFriction: {fileID: 6200000, guid: 981b65192f301c0478cea96ca62af50d, type: 2}
   fullFriction: {fileID: 6200000, guid: 6a87770e4e4e51348b2eb2c769cdba42, type: 2}
-  canGrab:
+  whatIsGround:
     serializedVersion: 2
     m_Bits: 1
 --- !u!114 &3464866832256084290
@@ -7615,7 +7615,7 @@ MonoBehaviour:
   whatIsObstacle:
     serializedVersion: 2
     m_Bits: 1
-  minDistanceToObstacle: 0.8
+  minDistanceToObstacle: 1.2
 --- !u!114 &4573212229033770358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7628,7 +7628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ee15ca01d6bc649b2fd5b8f5d17e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitDistance: 1
+  hitDistance: 1.2
 --- !u!1 &5950847092642859567
 GameObject:
   m_ObjectHideFlags: 0

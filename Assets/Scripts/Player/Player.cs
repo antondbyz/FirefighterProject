@@ -2,16 +2,12 @@
 
 public class Player : MonoBehaviour
 {
-    public Vector2 CurrentDirection => myTransform.right;
+    public Vector2 Direction => myTransform.right;
+    public Vector2 Position => bc.bounds.center;
 
     private Transform myTransform;
     private BoxCollider2D bc;
     private Vector2 currentCheckpoint;
-
-    public RaycastHit2D WhatIsInFront(float distance, int mask = -1)
-    {
-        return Physics2D.Raycast(bc.bounds.center, myTransform.right, bc.size.x / 2 + distance, mask);
-    }
 
     public void MoveToCurrentCheckpoint() => myTransform.position = currentCheckpoint;
 
@@ -25,10 +21,6 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) 
     {
         if(other.CompareTag("Victim")) Destroy(other.gameObject);
-    }
-
-    private void OnCollisionEnter2D(Collision2D other) 
-    {
-        if(other.gameObject.CompareTag("Finish")) GameController.Instance.CompleteLevel();
+        else if(other.CompareTag("Finish")) GameController.Instance.CompleteLevel();
     }
 }

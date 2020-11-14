@@ -3,42 +3,60 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour 
 {
-    [SerializeField] private float delayBeforeExplosion = 1;
-    [SerializeField] private float delayBeforeColliderEnabling = 0.3f;
-    [SerializeField] private float duration = 1;
-    [SerializeField] private float delayBeforeSelfDestroy = 1;
-    [SerializeField] private BreakableObject breakable = null;
+    [SerializeField] private float startExplosionDelay = 1;
+    [SerializeField] private float deathZoneActivatingDelay = 0.3f;
+    [SerializeField] private float stopExplosionDelay = 1;
+    [SerializeField] private float selfDestroyDelay = 1;
+    [SerializeField] private BreakableObject breakableToListen = null;
+    [SerializeField] private BreakableObject breakableToBreak = null;
     [SerializeField] private ParticleSystem smoke = null;
     [SerializeField] private Fire[] hiddenFires = new Fire[0];
 
     private ParticleSystem explosion;
-    private Collider2D myCollider;
+    private GameObject deathZone;
+    private Coroutine explosionCoroutine;
 
     private void Awake() 
     {
         explosion = GetComponent<ParticleSystem>();
-        myCollider = GetComponent<Collider2D>();
-        myCollider.enabled = false;
+        deathZone = transform.GetChild(0).gameObject;
+        deathZone.SetActive(false);
     }
 
-    private void OnEnable() => breakable.Broken += StartExplosion;
+    private void OnEnable() 
+    { 
+        if(breakableToListen != null) breakableToListen.Broken += StartExplosion;
+    }
 
-    private void OnDisable() => breakable.Broken -= StartExplosion;
+    private void OnDisable() 
+    { 
+        if(breakableToListen != null) breakableToListen.Broken -= StartExplosion;
+    }
 
-    private void StartExplosion() => StartCoroutine(Explode());
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if(explosionCoroutine == null && other.CompareTag("Player"))
+            explosionCoroutine = StartCoroutine(Explode());
+    }
+
+    private void StartExplosion() 
+    { 
+        if(explosionCoroutine == null) explosionCoroutine = StartCoroutine(Explode());
+    }
 
     private IEnumerator Explode()
     {
         for(int i = 0; i < hiddenFires.Length; i++) hiddenFires[i].gameObject.SetActive(true);
         smoke?.Stop();
-        yield return new WaitForSeconds(delayBeforeExplosion);
+        yield return new WaitForSeconds(startExplosionDelay);
         explosion.Play();
-        yield return new WaitForSeconds(delayBeforeColliderEnabling);
-        myCollider.enabled = true;
-        yield return new WaitForSeconds(duration);
-        myCollider.enabled = false;
+        breakableToBreak.Break(transform.right);
+        yield return new WaitForSeconds(deathZoneActivatingDelay);
+        deathZone.SetActive(true);
+        yield return new WaitForSeconds(stopExplosionDelay);
+        deathZone.SetActive(false);
         explosion.Stop();
-        yield return new WaitForSeconds(delayBeforeSelfDestroy);
+        yield return new WaitForSeconds(selfDestroyDelay);
         Destroy(gameObject);
     }
 }

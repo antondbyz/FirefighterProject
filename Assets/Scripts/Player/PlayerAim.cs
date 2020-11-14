@@ -40,8 +40,8 @@ public class PlayerAim : MonoBehaviour
 
     private void StartAiming()
     {
-        RaycastHit2D hit = player.WhatIsInFront(minDistanceToObstacle, whatIsObstacle);
-        if(!controller.IsMoving && controller.IsGrounded && (!hit || hit.collider.isTrigger))
+        RaycastHit2D hit = Helper.IgnoreTriggersRaycast(player.Position, player.Direction, minDistanceToObstacle, whatIsObstacle);
+        if(!controller.IsMoving && controller.IsGrounded && !hit)
         {
             IsAiming = true;
             extinguisherHose.SetActive(true);

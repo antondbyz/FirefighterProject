@@ -17,11 +17,11 @@ public class PlayerHit : MonoBehaviour
 
     private void Hit()
     {
-        RaycastHit2D hit = player.WhatIsInFront(hitDistance);
+        RaycastHit2D hit = Helper.IgnoreTriggersRaycast(player.Position, player.Direction, hitDistance);
         if(hit)
         {
             BreakableObject breakable = hit.collider.GetComponent<BreakableObject>();
-            if(breakable != null) breakable.Break(player.CurrentDirection);
+            if(breakable != null) breakable.Break(player.Direction);
         }
     }
 }
