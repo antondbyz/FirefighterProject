@@ -1,24 +1,21 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class CustomButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public event System.Action Pressed;
-    public bool Hold { get; private set; }
+    public bool Held { get; private set; }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         Pressed?.Invoke();
-        Hold = true;
+        Held = true;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Hold = false;
+        Held = false;
     }
 
-    private void OnDisable() 
-    {
-        Hold = false;   
-    }
+    private void OnDisable() => Held = false;
 }

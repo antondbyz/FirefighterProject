@@ -40,7 +40,7 @@ public class PlayerAim : MonoBehaviour
 
     private void StartAiming()
     {
-        RaycastHit2D hit = Helper.IgnoreTriggersRaycast(player.Position, player.Direction, minDistanceToObstacle, whatIsObstacle);
+        RaycastHit2D hit = Physics2D.Raycast(player.ColliderCenter, player.Direction, minDistanceToObstacle, whatIsObstacle);
         if(!controller.IsMoving && controller.IsGrounded && !hit)
         {
             IsAiming = true;

@@ -9,51 +9,58 @@ public class InputManager : MonoBehaviour
 
     [SerializeField] private CustomButton moveRightButton = null;
     [SerializeField] private CustomButton moveLeftButton = null;
-    [SerializeField] private CustomButton extinguishButton = null;
     [SerializeField] private CustomButton jumpButton = null;
+    [SerializeField] private CustomButton extinguishButton = null;
     [SerializeField] private CustomButton hitButton = null;
 
     private void OnEnable() 
-    {
-        jumpButton.Pressed += InvokeJumpPressed;
-        hitButton.Pressed += InvokeHitPressed;
+    { 
+        jumpButton.Pressed += JumpButtonPressed;
+        hitButton.Pressed += HitButtonPressed;
     }
 
     private void OnDisable() 
-    { 
-        jumpButton.Pressed -= InvokeJumpPressed;
-        hitButton.Pressed -= InvokeHitPressed;
+    {
+        jumpButton.Pressed -= JumpButtonPressed;
+        hitButton.Pressed -= HitButtonPressed; 
     }
 
     private void Update() 
     {
         #if UNITY_EDITOR
-        CheckKeyboardInput();
-        #else
-        CheckCustomButtonsInput();
+        ProcessKeyboardInput();
+        #else 
+        ProcessCustomButtonsInput();
         #endif
     }
 
-    private void InvokeJumpPressed() => JumpPressed?.Invoke();
-
-    private void InvokeHitPressed() => HitPressed?.Invoke();
-
-    private void CheckCustomButtonsInput()
-    {
-        if(moveRightButton.Hold ^ moveLeftButton.Hold)
-        {
-            if(moveRightButton.Hold) Horizontal = 1;
-            else Horizontal = -1;
-        }
-        else Horizontal = 0;
-        ExtinguishHeld = extinguishButton.Hold;
-    }
-
-    private void CheckKeyboardInput()
+    private void ProcessKeyboardInput()
     {
         Horizontal = Input.GetAxisRaw("Horizontal");
         ExtinguishHeld = Input.GetKey(KeyCode.E);
         if(Input.GetKeyDown(KeyCode.UpArrow)) JumpPressed?.Invoke();
         if(Input.GetKeyDown(KeyCode.H)) HitPressed?.Invoke();
+    }
+
+    private void ProcessCustomButtonsInput()
+    {
+        if(moveRightButton.Held == moveLeftButton.Held) Horizontal = 0;
+        else if(moveRightButton.Held) Horizontal = 1;
+        else Horizontal = -1;
+        ExtinguishHeld = extinguishButton.Held;
+    }
+
+    private void JumpButtonPressed() 
+    { 
+        #if !UNITY_EDITOR
+        JumpPressed?.Invoke();
+        #endif
+    }
+
+    private void HitButtonPressed() 
+    {
+        #if !UNITY_EDITOR 
+        HitPressed?.Invoke();
+        #endif
     }
 }

@@ -3,6 +3,7 @@
 public class PlayerHit : MonoBehaviour
 {
     [SerializeField] private float hitDistance = 1;
+    [SerializeField] private float hitForce = 300;
 
     private Player player;
 
@@ -17,11 +18,11 @@ public class PlayerHit : MonoBehaviour
 
     private void Hit()
     {
-        RaycastHit2D hit = Helper.IgnoreTriggersRaycast(player.Position, player.Direction, hitDistance);
+        RaycastHit2D hit = Physics2D.Raycast(player.ColliderCenter, player.Direction, hitDistance);
         if(hit)
         {
             BreakableObject breakable = hit.collider.GetComponent<BreakableObject>();
-            if(breakable != null) breakable.Break(player.Direction);
+            if(breakable != null) breakable.Break(player.Direction, hitForce);
         }
     }
 }

@@ -3,7 +3,7 @@
 public class Player : MonoBehaviour
 {
     public Vector2 Direction => myTransform.right;
-    public Vector2 Position => bc.bounds.center;
+    public Vector2 ColliderCenter => bc.bounds.center;
 
     private Transform myTransform;
     private BoxCollider2D bc;

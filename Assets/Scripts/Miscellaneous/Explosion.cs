@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour 
 {
+    [SerializeField] private float force = 300;
     [SerializeField] private float startExplosionDelay = 1;
     [SerializeField] private float deathZoneActivatingDelay = 0.3f;
     [SerializeField] private float stopExplosionDelay = 1;
     [SerializeField] private float selfDestroyDelay = 1;
     [SerializeField] private BreakableObject breakableToListen = null;
     [SerializeField] private BreakableObject breakableToBreak = null;
-    [SerializeField] private ParticleSystem smoke = null;
     [SerializeField] private Fire[] hiddenFires = new Fire[0];
 
     private ParticleSystem explosion;
@@ -20,7 +20,6 @@ public class Explosion : MonoBehaviour
     {
         explosion = GetComponent<ParticleSystem>();
         deathZone = transform.GetChild(0).gameObject;
-        deathZone.SetActive(false);
     }
 
     private void OnEnable() 
@@ -35,8 +34,7 @@ public class Explosion : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        if(explosionCoroutine == null && other.CompareTag("Player"))
-            explosionCoroutine = StartCoroutine(Explode());
+        if(other.CompareTag("Player")) StartExplosion();
     }
 
     private void StartExplosion() 
@@ -47,10 +45,9 @@ public class Explosion : MonoBehaviour
     private IEnumerator Explode()
     {
         for(int i = 0; i < hiddenFires.Length; i++) hiddenFires[i].gameObject.SetActive(true);
-        smoke?.Stop();
         yield return new WaitForSeconds(startExplosionDelay);
         explosion.Play();
-        breakableToBreak.Break(transform.right);
+        breakableToBreak.Break(transform.right, force);
         yield return new WaitForSeconds(deathZoneActivatingDelay);
         deathZone.SetActive(true);
         yield return new WaitForSeconds(stopExplosionDelay);

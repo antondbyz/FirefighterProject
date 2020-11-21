@@ -19,6 +19,7 @@ public class Extinguisher : MonoBehaviour
 
     [SerializeField] private float distance = 1;
     [SerializeField] private float efficiency = 1;
+    [SerializeField] private LayerMask whatIsFire = new LayerMask();
 
     private Transform myTransform;
     private ParticleSystem ps;
@@ -47,11 +48,10 @@ public class Extinguisher : MonoBehaviour
             yield return delay;
             if(IsTurnedOn)
             {
-                RaycastHit2D hit = Physics2D.Raycast(myTransform.position, myTransform.right, distance);
+                RaycastHit2D hit = Physics2D.Raycast(myTransform.position, myTransform.right, distance, whatIsFire);
                 if(hit) 
                 {
-                    Fire fire = hit.collider.GetComponent<Fire>();
-                    if(fire != null) fire.CurrentHeat -= efficiency;
+                    hit.collider.GetComponent<Fire>().CurrentHeat -= efficiency;
                 }
             }
         }   

@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class BrokenObject : MonoBehaviour 
@@ -7,12 +6,6 @@ public class BrokenObject : MonoBehaviour
 
     private void Awake() 
     {
-        StartCoroutine(DestroySelf());
-    }    
-
-    private IEnumerator DestroySelf()
-    {
-        yield return new WaitForSeconds(lifetime);
-        Destroy(gameObject);
+        Destroy(gameObject, lifetime);
     }
 }
