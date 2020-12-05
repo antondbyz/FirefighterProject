@@ -4,11 +4,11 @@ public class BreakableObject : MonoBehaviour
 {
     public event System.Action Broken;
 
-    [SerializeField] private BrokenObject brokenVersion = null;
+    [SerializeField] private Transform brokenVersion = null;
 
     public void Break(Vector2 direction, float force)
     {
-        Transform newBrokenVersion = Instantiate(brokenVersion, transform.position, Quaternion.identity).transform;
+        Transform newBrokenVersion = Instantiate(brokenVersion, transform.position, Quaternion.identity);
         for(int i = 0, n = newBrokenVersion.childCount; i < n; i++)
         {
             Rigidbody2D rb = newBrokenVersion.GetChild(i).GetComponent<Rigidbody2D>();
@@ -17,5 +17,5 @@ public class BreakableObject : MonoBehaviour
         }
         Broken?.Invoke();
         Destroy(gameObject);
-    }    
+    }
 }

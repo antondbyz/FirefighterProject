@@ -8,7 +8,7 @@ public class BrokenWall : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Walls")) 
         {
-            spike.SetActive(true);
+            if(spike != null) spike.SetActive(true);
             Destroy(gameObject);
         }   
     }

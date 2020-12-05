@@ -10,7 +10,6 @@ public class Explosion : MonoBehaviour
     [SerializeField] private float selfDestroyDelay = 1;
     [SerializeField] private BreakableObject breakableToListen = null;
     [SerializeField] private BreakableObject breakableToBreak = null;
-    [SerializeField] private Fire[] hiddenFires = new Fire[0];
 
     private ParticleSystem explosion;
     private GameObject deathZone;
@@ -44,10 +43,9 @@ public class Explosion : MonoBehaviour
 
     private IEnumerator Explode()
     {
-        for(int i = 0; i < hiddenFires.Length; i++) hiddenFires[i].gameObject.SetActive(true);
         yield return new WaitForSeconds(startExplosionDelay);
         explosion.Play();
-        breakableToBreak.Break(transform.right, force);
+        breakableToBreak?.Break(transform.right, force);
         yield return new WaitForSeconds(deathZoneActivatingDelay);
         deathZone.SetActive(true);
         yield return new WaitForSeconds(stopExplosionDelay);

@@ -23,10 +23,10 @@ SpriteAtlas:
     platformSettings:
     - serializedVersion: 3
       m_BuildTarget: DefaultTexturePlatform
-      m_MaxTextureSize: 1024
+      m_MaxTextureSize: 256
       m_ResizeAlgorithm: 0
       m_TextureFormat: -1
-      m_TextureCompression: 1
+      m_TextureCompression: 3
       m_CompressionQuality: 50
       m_CrunchedCompression: 0
       m_AllowsAlphaSplitting: 0
@@ -43,36 +43,30 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 663d19477e736c146b37d465b97e9960, type: 3}
-    totalSpriteSurfaceArea: 374812
+    totalSpriteSurfaceArea: 19000
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 321d8291ab2c6cb4b81d3dda37a91ef6, type: 3}
   - {fileID: 21300000, guid: 07eca9a1a43b8cd4cbfd05ec7eacf695, type: 3}
   - {fileID: 21300000, guid: 32dcb7e3f2355c44f98f9350b3a3fc92, type: 3}
-  - {fileID: 21300000, guid: 8714e2d47c8e4ca48adda165fee501f1, type: 3}
   - {fileID: 21300000, guid: f01f9d161780cd14aa7596121c33033c, type: 3}
   - {fileID: 21300000, guid: 7c62fee6fc0b36546a0dd0dfa8e9d55a, type: 3}
   - {fileID: 21300000, guid: 942a6899f485f8142a7264a5d665ad4d, type: 3}
   - {fileID: 21300000, guid: a74dacc9bfcf47749a8630eac3456429, type: 3}
   - {fileID: 21300000, guid: c356d10b4a98a33448a9da4bb7bc4990, type: 3}
   - {fileID: 21300000, guid: 105aa01b1530a1e48ba3df5d4a1cae8b, type: 3}
-  - {fileID: 21300000, guid: 389e56abad090e844acfcacd72bef491, type: 3}
   - {fileID: 21300000, guid: 73e6b5ad2432f8b4eb512cdbc09a188c, type: 3}
   m_PackedSpriteNamesToIndex:
-  - Cross
   - Pause
   - Arrow
-  - Lock
   - Axe
   - Exit
   - Square
   - RoundRect
   - Triangle
   - Circle
-  - Circle2
   - Extinguisher
   m_Tag: UI
   m_IsVariant: 0
