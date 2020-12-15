@@ -71,7 +71,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -143,8 +143,8 @@ TextureImporter:
       name: Char1_Head
       rect:
         serializedVersion: 2
-        x: 94
-        y: 270
+        x: 144
+        y: 269
         width: 64
         height: 75
       alignment: 0
@@ -476,8 +476,8 @@ TextureImporter:
       name: Char1_R_Arm
       rect:
         serializedVersion: 2
-        x: 9
-        y: 142
+        x: 35
+        y: 140
         width: 53
         height: 110
       alignment: 0
@@ -976,8 +976,8 @@ TextureImporter:
       name: Char1_Body
       rect:
         serializedVersion: 2
-        x: 79
-        y: 136
+        x: 129
+        y: 137
         width: 78
         height: 118
       alignment: 0
@@ -1314,8 +1314,8 @@ TextureImporter:
       name: Char1_L_Arm
       rect:
         serializedVersion: 2
-        x: 176
-        y: 140
+        x: 252
+        y: 139
         width: 69
         height: 102
       alignment: 0
@@ -1759,8 +1759,8 @@ TextureImporter:
       name: Char1_R_Leg
       rect:
         serializedVersion: 2
-        x: 50
-        y: 10
+        x: 99
+        y: 9
         width: 47
         height: 107
       alignment: 0
@@ -2198,7 +2198,7 @@ TextureImporter:
       name: Char1_L_Leg
       rect:
         serializedVersion: 2
-        x: 127
+        x: 178
         y: 15
         width: 46
         height: 90

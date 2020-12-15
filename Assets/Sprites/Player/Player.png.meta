@@ -20,6 +20,15 @@ TextureImporter:
   - first:
       213: -4529042392078601758
     second: Player_L_Leg
+  - first:
+      213: -7446026091647042388
+    second: ExtinguisherHose_Hidden
+  - first:
+      213: 5938012242645255967
+    second: ExtinguisherBalloon
+  - first:
+      213: -4245738604243887485
+    second: ExtinhuisherHose_Ready
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -50,7 +59,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -122,10 +131,10 @@ TextureImporter:
       name: Player_Head
       rect:
         serializedVersion: 2
-        x: 94
-        y: 270
-        width: 64
-        height: 75
+        x: 348
+        y: 360
+        width: 68
+        height: 76
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -455,8 +464,8 @@ TextureImporter:
       name: Player_R_Arm
       rect:
         serializedVersion: 2
-        x: 9
-        y: 142
+        x: 264
+        y: 230
         width: 53
         height: 110
       alignment: 0
@@ -974,8 +983,8 @@ TextureImporter:
       name: Player_Body
       rect:
         serializedVersion: 2
-        x: 79
-        y: 136
+        x: 333
+        y: 227
         width: 78
         height: 118
       alignment: 0
@@ -1312,8 +1321,8 @@ TextureImporter:
       name: Player_L_Arm
       rect:
         serializedVersion: 2
-        x: 176
-        y: 140
+        x: 431
+        y: 230
         width: 69
         height: 102
       alignment: 0
@@ -1802,8 +1811,8 @@ TextureImporter:
       name: Player_R_Leg
       rect:
         serializedVersion: 2
-        x: 50
-        y: 10
+        x: 305
+        y: 100
         width: 47
         height: 107
       alignment: 0
@@ -2241,8 +2250,8 @@ TextureImporter:
       name: Player_L_Leg
       rect:
         serializedVersion: 2
-        x: 127
-        y: 15
+        x: 382
+        y: 105
         width: 46
         height: 90
       alignment: 0
@@ -2667,6 +2676,69 @@ TextureImporter:
         boneIndex[1]: 0
         boneIndex[2]: 0
         boneIndex[3]: 0
+    - serializedVersion: 2
+      name: ExtinguisherHose_Hidden
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 253
+        width: 80
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cac761b68b66aa890800000000000000
+      internalID: -7446026091647042388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExtinguisherBalloon
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 260
+        width: 56
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f178aca7cae086250800000000000000
+      internalID: 5938012242645255967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExtinhuisherHose_Ready
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 109
+        width: 201
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38a51ecfb3b1415c0800000000000000
+      internalID: -4245738604243887485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
