@@ -3,12 +3,12 @@ using UnityEngine.EventSystems;
 
 public class CustomButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public event System.Action Pressed;
+    public bool Pressed { get; private set; }
     public bool Held { get; private set; }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Pressed?.Invoke();
+        Pressed = true;
         Held = true;
     }
 
@@ -17,5 +17,14 @@ public class CustomButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         Held = false;
     }
 
-    private void OnDisable() => Held = false;
+    private void LateUpdate() 
+    {
+        Pressed = false;    
+    }
+
+    private void OnDisable() 
+    { 
+        Pressed = false;
+        Held = false;
+    }
 }

@@ -32,16 +32,6 @@ public class PlayerController : MonoBehaviour
     private bool isJumping;
     private float jumpTimer;
 
-    public void TryJump()
-    {
-        if(!aim.IsAiming && (IsGrounded || IsHoldingLedge))
-        {
-            isJumping = true;
-            newVelocity.y = jumpForce;
-            rb.velocity = newVelocity;
-        }
-    }
-
     private void Awake()
     {
         myTransform = transform;
@@ -51,15 +41,10 @@ public class PlayerController : MonoBehaviour
         defaultGravity = rb.gravityScale;
     } 
 
-    private void OnEnable() 
-    {
-        InputManager.JumpPressed += TryJump;
-        FlipX = false;
-    }
+    private void OnEnable() => FlipX = false;
 
     private void OnDisable() 
     { 
-        InputManager.JumpPressed -= TryJump;
         newVelocity.Set(0, 0);
         rb.velocity = newVelocity;
     }
@@ -75,33 +60,30 @@ public class PlayerController : MonoBehaviour
                 isJumping = false;
             }
         }
-        newVelocity.y = rb.velocity.y;
-        bool isGrounded = IsGrounded;
         CheckInput();
-        rb.sharedMaterial = IsMoving || !isGrounded ? noFriction : fullFriction;
-        if(isGrounded) CheckSlope();
-        else CheckLedgeGrab();
     }
 
     private void FixedUpdate() 
     {
+        newVelocity.y = rb.velocity.y;
+        bool isGrounded = IsGrounded;
+        rb.sharedMaterial = IsMoving || !isGrounded ? noFriction : fullFriction;
+        if(!isGrounded) CheckLedgeGrab();
+        else if(!isJumping) CheckSlope();
         rb.velocity = newVelocity;
     }
 
     private void CheckSlope()
     {
-        if(!isJumping)
+        Vector2 rayOrigin = new Vector2(bc.bounds.center.x, bc.bounds.center.y - bc.size.y / 2);
+        RaycastHit2D hitDown = Physics2D.Raycast(rayOrigin, Vector2.down, 1, whatIsGround);
+        if(Vector2.Angle(hitDown.normal, Vector2.up) > 0)
         {
-            Vector2 rayOrigin = new Vector2(bc.bounds.center.x, bc.bounds.center.y - bc.size.y / 2);
-            RaycastHit2D hitDown = Physics2D.Raycast(rayOrigin, Vector2.down, 1, whatIsGround);
-            if(Vector2.Angle(hitDown.normal, Vector2.up) > 0)
-            {
-                rayOrigin.y += 0.2f;
-                RaycastHit2D hitFront = Physics2D.Raycast(rayOrigin, myTransform.right, 1, whatIsGround);
-                float groundNormalDot = Vector2.Dot(hitDown.normal, myTransform.right);
-                if(groundNormalDot < 0 && !hitFront) newVelocity.y = 0;
-                else newVelocity = -Vector2.Perpendicular(hitDown.normal) * newVelocity.x;
-            }
+            rayOrigin.y += 0.2f;
+            RaycastHit2D hitFront = Physics2D.Raycast(rayOrigin, myTransform.right, 1, whatIsGround);
+            float groundNormalDot = Vector2.Dot(hitDown.normal, myTransform.right);
+            if(groundNormalDot < 0 && !hitFront) newVelocity.y = 0;
+            else newVelocity = -Vector2.Perpendicular(hitDown.normal) * newVelocity.x;
         }
     }
 
@@ -134,6 +116,12 @@ public class PlayerController : MonoBehaviour
         {
             newVelocity.x = InputManager.Horizontal * speed;
             if(InputManager.Horizontal != 0) FlipX = InputManager.Horizontal < 0;
+            if(InputManager.JumpPressed && (IsGrounded || IsHoldingLedge)) 
+            {
+                isJumping = true;
+                newVelocity.y = jumpForce;
+                rb.velocity = newVelocity;
+            }
         }
     }
 }

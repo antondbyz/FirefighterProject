@@ -4,6 +4,7 @@ public class PlayerHit : MonoBehaviour
 {
     [SerializeField] private float hitDistance = 1;
     [SerializeField] private float hitForce = 300;
+    [SerializeField] private LayerMask whatCanHit = new LayerMask();
 
     private Player player;
 
@@ -12,17 +13,16 @@ public class PlayerHit : MonoBehaviour
         player = GetComponent<Player>();    
     }
 
-    private void OnEnable() => InputManager.HitPressed += Hit;
-
-    private void OnDisable() => InputManager.HitPressed -= Hit;
-
-    private void Hit()
+    private void Update() 
     {
-        RaycastHit2D hit = Physics2D.Raycast(player.ColliderCenter, player.Direction, hitDistance);
-        if(hit)
+        if(InputManager.HitPressed)
         {
-            BreakableObject breakable = hit.collider.GetComponent<BreakableObject>();
-            if(breakable != null) breakable.Break(player.Direction, hitForce);
-        }
+            RaycastHit2D hit = Physics2D.Raycast(player.ColliderCenter, player.Direction, hitDistance, whatCanHit);
+            if(hit)
+            {
+                BreakableObject breakable = hit.collider.GetComponent<BreakableObject>();
+                if(breakable != null) breakable.Break(player.Direction, hitForce);
+            }
+        }    
     }
 }
