@@ -40,4 +40,9 @@ public class PlayerLifes : MonoBehaviour
     {
         if(other.CompareTag("DeathZone")) Die();    
     }
+
+    private void OnCollisionEnter2D(Collision2D other) 
+    {
+        if(other.gameObject.CompareTag("DeathZone")) Die();    
+    }
 }
