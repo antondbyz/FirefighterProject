@@ -5410,7 +5410,7 @@ PrefabInstance:
     - target: {fileID: 3193529570586023416, guid: c83c897c25aed754abb431bad0422f93,
         type: 3}
       propertyPath: currentHeat
-      value: 24.75
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3193529570586023417, guid: c83c897c25aed754abb431bad0422f93,
         type: 3}

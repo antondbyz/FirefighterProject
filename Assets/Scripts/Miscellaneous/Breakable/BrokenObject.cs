@@ -12,7 +12,6 @@ public class BrokenObject : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
-        if(destroyOnCollision)
-            Destroy(gameObject);
+        if(destroyOnCollision) Destroy(gameObject);
     }
 }

@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 654d23f4c89638541b3b67ffd55e8a9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brokenVersion: {fileID: 8390489643527156725, guid: 6cfe4093514aa0f4ebe9e7daa3869b14,
+  brokenVersion: {fileID: 1631682096306412983, guid: 6cfe4093514aa0f4ebe9e7daa3869b14,
     type: 3}
   triggerCheck: 1
   collisionCheck: 0

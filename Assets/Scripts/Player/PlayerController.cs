@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PhysicsMaterial2D noFriction = null;
     [SerializeField] private PhysicsMaterial2D fullFriction = null;
     [SerializeField] private LayerMask whatIsGround = new LayerMask();
+    [SerializeField] private float hangTime = 0.1f;
     
     private Transform myTransform;
     private Rigidbody2D rb;
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
     private float defaultGravity;
     private bool isJumping;
     private float jumpTimer;
+    private float hangTimer;
 
     private void Awake()
     {
@@ -60,16 +62,24 @@ public class PlayerController : MonoBehaviour
                 isJumping = false;
             }
         }
+        newVelocity.y = rb.velocity.y;
         CheckInput();
+        bool isGrounded = IsGrounded;
+        rb.sharedMaterial = IsMoving || !isGrounded ? noFriction : fullFriction;
+        if(isGrounded)
+        {
+            if(!isJumping) CheckSlope();
+            hangTimer = hangTime;
+        }
+        else
+        {
+            CheckLedgeGrab();
+            if(hangTimer > 0 && !IsHoldingLedge) hangTimer -= Time.deltaTime;
+        }
     }
 
     private void FixedUpdate() 
     {
-        newVelocity.y = rb.velocity.y;
-        bool isGrounded = IsGrounded;
-        rb.sharedMaterial = IsMoving || !isGrounded ? noFriction : fullFriction;
-        if(!isGrounded) CheckLedgeGrab();
-        else if(!isJumping) CheckSlope();
         rb.velocity = newVelocity;
     }
 
@@ -96,6 +106,7 @@ public class PlayerController : MonoBehaviour
         IsHoldingLedge = !isJumping && bottomHit && (!upperHit || IsHoldingLedge);
         if(IsHoldingLedge) 
         {
+            hangTimer = hangTime;
             newVelocity.Set(0, 0);
             rb.velocity = newVelocity;
             rb.gravityScale = 0;
@@ -116,7 +127,7 @@ public class PlayerController : MonoBehaviour
         {
             newVelocity.x = InputManager.Horizontal * speed;
             if(InputManager.Horizontal != 0) FlipX = InputManager.Horizontal < 0;
-            if(InputManager.JumpPressed && (IsGrounded || IsHoldingLedge)) 
+            if(InputManager.JumpPressed && hangTimer > 0) 
             {
                 isJumping = true;
                 newVelocity.y = jumpForce;
