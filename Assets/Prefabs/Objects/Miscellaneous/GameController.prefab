@@ -6883,7 +6883,6 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1
-  jumpTime: 0.2
   hangTime: 0.1
 --- !u!114 &3464866832256084290
 MonoBehaviour:
