@@ -72,11 +72,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 961210159572563268, guid: d762c544ede626d4a81f0d272528c693, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ae9599a78fcdfe54bb44d5591ef8930a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 2
+  m_DrawMode: 0
   m_Size: {x: 6.2, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -96,18 +96,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.07}
   m_SpriteTilingProperty:
-    border: {x: 0.25, y: 0, z: 0.25, w: 0}
+    border: {x: 0.34375, y: 0, z: 0.34375, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 6.125, y: 1}
     newSize: {x: 6.2, y: 1}
     adaptiveTilingThreshold: 0.5
-    drawMode: 2
+    drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.2, y: 1}
+  m_Size: {x: 6, y: 0.85}
   m_EdgeRadius: 0
 --- !u!1 &6259763913255915452
 GameObject:
@@ -180,7 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 654d23f4c89638541b3b67ffd55e8a9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brokenVersion: {fileID: 1631682096306412983, guid: 6cfe4093514aa0f4ebe9e7daa3869b14,
+  brokenVersion: {fileID: 6386691859077189533, guid: 6cfe4093514aa0f4ebe9e7daa3869b14,
     type: 3}
+  linkedFire: {fileID: 0}
   triggerCheck: 1
   collisionCheck: 0

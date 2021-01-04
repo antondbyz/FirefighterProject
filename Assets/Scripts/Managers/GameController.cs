@@ -26,6 +26,7 @@ public class GameController : MonoBehaviour
 
     public void CompleteLevel()
     {
+        player.gameObject.SetActive(false);
         IsPaused = true;
         levelCompleted.Invoke();
     } 

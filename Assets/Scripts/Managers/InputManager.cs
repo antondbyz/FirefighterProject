@@ -26,8 +26,8 @@ public class InputManager : MonoBehaviour
     {
         Horizontal = Input.GetAxisRaw("Horizontal");
         ExtinguishHeld = Input.GetKey(KeyCode.E);
-        JumpPressed = Input.GetKeyDown(KeyCode.UpArrow);
-        HitPressed = Input.GetKeyDown(KeyCode.H);
+        JumpPressed = Input.GetKeyDown(KeyCode.W);
+        HitPressed = Input.GetKeyDown(KeyCode.F);
     }
 
     private void ProcessCustomButtonsInput()

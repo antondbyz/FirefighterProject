@@ -4,21 +4,27 @@ public class BreakableObject : MonoBehaviour
 {
     public event System.Action Broken;
 
-    [SerializeField] private Rigidbody2D brokenVersion = null;
+    [SerializeField] private BrokenObject brokenVersion = null;
+    [SerializeField] private Transform linkedFire = null;
     [SerializeField] private bool triggerCheck = false;
     [SerializeField] private bool collisionCheck = false;
 
     public void Break()
     {
-        Instantiate(brokenVersion, transform.position, Quaternion.identity);
+        BrokenObject newBrokenObj = Instantiate(brokenVersion, transform.position, Quaternion.identity);
+        if(linkedFire != null)
+        {
+            linkedFire.SetParent(newBrokenObj.transform, true);
+            newBrokenObj.LinkedFire = linkedFire;
+        }
         Broken?.Invoke();
         Destroy(gameObject);
     }
 
-    public void Break(Vector2 direction, float force)
+    public void Break(Vector2 force)
     {
-        Rigidbody2D rb = Instantiate<Rigidbody2D>(brokenVersion, transform.position, Quaternion.identity);
-        rb.AddForce(direction * force);
+        BrokenObject newBrokenObj = Instantiate(brokenVersion, transform.position, Quaternion.identity);
+        newBrokenObj.GetComponent<Rigidbody2D>().AddForce(force);
         Broken?.Invoke();
         Destroy(gameObject);
     }

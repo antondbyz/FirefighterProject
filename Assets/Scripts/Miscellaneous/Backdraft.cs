@@ -31,10 +31,10 @@ public class Backdraft : MonoBehaviour
     {
         smoke.Play();
         yield return new WaitForSeconds(delayBeforeExplosion);
-        smoke.Stop();
         ps.Play();
         coll.enabled = true;
         yield return new WaitForSeconds(duration);
+        smoke.Stop();
         ps.Stop();
         coll.enabled = false;
         Destroy(gameObject, 2);

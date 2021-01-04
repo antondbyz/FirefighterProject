@@ -21,7 +21,7 @@ public class PlayerHit : MonoBehaviour
             if(hit)
             {
                 BreakableObject breakable = hit.collider.GetComponent<BreakableObject>();
-                if(breakable != null) breakable.Break(player.Direction, hitForce);
+                if(breakable != null) breakable.Break(player.Direction * hitForce);
             }
         }    
     }
