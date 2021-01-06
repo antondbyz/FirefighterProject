@@ -62,6 +62,8 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: f8f0c771c4a588d47b07e75097f55e45, type: 3}
   - {fileID: 21300000, guid: 965dccc2aa734ed4f908ea4aedb58a8e, type: 3}
+  - {fileID: 197298030915183396, guid: d762c544ede626d4a81f0d272528c693, type: 3}
+  - {fileID: 5661934994238220498, guid: d762c544ede626d4a81f0d272528c693, type: 3}
   - {fileID: -4549087368393172227, guid: d762c544ede626d4a81f0d272528c693, type: 3}
   - {fileID: 6163353665255179149, guid: d762c544ede626d4a81f0d272528c693, type: 3}
   - {fileID: 8527704022205132460, guid: d762c544ede626d4a81f0d272528c693, type: 3}
@@ -77,6 +79,8 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - BrokenDoor
   - Door
+  - Building_6
+  - Building_7
   - Building_4
   - Building_5
   - Building_2
