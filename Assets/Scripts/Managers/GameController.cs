@@ -24,12 +24,15 @@ public class GameController : MonoBehaviour
     private bool isPaused;
     private WaitForSeconds delay = new WaitForSeconds(1);
 
+    public static void DestroyWithDelay(GameObject go, float delay) => Destroy(go, delay);
+
     public void CompleteLevel()
     {
         player.gameObject.SetActive(false);
         IsPaused = true;
         levelCompleted.Invoke();
     } 
+    
     private void Awake() 
     {
         if(Instance == null) Instance = this;

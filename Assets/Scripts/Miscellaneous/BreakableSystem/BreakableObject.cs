@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class BreakableObject : MonoBehaviour 
@@ -6,20 +7,8 @@ public class BreakableObject : MonoBehaviour
 
     [SerializeField] private BrokenObject brokenVersion = null;
     [SerializeField] private Transform linkedFire = null;
-    [SerializeField] private bool triggerCheck = false;
-    [SerializeField] private bool collisionCheck = false;
-
-    public void Break()
-    {
-        BrokenObject newBrokenObj = Instantiate(brokenVersion, transform.position, Quaternion.identity);
-        if(linkedFire != null)
-        {
-            linkedFire.SetParent(newBrokenObj.transform, true);
-            newBrokenObj.LinkedFire = linkedFire;
-        }
-        Broken?.Invoke();
-        Destroy(gameObject);
-    }
+    [SerializeField] private float delay = 0;
+    [SerializeField] private ParticleSystem breakingEffect = null;
 
     public void Break(Vector2 force)
     {
@@ -31,11 +20,26 @@ public class BreakableObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        if(triggerCheck && other.CompareTag("Player")) Break();    
+        if(other.CompareTag("Player")) StartCoroutine(Break());    
     }
 
-    private void OnCollisionEnter2D(Collision2D other) 
+    private IEnumerator Break()
     {
-        if(collisionCheck && other.gameObject.CompareTag("Player")) Break();    
+        ParticleSystem newEffect = null;
+        if(breakingEffect != null) newEffect = Instantiate(breakingEffect, transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(delay);
+        if(newEffect != null)
+        {
+            newEffect.Stop();
+            GameController.DestroyWithDelay(newEffect.gameObject, 2);
+        }
+        BrokenObject newBrokenObj = Instantiate(brokenVersion, transform.position, Quaternion.identity);
+        if(linkedFire != null)
+        {
+            linkedFire.SetParent(newBrokenObj.transform, true);
+            newBrokenObj.LinkedFire = linkedFire;
+        }
+        Broken?.Invoke();
+        Destroy(gameObject);
     }
 }
