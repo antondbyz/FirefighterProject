@@ -184,5 +184,5 @@ MonoBehaviour:
     type: 3}
   linkedFire: {fileID: 0}
   delay: 0.5
-  breakingEffect: {fileID: 6429968776856863602, guid: 59136cd300be9894b85737e47106963f,
+  breakingEffect: {fileID: 222291654923540595, guid: c22f488591be45347be4717314644fc4,
     type: 3}

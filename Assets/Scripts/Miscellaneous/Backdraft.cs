@@ -1,41 +1,50 @@
 ﻿using System.Collections;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class Backdraft : MonoBehaviour
 {
     [SerializeField] private BreakableObject breakableToListen = null;
-    [SerializeField] private ParticleSystem smoke = null;
+    [SerializeField] private ParticleSystem backdraftSmoke = null;
+    [SerializeField] private ParticleSystem smokeInRoom = null;
+    [SerializeField] private ParticleSystem[] fireInRoom = null;
     [SerializeField] private float delayBeforeExplosion = 1;
     [SerializeField] private float duration = 2;
 
-    private ParticleSystem ps;
+    private ParticleSystem backdraft;
     private Collider2D coll;
 
     private void Awake() 
     {
-        ps = GetComponent<ParticleSystem>();
+        backdraft = GetComponent<ParticleSystem>();
         coll = GetComponent<Collider2D>();
         coll.enabled = false;
+        for(int i = 0; i < fireInRoom.Length; i++) 
+        {
+            fireInRoom[i].gameObject.SetActive(false);
+            MainModule main = fireInRoom[i].main;
+            main.prewarm = false;
+        }
     }
 
     private void OnEnable() => breakableToListen.Broken += Explode;
 
     private void OnDisable() => breakableToListen.Broken -= Explode;
 
-    private void Explode()
-    {
-        StartCoroutine(Exploding());
-    }
+    private void Explode() => StartCoroutine(Exploding());
 
     private IEnumerator Exploding()
     {
-        smoke.Play();
+        backdraftSmoke.Play();
         yield return new WaitForSeconds(delayBeforeExplosion);
-        ps.Play();
+        for(int i = 0; i < fireInRoom.Length; i++) fireInRoom[i].gameObject.SetActive(true);
+        backdraft.Play();
         coll.enabled = true;
         yield return new WaitForSeconds(duration);
-        smoke.Stop();
-        ps.Stop();
+        smokeInRoom.Stop();
+        GameController.DestroyWithDelay(smokeInRoom.gameObject, smokeInRoom.main.startLifetimeMultiplier);
+        backdraftSmoke.Stop();
+        backdraft.Stop();
         coll.enabled = false;
         Destroy(gameObject, 2);
     }

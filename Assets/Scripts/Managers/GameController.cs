@@ -72,5 +72,5 @@ public class GameController : MonoBehaviour
         yield return delay;
         player.MoveToCurrentCheckpoint();
         player.gameObject.SetActive(true);
-    }    
+    }   
 }

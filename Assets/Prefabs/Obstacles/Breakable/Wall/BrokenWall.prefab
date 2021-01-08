@@ -204,5 +204,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifetime: 2
   destroyOnCollision: 1
-  destroyEffect: {fileID: 4564672096919998660, guid: 417e486494692294e98235d6bb1d6491,
+  destroyEffect: {fileID: 219871208230799944, guid: f04072d72bc0a864ca3c7212ab35c501,
     type: 3}
