@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3193529570586023417}
   - component: {fileID: 3193529570586023416}
   - component: {fileID: 3193529570586023415}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fire
   m_TagString: DeathZone
   m_Icon: {fileID: 0}

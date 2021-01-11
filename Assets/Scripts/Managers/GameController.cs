@@ -18,9 +18,8 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private UnityEvent levelFailed = null;
     [SerializeField] private UnityEvent levelCompleted = null;
-
-    private PlayerLifes playerLifes;
-    private Player player;
+    [SerializeField] private Player player = null;
+    
     private bool isPaused;
     private WaitForSeconds delay = new WaitForSeconds(1);
 
@@ -38,19 +37,17 @@ public class GameController : MonoBehaviour
         if(Instance == null) Instance = this;
         else Debug.LogWarning("More than one instance of GameController!");
 
-        player = transform.GetChild(0).GetComponent<Player>();
-        playerLifes = player.GetComponent<PlayerLifes>();
         IsPaused = false;
     }
 
-    private void OnEnable() => playerLifes.Died += PlayerDied;
+    private void OnEnable() => player.Died += PlayerDied;
 
-    private void OnDisable() => playerLifes.Died -= PlayerDied;
+    private void OnDisable() => player.Died -= PlayerDied;
 
     private void PlayerDied()
     {
         player.gameObject.SetActive(false);
-        if(playerLifes.LifesLeft > 0)
+        if(player.LifesLeft > 0)
         {
             StartCoroutine(MoveCharacterToCurrentCheckpoint());
         }

@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class BreakableObject : MonoBehaviour 
@@ -7,7 +6,6 @@ public class BreakableObject : MonoBehaviour
 
     [SerializeField] private BrokenObject brokenVersion = null;
     [SerializeField] private Transform linkedFire = null;
-    [SerializeField] private float delay = 0;
     [SerializeField] private ParticleSystem breakingEffect = null;
 
     public void Break(Vector2 force)
@@ -20,17 +18,15 @@ public class BreakableObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        if(other.CompareTag("Player")) StartCoroutine(Break());    
+        if(other.CompareTag("Player")) Break();    
     }
 
-    private IEnumerator Break()
+    private void Break()
     {
         ParticleSystem newEffect = null;
-        if(breakingEffect != null) newEffect = Instantiate(breakingEffect, transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(delay);
-        if(newEffect != null)
+        if(breakingEffect != null) 
         {
-            newEffect.Stop();
+            newEffect = Instantiate(breakingEffect, transform.position, Quaternion.identity);
             GameController.DestroyWithDelay(newEffect.gameObject, 2);
         }
         BrokenObject newBrokenObj = Instantiate(brokenVersion, transform.position, Quaternion.identity);
