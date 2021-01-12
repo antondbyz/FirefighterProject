@@ -20,11 +20,13 @@ public class Extinguisher : MonoBehaviour
     [SerializeField] private float distance = 1;
     [SerializeField] private float efficiency = 1;
     [SerializeField] private LayerMask interactsWith = new LayerMask();
+    [SerializeField] private LayerMask whatIsObstacle = new LayerMask();
 
     private Transform myTransform;
     private ParticleSystem ps;
     private PlayerAim aim;
     private bool isTurnedOn;
+    private RaycastHit2D[] results = new RaycastHit2D[5];
 
     private void Awake() 
     {
@@ -37,7 +39,7 @@ public class Extinguisher : MonoBehaviour
 
     private void Update() 
     {
-        IsTurnedOn = InputManager.ExtinguishHeld && aim.IsAiming;  
+        IsTurnedOn = aim.IsAiming;  
     }
 
     private IEnumerator Extinguishing()
@@ -48,11 +50,15 @@ public class Extinguisher : MonoBehaviour
             yield return delay;
             if(IsTurnedOn)
             {
-                RaycastHit2D hit = Physics2D.Raycast(myTransform.position, myTransform.right, distance, interactsWith);
-                if(hit) 
+                Physics2D.RaycastNonAlloc(myTransform.position, myTransform.right, results, distance, interactsWith);
+                for(int i = 0; i < results.Length; i++) 
                 {
-                    Fire fire = hit.collider.GetComponent<Fire>();
-                    if(fire != null) fire.CurrentHeat -= efficiency;
+                    if(results[i])
+                    {
+                        if((whatIsObstacle.value & 1 << results[i].collider.gameObject.layer) > 0) break;
+                        Fire fire = results[i].collider.GetComponent<Fire>();
+                        if(fire != null) fire.CurrentHeat -= efficiency;
+                    }
                 }
             }
         }   

@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             CheckLedgeGrab();
-            if(hangTimer > 0 && !IsHoldingLedge) hangTimer -= Time.deltaTime;
+            if(hangTimer > 0) hangTimer -= Time.deltaTime;
         }
     }
 
@@ -126,7 +126,6 @@ public class PlayerController : MonoBehaviour
         if(!aim.IsAiming)
         {
             newVelocity.x = InputManager.Horizontal * speed;
-            if(InputManager.Horizontal != 0) FlipX = InputManager.Horizontal < 0;
             if(InputManager.JumpPressed && hangTimer > 0) 
             {
                 isJumping = true;
@@ -134,5 +133,6 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = newVelocity;
             }
         }
+        if(InputManager.Horizontal != 0) FlipX = InputManager.Horizontal < 0;
     }
 }

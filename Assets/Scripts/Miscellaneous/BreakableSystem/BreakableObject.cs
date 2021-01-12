@@ -23,10 +23,9 @@ public class BreakableObject : MonoBehaviour
 
     private void Break()
     {
-        ParticleSystem newEffect = null;
         if(breakingEffect != null) 
         {
-            newEffect = Instantiate(breakingEffect, transform.position, Quaternion.identity);
+            ParticleSystem newEffect = Instantiate(breakingEffect, transform.position, Quaternion.identity);
             GameController.DestroyWithDelay(newEffect.gameObject, 2);
         }
         BrokenObject newBrokenObj = Instantiate(brokenVersion, transform.position, Quaternion.identity);
