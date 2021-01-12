@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
         {
             value = Mathf.Clamp(value, 0, MAX_LIFES);
             lifesLeft = value;
-            lifesLeftText.text = "Lifes: " + lifesLeft;
+            lifesLeftText.text = lifesLeft.ToString();
         }
     }
     public int VictimsSaved

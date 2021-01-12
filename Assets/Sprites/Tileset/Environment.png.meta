@@ -4,28 +4,28 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -1370150288747598966
-    second: Building_0
+    second: Environment_0
   - first:
       213: 961210159572563268
-    second: Building_1
+    second: Environment_1
   - first:
       213: 8527704022205132460
-    second: Building_2
+    second: Environment_2
   - first:
       213: -1706636390946437097
-    second: Building_3
+    second: Environment_3
   - first:
       213: -4549087368393172227
-    second: Building_4
+    second: Environment_4
   - first:
       213: 6163353665255179149
-    second: Building_5
+    second: Environment_5
   - first:
       213: 197298030915183396
-    second: Building_6
+    second: Environment_6
   - first:
       213: 5661934994238220498
-    second: Building_7
+    second: Environment_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -67,7 +67,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
@@ -125,7 +125,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Building_0
+      name: Environment_0
       rect:
         serializedVersion: 2
         x: 0
@@ -149,7 +149,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Building_1
+      name: Environment_1
       rect:
         serializedVersion: 2
         x: 32
@@ -170,7 +170,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Building_2
+      name: Environment_2
       rect:
         serializedVersion: 2
         x: 64
@@ -191,7 +191,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Building_3
+      name: Environment_3
       rect:
         serializedVersion: 2
         x: 96
@@ -212,7 +212,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Building_4
+      name: Environment_4
       rect:
         serializedVersion: 2
         x: 0
@@ -233,7 +233,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Building_5
+      name: Environment_5
       rect:
         serializedVersion: 2
         x: 32
@@ -252,6 +252,48 @@ TextureImporter:
       bones: []
       spriteID: d8303a2f081a88550800000000000000
       internalID: 6163353665255179149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Environment_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42365978381fcb200800000000000000
+      internalID: 197298030915183396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Environment_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d82ce801eb339e40800000000000000
+      internalID: 5661934994238220498
       vertices: []
       indices: 
       edges: []

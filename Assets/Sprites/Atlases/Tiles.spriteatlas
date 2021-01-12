@@ -15,7 +15,7 @@ SpriteAtlas:
       compressionQuality: 50
       maxTextureSize: 2048
       textureCompression: 0
-      filterMode: 1
+      filterMode: 0
       generateMipMaps: 0
       readable: 0
       crunchedCompression: 0
@@ -23,10 +23,10 @@ SpriteAtlas:
     platformSettings:
     - serializedVersion: 3
       m_BuildTarget: DefaultTexturePlatform
-      m_MaxTextureSize: 128
+      m_MaxTextureSize: 256
       m_ResizeAlgorithm: 0
       m_TextureFormat: -1
-      m_TextureCompression: 1
+      m_TextureCompression: 3
       m_CompressionQuality: 50
       m_CrunchedCompression: 0
       m_AllowsAlphaSplitting: 0
@@ -39,7 +39,7 @@ SpriteAtlas:
       blockOffset: 1
       allowAlphaSplitting: 0
       enableRotation: 1
-      enableTightPacking: 1
+      enableTightPacking: 0
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: c4abe4bd3efdac54ebe635fbb8890b44, type: 3}
@@ -48,22 +48,34 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: -4549087368393172227, guid: d762c544ede626d4a81f0d272528c693, type: 3}
+  - {fileID: 5661934994238220498, guid: d762c544ede626d4a81f0d272528c693, type: 3}
+  - {fileID: 197298030915183396, guid: d762c544ede626d4a81f0d272528c693, type: 3}
   - {fileID: 6163353665255179149, guid: d762c544ede626d4a81f0d272528c693, type: 3}
-  - {fileID: 8527704022205132460, guid: d762c544ede626d4a81f0d272528c693, type: 3}
+  - {fileID: -4549087368393172227, guid: d762c544ede626d4a81f0d272528c693, type: 3}
   - {fileID: -1706636390946437097, guid: d762c544ede626d4a81f0d272528c693, type: 3}
-  - {fileID: -1370150288747598966, guid: d762c544ede626d4a81f0d272528c693, type: 3}
+  - {fileID: 8527704022205132460, guid: d762c544ede626d4a81f0d272528c693, type: 3}
   - {fileID: 961210159572563268, guid: d762c544ede626d4a81f0d272528c693, type: 3}
-  - {fileID: 8085076639356686101, guid: 7d4778afc85eeca4eba15acd9855fbd4, type: 3}
-  - {fileID: 448871502345040690, guid: 7d4778afc85eeca4eba15acd9855fbd4, type: 3}
+  - {fileID: -1370150288747598966, guid: d762c544ede626d4a81f0d272528c693, type: 3}
+  - {fileID: -8411408698171821824, guid: d2f8b6f8074a67e4fbe83fa22fe7c584, type: 3}
+  - {fileID: -3873863294293496291, guid: d2f8b6f8074a67e4fbe83fa22fe7c584, type: 3}
+  - {fileID: 5495543779057975736, guid: d2f8b6f8074a67e4fbe83fa22fe7c584, type: 3}
+  - {fileID: -764894890684950028, guid: d2f8b6f8074a67e4fbe83fa22fe7c584, type: 3}
+  - {fileID: 3282590403682790581, guid: d2f8b6f8074a67e4fbe83fa22fe7c584, type: 3}
+  - {fileID: 7883662231334772692, guid: d2f8b6f8074a67e4fbe83fa22fe7c584, type: 3}
   m_PackedSpriteNamesToIndex:
-  - Building_4
-  - Building_5
-  - Building_2
-  - Building_3
-  - Building_0
-  - Building_1
-  - Outside_1
-  - Outside_0
+  - Environment_7
+  - Environment_6
+  - Environment_5
+  - Environment_4
+  - Environment_3
+  - Environment_2
+  - Environment_1
+  - Environment_0
+  - EnvironmentDetails_5
+  - EnvironmentDetails_4
+  - EnvironmentDetails_1
+  - EnvironmentDetails_0
+  - EnvironmentDetails_3
+  - EnvironmentDetails_2
   m_Tag: Tiles
   m_IsVariant: 0

@@ -1,13 +1,25 @@
 fileFormatVersion: 2
-guid: 7d4778afc85eeca4eba15acd9855fbd4
+guid: d2f8b6f8074a67e4fbe83fa22fe7c584
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 448871502345040690
-    second: Outside_0
+      213: -764894890684950028
+    second: EnvironmentDetails_0
   - first:
-      213: 8085076639356686101
-    second: Outside_1
+      213: 5495543779057975736
+    second: EnvironmentDetails_1
+  - first:
+      213: 7883662231334772692
+    second: EnvironmentDetails_2
+  - first:
+      213: 3282590403682790581
+    second: EnvironmentDetails_3
+  - first:
+      213: -3873863294293496291
+    second: EnvironmentDetails_4
+  - first:
+      213: -8411408698171821824
+    second: EnvironmentDetails_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -69,7 +81,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 128
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 3
@@ -81,7 +93,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 128
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 3
@@ -93,7 +105,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 128
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 3
@@ -107,11 +119,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Outside_0
+      name: EnvironmentDetails_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
+        y: 224
         width: 32
         height: 32
       alignment: 0
@@ -121,18 +133,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 233721fc046ba3600800000000000000
-      internalID: 448871502345040690
+      spriteID: 4f95636462c8265f0800000000000000
+      internalID: -764894890684950028
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Outside_1
+      name: EnvironmentDetails_1
       rect:
         serializedVersion: 2
         x: 32
-        y: 96
+        y: 224
         width: 32
         height: 32
       alignment: 0
@@ -142,8 +154,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51f0aaeed56f33070800000000000000
-      internalID: 8085076639356686101
+      spriteID: 8b1cb5e43f7144c40800000000000000
+      internalID: 5495543779057975736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentDetails_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4df5fdba705686d60800000000000000
+      internalID: 7883662231334772692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentDetails_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bc6e9a849a1e8d20800000000000000
+      internalID: 3282590403682790581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentDetails_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1e2633cbd54d3ac0800000000000000
+      internalID: -3873863294293496291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentDetails_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00176d4ca5ca44b80800000000000000
+      internalID: -8411408698171821824
       vertices: []
       indices: 
       edges: []
