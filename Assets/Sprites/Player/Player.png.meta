@@ -22,7 +22,7 @@ TextureImporter:
     second: Player_L_Leg
   - first:
       213: -7446026091647042388
-    second: ExtinguisherHose_Hidden
+    second: Player_6
   - first:
       213: 5938012242645255967
     second: ExtinguisherBalloon
@@ -90,7 +90,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 128
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 3
@@ -102,7 +102,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 128
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 3
@@ -114,7 +114,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 128
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 3
@@ -131,8 +131,8 @@ TextureImporter:
       name: Player_Head
       rect:
         serializedVersion: 2
-        x: 348
-        y: 360
+        x: 88
+        y: 350
         width: 68
         height: 76
       alignment: 0
@@ -464,8 +464,8 @@ TextureImporter:
       name: Player_R_Arm
       rect:
         serializedVersion: 2
-        x: 264
-        y: 230
+        x: 14
+        y: 234
         width: 53
         height: 110
       alignment: 0
@@ -983,8 +983,8 @@ TextureImporter:
       name: Player_Body
       rect:
         serializedVersion: 2
-        x: 333
-        y: 227
+        x: 81
+        y: 221
         width: 78
         height: 118
       alignment: 0
@@ -1321,8 +1321,8 @@ TextureImporter:
       name: Player_L_Arm
       rect:
         serializedVersion: 2
-        x: 431
-        y: 230
+        x: 169
+        y: 226
         width: 69
         height: 102
       alignment: 0
@@ -1811,8 +1811,8 @@ TextureImporter:
       name: Player_R_Leg
       rect:
         serializedVersion: 2
-        x: 305
-        y: 100
+        x: 52
+        y: 112
         width: 47
         height: 107
       alignment: 0
@@ -2250,8 +2250,8 @@ TextureImporter:
       name: Player_L_Leg
       rect:
         serializedVersion: 2
-        x: 382
-        y: 105
+        x: 130
+        y: 116
         width: 46
         height: 90
       alignment: 0
@@ -2676,69 +2676,6 @@ TextureImporter:
         boneIndex[1]: 0
         boneIndex[2]: 0
         boneIndex[3]: 0
-    - serializedVersion: 2
-      name: ExtinguisherHose_Hidden
-      rect:
-        serializedVersion: 2
-        x: 136
-        y: 253
-        width: 80
-        height: 144
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cac761b68b66aa890800000000000000
-      internalID: -7446026091647042388
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ExtinguisherBalloon
-      rect:
-        serializedVersion: 2
-        x: 52
-        y: 260
-        width: 56
-        height: 120
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f178aca7cae086250800000000000000
-      internalID: 5938012242645255967
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ExtinhuisherHose_Ready
-      rect:
-        serializedVersion: 2
-        x: 43
-        y: 109
-        width: 201
-        height: 103
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 38a51ecfb3b1415c0800000000000000
-      internalID: -4245738604243887485
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     physicsShape: []
     bones: []

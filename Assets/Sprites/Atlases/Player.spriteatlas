@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Player
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 256
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 3dee69e54872c9c428cf2d0f593607ee, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 41ea52b1acdd82f4d9cd403de1777f2e, type: 3}
+  - {fileID: -4709456396536258026, guid: 73ba2238de1096c47af02ae05207c1ba, type: 3}
+  - {fileID: 7364682651488144517, guid: 73ba2238de1096c47af02ae05207c1ba, type: 3}
+  - {fileID: -2311659948842064771, guid: 73ba2238de1096c47af02ae05207c1ba, type: 3}
+  - {fileID: -1182821291677670348, guid: 73ba2238de1096c47af02ae05207c1ba, type: 3}
+  - {fileID: -4529042392078601758, guid: 73ba2238de1096c47af02ae05207c1ba, type: 3}
+  - {fileID: -6287787046888575383, guid: 73ba2238de1096c47af02ae05207c1ba, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Extinguisher
+  - Player_R_Leg
+  - Player_R_Arm
+  - Player_Head
+  - Player_L_Arm
+  - Player_L_Leg
+  - Player_Body
+  m_Tag: Player
+  m_IsVariant: 0
