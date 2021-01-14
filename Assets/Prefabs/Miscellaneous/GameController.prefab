@@ -138,14 +138,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 110841882}
-  m_LocalRotation: {x: -0, y: -0, z: -0.9965118, w: 0.083451726}
-  m_LocalPosition: {x: 0.45, y: -0.1910599, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.99882734, w: 0.04841423}
+  m_LocalPosition: {x: 0.45366672, y: -0.24296108, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1398196255}
   m_Father: {fileID: 1342087854}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -170.426}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -174.45}
 --- !u!1 &165758052
 GameObject:
   m_ObjectHideFlags: 0
@@ -1785,13 +1785,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4979396982435567560}
-  m_LocalRotation: {x: 0, y: 0, z: -0.08715578, w: 0.9961947}
-  m_LocalPosition: {x: 0.2, y: 0.5, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.043619405, w: 0.9990483}
+  m_LocalPosition: {x: 0.26, y: 0.315, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5950847092380134342}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -10}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -5}
 --- !u!212 &763077690
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2476,7 +2476,7 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 1.1, y: 0, z: 0}
+    m_Position: {x: 1.2, y: 0, z: 0}
     m_Rotation: {x: 0, y: 90, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
@@ -2793,9 +2793,9 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.20117937
-          inSlope: 0.7988206
-          outSlope: 0.7988206
+          value: 0.14792421
+          inSlope: 0.8520758
+          outSlope: 0.8520758
           tangentMode: 34
           weightedMode: 0
           inWeight: 0
@@ -2803,8 +2803,8 @@ ParticleSystem:
         - serializedVersion: 3
           time: 1
           value: 1
-          inSlope: 0.7988206
-          outSlope: 0.7988206
+          inSlope: 0.8520758
+          outSlope: 0.8520758
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334

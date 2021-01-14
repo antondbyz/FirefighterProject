@@ -8,13 +8,10 @@ public class Extinguisher : MonoBehaviour
         get => isTurnedOn;
         private set
         {
-            if(isTurnedOn != value)
-            {
-                isTurnedOn = value;
-                spriteRenderer.enabled = isTurnedOn;
-                if(isTurnedOn) ps.Play();
-                else ps.Stop();
-            }
+            isTurnedOn = value;
+            spriteRenderer.enabled = isTurnedOn;
+            if(isTurnedOn) ps.Play();
+            else ps.Stop();
         }
     }
 
@@ -29,7 +26,6 @@ public class Extinguisher : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private PlayerController controller;
     private bool isTurnedOn;
-    private RaycastHit2D[] results = new RaycastHit2D[4];
 
     private void Awake() 
     {
@@ -37,14 +33,19 @@ public class Extinguisher : MonoBehaviour
         ps = GetComponent<ParticleSystem>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         controller = myTransform.parent.GetComponent<PlayerController>(); 
+        IsTurnedOn = false;
     }
 
     private void OnEnable() => StartCoroutine(Extinguishing());
 
     private void Update() 
     {
-        RaycastHit2D hit = Physics2D.Raycast(myTransform.position, myTransform.right, minDistanceToObstacle, whatIsObstacle);
-        IsTurnedOn = InputManager.ExtinguishHeld && !controller.IsMoving && controller.IsGrounded && !hit;
+        if(!IsTurnedOn && InputManager.ExtinguishHeld)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(myTransform.position, myTransform.right, minDistanceToObstacle, whatIsObstacle);
+            if(!controller.IsMoving && controller.IsGrounded && !hit) IsTurnedOn = true;
+        }
+        if(IsTurnedOn && !InputManager.ExtinguishHeld) IsTurnedOn = false;
     }
 
     private IEnumerator Extinguishing()
@@ -55,15 +56,11 @@ public class Extinguisher : MonoBehaviour
             yield return delay;
             if(IsTurnedOn)
             {
-                Physics2D.RaycastNonAlloc(myTransform.position, myTransform.right, results, distance, interactsWith);
-                for(int i = 0; i < results.Length; i++) 
+                RaycastHit2D hit = Physics2D.Raycast(myTransform.position, myTransform.right, distance, interactsWith);
+                if(hit)
                 {
-                    if(results[i])
-                    {
-                        if((whatIsObstacle.value & 1 << results[i].collider.gameObject.layer) > 0) break;
-                        Fire fire = results[i].collider.GetComponent<Fire>();
-                        if(fire != null) fire.CurrentHeat -= efficiency;
-                    }
+                    Fire fire = hit.collider.GetComponent<Fire>();
+                    if(fire != null) fire.CurrentHeat -= efficiency;
                 }
             }
         }   
