@@ -27,24 +27,20 @@ public class Fire : MonoBehaviour
     private BoxCollider2D myCollider;
     private ParticleSystem ps;
 
-    public void UpdateEffect()
+    public void Initialize()
     {
-        if(settings != null)
-        {
-            BoxCollider2D coll = GetComponent<BoxCollider2D>();
-            ParticleSystem particles = GetComponent<ParticleSystem>();
-            MainModule main = particles.main;
-            main.startSpeed = Mathf.Lerp(settings.MinParticlesSpeed, settings.MaxParticlesSpeed, currentHeat / MAX_HEAT);
-            main.startSize = Mathf.Lerp(settings.MinParticlesSize, settings.MaxParticlesSize, currentHeat / MAX_HEAT);
-            coll.size = Vector2.Lerp(settings.MinColliderSize, settings.MaxColliderSize, currentHeat / MAX_HEAT);
-            coll.offset = Vector2.Lerp(settings.MinColliderOffset, settings.MaxColliderOffset, currentHeat / MAX_HEAT);
-        }
+        myCollider = GetComponent<BoxCollider2D>();
+        ps = GetComponent<ParticleSystem>();
+        MainModule main = ps.main;
+        main.startSpeed = Mathf.Lerp(settings.MinParticlesSpeed, settings.MaxParticlesSpeed, currentHeat / MAX_HEAT);
+        main.startSize = Mathf.Lerp(settings.MinParticlesSize, settings.MaxParticlesSize, currentHeat / MAX_HEAT);
+        myCollider.size = Vector2.Lerp(settings.MinColliderSize, settings.MaxColliderSize, currentHeat / MAX_HEAT);
+        myCollider.offset = Vector2.Lerp(settings.MinColliderOffset, settings.MaxColliderOffset, currentHeat / MAX_HEAT);
     }
 
     private void Awake()
     {
         myCollider = GetComponent<BoxCollider2D>();
         ps = GetComponent<ParticleSystem>();
-        CurrentHeat = currentHeat;
     }
 }
