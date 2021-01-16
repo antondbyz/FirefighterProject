@@ -39,7 +39,7 @@ SpriteAtlas:
       blockOffset: 1
       allowAlphaSplitting: 0
       enableRotation: 1
-      enableTightPacking: 0
+      enableTightPacking: 1
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: c4abe4bd3efdac54ebe635fbb8890b44, type: 3}
@@ -56,12 +56,6 @@ SpriteAtlas:
   - {fileID: 8527704022205132460, guid: d762c544ede626d4a81f0d272528c693, type: 3}
   - {fileID: 961210159572563268, guid: d762c544ede626d4a81f0d272528c693, type: 3}
   - {fileID: -1370150288747598966, guid: d762c544ede626d4a81f0d272528c693, type: 3}
-  - {fileID: -8411408698171821824, guid: d2f8b6f8074a67e4fbe83fa22fe7c584, type: 3}
-  - {fileID: -3873863294293496291, guid: d2f8b6f8074a67e4fbe83fa22fe7c584, type: 3}
-  - {fileID: 5495543779057975736, guid: d2f8b6f8074a67e4fbe83fa22fe7c584, type: 3}
-  - {fileID: -764894890684950028, guid: d2f8b6f8074a67e4fbe83fa22fe7c584, type: 3}
-  - {fileID: 3282590403682790581, guid: d2f8b6f8074a67e4fbe83fa22fe7c584, type: 3}
-  - {fileID: 7883662231334772692, guid: d2f8b6f8074a67e4fbe83fa22fe7c584, type: 3}
   m_PackedSpriteNamesToIndex:
   - Environment_7
   - Environment_6
@@ -71,11 +65,5 @@ SpriteAtlas:
   - Environment_2
   - Environment_1
   - Environment_0
-  - EnvironmentDetails_5
-  - EnvironmentDetails_4
-  - EnvironmentDetails_1
-  - EnvironmentDetails_0
-  - EnvironmentDetails_3
-  - EnvironmentDetails_2
   m_Tag: Tiles
   m_IsVariant: 0
