@@ -74,6 +74,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b87223e7240b1834f9c5ff4ccbfcb6be, type: 3}
   - {fileID: 21300000, guid: e4f646680ef7f9d42a8d0324d6682ad4, type: 3}
   - {fileID: 21300000, guid: f5df7f68b4d4c164cbdf24e548c518d3, type: 3}
+  - {fileID: 21300000, guid: b432621cddece65488d5719197722bc2, type: 3}
   - {fileID: 21300000, guid: 1b9e710d31acd1945ad451db68f11b87, type: 3}
   - {fileID: 21300000, guid: 00ba0a5d1b24f4d448bc4885a8ec4d61, type: 3}
   - {fileID: 21300000, guid: c8bb49be7cac9b54380d5c7d35a7c270, type: 3}
@@ -94,6 +95,7 @@ SpriteAtlas:
   - BrokenWall
   - Door
   - Window
+  - ArmChair
   - Clock
   - Spikes
   - Nightstand

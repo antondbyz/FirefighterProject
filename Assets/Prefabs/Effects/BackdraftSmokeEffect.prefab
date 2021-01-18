@@ -54,6 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4952659567477400566, guid: ae52e378f38b48747b7072c87d9dd531,
         type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952659567477400566, guid: ae52e378f38b48747b7072c87d9dd531,
+        type: 3}
       propertyPath: InitialModule.startSpeed.scalar
       value: 7
       objectReference: {fileID: 0}
