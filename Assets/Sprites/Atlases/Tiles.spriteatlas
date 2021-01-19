@@ -48,6 +48,15 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: -5256507397795255135, guid: fa8f384190165da4886edb285cc2fb55, type: 3}
+  - {fileID: 4411386790071412322, guid: fa8f384190165da4886edb285cc2fb55, type: 3}
+  - {fileID: 710781438976482209, guid: fa8f384190165da4886edb285cc2fb55, type: 3}
+  - {fileID: -1573568858826040297, guid: fa8f384190165da4886edb285cc2fb55, type: 3}
+  - {fileID: -5038786728152368290, guid: fa8f384190165da4886edb285cc2fb55, type: 3}
+  - {fileID: 7360090173232597228, guid: fa8f384190165da4886edb285cc2fb55, type: 3}
+  - {fileID: 3660745584512344057, guid: fa8f384190165da4886edb285cc2fb55, type: 3}
+  - {fileID: -7628704981159919385, guid: fa8f384190165da4886edb285cc2fb55, type: 3}
+  - {fileID: -8930883672543818420, guid: fa8f384190165da4886edb285cc2fb55, type: 3}
   - {fileID: 5661934994238220498, guid: d762c544ede626d4a81f0d272528c693, type: 3}
   - {fileID: 197298030915183396, guid: d762c544ede626d4a81f0d272528c693, type: 3}
   - {fileID: 6163353665255179149, guid: d762c544ede626d4a81f0d272528c693, type: 3}
@@ -57,6 +66,15 @@ SpriteAtlas:
   - {fileID: 961210159572563268, guid: d762c544ede626d4a81f0d272528c693, type: 3}
   - {fileID: -1370150288747598966, guid: d762c544ede626d4a81f0d272528c693, type: 3}
   m_PackedSpriteNamesToIndex:
+  - BurntWall_8
+  - BurntWall_5
+  - BurntWall_4
+  - BurntWall_7
+  - BurntWall_6
+  - BurntWall_1
+  - BurntWall_0
+  - BurntWall_3
+  - BurntWall_2
   - Environment_7
   - Environment_6
   - Environment_5

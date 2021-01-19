@@ -101,7 +101,7 @@ SpriteAtlas:
   - Clock
   - Spikes
   - Nightstand
-  - Cupboard2
+  - Bookcase
   - Wire
   m_Tag: Surroundings
   m_IsVariant: 0
