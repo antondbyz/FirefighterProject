@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 780326559}
   m_Layer: 2
   m_Name: ElectricityEffect
-  m_TagString: Untagged
+  m_TagString: DeathZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

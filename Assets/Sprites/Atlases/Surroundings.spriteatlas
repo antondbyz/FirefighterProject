@@ -96,7 +96,7 @@ SpriteAtlas:
   - Ladder
   - Table
   - BrokenWall
-  - Afterfire
+  - BurntEffect
   - Door
   - Window
   - ArmChair
