@@ -1335,7 +1335,7 @@ PrefabInstance:
     - target: {fileID: 7652868532460467172, guid: 39fb9fa292b8ba040959cd056e5599a9,
         type: 3}
       propertyPath: fireInRoom.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7652868532460467172, guid: 39fb9fa292b8ba040959cd056e5599a9,
         type: 3}
@@ -1347,6 +1347,11 @@ PrefabInstance:
       propertyPath: fireInRoom.Array.data[1]
       value: 
       objectReference: {fileID: 235833160}
+    - target: {fileID: 7652868532460467172, guid: 39fb9fa292b8ba040959cd056e5599a9,
+        type: 3}
+      propertyPath: fireInRoom.Array.data[2]
+      value: 
+      objectReference: {fileID: 915270734}
     - target: {fileID: 7652868532460467175, guid: 39fb9fa292b8ba040959cd056e5599a9,
         type: 3}
       propertyPath: m_RootOrder
@@ -1859,6 +1864,12 @@ Transform:
   m_Father: {fileID: 1730085928}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!198 &915270734 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6051880944365449106, guid: 72e19fcd145c4a54db29443aa67399ed,
+    type: 3}
+  m_PrefabInstance: {fileID: 1700761117}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &990992748
 GameObject:
   m_ObjectHideFlags: 0
@@ -2715,14 +2726,14 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 30301e7059fcca3458d207cf72711634, type: 3}
 --- !u!114 &1546517782 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7398742251342688940, guid: 30301e7059fcca3458d207cf72711634,
+  m_CorrespondingSourceObject: {fileID: -8646953556073356789, guid: 30301e7059fcca3458d207cf72711634,
     type: 3}
   m_PrefabInstance: {fileID: 1546517781}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 654d23f4c89638541b3b67ffd55e8a9f, type: 3}
+  m_Script: {fileID: 11500000, guid: e124c4e0287a6724aa27f1cfe64f2717, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1546517783 stripped

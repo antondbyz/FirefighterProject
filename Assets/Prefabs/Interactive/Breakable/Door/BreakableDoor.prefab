@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 742861073100417908}
   - component: {fileID: 742861073100417909}
   - component: {fileID: 742861073100417911}
-  - component: {fileID: 7398742251342688940}
+  - component: {fileID: -8646953556073356789}
   m_Layer: 0
   m_Name: BreakableDoor
   m_TagString: Untagged
@@ -110,7 +110,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 3}
   m_EdgeRadius: 0
---- !u!114 &7398742251342688940
+--- !u!114 &-8646953556073356789
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,10 +119,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 742861073100417906}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 654d23f4c89638541b3b67ffd55e8a9f, type: 3}
+  m_Script: {fileID: 11500000, guid: e124c4e0287a6724aa27f1cfe64f2717, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brokenVersion: {fileID: 4776543197140642750, guid: 37094cdf89e6e57448634d02d02bd636,
+  brokenVersion: {fileID: 7495967534942670297, guid: 37094cdf89e6e57448634d02d02bd636,
     type: 3}
-  linkedFire: {fileID: 0}
-  breakingEffect: {fileID: 0}
+  brokenVersionLifetime: 2

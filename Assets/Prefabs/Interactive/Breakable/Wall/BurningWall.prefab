@@ -184,7 +184,7 @@ MonoBehaviour:
   brokenVersion: {fileID: 6386691859077189533, guid: 6cfe4093514aa0f4ebe9e7daa3869b14,
     type: 3}
   linkedFire: {fileID: 6051880944365449107}
-  breakingEffect: {fileID: 222291654923540595, guid: c22f488591be45347be4717314644fc4,
+  wallBrokeEffect: {fileID: 222291654923540595, guid: c22f488591be45347be4717314644fc4,
     type: 3}
 --- !u!1001 &9200057575245609576
 PrefabInstance:

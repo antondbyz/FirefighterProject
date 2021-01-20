@@ -20,8 +20,8 @@ public class PlayerHit : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(player.ColliderCenter, player.Direction, hitDistance, whatCanHit);
             if(hit)
             {
-                BreakableObject breakable = hit.collider.GetComponent<BreakableObject>();
-                if(breakable != null) breakable.Break(player.Direction * hitForce);
+                BreakableDoor door = hit.collider.GetComponent<BreakableDoor>();
+                if(door != null) door.Break(player.Direction * hitForce);
             }
         }    
     }
