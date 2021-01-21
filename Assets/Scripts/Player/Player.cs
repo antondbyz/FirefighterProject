@@ -39,6 +39,15 @@ public class Player : MonoBehaviour
     private int victimsSaved;
     private int victimsTotal;
 
+    public void Die() 
+    {
+        if(gameObject.activeSelf)
+        {
+            LifesLeft--;
+            Died?.Invoke();
+        }
+    }
+
     public void MoveToCurrentCheckpoint() => myTransform.position = currentCheckpoint;
 
     private void Awake() 
@@ -59,10 +68,11 @@ public class Player : MonoBehaviour
             VictimsSaved++;
         } 
         else if(other.CompareTag("Finish")) GameController.Instance.CompleteLevel();
-        else if(gameObject.activeSelf && other.CompareTag("DeathZone")) 
-        {
-            LifesLeft--;
-            Died?.Invoke();
-        }  
+        else if(other.CompareTag("DeathZone")) Die();
+    }
+
+    private void OnParticleCollision(GameObject other) 
+    {
+        if(other.CompareTag("DeathZone")) Die();    
     }
 }
