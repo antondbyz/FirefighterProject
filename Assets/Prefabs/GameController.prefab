@@ -6572,7 +6572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 7
-  efficiency: 15
+  efficiency: 10
   interactsWith:
     serializedVersion: 2
     m_Bits: 1025

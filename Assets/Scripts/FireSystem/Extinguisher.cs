@@ -51,7 +51,7 @@ public class Extinguisher : MonoBehaviour
 
     private IEnumerator Extinguishing()
     {
-        WaitForSeconds delay = new WaitForSeconds(0.5f);
+        WaitForSeconds delay = new WaitForSeconds(0.3f);
         while(true)
         {   
             yield return delay;

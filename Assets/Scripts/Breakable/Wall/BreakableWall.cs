@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BreakableWall : BreakableObject
+public class BreakableWall : MonoBehaviour
 {
     [SerializeField] private BrokenWall brokenVersion = null;
     [SerializeField] private ParticleSystem wallBrokeEffect = null;
@@ -27,6 +27,6 @@ public class BreakableWall : BreakableObject
             childFire.SetParent(newBrokenWall.transform, true);
             newBrokenWall.ChildFire = childFire;
         }
-        BreakObject();
+        Destroy(gameObject);
     }
 }

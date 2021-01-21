@@ -122,6 +122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e124c4e0287a6724aa27f1cfe64f2717, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brokenVersion: {fileID: 7495967534942670297, guid: 37094cdf89e6e57448634d02d02bd636,
+  brokenVersion: {fileID: 3289786543696340696, guid: 37094cdf89e6e57448634d02d02bd636,
     type: 3}
   brokenVersionLifetime: 2

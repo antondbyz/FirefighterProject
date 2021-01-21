@@ -4,7 +4,7 @@ using static UnityEngine.ParticleSystem;
 
 public class Backdraft : MonoBehaviour
 {
-    [SerializeField] private BreakableObject breakableToListen = null;
+    [SerializeField] private BreakableObstacle obstacle = null;
     [SerializeField] private ParticleSystem backdraftSmoke = null;
     [SerializeField] private ParticleSystem smokeInRoom = null;
     [SerializeField] private ParticleSystem[] fireInRoom = null;
@@ -27,9 +27,9 @@ public class Backdraft : MonoBehaviour
         }
     }
 
-    private void OnEnable() => breakableToListen.Broken += Explode;
+    private void OnEnable() => obstacle.Broke += Explode;
 
-    private void OnDisable() => breakableToListen.Broken -= Explode;
+    private void OnDisable() => obstacle.Broke -= Explode;
 
     private void Explode() => StartCoroutine(Exploding());
 
