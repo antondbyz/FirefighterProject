@@ -3,41 +3,46 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public const int MAX_LIFES = 3;
+    public const int START_LIFES = 3;
 
-    public Vector2 Direction => myTransform.right;
-    public Vector2 ColliderCenter => bc.bounds.center;
     public event System.Action Died;
     public int LifesLeft
     {
         get => lifesLeft;
         private set
         {
-            value = Mathf.Clamp(value, 0, MAX_LIFES);
             lifesLeft = value;
             lifesLeftText.text = lifesLeft.ToString();
         }
     }
-    public int VictimsSaved
+    public int SavedVictims
     {
-        get => victimsSaved;
+        get => savedVictims;
         private set
         {
-            victimsSaved = value;
-            victimsSavedText.text = $"{victimsSaved}/{victimsTotal}";
+            savedVictims = value;
+            savedVictimsText.text = savedVictims.ToString();
+        }
+    }
+    public int EarnedMoney
+    {
+        get => earnedMoney;
+        private set
+        {
+            earnedMoney = value;
+            earnedMoneyText.text = earnedMoney.ToString();
         }
     }
 
     [SerializeField] private TMP_Text lifesLeftText = null;
-    [SerializeField] private TMP_Text victimsSavedText = null;
-    [SerializeField] private Transform victims = null;
+    [SerializeField] private TMP_Text savedVictimsText = null;
+    [SerializeField] private TMP_Text earnedMoneyText = null;
 
     private Transform myTransform;
-    private BoxCollider2D bc;
     private Vector2 currentCheckpoint;
     private int lifesLeft;
-    private int victimsSaved;
-    private int victimsTotal;
+    private int savedVictims;
+    private int earnedMoney;
 
     public void Die() 
     {
@@ -53,11 +58,10 @@ public class Player : MonoBehaviour
     private void Awake() 
     {
         myTransform = transform;  
-        bc = GetComponent<BoxCollider2D>();
         currentCheckpoint = myTransform.position;
-        LifesLeft = MAX_LIFES;
-        victimsTotal = victims.childCount;
-        VictimsSaved = 0;
+        LifesLeft = START_LIFES;
+        SavedVictims = 0;
+        EarnedMoney = 0;
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
@@ -65,7 +69,7 @@ public class Player : MonoBehaviour
         if(other.CompareTag("Victim")) 
         {
             Destroy(other.gameObject);
-            VictimsSaved++;
+            SavedVictims++;
         } 
         else if(other.CompareTag("Finish")) GameController.Instance.CompleteLevel();
         else if(other.CompareTag("DeathZone")) Die();

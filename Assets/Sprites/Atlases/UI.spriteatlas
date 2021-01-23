@@ -50,6 +50,7 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: 07eca9a1a43b8cd4cbfd05ec7eacf695, type: 3}
   - {fileID: 21300000, guid: d6a252f2fd62de749b9b6c55473e6848, type: 3}
+  - {fileID: 21300000, guid: ae244e43ab1f32f47ac2c84480a93ec4, type: 3}
   - {fileID: 21300000, guid: 32dcb7e3f2355c44f98f9350b3a3fc92, type: 3}
   - {fileID: 21300000, guid: f01f9d161780cd14aa7596121c33033c, type: 3}
   - {fileID: 21300000, guid: 7c62fee6fc0b36546a0dd0dfa8e9d55a, type: 3}
@@ -62,6 +63,7 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - Pause
   - Heart
+  - Money
   - Arrow
   - Axe
   - Exit
