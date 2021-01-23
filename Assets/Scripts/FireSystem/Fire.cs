@@ -4,6 +4,7 @@ using static UnityEngine.ParticleSystem;
 public class Fire : MonoBehaviour
 {
     public const float MAX_HEAT = 100;
+    public static event System.Action Extinguished;
 
     public float CurrentHeat
     {
@@ -18,6 +19,7 @@ public class Fire : MonoBehaviour
             myCollider.offset = Vector2.Lerp(settings.MinColliderOffset, settings.MaxColliderOffset, currentHeat / MAX_HEAT);
             if(currentHeat == 0)
             {
+                Extinguished?.Invoke();
                 ps.Stop();
                 Destroy(myCollider);
                 Destroy(gameObject, 2);

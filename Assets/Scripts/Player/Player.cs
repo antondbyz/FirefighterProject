@@ -61,8 +61,12 @@ public class Player : MonoBehaviour
         currentCheckpoint = myTransform.position;
         LifesLeft = START_LIFES;
         SavedVictims = 0;
-        EarnedMoney = 0;
+        EarnedMoney = PlayerManager.CurrentBalance;
     }
+
+    private void OnEnable() => Fire.Extinguished += FireExtinguished;
+
+    private void OnDisable() => Fire.Extinguished -= FireExtinguished;
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
@@ -70,6 +74,7 @@ public class Player : MonoBehaviour
         {
             Destroy(other.gameObject);
             SavedVictims++;
+            EarnedMoney += PlayerManager.VICTIM_SAVING_REWARD;
         } 
         else if(other.CompareTag("Finish")) GameController.Instance.CompleteLevel();
         else if(other.CompareTag("DeathZone")) Die();
@@ -79,4 +84,6 @@ public class Player : MonoBehaviour
     {
         if(other.CompareTag("DeathZone")) Die();    
     }
+
+    private void FireExtinguished() => EarnedMoney += PlayerManager.FIRE_EXTINGUISHING_REWARD;
 }
