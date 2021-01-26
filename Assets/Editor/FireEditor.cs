@@ -7,6 +7,7 @@ public class FireEditor : Editor
     {
         base.OnInspectorGUI();
         Fire fire = (Fire)target;
+        fire.Initialize();
         fire.UpdateState();
     }
 }

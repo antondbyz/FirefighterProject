@@ -12,17 +12,17 @@ public class Fire : MonoBehaviour
         set
         {
             value = Mathf.Clamp(value, 0, MAX_HEAT);
-            currentHeat = value;
-            main.startSpeed = Mathf.Lerp(settings.MinParticlesSpeed, settings.MaxParticlesSpeed, currentHeat / MAX_HEAT);
-            main.startSize = Mathf.Lerp(settings.MinParticlesSize, settings.MaxParticlesSize, currentHeat / MAX_HEAT);
-            myCollider.size = Vector2.Lerp(settings.MinColliderSize, settings.MaxColliderSize, currentHeat / MAX_HEAT);
-            myCollider.offset = Vector2.Lerp(settings.MinColliderOffset, settings.MaxColliderOffset, currentHeat / MAX_HEAT);
-            if(currentHeat == 0)
+            if(currentHeat != value)
             {
-                Extinguished?.Invoke();
-                ps.Stop();
-                Destroy(myCollider);
-                Destroy(gameObject, 2);
+                currentHeat = value;
+                UpdateState();
+                if(currentHeat == 0)
+                {
+                    Extinguished?.Invoke();
+                    ps.Stop();
+                    Destroy(myCollider);
+                    Destroy(gameObject, 2);
+                }
             }
         }
     }
@@ -34,16 +34,20 @@ public class Fire : MonoBehaviour
     private ParticleSystem ps;
     private MainModule main;
 
-    public void UpdateState()
-    {
-        Awake();
-        CurrentHeat = currentHeat;
-    }
-
-    private void Awake()
+    public void Initialize()
     {
         if(myCollider == null) myCollider = GetComponent<BoxCollider2D>();
         if(ps == null) ps = GetComponent<ParticleSystem>();
         main = ps.main;
     }
+
+    public void UpdateState()
+    {
+        main.startSpeed = Mathf.Lerp(settings.MinParticlesSpeed, settings.MaxParticlesSpeed, currentHeat / MAX_HEAT);
+        main.startSize = Mathf.Lerp(settings.MinParticlesSize, settings.MaxParticlesSize, currentHeat / MAX_HEAT);
+        myCollider.size = Vector2.Lerp(settings.MinColliderSize, settings.MaxColliderSize, currentHeat / MAX_HEAT);
+        myCollider.offset = Vector2.Lerp(settings.MinColliderOffset, settings.MaxColliderOffset, currentHeat / MAX_HEAT);
+    }
+
+    private void Awake() => Initialize();
 }
