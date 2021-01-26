@@ -15,15 +15,6 @@ public class Player : MonoBehaviour
             lifesLeftText.text = lifesLeft.ToString();
         }
     }
-    public int SavedVictims
-    {
-        get => savedVictims;
-        private set
-        {
-            savedVictims = value;
-            savedVictimsText.text = savedVictims.ToString();
-        }
-    }
     public int EarnedMoney
     {
         get => earnedMoney;
@@ -35,13 +26,11 @@ public class Player : MonoBehaviour
     }
 
     [SerializeField] private TMP_Text lifesLeftText = null;
-    [SerializeField] private TMP_Text savedVictimsText = null;
     [SerializeField] private TMP_Text earnedMoneyText = null;
 
     private Transform myTransform;
     private Vector2 currentCheckpoint;
     private int lifesLeft;
-    private int savedVictims;
     private int earnedMoney;
 
     public void Die() 
@@ -60,7 +49,6 @@ public class Player : MonoBehaviour
         myTransform = transform;  
         currentCheckpoint = myTransform.position;
         LifesLeft = START_LIFES;
-        SavedVictims = 0;
         EarnedMoney = PlayerManager.CurrentBalance;
     }
 
@@ -73,7 +61,6 @@ public class Player : MonoBehaviour
         if(other.CompareTag("Victim")) 
         {
             Destroy(other.gameObject);
-            SavedVictims++;
             EarnedMoney += PlayerManager.VICTIM_SAVING_REWARD;
         } 
         else if(other.CompareTag("Finish")) GameController.Instance.CompleteLevel();

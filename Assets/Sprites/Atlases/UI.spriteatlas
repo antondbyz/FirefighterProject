@@ -58,7 +58,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: a74dacc9bfcf47749a8630eac3456429, type: 3}
   - {fileID: 21300000, guid: c356d10b4a98a33448a9da4bb7bc4990, type: 3}
   - {fileID: 21300000, guid: 105aa01b1530a1e48ba3df5d4a1cae8b, type: 3}
-  - {fileID: 21300000, guid: 948a693d74a1fee48b3f6b7f70266b56, type: 3}
   - {fileID: 21300000, guid: 73e6b5ad2432f8b4eb512cdbc09a188c, type: 3}
   m_PackedSpriteNamesToIndex:
   - Pause
@@ -71,7 +70,6 @@ SpriteAtlas:
   - RoundRect
   - Triangle
   - Circle
-  - Victim
   - Extinguisher
   m_Tag: UI
   m_IsVariant: 0
