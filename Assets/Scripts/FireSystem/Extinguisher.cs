@@ -9,7 +9,8 @@ public class Extinguisher : MonoBehaviour
         private set
         {
             isTurnedOn = value;
-            spriteRenderer.enabled = isTurnedOn;
+            hoseHidden.SetActive(!isTurnedOn);
+            hoseDrawn.SetActive(isTurnedOn);
             if(isTurnedOn) ps.Play();
             else ps.Stop();
         }
@@ -20,19 +21,19 @@ public class Extinguisher : MonoBehaviour
     [SerializeField] private LayerMask interactsWith = new LayerMask();
     [SerializeField] private LayerMask whatIsObstacle = new LayerMask();
     [SerializeField] private float minDistanceToObstacle = 1;
+    [SerializeField] private GameObject hoseHidden = null;
+    [SerializeField] private GameObject hoseDrawn = null;
 
     private Transform myTransform;
     private ParticleSystem ps;
-    private SpriteRenderer spriteRenderer;
     private PlayerController controller;
     private bool isTurnedOn;
-    private RaycastHit2D[] results = new RaycastHit2D[4];
+    private RaycastHit2D[] results = new RaycastHit2D[3];
 
     private void Awake() 
     {
         myTransform = transform;
         ps = GetComponent<ParticleSystem>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         controller = myTransform.parent.GetComponent<PlayerController>(); 
         IsTurnedOn = false;
     }

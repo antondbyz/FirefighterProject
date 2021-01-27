@@ -48,7 +48,9 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 41ea52b1acdd82f4d9cd403de1777f2e, type: 3}
+  - {fileID: -6629347237711114895, guid: 921f0041c2bfaab468e25d2bd6dfb0ad, type: 3}
+  - {fileID: 7091428491924848283, guid: 921f0041c2bfaab468e25d2bd6dfb0ad, type: 3}
+  - {fileID: 4720522218622057588, guid: 921f0041c2bfaab468e25d2bd6dfb0ad, type: 3}
   - {fileID: -4709456396536258026, guid: 73ba2238de1096c47af02ae05207c1ba, type: 3}
   - {fileID: 7364682651488144517, guid: 73ba2238de1096c47af02ae05207c1ba, type: 3}
   - {fileID: -2311659948842064771, guid: 73ba2238de1096c47af02ae05207c1ba, type: 3}
@@ -56,7 +58,9 @@ SpriteAtlas:
   - {fileID: -4529042392078601758, guid: 73ba2238de1096c47af02ae05207c1ba, type: 3}
   - {fileID: -6287787046888575383, guid: 73ba2238de1096c47af02ae05207c1ba, type: 3}
   m_PackedSpriteNamesToIndex:
-  - Extinguisher
+  - ExtinguisherBalloon
+  - ExtinguisherHoseHidden
+  - ExtinguisherHoseDrawn
   - Player_R_Leg
   - Player_R_Arm
   - Player_Head
