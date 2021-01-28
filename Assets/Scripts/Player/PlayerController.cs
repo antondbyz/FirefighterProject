@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private Transform myTransform;
     private Rigidbody2D rb;
     private BoxCollider2D bc;
-    private Extinguisher extinguisher;
+    private PlayerAim aim;
     private Vector2 newVelocity;
     private bool flipX;
     private float defaultGravity;
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         myTransform = transform;
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
-        extinguisher = myTransform.GetChild(0).GetComponent<Extinguisher>();
+        aim = GetComponent<PlayerAim>();
         defaultGravity = rb.gravityScale;
     } 
 
@@ -123,10 +123,9 @@ public class PlayerController : MonoBehaviour
 
     private void CheckInput()
     {
-        if(!extinguisher.IsTurnedOn)
+        if(!aim.IsAiming)
         {
             newVelocity.x = InputManager.Horizontal * speed;
-            if(InputManager.Horizontal != 0) FlipX = InputManager.Horizontal < 0;
             if(InputManager.JumpPressed && hangTimer > 0) 
             {
                 isJumping = true;
@@ -134,5 +133,6 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = newVelocity;
             }
         }
+        if(InputManager.Horizontal != 0) FlipX = InputManager.Horizontal < 0;
     }
 }

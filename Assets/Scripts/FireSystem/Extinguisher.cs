@@ -9,8 +9,6 @@ public class Extinguisher : MonoBehaviour
         private set
         {
             isTurnedOn = value;
-            hoseHidden.SetActive(!isTurnedOn);
-            hoseDrawn.SetActive(isTurnedOn);
             if(isTurnedOn) ps.Play();
             else ps.Stop();
         }
@@ -20,13 +18,10 @@ public class Extinguisher : MonoBehaviour
     [SerializeField] private float efficiency = 1;
     [SerializeField] private LayerMask interactsWith = new LayerMask();
     [SerializeField] private LayerMask whatIsObstacle = new LayerMask();
-    [SerializeField] private float minDistanceToObstacle = 1;
-    [SerializeField] private GameObject hoseHidden = null;
-    [SerializeField] private GameObject hoseDrawn = null;
 
     private Transform myTransform;
     private ParticleSystem ps;
-    private PlayerController controller;
+    private PlayerAim aim;
     private bool isTurnedOn;
     private RaycastHit2D[] results = new RaycastHit2D[3];
 
@@ -34,7 +29,7 @@ public class Extinguisher : MonoBehaviour
     {
         myTransform = transform;
         ps = GetComponent<ParticleSystem>();
-        controller = myTransform.parent.GetComponent<PlayerController>(); 
+        aim = transform.parent.GetComponent<PlayerAim>();
         IsTurnedOn = false;
     }
 
@@ -42,12 +37,8 @@ public class Extinguisher : MonoBehaviour
 
     private void Update() 
     {
-        if(!IsTurnedOn && InputManager.ExtinguishHeld)
-        {
-            RaycastHit2D hit = Physics2D.Raycast(myTransform.position, myTransform.right, minDistanceToObstacle, whatIsObstacle);
-            if(!controller.IsMoving && controller.IsGrounded && !hit) IsTurnedOn = true;
-        }
-        if(IsTurnedOn && !InputManager.ExtinguishHeld) IsTurnedOn = false;
+        if(!IsTurnedOn && aim.IsAiming) IsTurnedOn = true;
+        if(IsTurnedOn && !aim.IsAiming) IsTurnedOn = false;
     }
 
     private IEnumerator Extinguishing()
