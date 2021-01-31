@@ -67,6 +67,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 45f7aef1617285d44bc1dd647517d4de, type: 3}
   - {fileID: 21300000, guid: 965dccc2aa734ed4f908ea4aedb58a8e, type: 3}
   - {fileID: 21300000, guid: 2c82e6d2271bada4bbeff9ed82b42fff, type: 3}
+  - {fileID: 21300000, guid: b03b8373e3523214fbf57bd7ae3d0b83, type: 3}
   - {fileID: 21300000, guid: 8dbe0435b81319a40b5c5a7af33907d7, type: 3}
   - {fileID: 21300000, guid: 96b13bb5fc28bbe4facbe30887d6ab42, type: 3}
   - {fileID: 21300000, guid: 506b3e363b34573408f19d3c341df553, type: 3}
@@ -100,6 +101,7 @@ SpriteAtlas:
   - BurntBed
   - BreakableDoor
   - Sofa
+  - BurntCupboardHalf
   - Bed
   - BigSpikes
   - Chair
