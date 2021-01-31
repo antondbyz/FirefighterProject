@@ -83,7 +83,8 @@ SpriteAtlas:
   - {fileID: -5531255094857203568, guid: 88f20c7997459bd4ea8b1c0c68de824c, type: 3}
   - {fileID: 21300000, guid: 0c9df85a45c17d94ebb6eeaf16bcf9eb, type: 3}
   - {fileID: 21300000, guid: 06de665bc222f6943a91de7d728bb9e3, type: 3}
-  - {fileID: 21300000, guid: c887257bb8087b748a71a34baf2d3285, type: 3}
+  - {fileID: 4283495010674395509, guid: c887257bb8087b748a71a34baf2d3285, type: 3}
+  - {fileID: 2842191425410916610, guid: c887257bb8087b748a71a34baf2d3285, type: 3}
   - {fileID: 21300000, guid: b432621cddece65488d5719197722bc2, type: 3}
   - {fileID: 21300000, guid: 33191ebcd56fade4698407ee69f205a5, type: 3}
   - {fileID: 21300000, guid: 1b9e710d31acd1945ad451db68f11b87, type: 3}
@@ -117,7 +118,8 @@ SpriteAtlas:
   - BurntCupboard_0
   - BurntArmchair
   - BurntBookcase
-  - BurntNightstand
+  - BurntNightstand_1
+  - BurntNightstand_0
   - Armchair
   - BurntTable
   - Clock
