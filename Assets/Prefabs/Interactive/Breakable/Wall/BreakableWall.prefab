@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakEvent: 1
-  brokenVersion: {fileID: 6386691859077189533, guid: 0ec7a7a60ca35cd4192a39d70fd884b7,
+  brokenWall: {fileID: 6386691859077189533, guid: 0ec7a7a60ca35cd4192a39d70fd884b7,
     type: 3}
   wallBrokeEffect: {fileID: 222291654923540595, guid: c22f488591be45347be4717314644fc4,
     type: 3}

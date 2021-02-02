@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2014932442319202762}
   - component: {fileID: 2014932442319202763}
   - component: {fileID: 2014932442319202804}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: ElectricityEffect
   m_TagString: DeathZone
   m_Icon: {fileID: 0}

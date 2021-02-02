@@ -67,6 +67,11 @@ public class Player : MonoBehaviour
         else if(other.CompareTag("DeathZone")) Die();
     }
 
+    private void OnCollisionEnter2D(Collision2D other) 
+    {
+        if(other.gameObject.CompareTag("DeathZone")) Die();
+    }
+
     private void OnParticleCollision(GameObject other) 
     {
         if(other.CompareTag("DeathZone")) Die();    

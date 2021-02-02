@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4635608982789510043}
   - component: {fileID: 4635608982789510020}
   - component: {fileID: 4635608982789510021}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: BigSpikes
   m_TagString: DeathZone
   m_Icon: {fileID: 0}
