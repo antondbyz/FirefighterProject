@@ -8,7 +8,7 @@ public class BreakableWall : MonoBehaviour
     [SerializeField] private ParticleSystem wallBrokeEffect = null;
 
     private Transform myTransform;
-    BrokenWall newBrokenWall;
+    private BrokenWall newBrokenWall;
 
     private void Awake() 
     {

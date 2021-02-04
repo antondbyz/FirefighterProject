@@ -8,9 +8,12 @@ public class Extinguisher : MonoBehaviour
         get => isTurnedOn;
         private set
         {
-            isTurnedOn = value;
-            if(isTurnedOn) ps.Play();
-            else ps.Stop();
+            if(isTurnedOn != value)
+            {
+                isTurnedOn = value;
+                if(isTurnedOn) ps.Play();
+                else ps.Stop();
+            }
         }
     }
 
@@ -18,6 +21,7 @@ public class Extinguisher : MonoBehaviour
     [SerializeField] private float efficiency = 1;
     [SerializeField] private LayerMask interactsWith = new LayerMask();
     [SerializeField] private LayerMask whatIsObstacle = new LayerMask();
+    [SerializeField] private float minDistanceToObstacle = 1;
 
     private Transform myTransform;
     private ParticleSystem ps;
@@ -30,15 +34,17 @@ public class Extinguisher : MonoBehaviour
         myTransform = transform;
         ps = GetComponent<ParticleSystem>();
         aim = transform.parent.GetComponent<PlayerAim>();
-        IsTurnedOn = false;
     }
 
     private void OnEnable() => StartCoroutine(Extinguishing());
 
     private void Update() 
     {
-        if(!IsTurnedOn && aim.IsAiming) IsTurnedOn = true;
-        if(IsTurnedOn && !aim.IsAiming) IsTurnedOn = false;
+        if(aim.IsAiming)
+        {
+            IsTurnedOn = !Physics2D.Raycast(myTransform.position, myTransform.right, minDistanceToObstacle, whatIsObstacle);
+        }
+        else IsTurnedOn = false;
     }
 
     private IEnumerator Extinguishing()

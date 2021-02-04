@@ -7,8 +7,9 @@ public class PlayerAim : MonoBehaviour
     [SerializeField] private Transform rotateBone = null;
     [SerializeField] private GameObject extinguisherHoseDrawn = null;
     [SerializeField] private GameObject extinguisherHoseHidden = null;
-    [SerializeField] private LayerMask whatIsObstacle = new LayerMask();
-    [SerializeField] private float minDistanceToObstacle = 1;
+    [SerializeField] private float rotationSpeedMultiplier = 1;
+    [SerializeField] private float maxRotationAngle = 60;
+    [SerializeField] private float minRotationAngle = -45;
 
     private PlayerController controller;
     private Transform myTransform;
@@ -41,8 +42,7 @@ public class PlayerAim : MonoBehaviour
     {
         if(!IsAiming)
         {
-            RaycastHit2D hit = Physics2D.Raycast(myTransform.position, myTransform.right, minDistanceToObstacle, whatIsObstacle);
-            if(!controller.IsMoving && controller.IsGrounded && !hit)
+            if(!controller.IsMoving && controller.IsGrounded)
             {
                 IsAiming = true;
                 extinguisherHoseDrawn.SetActive(true);
@@ -64,17 +64,10 @@ public class PlayerAim : MonoBehaviour
         if(IsAiming)
         {
             Vector3 newRotation = rotateBone.localEulerAngles;
-            newRotation.z += ScreenEventsHandler.DragDelta.y;
+            if(rotateBone.localEulerAngles.z >= 180) newRotation.z -= 360;
+            newRotation.z += ScreenEventsHandler.DragDelta.y * rotationSpeedMultiplier;
+            newRotation.z = Mathf.Clamp(newRotation.z, minRotationAngle, maxRotationAngle);
             rotateBone.localEulerAngles = newRotation;
-            ClampRotation(-45, 60);  
         }
     }
-
-    private void ClampRotation(float minRotation, float maxRotation)
-    {
-        Vector3 convertedRotation = rotateBone.localEulerAngles;
-        if(rotateBone.localEulerAngles.z >= 180) convertedRotation.z -= 360;
-        convertedRotation.z = Mathf.Clamp(convertedRotation.z, minRotation, maxRotation);
-        rotateBone.localEulerAngles = convertedRotation;
-    } 
 }
