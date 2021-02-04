@@ -880,7 +880,7 @@ GameObject:
   - component: {fileID: 7836517175129876154}
   - component: {fileID: 7836517175129876155}
   - component: {fileID: 7836517175129876128}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Victim
   m_TagString: Victim
   m_Icon: {fileID: 0}

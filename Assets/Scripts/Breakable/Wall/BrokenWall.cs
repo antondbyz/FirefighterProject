@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class BrokenWall : MonoBehaviour 
 {
-    [HideInInspector] public Transform ChildFire;
+    [HideInInspector] public bool CreateSpikesWhenFell;
 
     [SerializeField] private float lifetime = 1;
+    [SerializeField] private GameObject spikes = null;
     [SerializeField] private ParticleSystem wallFellEffect = null;
 
     private Transform myTransform;
@@ -17,7 +18,7 @@ public class BrokenWall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
-        if(ChildFire != null) ChildFire.SetParent(null, true); 
+        if(CreateSpikesWhenFell) Instantiate(spikes, myTransform.position, Quaternion.identity);
         ParticleSystem newEffect = Instantiate(wallFellEffect, myTransform.position, Quaternion.identity);
         GameController.DestroyWithDelay(newEffect.gameObject, 2);
         Destroy(gameObject);

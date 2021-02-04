@@ -2,41 +2,45 @@ using UnityEngine;
 
 public class BreakableWall : MonoBehaviour
 {
+    [SerializeField] private bool createSpikesWhenFell = true;
     [SerializeField] private BrokenWall brokenWall = null;
+    [SerializeField] private BrokenWall brokenWallDangerous = null;
     [SerializeField] private ParticleSystem wallBrokeEffect = null;
-    
-    private Transform childFire;
+
+    private Transform myTransform;
+    BrokenWall newBrokenWall;
 
     private void Awake() 
     {
-        childFire = GetComponentInChildren<Fire>(true)?.transform;
+        myTransform = transform;    
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        if(other.CompareTag("Player")) Break();    
-    }
-
-    private void OnCollisionEnter2D(Collision2D other) 
-    {
-        if(other.collider.CompareTag("Player")) Break();    
+        if(other.CompareTag("Player"))
+        {
+            if(other.transform.position.y > myTransform.position.y)
+                newBrokenWall = Instantiate(brokenWall, myTransform.position, Quaternion.identity); 
+            else
+                newBrokenWall = Instantiate(brokenWallDangerous, myTransform.position, Quaternion.identity);
+            Break();    
+        }
     }
 
     private void OnParticleCollision(GameObject other) 
     {
-        if(other.CompareTag("Extinguisher")) Break();    
+        if(other.CompareTag("Extinguisher")) 
+        {
+            newBrokenWall = Instantiate(brokenWallDangerous, myTransform.position, Quaternion.identity);
+            Break();    
+        }
     }
 
     private void Break()
     {
-        ParticleSystem newEffect = Instantiate(wallBrokeEffect, transform.position, Quaternion.identity);
+        newBrokenWall.CreateSpikesWhenFell = createSpikesWhenFell;
+        ParticleSystem newEffect = Instantiate(wallBrokeEffect, myTransform.position, Quaternion.identity);
         GameController.DestroyWithDelay(newEffect.gameObject, 2);
-        BrokenWall newBrokenWall = Instantiate(brokenWall, transform.position, Quaternion.identity);
-        if(childFire != null)
-        {
-            childFire.SetParent(newBrokenWall.transform, true);
-            newBrokenWall.ChildFire = childFire;
-        }
         Destroy(gameObject);
     }
 }
