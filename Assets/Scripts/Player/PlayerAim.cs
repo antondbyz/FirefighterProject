@@ -7,7 +7,6 @@ public class PlayerAim : MonoBehaviour
     [SerializeField] private Transform rotateBone = null;
     [SerializeField] private GameObject extinguisherHoseDrawn = null;
     [SerializeField] private GameObject extinguisherHoseHidden = null;
-    [SerializeField] private float rotationSpeedMultiplier = 1;
     [SerializeField] private float maxRotationAngle = 60;
     [SerializeField] private float minRotationAngle = -45;
 
@@ -65,7 +64,7 @@ public class PlayerAim : MonoBehaviour
         {
             Vector3 newRotation = rotateBone.localEulerAngles;
             if(rotateBone.localEulerAngles.z >= 180) newRotation.z -= 360;
-            newRotation.z += ScreenEventsHandler.DragDelta.y * rotationSpeedMultiplier;
+            newRotation.z += ScreenEventsHandler.DragDelta.y;
             newRotation.z = Mathf.Clamp(newRotation.z, minRotationAngle, maxRotationAngle);
             rotateBone.localEulerAngles = newRotation;
         }
