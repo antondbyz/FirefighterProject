@@ -9645,5 +9645,5 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  delayBeforeExplosion: 1
+  delayBeforeExplosion: 0.5
   duration: 1
