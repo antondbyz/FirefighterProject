@@ -9,15 +9,15 @@ public class ElectricShot : MonoBehaviour
 
     private IEnumerator Start() 
     {
-        ParticleSystem ps = GetComponent<ParticleSystem>();
+        ParticleSystem myParticles = GetComponent<ParticleSystem>();
         BoxCollider2D myCollider = GetComponent<BoxCollider2D>();    
-        MainModule main = ps.main;
+        MainModule main = myParticles.main;
         float colliderLifetime = main.startLifetime.constant * lifetimeMultiplier;
         WaitForSeconds disableColliderDelay = new WaitForSeconds(colliderLifetime);
         WaitForSeconds playEffectDelay = new WaitForSeconds(main.duration - colliderLifetime);
         while(true)
         {
-            ps.Play();
+            myParticles.Play();
             myCollider.enabled = true;
             yield return disableColliderDelay;
             myCollider.enabled = false;
