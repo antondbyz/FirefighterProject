@@ -63,6 +63,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b3eea3b01e443a349b49563b16bb6771, type: 3}
   - {fileID: 21300000, guid: da86e6f0f6bb1c044a2fa45c50034748, type: 3}
   - {fileID: 21300000, guid: a1034f21a466ece4493afdbae1ef7a86, type: 3}
+  - {fileID: 21300000, guid: 63694441ce014fd4abd595e3a2d5efe7, type: 3}
   - {fileID: 21300000, guid: f8f0c771c4a588d47b07e75097f55e45, type: 3}
   - {fileID: 21300000, guid: 45f7aef1617285d44bc1dd647517d4de, type: 3}
   - {fileID: 21300000, guid: 965dccc2aa734ed4f908ea4aedb58a8e, type: 3}
@@ -99,6 +100,7 @@ SpriteAtlas:
   - Lamp
   - BurntSofa
   - Monitor
+  - BrokenWire
   - BrokenDoor
   - BurntBed
   - BreakableDoor
