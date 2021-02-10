@@ -60,7 +60,7 @@ Transform:
   m_LocalPosition: {x: 0, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 780326558}
+  - {fileID: 1628801917153888861}
   m_Father: {fileID: 4275645079557837775}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 60}
@@ -134,78 +134,78 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1001 &2014932441807617899
+--- !u!1001 &8535481193534813943
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 2707955391437551065}
     m_Modifications:
-    - target: {fileID: 2014932442319202805, guid: 53f06f07dd69d5245a44a5eaa0f9512b,
+    - target: {fileID: 4255513317078066338, guid: eef2dbc5bf29e4645baa2cfb161c7e28,
+        type: 3}
+      propertyPath: m_Name
+      value: ElectricBall
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984718374744210602, guid: eef2dbc5bf29e4645baa2cfb161c7e28,
         type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2014932442319202805, guid: 53f06f07dd69d5245a44a5eaa0f9512b,
+    - target: {fileID: 6984718374744210602, guid: eef2dbc5bf29e4645baa2cfb161c7e28,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2014932442319202805, guid: 53f06f07dd69d5245a44a5eaa0f9512b,
+    - target: {fileID: 6984718374744210602, guid: eef2dbc5bf29e4645baa2cfb161c7e28,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.8
+      value: -4
       objectReference: {fileID: 0}
-    - target: {fileID: 2014932442319202805, guid: 53f06f07dd69d5245a44a5eaa0f9512b,
+    - target: {fileID: 6984718374744210602, guid: eef2dbc5bf29e4645baa2cfb161c7e28,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2014932442319202805, guid: 53f06f07dd69d5245a44a5eaa0f9512b,
+    - target: {fileID: 6984718374744210602, guid: eef2dbc5bf29e4645baa2cfb161c7e28,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2014932442319202805, guid: 53f06f07dd69d5245a44a5eaa0f9512b,
+    - target: {fileID: 6984718374744210602, guid: eef2dbc5bf29e4645baa2cfb161c7e28,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2014932442319202805, guid: 53f06f07dd69d5245a44a5eaa0f9512b,
+    - target: {fileID: 6984718374744210602, guid: eef2dbc5bf29e4645baa2cfb161c7e28,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2014932442319202805, guid: 53f06f07dd69d5245a44a5eaa0f9512b,
+    - target: {fileID: 6984718374744210602, guid: eef2dbc5bf29e4645baa2cfb161c7e28,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2014932442319202805, guid: 53f06f07dd69d5245a44a5eaa0f9512b,
+    - target: {fileID: 6984718374744210602, guid: eef2dbc5bf29e4645baa2cfb161c7e28,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2014932442319202805, guid: 53f06f07dd69d5245a44a5eaa0f9512b,
+    - target: {fileID: 6984718374744210602, guid: eef2dbc5bf29e4645baa2cfb161c7e28,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2014932442319202805, guid: 53f06f07dd69d5245a44a5eaa0f9512b,
+    - target: {fileID: 6984718374744210602, guid: eef2dbc5bf29e4645baa2cfb161c7e28,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2014932442319202806, guid: 53f06f07dd69d5245a44a5eaa0f9512b,
-        type: 3}
-      propertyPath: m_Name
-      value: Electricity
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 53f06f07dd69d5245a44a5eaa0f9512b, type: 3}
---- !u!4 &780326558 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: eef2dbc5bf29e4645baa2cfb161c7e28, type: 3}
+--- !u!4 &1628801917153888861 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 2014932442319202805, guid: 53f06f07dd69d5245a44a5eaa0f9512b,
+  m_CorrespondingSourceObject: {fileID: 6984718374744210602, guid: eef2dbc5bf29e4645baa2cfb161c7e28,
     type: 3}
-  m_PrefabInstance: {fileID: 2014932441807617899}
+  m_PrefabInstance: {fileID: 8535481193534813943}
   m_PrefabAsset: {fileID: 0}
