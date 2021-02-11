@@ -499,7 +499,7 @@ Transform:
   m_Children:
   - {fileID: 1512776519}
   m_Father: {fileID: 1730085928}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &243936103
 PrefabInstance:
@@ -611,7 +611,7 @@ Transform:
   m_Children:
   - {fileID: 600221493}
   m_Father: {fileID: 1730085928}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &323578702
 PrefabInstance:
@@ -1267,44 +1267,6 @@ PrefabInstance:
       propertyPath: m_BoundingShape2D
       value: 
       objectReference: {fileID: 1594829179}
-    - target: {fileID: 1140644649, guid: 30ab64c9273e09f408fe8f99e318a2ef, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 1140644649, guid: 30ab64c9273e09f408fe8f99e318a2ef, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 4979396982435567563, guid: 30ab64c9273e09f408fe8f99e318a2ef,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.0687373
-      objectReference: {fileID: 0}
-    - target: {fileID: 4979396982435567563, guid: 30ab64c9273e09f408fe8f99e318a2ef,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.48909077
-      objectReference: {fileID: 0}
-    - target: {fileID: 5950847092380134342, guid: 30ab64c9273e09f408fe8f99e318a2ef,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 5950847092380134342, guid: 30ab64c9273e09f408fe8f99e318a2ef,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 8812885909634976040, guid: 30ab64c9273e09f408fe8f99e318a2ef,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 8812885909634976040, guid: 30ab64c9273e09f408fe8f99e318a2ef,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.93
-      objectReference: {fileID: 0}
     - target: {fileID: 9221799522365304708, guid: 30ab64c9273e09f408fe8f99e318a2ef,
         type: 3}
       propertyPath: m_Name
@@ -1473,7 +1435,7 @@ Transform:
   - {fileID: 1225302244}
   - {fileID: 1685143470}
   m_Father: {fileID: 1730085928}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &823030861
 PrefabInstance:
@@ -2031,7 +1993,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1015572414}
   m_Layer: 0
-  m_Name: ElectricBalls
+  m_Name: MovingElectricBalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2050,7 +2012,7 @@ Transform:
   m_Children:
   - {fileID: 347214696}
   m_Father: {fileID: 1730085928}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1039238387
 GameObject:
@@ -2980,7 +2942,7 @@ Transform:
   m_Children:
   - {fileID: 428286150}
   m_Father: {fileID: 1730085928}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1497322196
 PrefabInstance:
@@ -3503,13 +3465,13 @@ Transform:
   - {fileID: 1392890324}
   - {fileID: 2097329447}
   - {fileID: 1882917107}
-  - {fileID: 2104325633}
   - {fileID: 812529612}
   - {fileID: 2025646897}
   - {fileID: 283855980}
   - {fileID: 1496071896}
   - {fileID: 238460963}
   - {fileID: 1015572414}
+  - {fileID: 2104325633}
   - {fileID: 119299643}
   - {fileID: 215083891}
   m_Father: {fileID: 0}
@@ -4299,7 +4261,7 @@ Transform:
   m_Children:
   - {fileID: 1450739436}
   m_Father: {fileID: 1730085928}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2053102635 stripped
 Transform:
@@ -4477,7 +4439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2104325633}
   m_Layer: 0
-  m_Name: ElectricWires
+  m_Name: SwingingElectricWires
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4499,7 +4461,7 @@ Transform:
   - {fileID: 1101669459}
   - {fileID: 75336553}
   m_Father: {fileID: 1730085928}
-  m_RootOrder: 4
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2110991728
 PrefabInstance:
@@ -44481,7 +44443,7 @@ PrefabInstance:
     - target: {fileID: 6682916734546786345, guid: a60f558709522ef489acefcacb7e2ecd,
         type: 3}
       propertyPath: m_Name
-      value: ElectricBall
+      value: MovingElectricBall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a60f558709522ef489acefcacb7e2ecd, type: 3}

@@ -123,7 +123,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 15a4e126e1f2c3c48a90ecc7f665febd, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 2
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -138,11 +138,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6741473002468321256}
     m_Modifications:
-    - target: {fileID: 2014932442319202762, guid: 53f06f07dd69d5245a44a5eaa0f9512b,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2014932442319202762, guid: 53f06f07dd69d5245a44a5eaa0f9512b,
         type: 3}
       propertyPath: InitialModule.startLifetime.scalar

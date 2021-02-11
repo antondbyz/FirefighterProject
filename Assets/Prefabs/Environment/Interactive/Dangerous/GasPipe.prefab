@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4374871860773493422}
   - component: {fileID: 4374871860773493423}
+  - component: {fileID: 1040297279}
   m_Layer: 0
   m_Name: GasPipe
   m_TagString: Untagged
@@ -83,6 +84,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1040297279
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4374871860773493420}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f1bc6b909f4c1cb42886fc75b686ac6d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7432029548455736454
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +114,6 @@ GameObject:
   - component: {fileID: 7432029548455736449}
   - component: {fileID: 7432029548455736448}
   - component: {fileID: 7432029548455736455}
-  - component: {fileID: 7432029548455736473}
   m_Layer: 0
   m_Name: Gas
   m_TagString: DeathZone
@@ -4896,17 +4915,3 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &7432029548455736473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7432029548455736454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 210353bf8946b9449a07ed98767655bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playDuration: 2
-  stopDuration: 2
