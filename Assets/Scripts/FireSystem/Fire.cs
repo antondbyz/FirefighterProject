@@ -21,7 +21,6 @@ public class Fire : MonoBehaviour
                     Extinguished?.Invoke();
                     ps.Stop();
                     Destroy(myCollider);
-                    Destroy(gameObject, 2);
                 }
             }
         }

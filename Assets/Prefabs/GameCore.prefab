@@ -1533,7 +1533,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2209988199827312061}
   m_LocalRotation: {x: 0, y: 0, z: 0.043619405, w: 0.9990483}
-  m_LocalPosition: {x: -0.385, y: 0.153, z: 0}
+  m_LocalPosition: {x: -0.401, y: 0.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4979396982435567563}
@@ -2018,7 +2018,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4066872486062952961}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.319, y: 0.203, z: 0}
+  m_LocalPosition: {x: 0.303, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4979396982435567563}
@@ -2104,7 +2104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4979396982435567560}
   m_LocalRotation: {x: -0, y: 0, z: -0.04361922, w: 0.99904823}
-  m_LocalPosition: {x: 0.06873727, y: 0.48909092, z: 0}
+  m_LocalPosition: {x: 0.059999943, y: 0.3000002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1528939887486413175}
@@ -2746,7 +2746,7 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 1.35, y: -0.2, z: 0}
+    m_Position: {x: 1.35, y: 0, z: 0}
     m_Rotation: {x: 0, y: 90, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
@@ -6913,7 +6913,7 @@ MonoBehaviour:
   whatIsObstacle:
     serializedVersion: 2
     m_Bits: 1
-  minDistanceToObstacle: 1.8
+  minDistanceToObstacle: 1.6
 --- !u!1773428102 &2986068510593836759
 ParentConstraint:
   m_ObjectHideFlags: 0
@@ -6923,10 +6923,10 @@ ParentConstraint:
   m_GameObject: {fileID: 4979396982435567560}
   m_Enabled: 1
   m_Weight: 1
-  m_TranslationAtRest: {x: 0.06873703, y: 0.48909077, z: 0}
+  m_TranslationAtRest: {x: 0.06, y: 0.3, z: 0}
   m_RotationAtRest: {x: 0, y: 0, z: -4.9999804}
   m_TranslationOffsets:
-  - {x: 0, y: 0, z: 0}
+  - {x: -0.18846655, y: -0.017664075, z: 0}
   m_RotationOffsets:
   - {x: 0, y: 0, z: -87}
   m_AffectTranslationX: 1
@@ -7842,7 +7842,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7183717127273479098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.431, y: 0.153, z: 0}
+  m_LocalPosition: {x: -0.447, y: 0.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4979396982435567563}
