@@ -44317,11 +44317,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MovingElectricBall
       objectReference: {fileID: 0}
-    - target: {fileID: 6682916734546786345, guid: a60f558709522ef489acefcacb7e2ecd,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a60f558709522ef489acefcacb7e2ecd, type: 3}
 --- !u!1001 &7663378621266355714

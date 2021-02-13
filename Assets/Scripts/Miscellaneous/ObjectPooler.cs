@@ -5,8 +5,7 @@ public class ObjectPooler : MonoBehaviour
 {
     public static ObjectPooler Instance;
 
-    [SerializeField] private Pool[] pools = null;
-
+    private Pool[] pools = null;
     private Dictionary<Pool, Queue<GameObject>> poolsDictionary = new Dictionary<Pool, Queue<GameObject>>();
     private Transform myTransform;
 
@@ -15,6 +14,7 @@ public class ObjectPooler : MonoBehaviour
         if(Instance != null) Destroy(gameObject);
         Instance = this;
         myTransform = transform;
+        pools = Resources.LoadAll<Pool>("Pools");
         for(int i = 0; i < pools.Length; i++)
         {
             Queue<GameObject> objectPool = new Queue<GameObject>(); 
