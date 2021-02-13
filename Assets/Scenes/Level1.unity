@@ -2233,11 +2233,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 119299643}
     m_Modifications:
-    - target: {fileID: 2014932441947458155, guid: 21dd415d9b0a3274f90428dbc33f0e64,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6741473002468321256, guid: 21dd415d9b0a3274f90428dbc33f0e64,
         type: 3}
       propertyPath: m_RootOrder
@@ -43983,11 +43978,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GasPipe
-      objectReference: {fileID: 0}
-    - target: {fileID: 4374871860773493420, guid: 3c3ded4195f16ef45b6dea73ccf983d0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4374871860773493422, guid: 3c3ded4195f16ef45b6dea73ccf983d0,
         type: 3}

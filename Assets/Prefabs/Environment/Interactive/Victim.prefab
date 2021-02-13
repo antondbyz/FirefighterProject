@@ -879,7 +879,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7836517175129876154}
   - component: {fileID: 7836517175129876155}
-  - component: {fileID: 7836517175129876128}
+  - component: {fileID: 582563454}
   m_Layer: 2
   m_Name: Victim
   m_TagString: Victim
@@ -928,25 +928,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 2.5}
   m_EdgeRadius: 0
---- !u!95 &7836517175129876128
-Animator:
-  serializedVersion: 3
+--- !u!111 &582563454
+Animation:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7836517175129876135}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d5e3fa6a8f47863419adb14d99d873a4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 06304b559f252b243bd0427047b93974, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 06304b559f252b243bd0427047b93974, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &8079587202547593341
 GameObject:
   m_ObjectHideFlags: 0

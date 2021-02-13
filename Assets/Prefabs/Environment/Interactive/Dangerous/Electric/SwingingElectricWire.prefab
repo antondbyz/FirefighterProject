@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4275645079557837775}
   m_Layer: 0
-  m_Name: ElectricWire
+  m_Name: SwingingElectricWire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2707955391437551065}
   - component: {fileID: 2707955391437551064}
-  - component: {fileID: 2707955391437551040}
+  - component: {fileID: 1231330481}
   m_Layer: 0
   m_Name: Wire
   m_TagString: Untagged
@@ -115,25 +115,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &2707955391437551040
-Animator:
-  serializedVersion: 3
+--- !u!111 &1231330481
+Animation:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2707955391437551071}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2b0b40e7dc963804fb15331a41299fad, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: dac468ea5a6c1e64cbd5101df4daf47b, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: dac468ea5a6c1e64cbd5101df4daf47b, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1001 &8535481193534813943
 PrefabInstance:
   m_ObjectHideFlags: 0
