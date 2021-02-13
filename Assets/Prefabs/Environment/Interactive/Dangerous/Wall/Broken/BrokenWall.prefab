@@ -147,5 +147,5 @@ MonoBehaviour:
   CreateSpikesWhenFell: 0
   lifetime: 2
   spikes: {fileID: 1308240546211745966, guid: cca2b8bb2ad778a4cb0ca142690052c4, type: 3}
-  wallFellEffect: {fileID: 219871208230799944, guid: f04072d72bc0a864ca3c7212ab35c501,
-    type: 3}
+  wallFellEffectsPool: {fileID: 11400000, guid: 1028784cdf1bac842a244b67e71791a1,
+    type: 2}

@@ -6,7 +6,7 @@ public class BrokenWall : MonoBehaviour
 
     [SerializeField] private float lifetime = 1;
     [SerializeField] private GameObject spikes = null;
-    [SerializeField] private ParticleSystem wallFellEffect = null;
+    [SerializeField] private Pool wallFellEffectsPool = null;
 
     private Transform myTransform;
 
@@ -19,8 +19,7 @@ public class BrokenWall : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) 
     {
         if(CreateSpikesWhenFell) Instantiate(spikes, myTransform.position, Quaternion.identity);
-        ParticleSystem newEffect = Instantiate(wallFellEffect, myTransform.position, Quaternion.identity);
-        GameController.DestroyWithDelay(newEffect.gameObject, 2);
+        ObjectPooler.Instance.SpawnObject(wallFellEffectsPool, myTransform.position);
         Destroy(gameObject);
     }
 }

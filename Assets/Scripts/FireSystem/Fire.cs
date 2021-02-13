@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEngine.ParticleSystem;
 
 public class Fire : MonoBehaviour
 {
@@ -31,7 +30,7 @@ public class Fire : MonoBehaviour
 
     private BoxCollider2D myCollider;
     private ParticleSystem ps;
-    private MainModule main;
+    private ParticleSystem.MainModule main;
 
     public void Initialize()
     {

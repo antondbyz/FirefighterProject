@@ -5,15 +5,12 @@ public class BreakableWall : MonoBehaviour
     [SerializeField] private bool createSpikesWhenFell = true;
     [SerializeField] private BrokenWall brokenWall = null;
     [SerializeField] private BrokenWall brokenWallDangerous = null;
-    [SerializeField] private ParticleSystem wallBrokeEffect = null;
+    [SerializeField] private Pool wallBrokeEffectsPool = null;
 
     private Transform myTransform;
     private BrokenWall newBrokenWall;
 
-    private void Awake() 
-    {
-        myTransform = transform;    
-    }
+    private void Awake() => myTransform = transform;    
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
@@ -39,8 +36,7 @@ public class BreakableWall : MonoBehaviour
     private void Break()
     {
         newBrokenWall.CreateSpikesWhenFell = createSpikesWhenFell;
-        ParticleSystem newEffect = Instantiate(wallBrokeEffect, myTransform.position, Quaternion.identity);
-        GameController.DestroyWithDelay(newEffect.gameObject, 2);
+        ObjectPooler.Instance.SpawnObject(wallBrokeEffectsPool, myTransform.position);
         Destroy(gameObject);
     }
 }

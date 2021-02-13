@@ -23,7 +23,17 @@ public class GameController : MonoBehaviour
     private bool isPaused;
     private WaitForSeconds delay = new WaitForSeconds(1);
 
-    public static void DestroyWithDelay(GameObject go, float delay) => Destroy(go, delay);
+    public void DoSomething(System.Action action, float delay)
+    {
+        if(delay > 0) StartCoroutine(DoWithDelay(action, delay));
+        else action.Invoke();
+    }
+
+    private IEnumerator DoWithDelay(System.Action action, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        action.Invoke();
+    }
 
     public void CompleteLevel()
     {

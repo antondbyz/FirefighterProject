@@ -150,8 +150,8 @@ MonoBehaviour:
     type: 3}
   brokenWallDangerous: {fileID: 6585466018484907609, guid: 37f799562fd522041859dca514f84108,
     type: 3}
-  wallBrokeEffect: {fileID: 222291654923540595, guid: c22f488591be45347be4717314644fc4,
-    type: 3}
+  wallBrokeEffectsPool: {fileID: 11400000, guid: 27ea120ca1f19a8418e88b09e4a7d6ce,
+    type: 2}
 --- !u!1 &8345891622110767370
 GameObject:
   m_ObjectHideFlags: 0
