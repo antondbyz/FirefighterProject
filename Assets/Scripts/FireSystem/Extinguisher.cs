@@ -33,7 +33,7 @@ public class Extinguisher : MonoBehaviour
     {
         myTransform = transform;
         ps = GetComponent<ParticleSystem>();
-        aim = transform.parent.GetComponent<PlayerAim>();
+        aim = myTransform.parent.GetComponent<PlayerAim>();
     }
 
     private void OnEnable() => StartCoroutine(Extinguishing());
