@@ -235,6 +235,11 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3490271322039944782, guid: 3d1e00c75cd58ae49b5172d3b3aad6f1,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime0
+      value: 32768
+      objectReference: {fileID: 0}
     - target: {fileID: 3490271322039944785, guid: 3d1e00c75cd58ae49b5172d3b3aad6f1,
         type: 3}
       propertyPath: m_RootOrder

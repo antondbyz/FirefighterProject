@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BreakableWall : MonoBehaviour
+public class BreakableWall : Breakable
 {
     [SerializeField] private bool createSpikesWhenFell = true;
     [SerializeField] private BrokenWall brokenWall = null;
@@ -37,6 +37,7 @@ public class BreakableWall : MonoBehaviour
     {
         newBrokenWall.CreateSpikesWhenFell = createSpikesWhenFell;
         wallBrokeEffectsPool.SpawnObject(myTransform.position);
+        InvokeBroke();
         Destroy(gameObject);
     }
 }

@@ -43827,7 +43827,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3479006780370821948, guid: 39fb9fa292b8ba040959cd056e5599a9,
         type: 3}
-      propertyPath: obstacle
+      propertyPath: breakable
       value: 
       objectReference: {fileID: 1546517782}
     - target: {fileID: 3479006780370821948, guid: 39fb9fa292b8ba040959cd056e5599a9,

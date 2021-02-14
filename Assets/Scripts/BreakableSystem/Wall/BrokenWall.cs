@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BrokenWall : MonoBehaviour 
+public class BrokenWall : MonoBehaviour
 {
     [HideInInspector] public bool CreateSpikesWhenFell;
 
@@ -18,7 +18,11 @@ public class BrokenWall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
-        if(CreateSpikesWhenFell) Instantiate(spikes, myTransform.position, Quaternion.identity);
+        if(CreateSpikesWhenFell) 
+        {
+            spikes.SetActive(true);
+            spikes.transform.SetParent(null, true);
+        }
         wallFellEffectsPool.SpawnObject(myTransform.position);
         Destroy(gameObject);
     }

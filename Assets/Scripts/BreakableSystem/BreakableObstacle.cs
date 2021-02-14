@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 
-public class BreakableObstacle : MonoBehaviour
+public class BreakableObstacle : Breakable
 {
-    public event System.Action Broke;
-
     [SerializeField] private Pool brokenVersionsPool = null;
     [SerializeField] private float brokenVersionLifetime = 2;
 
@@ -19,7 +17,7 @@ public class BreakableObstacle : MonoBehaviour
         {
             newBrokenObj.SetActive(false);
         }, brokenVersionLifetime);
-        Broke?.Invoke();
+        InvokeBroke();
         Destroy(gameObject);
     }
 }

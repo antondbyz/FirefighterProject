@@ -14455,7 +14455,7 @@ MonoBehaviour:
   smokeInRoom: {fileID: 3479006780354397389}
   delayBeforeExplosion: 0.5
   duration: 1
-  obstacle: {fileID: 0}
+  breakable: {fileID: 0}
   fireInRoom:
   - {fileID: 0}
   - {fileID: 0}
