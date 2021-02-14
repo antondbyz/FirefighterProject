@@ -13,7 +13,7 @@ public class BreakableObstacle : MonoBehaviour
 
     public void Break(Vector2 force)
     {
-        GameObject newBrokenObj = ObjectPooler.Instance.SpawnObject(brokenVersionsPool, myTransform.position);
+        GameObject newBrokenObj = brokenVersionsPool.SpawnObject(myTransform.position);
         newBrokenObj.GetComponent<Rigidbody2D>().AddForce(force);
         GameController.Instance.DoSomething(() => 
         {

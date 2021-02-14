@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BrokenDoorsPool
   m_EditorClassIdentifier: 
   Prefab: {fileID: 7495967534942670297, guid: 37094cdf89e6e57448634d02d02bd636, type: 3}
-  Size: 5
+  Size: 3

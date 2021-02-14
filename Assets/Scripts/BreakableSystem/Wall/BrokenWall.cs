@@ -19,7 +19,7 @@ public class BrokenWall : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) 
     {
         if(CreateSpikesWhenFell) Instantiate(spikes, myTransform.position, Quaternion.identity);
-        ObjectPooler.Instance.SpawnObject(wallFellEffectsPool, myTransform.position);
+        wallFellEffectsPool.SpawnObject(myTransform.position);
         Destroy(gameObject);
     }
 }

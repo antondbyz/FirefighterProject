@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: WallBrokeEffectsPool
   m_EditorClassIdentifier: 
   Prefab: {fileID: 222291654923540607, guid: c22f488591be45347be4717314644fc4, type: 3}
-  Size: 5
+  Size: 3

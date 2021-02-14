@@ -1158,6 +1158,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 867346417, guid: 30ab64c9273e09f408fe8f99e318a2ef, type: 3}
+      propertyPath: m_Name
+      value: PoolsInitializer
+      objectReference: {fileID: 0}
     - target: {fileID: 900291319, guid: 30ab64c9273e09f408fe8f99e318a2ef, type: 3}
       propertyPath: m_BoundingShape2D
       value: 

@@ -36,7 +36,7 @@ public class BreakableWall : MonoBehaviour
     private void Break()
     {
         newBrokenWall.CreateSpikesWhenFell = createSpikesWhenFell;
-        ObjectPooler.Instance.SpawnObject(wallBrokeEffectsPool, myTransform.position);
+        wallBrokeEffectsPool.SpawnObject(myTransform.position);
         Destroy(gameObject);
     }
 }
