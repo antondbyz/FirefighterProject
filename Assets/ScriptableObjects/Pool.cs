@@ -6,7 +6,7 @@ public class Pool : ScriptableObject
 {
     public GameObject Prefab;
     public int Size;
-    public Queue<GameObject> Objects = new Queue<GameObject>();
+    public Queue<GameObject> Objects;
 
     public GameObject SpawnObject(Vector2 position)
     {
