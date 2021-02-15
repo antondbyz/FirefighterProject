@@ -3,22 +3,24 @@
 public class LockedDoor : MonoBehaviour
 {
     [SerializeField] private Sprite openedDoor = null;
+    [SerializeField] private GameObject key = null;
 
-    private Collider2D myCollider;
-    private SpriteRenderer myRenderer;
+    private Collider2D doorCollider;
+    private SpriteRenderer doorRenderer;
 
     private void Awake() 
     {
-        myCollider = GetComponent<Collider2D>();
-        myRenderer = GetComponent<SpriteRenderer>();    
+        Transform parent = transform.parent;
+        doorCollider = parent.GetComponent<Collider2D>();
+        doorRenderer = parent.GetComponent<SpriteRenderer>();    
     }
 
-    private void OnTriggerEnter2D(Collider2D other) 
+    public void TryUnlock()
     {
-        if(other.CompareTag("Player"))
+        if(key == null)
         {
-            myRenderer.sprite = openedDoor;
-            myCollider.enabled = false;
+            doorCollider.enabled = false;
+            doorRenderer.sprite = openedDoor;
         }
     }
 }
