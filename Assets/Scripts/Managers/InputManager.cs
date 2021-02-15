@@ -9,7 +9,6 @@ public class InputManager : MonoBehaviour
     [SerializeField] private CustomButton moveRightButton = null;
     [SerializeField] private CustomButton moveLeftButton = null;
     [SerializeField] private CustomButton jumpButton = null;
-    [SerializeField] private CustomButton hitButton = null;
 
     private void Update() 
     {
@@ -24,7 +23,6 @@ public class InputManager : MonoBehaviour
     {
         Horizontal = Input.GetAxisRaw("Horizontal");
         JumpPressed = Input.GetKeyDown(KeyCode.W);
-        HitPressed = Input.GetKeyDown(KeyCode.F);
     }
 
     private void ProcessCustomButtonsInput()
@@ -33,6 +31,5 @@ public class InputManager : MonoBehaviour
         else if(moveRightButton.Held) Horizontal = 1;
         else Horizontal = -1;
         JumpPressed = jumpButton.Pressed;
-        HitPressed = hitButton.Pressed;
     }
 }
