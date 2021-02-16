@@ -3821,6 +3821,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4903913032746851532, guid: ae99d79de5748e44d82f796ed718cfa5,
         type: 3}
+      propertyPath: spikes
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4903913032746851532, guid: ae99d79de5748e44d82f796ed718cfa5,
+        type: 3}
       propertyPath: createSpikesWhenFell
       value: 0
       objectReference: {fileID: 0}
