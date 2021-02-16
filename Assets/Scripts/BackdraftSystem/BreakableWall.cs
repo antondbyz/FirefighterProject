@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BreakableWall : Breakable
+public class BreakableWall : BackdraftObstacle
 {
     [SerializeField] private bool createSpikesWhenFell = true;
     [SerializeField] private BrokenWall brokenWall = null;
@@ -37,7 +37,7 @@ public class BreakableWall : Breakable
     {
         newBrokenWall.CreateSpikesWhenFell = createSpikesWhenFell;
         wallBrokeEffectsPool.SpawnObject(myTransform.position);
-        InvokeBroke();
+        InvokeObstacleDisappeared();
         Destroy(gameObject);
     }
 }

@@ -7,7 +7,7 @@ public class Backdraft : MonoBehaviour
     [SerializeField] private ParticleSystem smokeInRoom = null;
     [SerializeField] private float delayBeforeExplosion = 1;
     [SerializeField] private float duration = 2;
-    [SerializeField] private Breakable breakable = null;
+    [SerializeField] private BackdraftObstacle obstacle = null;
     [SerializeField] private ParticleSystem[] fireInRoom = null;
 
     private ParticleSystem backdraft;
@@ -24,9 +24,9 @@ public class Backdraft : MonoBehaviour
         }
     }
     
-    private void OnEnable() => breakable.Broke += StartExplosion;
+    private void OnEnable() => obstacle.ObstacleDisappeared += StartExplosion;
 
-    private void OnDisable() => breakable.Broke -= StartExplosion;
+    private void OnDisable() => obstacle.ObstacleDisappeared -= StartExplosion;
 
     private void StartExplosion() => StartCoroutine(Explode());
 
