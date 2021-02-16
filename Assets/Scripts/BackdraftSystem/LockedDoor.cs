@@ -10,18 +10,21 @@ public class LockedDoor : BackdraftObstacle
 
     private Collider2D myCollider;
     private SpriteRenderer myRenderer;
+    private Transform myTransform;
 
     private void Awake() 
     {
         myCollider = GetComponent<Collider2D>();
-        myRenderer = GetComponent<SpriteRenderer>();    
+        myRenderer = GetComponent<SpriteRenderer>();
+        myTransform = transform;    
     }
 
-    public void TryUnlock()
+    public void TryUnlock(float unlockerXPos)
     {
         if(key == null)
         {
             myCollider.enabled = false;
+            myRenderer.flipX = unlockerXPos > myTransform.position.x;
             myRenderer.sprite = opened;
             unlockZone.SetActive(false);
             InvokeObstacleDisappeared();
