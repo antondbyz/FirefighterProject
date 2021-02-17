@@ -38,6 +38,7 @@ public class Backdraft : MonoBehaviour
         for(int i = 0; i < fireInRoom.Length; i++) fireInRoom[i].gameObject.SetActive(true);
         backdraft.Play(false);
         yield return new WaitForSeconds(duration);
-        backdraft.Stop();
+        backdraft.Stop(false);
+        smokeStream.Stop();
     }
 }
