@@ -2,6 +2,7 @@
 
 public class PlayerSkinsManager : MonoBehaviour
 {
+    [SerializeField] private int currentSkinIndex = 0;
     [Header("Player body parts")]
     [SerializeField] private SpriteRenderer head = null;
     [SerializeField] private SpriteRenderer body = null;
@@ -15,23 +16,15 @@ public class PlayerSkinsManager : MonoBehaviour
     [SerializeField] private SpriteRenderer extinguisherHoseDrawn = null;
 
     private PlayerSkin[] skins;
-    private int currentSkinIndex = 0;
 
-    private void Awake() 
+    public void Initialize()
     {
         skins = Resources.LoadAll<PlayerSkin>("PlayerSkins");
-        UpdateSkin();    
+        currentSkinIndex = Mathf.Clamp(currentSkinIndex, 0, skins.Length - 1);
+        UpdateSkin(); 
     }
 
-    private void Update() 
-    {
-        if(Input.GetKeyDown(KeyCode.I))
-        {
-            if(currentSkinIndex >= skins.Length - 1) currentSkinIndex = 0;
-            else currentSkinIndex++;
-            UpdateSkin();
-        }
-    }
+    private void Awake() => Initialize();
 
     private void UpdateSkin()
     {
