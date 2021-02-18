@@ -6,7 +6,7 @@ SpriteAtlas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player
+  m_Name: PlayerSkin3
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -42,7 +42,8 @@ SpriteAtlas:
       enableTightPacking: 0
     variantMultiplier: 1
     packables:
-    - {fileID: 102900000, guid: 3dee69e54872c9c428cf2d0f593607ee, type: 3}
+    - {fileID: 2800000, guid: 921f0041c2bfaab468e25d2bd6dfb0ad, type: 3}
+    - {fileID: 2800000, guid: 73ba2238de1096c47af02ae05207c1ba, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -67,5 +68,5 @@ SpriteAtlas:
   - Player_L_Arm
   - Player_L_Leg
   - Player_Body
-  m_Tag: Player
+  m_Tag: PlayerSkin3
   m_IsVariant: 0
