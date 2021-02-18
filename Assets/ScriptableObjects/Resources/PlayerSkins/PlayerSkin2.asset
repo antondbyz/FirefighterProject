@@ -12,13 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15713e9a9f0e5c842a1ca9664980e5e8, type: 3}
   m_Name: PlayerSkin2
   m_EditorClassIdentifier: 
-  Head: {fileID: -2311659948842064771, guid: d3747e35bbe05bf488b75758e86a461d, type: 3}
-  Body: {fileID: -6287787046888575383, guid: d3747e35bbe05bf488b75758e86a461d, type: 3}
-  RightArm: {fileID: 7364682651488144517, guid: d3747e35bbe05bf488b75758e86a461d,
+  Head: {fileID: -2311659948842064771, guid: 1344362900f905d4fa54bd238e240502, type: 3}
+  Body: {fileID: -6287787046888575383, guid: 1344362900f905d4fa54bd238e240502, type: 3}
+  RightArm: {fileID: 7364682651488144517, guid: 1344362900f905d4fa54bd238e240502,
     type: 3}
-  LeftArm: {fileID: -1182821291677670348, guid: d3747e35bbe05bf488b75758e86a461d,
+  LeftArm: {fileID: -1182821291677670348, guid: 1344362900f905d4fa54bd238e240502,
     type: 3}
-  RightLeg: {fileID: -4709456396536258026, guid: d3747e35bbe05bf488b75758e86a461d,
+  RightLeg: {fileID: -4709456396536258026, guid: 1344362900f905d4fa54bd238e240502,
     type: 3}
-  LeftLeg: {fileID: -4529042392078601758, guid: d3747e35bbe05bf488b75758e86a461d,
+  LeftLeg: {fileID: -4529042392078601758, guid: 1344362900f905d4fa54bd238e240502,
+    type: 3}
+  ExtinguisherBalloon: {fileID: -2340975581702683568, guid: 1344362900f905d4fa54bd238e240502,
+    type: 3}
+  ExtinguisherHoseHidden: {fileID: 3618381209196284247, guid: 1344362900f905d4fa54bd238e240502,
+    type: 3}
+  ExtinguisherHoseDrawn: {fileID: 7021574439977025703, guid: 1344362900f905d4fa54bd238e240502,
     type: 3}

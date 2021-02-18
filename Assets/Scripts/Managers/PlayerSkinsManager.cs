@@ -2,12 +2,17 @@
 
 public class PlayerSkinsManager : MonoBehaviour
 {
+    [Header("Player body parts")]
     [SerializeField] private SpriteRenderer head = null;
     [SerializeField] private SpriteRenderer body = null;
     [SerializeField] private SpriteRenderer rightArm = null;
     [SerializeField] private SpriteRenderer leftArm = null;
     [SerializeField] private SpriteRenderer rightLeg = null;
     [SerializeField] private SpriteRenderer leftLeg = null;
+    [Header("Extinguisher parts")]
+    [SerializeField] private SpriteRenderer extinguisherBalloon = null;
+    [SerializeField] private SpriteRenderer extinguisherHoseHidden = null;
+    [SerializeField] private SpriteRenderer extinguisherHoseDrawn = null;
 
     private PlayerSkin[] skins;
     private int currentSkinIndex = 0;
@@ -36,5 +41,8 @@ public class PlayerSkinsManager : MonoBehaviour
         leftArm.sprite = skins[currentSkinIndex].LeftArm;
         rightLeg.sprite = skins[currentSkinIndex].RightLeg;
         leftLeg.sprite = skins[currentSkinIndex].LeftLeg;
+        extinguisherBalloon.sprite = skins[currentSkinIndex].ExtinguisherBalloon;
+        extinguisherHoseHidden.sprite = skins[currentSkinIndex].ExtinguisherHoseHidden;
+        extinguisherHoseDrawn.sprite =skins[currentSkinIndex].ExtinguisherHoseDrawn;
     }
 }

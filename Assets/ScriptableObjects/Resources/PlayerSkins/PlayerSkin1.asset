@@ -22,3 +22,9 @@ MonoBehaviour:
     type: 3}
   LeftLeg: {fileID: -4529042392078601758, guid: b1a02a10f1af660468f6788e7b643167,
     type: 3}
+  ExtinguisherBalloon: {fileID: -2340975581702683568, guid: b1a02a10f1af660468f6788e7b643167,
+    type: 3}
+  ExtinguisherHoseHidden: {fileID: 3618381209196284247, guid: b1a02a10f1af660468f6788e7b643167,
+    type: 3}
+  ExtinguisherHoseDrawn: {fileID: 7021574439977025703, guid: b1a02a10f1af660468f6788e7b643167,
+    type: 3}

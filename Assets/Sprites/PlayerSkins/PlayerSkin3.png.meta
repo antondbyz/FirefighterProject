@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 73ba2238de1096c47af02ae05207c1ba
+guid: 8b52ed5cb082ee043ba59499a351c8d1
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -29,6 +29,15 @@ TextureImporter:
   - first:
       213: -4245738604243887485
     second: ExtinhuisherHose_Ready
+  - first:
+      213: -2340975581702683568
+    second: Extinguisher_Balloon
+  - first:
+      213: 3618381209196284247
+    second: Extinguisher_HoseHidden
+  - first:
+      213: 7021574439977025703
+    second: Extinguisher_HoseDrawn
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -131,8 +140,8 @@ TextureImporter:
       name: Player_Head
       rect:
         serializedVersion: 2
-        x: 84
-        y: 342
+        x: 348
+        y: 345
         width: 87
         height: 93
       alignment: 0
@@ -466,10 +475,10 @@ TextureImporter:
       name: Player_R_Arm
       rect:
         serializedVersion: 2
-        x: 15
-        y: 234
-        width: 53
-        height: 111
+        x: 280
+        y: 238
+        width: 51
+        height: 110
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -947,10 +956,10 @@ TextureImporter:
       name: Player_Body
       rect:
         serializedVersion: 2
-        x: 80
-        y: 221
-        width: 79
-        height: 118
+        x: 345
+        y: 225
+        width: 78
+        height: 117
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1285,10 +1294,10 @@ TextureImporter:
       name: Player_L_Arm
       rect:
         serializedVersion: 2
-        x: 168
-        y: 226
-        width: 69
-        height: 103
+        x: 434
+        y: 230
+        width: 67
+        height: 102
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1775,10 +1784,10 @@ TextureImporter:
       name: Player_R_Leg
       rect:
         serializedVersion: 2
-        x: 55
-        y: 113
-        width: 44
-        height: 106
+        x: 318
+        y: 116
+        width: 45
+        height: 105
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2188,9 +2197,9 @@ TextureImporter:
       name: Player_L_Leg
       rect:
         serializedVersion: 2
-        x: 129
-        y: 113
-        width: 47
+        x: 393
+        y: 116
+        width: 44
         height: 93
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -2659,6 +2668,69 @@ TextureImporter:
         boneIndex[1]: 0
         boneIndex[2]: 0
         boneIndex[3]: 0
+    - serializedVersion: 2
+      name: Extinguisher_Balloon
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 271
+        width: 61
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0548fb88c1f238fd0800000000000000
+      internalID: -2340975581702683568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Extinguisher_HoseHidden
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 254
+        width: 80
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 759c71ce982173230800000000000000
+      internalID: 3618381209196284247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Extinguisher_HoseDrawn
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 145
+        width: 204
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a00bc250c4a17160800000000000000
+      internalID: 7021574439977025703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

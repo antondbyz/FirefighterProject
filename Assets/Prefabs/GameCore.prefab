@@ -8509,6 +8509,9 @@ MonoBehaviour:
   leftArm: {fileID: 1342087856}
   rightLeg: {fileID: 364322003}
   leftLeg: {fileID: 1589291129}
+  extinguisherBalloon: {fileID: 6469325642226313477}
+  extinguisherHoseHidden: {fileID: 2035996805660615639}
+  extinguisherHoseDrawn: {fileID: 6899347767329750609}
 --- !u!1001 &75245125861431184
 PrefabInstance:
   m_ObjectHideFlags: 0
