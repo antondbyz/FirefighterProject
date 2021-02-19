@@ -3,6 +3,7 @@
 [CreateAssetMenu(menuName = "My assets/New player skin")]
 public class PlayerSkin : ScriptableObject 
 {
+    public Sprite SkinPreview;
     [Header("Player body parts")]
     public Sprite Head;   
     public Sprite Body;   

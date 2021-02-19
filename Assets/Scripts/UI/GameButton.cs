@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CustomButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class GameButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public bool Pressed { get; private set; }
     public bool Held { get; private set; }

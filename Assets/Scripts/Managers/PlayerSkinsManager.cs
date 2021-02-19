@@ -2,7 +2,9 @@
 
 public class PlayerSkinsManager : MonoBehaviour
 {
-    [SerializeField] private int currentSkinIndex = 0;
+    public static PlayerSkin[] Skins;
+    public static int CurrentSkinIndex = 0;
+
     [Header("Player body parts")]
     [SerializeField] private SpriteRenderer head = null;
     [SerializeField] private SpriteRenderer body = null;
@@ -15,27 +17,16 @@ public class PlayerSkinsManager : MonoBehaviour
     [SerializeField] private SpriteRenderer extinguisherHoseHidden = null;
     [SerializeField] private SpriteRenderer extinguisherHoseDrawn = null;
 
-    private PlayerSkin[] skins;
-
-    public void Initialize()
+    private void Awake() 
     {
-        skins = Resources.LoadAll<PlayerSkin>("PlayerSkins");
-        currentSkinIndex = Mathf.Clamp(currentSkinIndex, 0, skins.Length - 1);
-        UpdateSkin(); 
-    }
-
-    private void Awake() => Initialize();
-
-    private void UpdateSkin()
-    {
-        head.sprite = skins[currentSkinIndex].Head;
-        body.sprite = skins[currentSkinIndex].Body;
-        rightArm.sprite = skins[currentSkinIndex].RightArm;
-        leftArm.sprite = skins[currentSkinIndex].LeftArm;
-        rightLeg.sprite = skins[currentSkinIndex].RightLeg;
-        leftLeg.sprite = skins[currentSkinIndex].LeftLeg;
-        extinguisherBalloon.sprite = skins[currentSkinIndex].ExtinguisherBalloon;
-        extinguisherHoseHidden.sprite = skins[currentSkinIndex].ExtinguisherHoseHidden;
-        extinguisherHoseDrawn.sprite =skins[currentSkinIndex].ExtinguisherHoseDrawn;
+        head.sprite = Skins[CurrentSkinIndex].Head;
+        body.sprite = Skins[CurrentSkinIndex].Body;
+        rightArm.sprite = Skins[CurrentSkinIndex].RightArm;
+        leftArm.sprite = Skins[CurrentSkinIndex].LeftArm;
+        rightLeg.sprite = Skins[CurrentSkinIndex].RightLeg;
+        leftLeg.sprite = Skins[CurrentSkinIndex].LeftLeg;
+        extinguisherBalloon.sprite = Skins[CurrentSkinIndex].ExtinguisherBalloon;
+        extinguisherHoseHidden.sprite = Skins[CurrentSkinIndex].ExtinguisherHoseHidden;
+        extinguisherHoseDrawn.sprite =Skins[CurrentSkinIndex].ExtinguisherHoseDrawn;
     }
 }

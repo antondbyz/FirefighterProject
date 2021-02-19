@@ -6,10 +6,10 @@ public class InputManager : MonoBehaviour
     public static bool JumpPressed { get; private set; }
     public static bool OpenPressed { get; private set; }
 
-    [SerializeField] private CustomButton moveRightButton = null;
-    [SerializeField] private CustomButton moveLeftButton = null;
-    [SerializeField] private CustomButton jumpButton = null;
-    [SerializeField] private CustomButton openButton = null;
+    [SerializeField] private GameButton moveRightButton = null;
+    [SerializeField] private GameButton moveLeftButton = null;
+    [SerializeField] private GameButton jumpButton = null;
+    [SerializeField] private GameButton openButton = null;
 
     private void Update() 
     {
