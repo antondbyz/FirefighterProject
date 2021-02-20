@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     }
     public bool IsGrounded => Physics2D.BoxCast(bc.bounds.center, bc.size, 0, Vector2.down, groundCheckDistance, whatIsGround);
     public bool IsMoving => newVelocity.x != 0;
-    public bool IsHoldingLedge { get; private set; }
+    [HideInInspector] public bool IsHoldingLedge;
 
     [SerializeField] private float speed = 5;
     [SerializeField] private float jumpForce = 8;
