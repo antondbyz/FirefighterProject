@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour
 
     public void CompleteLevel()
     {
-        PlayerManager.CurrentBalance = player.EarnedMoney;
+        GameManager.PlayerBalance = player.EarnedMoney;
         player.gameObject.SetActive(false);
         IsPaused = true;
         levelCompleted.Invoke();
