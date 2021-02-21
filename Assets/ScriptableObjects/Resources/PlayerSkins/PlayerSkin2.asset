@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PlayerSkin2
   m_EditorClassIdentifier: 
   SkinPreview: {fileID: 21300000, guid: 301efce5dcc1b74499a794bbb845ee51, type: 3}
+  Cost: 100
   Head: {fileID: -2311659948842064771, guid: 1344362900f905d4fa54bd238e240502, type: 3}
   Body: {fileID: -6287787046888575383, guid: 1344362900f905d4fa54bd238e240502, type: 3}
   RightArm: {fileID: 7364682651488144517, guid: 1344362900f905d4fa54bd238e240502,

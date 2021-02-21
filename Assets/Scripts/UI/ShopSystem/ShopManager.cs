@@ -24,14 +24,19 @@ public class ShopManager : MonoBehaviour
         {
             items[i].Selected = (i == index);
         }
-        UpdateButton();
+        UpdateActionButton();
     }
 
     public void BuySelectedItem()
     {
-        items[selectedItemIndex].CurrentState = ShopItem.State.PURCHASED;
-        purchasedItemsIndexes.Add(selectedItemIndex);
-        UpdateButton();
+        if(GameManager.PlayerBalance > items[selectedItemIndex].Skin.Cost)
+        {
+            GameManager.PlayerBalance -= items[selectedItemIndex].Skin.Cost;
+            earnedMoney.text = GameManager.PlayerBalance.ToString();
+            items[selectedItemIndex].CurrentState = ShopItem.State.PURCHASED;
+            purchasedItemsIndexes.Add(selectedItemIndex);
+            UpdateActionButton();
+        }
     }
 
     public void UseSelectedItem()
@@ -40,7 +45,7 @@ public class ShopManager : MonoBehaviour
         items[selectedItemIndex].CurrentState = ShopItem.State.USING;
         usingItemIndex = selectedItemIndex;
         GameManager.CurrentPlayerSkin = items[usingItemIndex].Skin;
-        UpdateButton();
+        UpdateActionButton();
     }
 
     private void Awake() 
@@ -62,22 +67,16 @@ public class ShopManager : MonoBehaviour
 
     private void OnEnable() 
     {
-        for(int i = 0; i < items.Length; i++)
-        {
-            items[i].Clicked += SelectItem;
-        }
+        for(int i = 0; i < items.Length; i++) items[i].Clicked += SelectItem;
         SelectItem(usingItemIndex);
     }
 
     private void OnDisable() 
     {
-        for(int i = 0; i < items.Length; i++)
-        {
-            items[i].Clicked -= SelectItem;
-        }
+        for(int i = 0; i < items.Length; i++) items[i].Clicked -= SelectItem;
     }
 
-    private void UpdateButton()
+    private void UpdateActionButton()
     {
         switch(items[selectedItemIndex].CurrentState)
         {

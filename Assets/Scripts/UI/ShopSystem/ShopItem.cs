@@ -33,13 +33,13 @@ public class ShopItem : MonoBehaviour, IPointerClickHandler
     [HideInInspector] public PlayerSkin Skin;
 
     [SerializeField] private GameObject selectionOutline = null;
-    [SerializeField] private Color defaultColor = new Color();
     [SerializeField] private Color purchasedColor = new Color();
     [SerializeField] private Color usingColor = new Color();
     [SerializeField] private Image item = null;
     [SerializeField] private Image previewImage = null;
 
     private State currentState = State.DEFAULT;
+    private Color defaultColor;
     private bool selected;
     private int index;
 
@@ -55,4 +55,6 @@ public class ShopItem : MonoBehaviour, IPointerClickHandler
     {
         Clicked?.Invoke(index);
     }
+
+    private void Awake() => defaultColor = item.color;
 }
