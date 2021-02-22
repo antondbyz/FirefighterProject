@@ -19,24 +19,25 @@ public class ShopItem : MonoBehaviour, IPointerClickHandler
                 case State.DEFAULT: 
                 {
                     item.color = defaultColor; 
-                    cost.SetActive(true);
+                    price.SetActive(true);
                     break;
                 }
                 case State.PURCHASED:
                 { 
                     item.color = purchasedColor;
-                    cost.SetActive(false);
+                    price.SetActive(false);
                     break;
                 }
                 case State.USING: 
                 {
                     item.color = usingColor;
-                    cost.SetActive(false);
+                    price.SetActive(false);
                     break;
                 }
             }
         }
     }
+    public bool EnoughMoneyToBuy => GameManager.PlayerBalance >= Skin.Price;
     public bool Selected
     {
         get => selected;
@@ -53,9 +54,9 @@ public class ShopItem : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Color usingColor = new Color();
     [SerializeField] private Image item = null;
     [SerializeField] private Image previewImage = null;
-    [Header("Cost")]
-    [SerializeField] private GameObject cost = null;
-    [SerializeField] private TMP_Text costText = null;
+    [Header("Price")]
+    [SerializeField] private GameObject price = null;
+    [SerializeField] private TMP_Text priceText = null;
     [SerializeField] private Color enoughMoneyColor = new Color(255, 255, 255, 255);
     [SerializeField] private Color notEnoughMoneyColor = new Color(255, 255, 255, 255);
 
@@ -66,7 +67,7 @@ public class ShopItem : MonoBehaviour, IPointerClickHandler
 
     public void UpdateCostTextColor()
     {
-        costText.color = GameManager.PlayerBalance >= Skin.Cost ? enoughMoneyColor : notEnoughMoneyColor;
+        priceText.color = EnoughMoneyToBuy ? enoughMoneyColor : notEnoughMoneyColor;
     }
 
     public void Initialize(PlayerSkin skin, int itemIndex) 
@@ -74,7 +75,7 @@ public class ShopItem : MonoBehaviour, IPointerClickHandler
         Skin = skin;
         previewImage.sprite = Skin.SkinPreview;
         index = itemIndex;
-        costText.text = $"{skin.Cost}$";
+        priceText.text = $"{skin.Price}$";
         UpdateCostTextColor();
         CurrentState = State.DEFAULT;
         Selected = false;

@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: PlayerSkin1
   m_EditorClassIdentifier: 
   SkinPreview: {fileID: 21300000, guid: 72e33030ff4a4ab469884f0af7105b9d, type: 3}
+  Cost: 0
+  LifesAmount: 3
+  ExtinguisherPower: 10
   Head: {fileID: -2311659948842064771, guid: b1a02a10f1af660468f6788e7b643167, type: 3}
   Body: {fileID: -6287787046888575383, guid: b1a02a10f1af660468f6788e7b643167, type: 3}
   RightArm: {fileID: 7364682651488144517, guid: b1a02a10f1af660468f6788e7b643167,

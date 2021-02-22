@@ -4,7 +4,9 @@
 public class PlayerSkin : ScriptableObject 
 {
     public Sprite SkinPreview;
-    public int Cost;
+    public int Price;
+    public int LifesAmount;
+    public int ExtinguisherPower;
     [Header("Player body parts")]
     public Sprite Head;   
     public Sprite Body;   

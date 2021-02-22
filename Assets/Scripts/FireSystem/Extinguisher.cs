@@ -18,7 +18,6 @@ public class Extinguisher : MonoBehaviour
     }
 
     [SerializeField] private float distance = 1;
-    [SerializeField] private float efficiency = 1;
     [SerializeField] private LayerMask interactsWith = new LayerMask();
     [SerializeField] private LayerMask whatIsObstacle = new LayerMask();
     [SerializeField] private float minDistanceToObstacle = 1;
@@ -26,6 +25,7 @@ public class Extinguisher : MonoBehaviour
     private Transform myTransform;
     private ParticleSystem ps;
     private PlayerAim aim;
+    private float power;
     private bool isTurnedOn;
     private RaycastHit2D[] results = new RaycastHit2D[3];
 
@@ -34,6 +34,7 @@ public class Extinguisher : MonoBehaviour
         myTransform = transform;
         ps = GetComponent<ParticleSystem>();
         aim = myTransform.parent.GetComponent<PlayerAim>();
+        power = GameManager.CurrentPlayerSkin.ExtinguisherPower;
     }
 
     private void OnEnable() => StartCoroutine(Extinguishing());
@@ -62,7 +63,7 @@ public class Extinguisher : MonoBehaviour
                     {
                         if((whatIsObstacle.value & 1 << results[i].collider.gameObject.layer) > 0) break;
                         Fire fire = results[i].collider.GetComponent<Fire>();
-                        if(fire != null) fire.CurrentHeat -= efficiency;
+                        if(fire != null) fire.CurrentHeat -= power;
                     }
                 }
             }

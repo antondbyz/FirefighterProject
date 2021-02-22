@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public const int START_LIFES = 3;
-
     public event System.Action Died;
     public int LifesLeft
     {
@@ -48,7 +46,7 @@ public class Player : MonoBehaviour
     {
         myTransform = transform;  
         currentCheckpoint = myTransform.position;
-        LifesLeft = START_LIFES;
+        LifesLeft = GameManager.CurrentPlayerSkin.LifesAmount;
         EarnedMoney = GameManager.PlayerBalance;
     }
 

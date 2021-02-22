@@ -56,6 +56,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: a74dacc9bfcf47749a8630eac3456429, type: 3}
   - {fileID: 21300000, guid: c356d10b4a98a33448a9da4bb7bc4990, type: 3}
   - {fileID: 21300000, guid: 105aa01b1530a1e48ba3df5d4a1cae8b, type: 3}
+  - {fileID: 21300000, guid: aafacc2ba6ddf07409398f4fb5c76eaf, type: 3}
   - {fileID: 21300000, guid: 0ca8a2be0f327564fb4739d1f05fb0f9, type: 3}
   m_PackedSpriteNamesToIndex:
   - Pause
@@ -66,6 +67,7 @@ SpriteAtlas:
   - RoundRect
   - Triangle
   - Circle
+  - ExtinguisherIcon
   - OpenDoor
   m_Tag: UI
   m_IsVariant: 0
