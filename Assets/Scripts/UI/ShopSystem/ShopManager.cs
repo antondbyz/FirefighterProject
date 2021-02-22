@@ -32,7 +32,6 @@ public class ShopManager : MonoBehaviour
         if(GameManager.PlayerBalance > items[selectedItemIndex].Skin.Cost)
         {
             GameManager.PlayerBalance -= items[selectedItemIndex].Skin.Cost;
-            earnedMoney.text = GameManager.PlayerBalance.ToString();
             items[selectedItemIndex].CurrentState = ShopItem.State.PURCHASED;
             purchasedItemsIndexes.Add(selectedItemIndex);
             UpdateActionButton();
@@ -62,19 +61,23 @@ public class ShopManager : MonoBehaviour
             items[purchasedItemsIndexes[i]].CurrentState = ShopItem.State.PURCHASED;
         }
         items[usingItemIndex].CurrentState = ShopItem.State.USING;
-        earnedMoney.text = GameManager.PlayerBalance.ToString();
+        UpdateMoneyText();
     }
 
     private void OnEnable() 
     {
         for(int i = 0; i < items.Length; i++) items[i].Clicked += SelectItem;
+        GameManager.PlayerBalanceChanged += UpdateMoneyText;
         SelectItem(usingItemIndex);
     }
 
     private void OnDisable() 
     {
         for(int i = 0; i < items.Length; i++) items[i].Clicked -= SelectItem;
+        GameManager.PlayerBalanceChanged -= UpdateMoneyText;
     }
+
+    private void UpdateMoneyText() => earnedMoney.text = GameManager.PlayerBalance.ToString();
 
     private void UpdateActionButton()
     {

@@ -140,6 +140,10 @@ MonoBehaviour:
   usingColor: {r: 0.5, g: 1, b: 0.9166666, a: 1}
   item: {fileID: 7465604389623315502}
   previewImage: {fileID: 6409681110736694440}
+  cost: {fileID: 8060525537010863912}
+  costText: {fileID: 3584417783155576952}
+  enoughMoneyColor: {r: 0, g: 1, b: 0.13333344, a: 255}
+  notEnoughMoneyColor: {r: 1, g: 0, b: 0, a: 255}
 --- !u!1 &7465604389623315500
 GameObject:
   m_ObjectHideFlags: 0
