@@ -49,6 +49,7 @@ SpriteAtlas:
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 07eca9a1a43b8cd4cbfd05ec7eacf695, type: 3}
+  - {fileID: 21300000, guid: ce76367248b70cc408de0f51d3418bdd, type: 3}
   - {fileID: 21300000, guid: d6a252f2fd62de749b9b6c55473e6848, type: 3}
   - {fileID: 21300000, guid: ae244e43ab1f32f47ac2c84480a93ec4, type: 3}
   - {fileID: 21300000, guid: 32dcb7e3f2355c44f98f9350b3a3fc92, type: 3}
@@ -59,6 +60,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 0ca8a2be0f327564fb4739d1f05fb0f9, type: 3}
   m_PackedSpriteNamesToIndex:
   - Pause
+  - ExtinguisherIcon
   - Heart
   - Money
   - Arrow
