@@ -1,9 +1,10 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ScenesManager : MonoBehaviour 
 {
-    public void LoadScene(int sceneIndex) => SceneManager.LoadScene(sceneIndex);
+    public void LoadScene(int sceneIndex) => GameManager.LoadScene(sceneIndex);
 
-    public void RestartCurrentScene() => SceneManager.LoadScene(gameObject.scene.buildIndex);    
+    public void RestartCurrentScene() => GameManager.LoadScene(gameObject.scene.buildIndex);   
+
+    public void ToTheMainMenu() => LoadScene(1); 
 }

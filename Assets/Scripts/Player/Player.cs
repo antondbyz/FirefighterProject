@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
         if(other.CompareTag("Victim")) 
         {
             Destroy(other.gameObject);
-            EarnedMoney += GameManager.VICTIM_SAVING_REWARD;
+            EarnedMoney += GameManager.VICTIM_SAVED_REWARD;
         } 
         else if(other.CompareTag("Finish")) GameController.Instance.CompleteLevel();
         else if(other.CompareTag("DeathZone")) Die();
@@ -75,5 +75,5 @@ public class Player : MonoBehaviour
         if(other.CompareTag("DeathZone")) Die();    
     }
 
-    private void FireExtinguished() => EarnedMoney += GameManager.FIRE_EXTINGUISHING_REWARD;
+    private void FireExtinguished() => EarnedMoney += GameManager.FIRE_EXTINGUISHED_REWARD;
 }

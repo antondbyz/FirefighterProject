@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public const int FIRE_EXTINGUISHING_REWARD = 10;
-    public const int VICTIM_SAVING_REWARD = 100;
+    public const int FIRE_EXTINGUISHED_REWARD = 10;
+    public const int VICTIM_SAVED_REWARD = 100;
 
     public static event System.Action PlayerBalanceChanged;
     public static int PlayerBalance 
@@ -24,12 +25,22 @@ public class GameManager : MonoBehaviour
 
     private static int playerBalance;
 
+    public static void LoadScene(int loadScene)
+    {
+        SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(1));
+        SceneManager.LoadScene(loadScene, LoadSceneMode.Additive);
+    }
+
     private void Awake() 
     {
-        if(PlayerSkins == null)
-        {
-            PlayerSkins = Resources.LoadAll<PlayerSkin>("PlayerSkins");    
-            CurrentPlayerSkin = PlayerSkins[0];
-        }
+        PlayerSkins = Resources.LoadAll<PlayerSkin>("PlayerSkins");    
+        CurrentPlayerSkin = PlayerSkins[0];
+        if(SceneManager.sceneCount == 1) SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        SceneManager.sceneLoaded += SceneLoaded;
     }   
+
+    private void SceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SceneManager.SetActiveScene(scene);
+    }
 }

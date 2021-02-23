@@ -342,10 +342,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 311720146}
-  - component: {fileID: 311720147}
   - component: {fileID: 311720145}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: ScenesManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -377,18 +376,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &311720147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 311720144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 755803b146193c3499f0a1e9a3ee8876, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &474200184 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2402023181149901621, guid: 71b9c925cb3640a4e9841c2335a8ad86,
@@ -1381,7 +1368,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1549617791
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1984,7 +1971,7 @@ PrefabInstance:
     - target: {fileID: 2472532927376628373, guid: 71b9c925cb3640a4e9841c2335a8ad86,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2472532927376628373, guid: 71b9c925cb3640a4e9841c2335a8ad86,
         type: 3}
@@ -3053,7 +3040,7 @@ PrefabInstance:
     - target: {fileID: 8424159774716823427, guid: a73a947b41be6e840a77945313f867bb,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.75
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8424159774716823427, guid: a73a947b41be6e840a77945313f867bb,
         type: 3}
@@ -3063,7 +3050,7 @@ PrefabInstance:
     - target: {fileID: 8424159774716823427, guid: a73a947b41be6e840a77945313f867bb,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.35
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8424159774716823427, guid: a73a947b41be6e840a77945313f867bb,
         type: 3}
@@ -3073,7 +3060,7 @@ PrefabInstance:
     - target: {fileID: 8424159774716823427, guid: a73a947b41be6e840a77945313f867bb,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 430
       objectReference: {fileID: 0}
     - target: {fileID: 8424159774716823427, guid: a73a947b41be6e840a77945313f867bb,
         type: 3}
