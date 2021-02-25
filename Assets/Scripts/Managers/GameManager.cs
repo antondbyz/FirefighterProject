@@ -27,16 +27,21 @@ public class GameManager : MonoBehaviour
 
     public static void LoadScene(int loadScene)
     {
-        SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(1));
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
         SceneManager.LoadScene(loadScene, LoadSceneMode.Additive);
+    }
+
+    public static void LoadPlayerSkins()
+    {
+        PlayerSkins = Resources.LoadAll<PlayerSkin>("PlayerSkins");    
+        CurrentPlayerSkin = PlayerSkins[0];
     }
 
     private void Awake() 
     {
-        PlayerSkins = Resources.LoadAll<PlayerSkin>("PlayerSkins");    
-        CurrentPlayerSkin = PlayerSkins[0];
-        if(SceneManager.sceneCount == 1) SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        LoadPlayerSkins();
         SceneManager.sceneLoaded += SceneLoaded;
+        if(SceneManager.sceneCount == 1) SceneManager.LoadScene(1, LoadSceneMode.Additive);
     }   
 
     private void SceneLoaded(Scene scene, LoadSceneMode mode)

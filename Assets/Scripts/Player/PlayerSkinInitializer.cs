@@ -14,7 +14,7 @@ public class PlayerSkinInitializer : MonoBehaviour
     [SerializeField] private SpriteRenderer extinguisherHoseHidden = null;
     [SerializeField] private SpriteRenderer extinguisherHoseDrawn = null;
 
-    private void Awake() 
+    public void UpdateSkin()
     {
         head.sprite = GameManager.CurrentPlayerSkin.Head;
         body.sprite = GameManager.CurrentPlayerSkin.Body;
@@ -26,4 +26,6 @@ public class PlayerSkinInitializer : MonoBehaviour
         extinguisherHoseHidden.sprite = GameManager.CurrentPlayerSkin.ExtinguisherHoseHidden;
         extinguisherHoseDrawn.sprite =GameManager.CurrentPlayerSkin.ExtinguisherHoseDrawn;
     }
+
+    private void Awake() => UpdateSkin();
 }

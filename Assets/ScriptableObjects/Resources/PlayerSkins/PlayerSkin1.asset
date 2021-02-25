@@ -12,23 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15713e9a9f0e5c842a1ca9664980e5e8, type: 3}
   m_Name: PlayerSkin1
   m_EditorClassIdentifier: 
-  SkinPreview: {fileID: 21300000, guid: 72e33030ff4a4ab469884f0af7105b9d, type: 3}
-  Cost: 0
-  LifesAmount: 3
-  ExtinguisherPower: 10
-  Head: {fileID: -2311659948842064771, guid: b1a02a10f1af660468f6788e7b643167, type: 3}
-  Body: {fileID: -6287787046888575383, guid: b1a02a10f1af660468f6788e7b643167, type: 3}
-  RightArm: {fileID: 7364682651488144517, guid: b1a02a10f1af660468f6788e7b643167,
+  SkinPreview: {fileID: 21300000, guid: 301efce5dcc1b74499a794bbb845ee51, type: 3}
+  Price: 100
+  LifesAmount: 6
+  ExtinguisherPower: 20
+  Head: {fileID: -2311659948842064771, guid: 1344362900f905d4fa54bd238e240502, type: 3}
+  Body: {fileID: -6287787046888575383, guid: 1344362900f905d4fa54bd238e240502, type: 3}
+  RightArm: {fileID: 7364682651488144517, guid: 1344362900f905d4fa54bd238e240502,
     type: 3}
-  LeftArm: {fileID: -1182821291677670348, guid: b1a02a10f1af660468f6788e7b643167,
+  LeftArm: {fileID: -1182821291677670348, guid: 1344362900f905d4fa54bd238e240502,
     type: 3}
-  RightLeg: {fileID: -4709456396536258026, guid: b1a02a10f1af660468f6788e7b643167,
+  RightLeg: {fileID: -4709456396536258026, guid: 1344362900f905d4fa54bd238e240502,
     type: 3}
-  LeftLeg: {fileID: -4529042392078601758, guid: b1a02a10f1af660468f6788e7b643167,
+  LeftLeg: {fileID: -4529042392078601758, guid: 1344362900f905d4fa54bd238e240502,
     type: 3}
-  ExtinguisherBalloon: {fileID: -2340975581702683568, guid: b1a02a10f1af660468f6788e7b643167,
+  ExtinguisherBalloon: {fileID: -2340975581702683568, guid: 1344362900f905d4fa54bd238e240502,
     type: 3}
-  ExtinguisherHoseHidden: {fileID: 3618381209196284247, guid: b1a02a10f1af660468f6788e7b643167,
+  ExtinguisherHoseHidden: {fileID: 3618381209196284247, guid: 1344362900f905d4fa54bd238e240502,
     type: 3}
-  ExtinguisherHoseDrawn: {fileID: 7021574439977025703, guid: b1a02a10f1af660468f6788e7b643167,
+  ExtinguisherHoseDrawn: {fileID: 7021574439977025703, guid: 1344362900f905d4fa54bd238e240502,
     type: 3}
