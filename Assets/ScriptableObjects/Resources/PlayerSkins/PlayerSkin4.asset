@@ -13,15 +13,22 @@ MonoBehaviour:
   m_Name: PlayerSkin4
   m_EditorClassIdentifier: 
   SkinPreview: {fileID: 0}
-  Price: 0
-  LifesAmount: 0
-  ExtinguisherPower: 0
-  Head: {fileID: 0}
-  Body: {fileID: 0}
-  RightArm: {fileID: 0}
-  LeftArm: {fileID: 0}
-  RightLeg: {fileID: 0}
-  LeftLeg: {fileID: 0}
-  ExtinguisherBalloon: {fileID: 0}
-  ExtinguisherHoseHidden: {fileID: 0}
-  ExtinguisherHoseDrawn: {fileID: 0}
+  Price: 400
+  LifesAmount: 7
+  ExtinguisherPower: 25
+  Head: {fileID: -2311659948842064771, guid: 9a29e360ef686f94cb951032de8a26f9, type: 3}
+  Body: {fileID: -6287787046888575383, guid: 9a29e360ef686f94cb951032de8a26f9, type: 3}
+  RightArm: {fileID: 7364682651488144517, guid: 9a29e360ef686f94cb951032de8a26f9,
+    type: 3}
+  LeftArm: {fileID: -1182821291677670348, guid: 9a29e360ef686f94cb951032de8a26f9,
+    type: 3}
+  RightLeg: {fileID: -4709456396536258026, guid: 9a29e360ef686f94cb951032de8a26f9,
+    type: 3}
+  LeftLeg: {fileID: -4529042392078601758, guid: 9a29e360ef686f94cb951032de8a26f9,
+    type: 3}
+  ExtinguisherBalloon: {fileID: -2340975581702683568, guid: 9a29e360ef686f94cb951032de8a26f9,
+    type: 3}
+  ExtinguisherHoseHidden: {fileID: 3618381209196284247, guid: 9a29e360ef686f94cb951032de8a26f9,
+    type: 3}
+  ExtinguisherHoseDrawn: {fileID: 7021574439977025703, guid: 9a29e360ef686f94cb951032de8a26f9,
+    type: 3}
