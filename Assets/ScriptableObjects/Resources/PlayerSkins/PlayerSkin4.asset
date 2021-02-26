@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15713e9a9f0e5c842a1ca9664980e5e8, type: 3}
   m_Name: PlayerSkin4
   m_EditorClassIdentifier: 
-  SkinPreview: {fileID: 0}
+  SkinPreview: {fileID: 21300000, guid: 3adb8603ee1204e4887b1af586943f58, type: 3}
   Price: 0
   LifesAmount: 7
   ExtinguisherPower: 25
