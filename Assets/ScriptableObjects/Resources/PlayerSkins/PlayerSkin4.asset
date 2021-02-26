@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerSkin4
   m_EditorClassIdentifier: 
   SkinPreview: {fileID: 0}
-  Price: 400
+  Price: 0
   LifesAmount: 7
   ExtinguisherPower: 25
   Head: {fileID: -2311659948842064771, guid: 9a29e360ef686f94cb951032de8a26f9, type: 3}
