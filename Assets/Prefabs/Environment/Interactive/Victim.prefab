@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 7511810157089612381}
   - component: {fileID: 3164392108101223898}
   m_Layer: 0
-  m_Name: Char1_Body
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 4324817590564238002}
   - component: {fileID: 8652231828088400105}
   m_Layer: 0
-  m_Name: Char1_Head
+  m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -470,7 +470,7 @@ GameObject:
   - component: {fileID: 2517928818782026898}
   - component: {fileID: 4965533055073265043}
   m_Layer: 0
-  m_Name: Char1_L_Leg
+  m_Name: L_Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -670,7 +670,7 @@ GameObject:
   - component: {fileID: 3197289462312970972}
   - component: {fileID: 5555671954432093537}
   m_Layer: 0
-  m_Name: Char1_R_Leg
+  m_Name: R_Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -776,7 +776,7 @@ GameObject:
   - component: {fileID: 4421040041714984813}
   - component: {fileID: 6325153337797178907}
   m_Layer: 0
-  m_Name: Char1_L_Arm
+  m_Name: L_Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -880,6 +880,7 @@ GameObject:
   - component: {fileID: 7836517175129876154}
   - component: {fileID: 7836517175129876155}
   - component: {fileID: 582563454}
+  - component: {fileID: 6067060005511318914}
   m_Layer: 2
   m_Name: Victim
   m_TagString: Victim
@@ -944,6 +945,25 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &6067060005511318914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7836517175129876135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5b2c7c99c959d48a06979b506a827c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSkin: {fileID: 11400000, guid: 67b89b5364b5deb4f8c9cd5dc77edb1c, type: 2}
+  head: {fileID: 4324817590564238002}
+  body: {fileID: 7511810157089612381}
+  rightArm: {fileID: 3576854187757157861}
+  leftArm: {fileID: 4421040041714984813}
+  rightLeg: {fileID: 3197289462312970972}
+  leftLeg: {fileID: 2517928818782026898}
 --- !u!1 &8079587202547593341
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,7 +1006,7 @@ GameObject:
   - component: {fileID: 3576854187757157861}
   - component: {fileID: 4361991252501424396}
   m_Layer: 0
-  m_Name: Char1_R_Arm
+  m_Name: R_Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
