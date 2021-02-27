@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 7c4fe5a1823c98b49a17df7700463b1b
+guid: 31a4513fe1fcee84f85f3f392a54579a
 TextureImporter:
   internalIDToNameTable:
   - first:
       213: 7091566475817151718
-    second: Char1_Head
+    second: Head
   - first:
       213: 4177165091594156555
     second: Char1_R Arm
   - first:
       213: -7691673812401212505
-    second: Char1_Body
+    second: Body
   - first:
       213: -7536995187003705653
     second: Char1_L Arm
@@ -25,22 +25,22 @@ TextureImporter:
     second: Char1_L Leg
   - first:
       213: -3727993747073374944
-    second: Char1_Head
+    second: Head
   - first:
       213: 8348649040173944389
-    second: Char1_R_Arm
+    second: R_Arm
   - first:
       213: 1198968322036469563
-    second: Char1_Body
+    second: Body
   - first:
       213: 528769991297701629
-    second: Char1_L_Arm
+    second: L_Arm
   - first:
       213: 8313181630761228587
-    second: Char1_R_Leg
+    second: R_Leg
   - first:
       213: 3726153186847278519
-    second: Char1_L_Leg
+    second: L_Leg
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -140,7 +140,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Char1_Head
+      name: Head
       rect:
         serializedVersion: 2
         x: 144
@@ -473,7 +473,7 @@ TextureImporter:
         boneIndex[2]: 0
         boneIndex[3]: 0
     - serializedVersion: 2
-      name: Char1_R_Arm
+      name: R_Arm
       rect:
         serializedVersion: 2
         x: 35
@@ -973,7 +973,7 @@ TextureImporter:
         boneIndex[2]: 0
         boneIndex[3]: 0
     - serializedVersion: 2
-      name: Char1_Body
+      name: Body
       rect:
         serializedVersion: 2
         x: 129
@@ -1311,7 +1311,7 @@ TextureImporter:
         boneIndex[2]: 0
         boneIndex[3]: 0
     - serializedVersion: 2
-      name: Char1_L_Arm
+      name: L_Arm
       rect:
         serializedVersion: 2
         x: 252
@@ -1756,7 +1756,7 @@ TextureImporter:
         boneIndex[2]: 0
         boneIndex[3]: 0
     - serializedVersion: 2
-      name: Char1_R_Leg
+      name: R_Leg
       rect:
         serializedVersion: 2
         x: 99
@@ -2195,7 +2195,7 @@ TextureImporter:
         boneIndex[2]: 0
         boneIndex[3]: 0
     - serializedVersion: 2
-      name: Char1_L_Leg
+      name: L_Leg
       rect:
         serializedVersion: 2
         x: 178

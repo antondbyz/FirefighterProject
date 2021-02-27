@@ -2,16 +2,6 @@ using UnityEngine;
 
 public class SkinInitializer : MonoBehaviour 
 {
-    public virtual Skin CurrentSkin
-    {
-        get => currentSkin;
-        set
-        {
-            currentSkin = value;
-            UpdateSkin();
-        }
-    }
-
     [SerializeField] protected Skin currentSkin = null;
     [SerializeField] protected SpriteRenderer head = null;
     [SerializeField] protected SpriteRenderer body = null;

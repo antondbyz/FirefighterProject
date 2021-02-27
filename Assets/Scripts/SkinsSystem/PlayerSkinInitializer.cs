@@ -15,5 +15,9 @@ public class PlayerSkinInitializer : SkinInitializer
         extinguisherHoseDrawn.sprite = skin.ExtinguisherHoseDrawn;
     }
 
-    private void Awake() => CurrentSkin = GameManager.CurrentPlayerSkin;
+    private void Awake() 
+    { 
+        currentSkin = GameManager.CurrentPlayerSkin;
+        UpdateSkin();
+    }
 }

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ec4103287f8ec448657adf0c4400b5, type: 3}
   m_Name: Victim2
   m_EditorClassIdentifier: 
-  Head: {fileID: 7091566475817151718, guid: 7c4fe5a1823c98b49a17df7700463b1b, type: 3}
-  Body: {fileID: -7691673812401212505, guid: 7c4fe5a1823c98b49a17df7700463b1b, type: 3}
-  RightArm: {fileID: 8348649040173944389, guid: 7c4fe5a1823c98b49a17df7700463b1b,
+  Head: {fileID: 7091566475817151718, guid: 31a4513fe1fcee84f85f3f392a54579a, type: 3}
+  Body: {fileID: -7691673812401212505, guid: 31a4513fe1fcee84f85f3f392a54579a, type: 3}
+  RightArm: {fileID: 8348649040173944389, guid: 31a4513fe1fcee84f85f3f392a54579a,
     type: 3}
-  LeftArm: {fileID: 528769991297701629, guid: 7c4fe5a1823c98b49a17df7700463b1b, type: 3}
-  RightLeg: {fileID: 8313181630761228587, guid: 7c4fe5a1823c98b49a17df7700463b1b,
+  LeftArm: {fileID: 528769991297701629, guid: 31a4513fe1fcee84f85f3f392a54579a, type: 3}
+  RightLeg: {fileID: 8313181630761228587, guid: 31a4513fe1fcee84f85f3f392a54579a,
     type: 3}
-  LeftLeg: {fileID: 3726153186847278519, guid: 7c4fe5a1823c98b49a17df7700463b1b, type: 3}
+  LeftLeg: {fileID: 3726153186847278519, guid: 31a4513fe1fcee84f85f3f392a54579a, type: 3}
