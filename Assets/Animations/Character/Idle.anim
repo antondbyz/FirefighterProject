@@ -39,7 +39,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Rig/Char1_Body/LowerBody/UpperBody
+    path: Rig/Body/LowerBody/UpperBody
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves: []
@@ -97,7 +97,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: Rig/Char1_Body/LowerBody/UpperBody
+    path: Rig/Body/LowerBody/UpperBody
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -125,7 +125,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: Rig/Char1_Body/LowerBody/UpperBody
+    path: Rig/Body/LowerBody/UpperBody
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -153,7 +153,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: Rig/Char1_Body/LowerBody/UpperBody
+    path: Rig/Body/LowerBody/UpperBody
     classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves: []
