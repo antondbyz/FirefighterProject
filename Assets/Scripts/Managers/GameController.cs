@@ -13,12 +13,14 @@ public class GameController : MonoBehaviour
         {
             isPaused = value;
             Time.timeScale = isPaused ? 0 : 1;
+            gameUI.SetActive(!isPaused);
         }
     }
 
     [SerializeField] private UnityEvent levelFailed = null;
     [SerializeField] private UnityEvent levelCompleted = null;
     [SerializeField] private Player player = null;
+    [SerializeField] private GameObject gameUI = null;
     
     private bool isPaused;
     private WaitForSeconds delay = new WaitForSeconds(1);
