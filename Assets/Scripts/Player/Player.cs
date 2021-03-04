@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    [SerializeField] private Transform spawnPoint = null;
     [SerializeField] private TMP_Text lifesLeftText = null;
     [SerializeField] private TMP_Text earnedMoneyText = null;
 
@@ -45,9 +46,13 @@ public class Player : MonoBehaviour
     private void Awake() 
     {
         myTransform = transform;  
-        currentCheckpoint = myTransform.position;
         LifesLeft = GameManager.CurrentPlayerSkin.LifesAmount;
         EarnedMoney = GameManager.PlayerBalance;
+        if(spawnPoint != null)
+        {
+            currentCheckpoint = spawnPoint.position;
+            MoveToCurrentCheckpoint();   
+        }
     }
 
     private void OnEnable() => Fire.Extinguished += FireExtinguished;
@@ -61,6 +66,7 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
             EarnedMoney += GameManager.VICTIM_SAVED_REWARD;
         } 
+        else if(other.CompareTag("Checkpoint")) currentCheckpoint = other.transform.position;
         else if(other.CompareTag("Finish")) GameController.Instance.CompleteLevel();
         else if(other.CompareTag("DeathZone")) Die();
     }

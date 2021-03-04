@@ -7154,6 +7154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b598c568aacab45844a06dbc56585f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 0}
   lifesLeftText: {fileID: 1588279336406196845}
   earnedMoneyText: {fileID: 6294406262005951721}
 --- !u!114 &5950847092380134346
