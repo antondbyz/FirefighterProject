@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     }
 
     [SerializeField] private Checkpoint currentCheckpoint = null;
+    [SerializeField] private ParticleSystem bloodEffect = null;
     [SerializeField] private TMP_Text lifesLeftText = null;
     [SerializeField] private TMP_Text earnedMoneyText = null;
 
@@ -48,6 +49,8 @@ public class Player : MonoBehaviour
     {
         if(gameObject.activeSelf)
         {
+            bloodEffect.transform.position = myTransform.position;
+            bloodEffect.Play();
             LifesLeft--;
             Died?.Invoke();
         }
