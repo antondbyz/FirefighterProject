@@ -73,6 +73,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 506b3e363b34573408f19d3c341df553, type: 3}
   - {fileID: 21300000, guid: 71164e76e8c46654790cd558f5bcfd97, type: 3}
   - {fileID: 21300000, guid: 2909dfb6ba8d4a94b903a4ab1feb5c7f, type: 3}
+  - {fileID: 21300000, guid: 4f3fbe7768f40f24093ad9a565414a0c, type: 3}
   - {fileID: 21300000, guid: bb023fa7bb5f16e46a06d1f652d1e8d5, type: 3}
   - {fileID: 21300000, guid: b87223e7240b1834f9c5ff4ccbfcb6be, type: 3}
   - {fileID: 21300000, guid: 3393dfe7f3e0ac240a43941329aa94ba, type: 3}
@@ -111,6 +112,7 @@ SpriteAtlas:
   - Chair
   - Ladder
   - Cupboard
+  - ExitSign
   - Table
   - BrokenWall
   - BrokenPipe

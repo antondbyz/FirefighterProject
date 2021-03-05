@@ -9,7 +9,6 @@ TagManager:
   - Extinguisher
   - Key
   - UnlockZone
-  - Checkpoint
   layers:
   - Default
   - TransparentFX

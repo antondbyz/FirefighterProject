@@ -22,13 +22,25 @@ public class Player : MonoBehaviour
             earnedMoneyText.text = earnedMoney.ToString();
         }
     }
+    public Checkpoint CurrentCheckpoint
+    {
+        get => currentCheckpoint;
+        set
+        {
+            if(currentCheckpoint != value)
+            {
+                currentCheckpoint.IsActive = false;
+                currentCheckpoint = value;
+                currentCheckpoint.IsActive = true;
+            }
+        }
+    }
 
-    [SerializeField] private Transform spawnPoint = null;
+    [SerializeField] private Checkpoint currentCheckpoint = null;
     [SerializeField] private TMP_Text lifesLeftText = null;
     [SerializeField] private TMP_Text earnedMoneyText = null;
 
     private Transform myTransform;
-    private Vector2 currentCheckpoint;
     private int lifesLeft;
     private int earnedMoney;
 
@@ -41,18 +53,15 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void MoveToCurrentCheckpoint() => myTransform.position = currentCheckpoint;
+    public void MoveToCurrentCheckpoint() => myTransform.position = CurrentCheckpoint.transform.position;
 
     private void Awake() 
     {
         myTransform = transform;  
         LifesLeft = GameManager.CurrentPlayerSkin.LifesAmount;
         EarnedMoney = GameManager.PlayerBalance;
-        if(spawnPoint != null)
-        {
-            currentCheckpoint = spawnPoint.position;
-            MoveToCurrentCheckpoint();   
-        }
+        currentCheckpoint.IsActive = true;
+        MoveToCurrentCheckpoint();   
     }
 
     private void OnEnable() => Fire.Extinguished += FireExtinguished;
@@ -66,14 +75,8 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
             EarnedMoney += GameManager.VICTIM_SAVED_REWARD;
         } 
-        else if(other.CompareTag("Checkpoint")) currentCheckpoint = other.transform.position;
         else if(other.CompareTag("Finish")) GameController.Instance.CompleteLevel();
         else if(other.CompareTag("DeathZone")) Die();
-    }
-
-    private void OnCollisionEnter2D(Collision2D other) 
-    {
-        if(other.gameObject.CompareTag("DeathZone")) Die();
     }
 
     private void OnParticleCollision(GameObject other) 
