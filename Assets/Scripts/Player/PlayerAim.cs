@@ -41,7 +41,7 @@ public class PlayerAim : MonoBehaviour
     {
         if(!IsAiming)
         {
-            if(!controller.IsMoving && controller.IsGrounded)
+            if(controller.NewVelocity.x == 0 && controller.IsGrounded)
             {
                 IsAiming = true;
                 extinguisherHoseDrawn.SetActive(true);

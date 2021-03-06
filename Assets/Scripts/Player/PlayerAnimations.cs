@@ -8,6 +8,8 @@ public class PlayerAnimations : MonoBehaviour
     private int runningAnimation;
     private int aimingAnimation;
     private int holdingLedgeAnimation;
+    private int jumpingAnimation;
+    private int fallingAnimation;
 
     private void Awake() 
     {
@@ -17,12 +19,19 @@ public class PlayerAnimations : MonoBehaviour
         runningAnimation = Animator.StringToHash("Running");   
         holdingLedgeAnimation = Animator.StringToHash("HoldingLedge");
         aimingAnimation = Animator.StringToHash("Aiming"); 
+        jumpingAnimation = Animator.StringToHash("Jumping");
+        fallingAnimation = Animator.StringToHash("Falling");
     }
 
     private void Update() 
     {
-        animator.SetBool(runningAnimation, controller.IsMoving);
+        if(Input.GetKeyDown(KeyCode.R)) Time.timeScale -= 0.1f;
+        else if(Input.GetKeyDown(KeyCode.T)) Time.timeScale += 0.1f;
+        bool playerGrounded = controller.IsGrounded;
+        animator.SetBool(runningAnimation, controller.NewVelocity.x != 0);
         animator.SetBool(holdingLedgeAnimation, controller.IsHoldingLedge);
         animator.SetBool(aimingAnimation, aim.IsAiming);
+        animator.SetBool(jumpingAnimation, !playerGrounded && controller.NewVelocity.y > 0.01f);
+        animator.SetBool(fallingAnimation, !playerGrounded && controller.NewVelocity.y <= 0);
     }
 }

@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     public bool IsGrounded => Physics2D.BoxCast(bc.bounds.center, bc.size, 0, Vector2.down, groundCheckDistance, whatIsGround);
-    public bool IsMoving => newVelocity.x != 0;
+    [HideInInspector] public Vector2 NewVelocity;
     [HideInInspector] public bool IsHoldingLedge;
 
     [SerializeField] private float speed = 5;
@@ -22,15 +22,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PhysicsMaterial2D fullFriction = null;
     [SerializeField] private LayerMask whatIsGround = new LayerMask();
     [SerializeField] private float hangTime = 0.1f;
+    [SerializeField] private float jumpTime = 0.2f;
     
     private Transform myTransform;
     private Rigidbody2D rb;
     private BoxCollider2D bc;
     private PlayerAim aim;
-    private Vector2 newVelocity;
     private bool flipX;
     private float defaultGravity;
-    private bool isJumping;
     private float jumpTimer;
     private float hangTimer;
 
@@ -47,28 +46,20 @@ public class PlayerController : MonoBehaviour
 
     private void OnDisable() 
     { 
-        newVelocity.Set(0, 0);
-        rb.velocity = newVelocity;
+        NewVelocity.Set(0, 0);
+        rb.velocity = NewVelocity;
     }
 
     private void Update() 
     {
-        if(isJumping)
-        {
-            jumpTimer += Time.deltaTime;
-            if(jumpTimer >= 0.2f) 
-            {
-                jumpTimer = 0;
-                isJumping = false;
-            }
-        }
-        newVelocity.y = rb.velocity.y;
+        if(jumpTimer > 0) jumpTimer -= Time.deltaTime;
+        NewVelocity.y = rb.velocity.y;
         CheckInput();
         bool isGrounded = IsGrounded;
-        rb.sharedMaterial = IsMoving || !isGrounded ? noFriction : fullFriction;
+        rb.sharedMaterial = NewVelocity.x != 0 || !isGrounded ? noFriction : fullFriction;
         if(isGrounded)
         {
-            if(!isJumping) CheckSlope();
+            if(jumpTimer <= 0) CheckSlope();
             hangTimer = hangTime;
         }
         else
@@ -80,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate() 
     {
-        rb.velocity = newVelocity;
+        rb.velocity = NewVelocity;
     }
 
     private void CheckSlope()
@@ -92,8 +83,8 @@ public class PlayerController : MonoBehaviour
             rayOrigin.y += 0.2f;
             RaycastHit2D hitFront = Physics2D.Raycast(rayOrigin, myTransform.right, 1, whatIsGround);
             float groundNormalDot = Vector2.Dot(hitDown.normal, myTransform.right);
-            if(groundNormalDot < 0 && !hitFront) newVelocity.y = 0;
-            else newVelocity = -Vector2.Perpendicular(hitDown.normal) * newVelocity.x;
+            if(groundNormalDot < 0 && !hitFront) NewVelocity.y = 0;
+            else NewVelocity = -Vector2.Perpendicular(hitDown.normal) * NewVelocity.x;
         }
     }
 
@@ -103,12 +94,12 @@ public class PlayerController : MonoBehaviour
         Vector2 upperRayOrigin = new Vector2(bc.bounds.center.x, bc.bounds.center.y + 0.5f);
         RaycastHit2D upperHit = Physics2D.Raycast(upperRayOrigin, myTransform.right, rayDistance, whatIsGround);
         RaycastHit2D bottomHit = Physics2D.Raycast(bc.bounds.center, myTransform.right, rayDistance, whatIsGround);
-        IsHoldingLedge = !isJumping && bottomHit && (!upperHit || IsHoldingLedge);
+        IsHoldingLedge = jumpTimer <= 0 && bottomHit && (!upperHit || IsHoldingLedge);
         if(IsHoldingLedge) 
         {
             hangTimer = hangTime;
-            newVelocity.Set(0, 0);
-            rb.velocity = newVelocity;
+            NewVelocity.Set(0, 0);
+            rb.velocity = NewVelocity;
             rb.gravityScale = 0;
             if(!upperHit)
             {
@@ -125,13 +116,13 @@ public class PlayerController : MonoBehaviour
     {
         if(!aim.IsAiming)
         {
-            newVelocity.x = InputManager.Horizontal * speed;
+            NewVelocity.x = InputManager.Horizontal * speed;
             if(InputManager.Horizontal != 0) FlipX = InputManager.Horizontal < 0;
             if(InputManager.JumpPressed && hangTimer > 0) 
             {
-                isJumping = true;
-                newVelocity.y = jumpForce;
-                rb.velocity = newVelocity;
+                jumpTimer = jumpTime;
+                NewVelocity.y = jumpForce;
+                rb.velocity = NewVelocity;
             }
         }
     }

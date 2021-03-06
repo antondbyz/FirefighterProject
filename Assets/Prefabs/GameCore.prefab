@@ -2047,18 +2047,18 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
+          inSlope: -1
+          outSlope: -1
+          tangentMode: 34
           weightedMode: 0
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
           time: 1
           value: 0
-          inSlope: -2
-          outSlope: -2
-          tangentMode: 0
+          inSlope: -1
+          outSlope: -1
+          tangentMode: 34
           weightedMode: 0
           inWeight: 0
           outWeight: 0
@@ -5848,8 +5848,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -325178695
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -12040,6 +12040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d50b55021f46e4f90af85442592dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NewVelocity: {x: 0, y: 0}
   IsHoldingLedge: 0
   speed: 12
   jumpForce: 16
@@ -12050,6 +12051,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   hangTime: 0.1
+  jumpTime: 0.2
 --- !u!114 &3464866832256084290
 MonoBehaviour:
   m_ObjectHideFlags: 0
