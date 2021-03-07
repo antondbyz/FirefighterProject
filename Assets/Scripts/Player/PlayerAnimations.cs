@@ -25,13 +25,10 @@ public class PlayerAnimations : MonoBehaviour
 
     private void Update() 
     {
-        if(Input.GetKeyDown(KeyCode.R)) Time.timeScale -= 0.1f;
-        else if(Input.GetKeyDown(KeyCode.T)) Time.timeScale += 0.1f;
-        bool playerGrounded = controller.IsGrounded;
         animator.SetBool(runningAnimation, controller.NewVelocity.x != 0);
         animator.SetBool(holdingLedgeAnimation, controller.IsHoldingLedge);
         animator.SetBool(aimingAnimation, aim.IsAiming);
-        animator.SetBool(jumpingAnimation, !playerGrounded && controller.NewVelocity.y > 0.01f);
-        animator.SetBool(fallingAnimation, !playerGrounded && controller.NewVelocity.y <= 0);
+        animator.SetBool(jumpingAnimation, !controller.IsGrounded && controller.NewVelocity.y > 0.01f);
+        animator.SetBool(fallingAnimation, !controller.IsGrounded && controller.NewVelocity.y <= 0);
     }
 }

@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
             myTransform.rotation = value ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
         }
     }
-    public bool IsGrounded => Physics2D.BoxCast(bc.bounds.center, bc.size, 0, Vector2.down, groundCheckDistance, whatIsGround);
+    [HideInInspector] public bool IsGrounded;
     [HideInInspector] public Vector2 NewVelocity;
     [HideInInspector] public bool IsHoldingLedge;
 
@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PhysicsMaterial2D noFriction = null;
     [SerializeField] private PhysicsMaterial2D fullFriction = null;
     [SerializeField] private LayerMask whatIsGround = new LayerMask();
+    [SerializeField] private float ledgeCheckOffsetY = 0;
+    [SerializeField] private float ledgeGrabDistance = 0.1f;
     [SerializeField] private float hangTime = 0.1f;
     [SerializeField] private float jumpTime = 0.2f;
     
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
     private float defaultGravity;
     private float jumpTimer;
     private float hangTimer;
+    private Vector2 LedgeCheckPos => (Vector2)bc.bounds.center + (Vector2.up * ledgeCheckOffsetY);
 
     private void Awake()
     {
@@ -55,9 +58,9 @@ public class PlayerController : MonoBehaviour
         if(jumpTimer > 0) jumpTimer -= Time.deltaTime;
         NewVelocity.y = rb.velocity.y;
         CheckInput();
-        bool isGrounded = IsGrounded;
-        rb.sharedMaterial = NewVelocity.x != 0 || !isGrounded ? noFriction : fullFriction;
-        if(isGrounded)
+        IsGrounded = Physics2D.BoxCast(bc.bounds.center, bc.size, 0, Vector2.down, groundCheckDistance, whatIsGround);
+        rb.sharedMaterial = NewVelocity.x != 0 || !IsGrounded ? noFriction : fullFriction;
+        if(IsGrounded)
         {
             if(jumpTimer <= 0) CheckSlope();
             hangTimer = hangTime;
@@ -90,20 +93,19 @@ public class PlayerController : MonoBehaviour
 
     private void CheckLedgeGrab()
     {
-        float rayDistance = bc.size.x / 2 * 1.2f;
-        Vector2 upperRayOrigin = new Vector2(bc.bounds.center.x, bc.bounds.center.y + 0.5f);
-        RaycastHit2D upperHit = Physics2D.Raycast(upperRayOrigin, myTransform.right, rayDistance, whatIsGround);
-        RaycastHit2D bottomHit = Physics2D.Raycast(bc.bounds.center, myTransform.right, rayDistance, whatIsGround);
-        IsHoldingLedge = jumpTimer <= 0 && bottomHit && (!upperHit || IsHoldingLedge);
+        float rayDistance = bc.size.x / 2 + ledgeGrabDistance;
+        bool obstacleCheck = Physics2D.Raycast(bc.bounds.center, myTransform.right, rayDistance, whatIsGround);
+        bool ledgeCheck = !Physics2D.Raycast(LedgeCheckPos, myTransform.right, rayDistance, whatIsGround);
+        IsHoldingLedge = jumpTimer <= 0 && obstacleCheck && (ledgeCheck || IsHoldingLedge);
         if(IsHoldingLedge) 
         {
             hangTimer = hangTime;
             NewVelocity.Set(0, 0);
             rb.velocity = NewVelocity;
             rb.gravityScale = 0;
-            if(!upperHit)
+            if(ledgeCheck)
             {
-                Vector2 verticalRayOrigin = new Vector2(upperRayOrigin.x + myTransform.right.x * rayDistance, upperRayOrigin.y);  
+                Vector2 verticalRayOrigin = LedgeCheckPos + (Vector2)(myTransform.right * rayDistance);  
                 RaycastHit2D verticalHit = Physics2D.Raycast(verticalRayOrigin, Vector2.down, 0.5f, whatIsGround);
                 float offset = verticalHit.point.y - verticalRayOrigin.y - 0.05f;
                 rb.position = new Vector2(rb.position.x, rb.position.y + offset);
@@ -125,5 +127,12 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = NewVelocity;
             }
         }
+    }
+
+    private void OnDrawGizmosSelected() 
+    {
+        if(bc == null) bc = GetComponent<BoxCollider2D>();
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(LedgeCheckPos, 0.1f);    
     }
 }
