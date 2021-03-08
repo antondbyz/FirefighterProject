@@ -31,15 +31,10 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(loadScene, LoadSceneMode.Additive);
     }
 
-    public static void LoadPlayerSkins()
+    private void Awake() 
     {
         PlayerSkins = Resources.LoadAll<PlayerSkin>("PlayerSkins");    
         CurrentPlayerSkin = PlayerSkins[0];
-    }
-
-    private void Awake() 
-    {
-        LoadPlayerSkins();
         SceneManager.sceneLoaded += SceneLoaded;
         if(SceneManager.sceneCount == 1) SceneManager.LoadScene(1, LoadSceneMode.Additive);
     }   
