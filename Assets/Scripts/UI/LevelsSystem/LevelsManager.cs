@@ -18,4 +18,19 @@ public class LevelsManager : MonoBehaviour
             levels[i].Initialize(i + 1);
         }
     }
+
+    private void OnEnable() 
+    {
+        for(int i = 0; i < levels.Length; i++) levels[i].Clicked += SelectItem;
+    }
+
+    private void OnDisable() 
+    {
+        for(int i = 0; i < levels.Length; i++) levels[i].Clicked -= SelectItem;
+    }
+
+    private void SelectItem(Selectable selectable)
+    {
+        selectable.Selected = true;
+    }
 }

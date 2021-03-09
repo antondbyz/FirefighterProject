@@ -1,12 +1,15 @@
 using UnityEngine;
 using TMPro;
 
-public class LevelItem : MonoBehaviour 
+public class LevelItem : Selectable
 {
     [SerializeField] private TMP_Text levelNumber = null; 
 
-    public void Initialize(int number)
+    private int myIndex;
+
+    public void Initialize(int myIndex)
     {
-        levelNumber.text = number.ToString();
+        this.myIndex = myIndex;
+        levelNumber.text = (myIndex + 1).ToString();
     }
 }

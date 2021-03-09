@@ -1849,7 +1849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsList: {fileID: 4663353911932042177}
-  item: {fileID: 4135200917870034331, guid: 06a8541ba27bb044a91b7b28c07dc106, type: 3}
+  item: {fileID: 2027289062877515824, guid: 06b7cea72606644429334d6b1f83a6a4, type: 3}
   earnedMoney: {fileID: 1569973520}
   extinguisherInfo: {fileID: 7843995536694346654}
   lifesInfo: {fileID: 856871451}
@@ -3695,7 +3695,7 @@ PrefabInstance:
     - target: {fileID: 1894715405182797970, guid: a73a947b41be6e840a77945313f867bb,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: -1920
+      value: -1820
       objectReference: {fileID: 0}
     - target: {fileID: 1894715405182797970, guid: a73a947b41be6e840a77945313f867bb,
         type: 3}

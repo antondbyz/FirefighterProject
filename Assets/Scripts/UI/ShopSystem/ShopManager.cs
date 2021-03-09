@@ -70,6 +70,8 @@ public class ShopManager : MonoBehaviour
         GameManager.PlayerBalanceChanged -= UpdateMoneyText;
     }
 
+    private void SelectItem(Selectable selectable) => SelectItem(((ShopItem)selectable).Index);
+
     private void SelectItem(int index)
     {
         selectedItemIndex = index;
