@@ -1,15 +1,16 @@
 using UnityEngine;
 using TMPro;
 
-public class LevelItem : Selectable
+public class LevelItem : UI_Item
 {
+    public int LevelIndex { get; private set; }
+
     [SerializeField] private TMP_Text levelNumber = null; 
 
-    private int myIndex;
-
-    public void Initialize(int myIndex)
+    public void Initialize(int index, int levelIndex)
     {
-        this.myIndex = myIndex;
-        levelNumber.text = (myIndex + 1).ToString();
+        this.Index = index;
+        levelNumber.text = (index + 1).ToString();
+        LevelIndex = levelIndex;
     }
 }

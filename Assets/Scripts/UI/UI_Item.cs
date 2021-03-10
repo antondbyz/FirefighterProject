@@ -3,9 +3,9 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Outline))]
-public class Selectable : MonoBehaviour, IPointerClickHandler
+public class UI_Item : MonoBehaviour, IPointerClickHandler
 {
-    public event System.Action<Selectable> Clicked;
+    public event System.Action<int> Clicked;
     public bool Selected
     {
         get => selected;
@@ -15,6 +15,7 @@ public class Selectable : MonoBehaviour, IPointerClickHandler
             outline.enabled = selected;
         }
     }
+    public int Index { get; protected set; }
 
     private bool selected;
     private Outline outline;
@@ -22,7 +23,8 @@ public class Selectable : MonoBehaviour, IPointerClickHandler
     protected virtual void Awake() 
     {
         outline = GetComponent<Outline>();
+        Selected = false;
     }
 
-    public void OnPointerClick(PointerEventData eventData) => Clicked?.Invoke(this);
+    public void OnPointerClick(PointerEventData eventData) => Clicked?.Invoke(Index);
 }

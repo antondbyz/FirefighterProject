@@ -3,11 +3,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopManager : MonoBehaviour 
+public class ShopManager : UI_Manager<ShopItem>
 {
-    private static ShopItem[] items;
-    private static List<int> purchasedItemsIndexes = new List<int>(){ 0 };
-    private static int usingItemIndex = 0;
+    private static List<ShopItem> purchasedItems = new List<ShopItem>();
+    private static ShopItem usingItem;
 
     [SerializeField] private Transform itemsList = null;
     [SerializeField] private ShopItem item = null;
@@ -18,26 +17,24 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private GameObject useButton = null;
     [SerializeField] private GameObject usingText = null;
 
-    private int selectedItemIndex;
-
     public void BuySelectedItem()
     {
-        if(items[selectedItemIndex].EnoughMoneyToBuy)
+        if(items[selectedItem.Index].EnoughMoneyToBuy)
         {
-            GameManager.PlayerBalance -= items[selectedItemIndex].Skin.Price;
-            items[selectedItemIndex].CurrentState = ShopItem.State.PURCHASED;
-            purchasedItemsIndexes.Add(selectedItemIndex);
-            UpdateActionButton();
+            GameManager.PlayerBalance -= items[selectedItem.Index].Skin.Price;
+            items[selectedItem.Index].CurrentState = ShopItem.State.PURCHASED;
+            purchasedItems.Add(selectedItem);
+            UpdateState();
         }
     }
 
     public void UseSelectedItem()
     {
-        items[usingItemIndex].CurrentState = ShopItem.State.PURCHASED;
-        items[selectedItemIndex].CurrentState = ShopItem.State.USING;
-        usingItemIndex = selectedItemIndex;
-        GameManager.CurrentPlayerSkin = items[usingItemIndex].Skin;
-        UpdateActionButton();
+        items[usingItem.Index].CurrentState = ShopItem.State.PURCHASED;
+        items[selectedItem.Index].CurrentState = ShopItem.State.USING;
+        usingItem = selectedItem;
+        GameManager.CurrentPlayerSkin = items[usingItem.Index].Skin;
+        UpdateState();
     }
 
     private void Awake() 
@@ -49,46 +46,43 @@ public class ShopManager : MonoBehaviour
             newItem.Initialize(GameManager.PlayerSkins[i], i);
             items[i] = newItem;
         }
-        for(int i = 0; i < purchasedItemsIndexes.Count; i++)
+        if(purchasedItems.Count == 0) purchasedItems.Add(items[0]);
+        for(int i = 0; i < purchasedItems.Count; i++)
         {
-            items[purchasedItemsIndexes[i]].CurrentState = ShopItem.State.PURCHASED;
+            items[purchasedItems[i].Index].CurrentState = ShopItem.State.PURCHASED;
         }
-        items[usingItemIndex].CurrentState = ShopItem.State.USING;
+        if(usingItem == null) usingItem = items[0];
+        items[usingItem.Index].CurrentState = ShopItem.State.USING;
         UpdateMoneyText();
     }
 
-    private void OnEnable() 
+    protected override void OnEnable() 
     {
-        for(int i = 0; i < items.Length; i++) items[i].Clicked += SelectItem;
+        base.OnEnable();
         GameManager.PlayerBalanceChanged += UpdateMoneyText;
-        SelectItem(usingItemIndex);
+        SelectItem(usingItem.Index);
     }
 
-    private void OnDisable() 
+    protected override void OnDisable() 
     {
-        for(int i = 0; i < items.Length; i++) items[i].Clicked -= SelectItem;
+        base.OnDisable();
         GameManager.PlayerBalanceChanged -= UpdateMoneyText;
     }
 
-    private void SelectItem(Selectable selectable) => SelectItem(((ShopItem)selectable).Index);
-
-    private void SelectItem(int index)
+    protected override void SelectItem(int index)
     {
-        selectedItemIndex = index;
-        for(int i = 0; i < items.Length; i++) items[i].Selected = (i == index);
+        base.SelectItem(index);
         extinguisherInfo.text = items[index].Skin.ExtinguisherPower.ToString();
         lifesInfo.text = items[index].Skin.LifesAmount.ToString();
-        UpdateBuyButton();
-        UpdateActionButton();
+        UpdateState();
     }
-
-    private void UpdateBuyButton() => buyButton.interactable = items[selectedItemIndex].EnoughMoneyToBuy;
 
     private void UpdateMoneyText() => earnedMoney.text = GameManager.PlayerBalance.ToString();
 
-    private void UpdateActionButton()
+    private void UpdateState()
     {
-        switch(items[selectedItemIndex].CurrentState)
+        buyButton.interactable = items[selectedItem.Index].EnoughMoneyToBuy;
+        switch(items[selectedItem.Index].CurrentState)
         {
             case ShopItem.State.DEFAULT: 
             {

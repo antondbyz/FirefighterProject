@@ -1,36 +1,27 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelsManager : MonoBehaviour 
+public class LevelsManager : UI_Manager<LevelItem>
 {
     [SerializeField] private LevelItem item = null;
     [SerializeField] private Transform itemsList = null;
     [SerializeField] private int firstLevelIndex = 2;
 
-    private LevelItem[] levels;
+    public void PlaySelectedLevel() => GameManager.LoadScene(selectedItem.LevelIndex);
 
     private void Awake() 
     {
-        levels = new LevelItem[SceneManager.sceneCountInBuildSettings - firstLevelIndex];
-        for(int i = 0; i < levels.Length; i++)
+        items = new LevelItem[SceneManager.sceneCountInBuildSettings - firstLevelIndex];
+        for(int i = 0; i < items.Length; i++)
         {
-            levels[i] = Instantiate(item, itemsList);
-            levels[i].Initialize(i + 1);
+            items[i] = Instantiate(item, itemsList);
+            items[i].Initialize(i, i + firstLevelIndex);
         }
     }
 
-    private void OnEnable() 
+    protected override void OnEnable() 
     {
-        for(int i = 0; i < levels.Length; i++) levels[i].Clicked += SelectItem;
-    }
-
-    private void OnDisable() 
-    {
-        for(int i = 0; i < levels.Length; i++) levels[i].Clicked -= SelectItem;
-    }
-
-    private void SelectItem(Selectable selectable)
-    {
-        selectable.Selected = true;
+        base.OnEnable();
+        SelectItem(0);    
     }
 }

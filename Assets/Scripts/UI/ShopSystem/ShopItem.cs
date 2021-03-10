@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopItem : Selectable
+public class ShopItem : UI_Item
 {
     public enum State { DEFAULT, PURCHASED, USING }
 
@@ -35,7 +35,6 @@ public class ShopItem : Selectable
             }
         }
     }
-    public int Index { get; private set; }
     public bool EnoughMoneyToBuy => GameManager.PlayerBalance >= Skin.Price;
     [HideInInspector] public PlayerSkin Skin;
 
@@ -62,7 +61,6 @@ public class ShopItem : Selectable
         priceText.text = $"{skin.Price}$";
         UpdateCostTextColor();
         CurrentState = State.DEFAULT;
-        Selected = false;
     }
 
     protected override void Awake() 

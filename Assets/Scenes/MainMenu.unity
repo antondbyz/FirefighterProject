@@ -1326,7 +1326,7 @@ PrefabInstance:
     - target: {fileID: 2472532927376628373, guid: 71b9c925cb3640a4e9841c2335a8ad86,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2472532927376628373, guid: 71b9c925cb3640a4e9841c2335a8ad86,
         type: 3}
@@ -1337,7 +1337,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1277179185}
     - target: {fileID: 2472532927376628373, guid: 71b9c925cb3640a4e9841c2335a8ad86,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -1346,12 +1346,12 @@ PrefabInstance:
     - target: {fileID: 2472532927376628373, guid: 71b9c925cb3640a4e9841c2335a8ad86,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BuySelectedItem
+      value: PlaySelectedLevel
       objectReference: {fileID: 0}
     - target: {fileID: 2472532927376628373, guid: 71b9c925cb3640a4e9841c2335a8ad86,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ShopManager, Assembly-CSharp
+      value: LevelsManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2472532927376628373, guid: 71b9c925cb3640a4e9841c2335a8ad86,
         type: 3}
