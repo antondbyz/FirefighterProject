@@ -1265,9 +1265,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfb6b2aec47d704bbe0f5ba9e0dffb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstLevelBuildIndex: 2
   item: {fileID: 7497635619146769073, guid: 8ac041480b5e3824c97fd5d40f3eb536, type: 3}
   itemsList: {fileID: 1656071468}
-  firstLevelIndex: 2
+  playButton: {fileID: 1359801360}
 --- !u!114 &1277179186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1622,6 +1623,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1359801360 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2402023181149901621, guid: 71b9c925cb3640a4e9841c2335a8ad86,
+    type: 3}
+  m_PrefabInstance: {fileID: 1280603016}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1436489077
 PrefabInstance:
   m_ObjectHideFlags: 0

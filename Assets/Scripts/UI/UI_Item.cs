@@ -15,16 +15,23 @@ public class UI_Item : MonoBehaviour, IPointerClickHandler
             outline.enabled = selected;
         }
     }
+    public virtual bool IsAvailable
+    {
+        get => isAvailable;
+        set => isAvailable = value; 
+    }
     public int Index { get; protected set; }
+
+    protected bool isAvailable;
 
     private bool selected;
     private Outline outline;
+
+    public void OnPointerClick(PointerEventData eventData) => Clicked?.Invoke(Index);
 
     protected virtual void Awake() 
     {
         outline = GetComponent<Outline>();
         Selected = false;
     }
-
-    public void OnPointerClick(PointerEventData eventData) => Clicked?.Invoke(Index);
 }

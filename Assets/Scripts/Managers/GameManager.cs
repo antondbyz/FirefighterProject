@@ -22,8 +22,15 @@ public class GameManager : MonoBehaviour
     }
     public static PlayerSkin[] PlayerSkins;
     public static PlayerSkin CurrentPlayerSkin;
+    public static int LastCompletedLevelIndex;
 
     private static int playerBalance;
+
+    public static void LevelCompleted()
+    {
+        PlayerBalance = GameController.Instance.NewPlayerBalance;
+        LastCompletedLevelIndex =  GameController.Instance.gameObject.scene.buildIndex;
+    }
 
     public static void LoadScene(int loadScene)
     {
@@ -39,8 +46,9 @@ public class GameManager : MonoBehaviour
         if(SceneManager.sceneCount == 1) SceneManager.LoadScene(1, LoadSceneMode.Additive);
     }   
 
-    private void SceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        SceneManager.SetActiveScene(scene);
-    }
+    private void OnEnable() => GameController.LevelCompleted += LevelCompleted;
+
+    private void OnDisable() => GameController.LevelCompleted -= LevelCompleted;
+
+    private void SceneLoaded(Scene scene, LoadSceneMode mode) => SceneManager.SetActiveScene(scene);
 }

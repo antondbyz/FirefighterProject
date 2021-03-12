@@ -25,6 +25,7 @@ public class ShopManager : UI_Manager<ShopItem>
             items[selectedItem.Index].CurrentState = ShopItem.State.PURCHASED;
             purchasedItems.Add(selectedItem);
             UpdateState();
+            UpdateItemsAvailability();
         }
     }
 
@@ -54,6 +55,7 @@ public class ShopManager : UI_Manager<ShopItem>
         if(usingItem == null) usingItem = items[0];
         items[usingItem.Index].CurrentState = ShopItem.State.USING;
         UpdateMoneyText();
+        UpdateItemsAvailability();
     }
 
     protected override void OnEnable() 
@@ -75,6 +77,21 @@ public class ShopManager : UI_Manager<ShopItem>
         extinguisherInfo.text = items[index].Skin.ExtinguisherPower.ToString();
         lifesInfo.text = items[index].Skin.LifesAmount.ToString();
         UpdateState();
+    }
+
+    private void UpdateItemsAvailability()
+    {
+        int lastAvailableItem = 0;
+        for(int i = 0; i < items.Length; i++)
+        {
+            if(items[i].CurrentState != ShopItem.State.DEFAULT) lastAvailableItem = i;
+            else break;
+        }
+        UpdateItemsAvailability(lastAvailableItem);
+        for(int i = 0; i < items.Length; i++)
+        {
+            Debug.Log(items[i].IsAvailable);
+        }
     }
 
     private void UpdateMoneyText() => earnedMoney.text = GameManager.PlayerBalance.ToString();

@@ -20,4 +20,9 @@ public class UI_Manager<T> : MonoBehaviour where T : UI_Item
         selectedItem = items[index];
         for(int i = 0; i < items.Length; i++) items[i].Selected = (i == index);
     }
+
+    protected void UpdateItemsAvailability(int lastAvailableItemIndex)
+    {
+        for(int i = 0; i < items.Length; i++) items[i].IsAvailable = i <= lastAvailableItemIndex;
+    }
 }

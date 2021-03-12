@@ -5,6 +5,7 @@ using UnityEngine.Events;
 public class GameController : MonoBehaviour 
 {
     public static GameController Instance;
+    public static event System.Action LevelCompleted;
 
     public bool IsPaused
     {
@@ -16,6 +17,7 @@ public class GameController : MonoBehaviour
             gameUI.SetActive(!isPaused);
         }
     }
+    public int NewPlayerBalance => player.EarnedMoney;
 
     [SerializeField] private UnityEvent levelFailed = null;
     [SerializeField] private UnityEvent levelCompleted = null;
@@ -27,9 +29,9 @@ public class GameController : MonoBehaviour
 
     public void CompleteLevel()
     {
-        GameManager.PlayerBalance = player.EarnedMoney;
         player.gameObject.SetActive(false);
         IsPaused = true;
+        LevelCompleted?.Invoke();
         levelCompleted.Invoke();
     } 
     
