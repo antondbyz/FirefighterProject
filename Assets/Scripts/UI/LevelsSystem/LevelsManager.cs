@@ -12,21 +12,19 @@ public class LevelsManager : UI_Manager<LevelItem>
 
     private void Awake() 
     {
-        if(GameManager.LastCompletedLevelIndex >= firstLevelBuildIndex)
-            lastAvailableItemIndex = (GameManager.LastCompletedLevelIndex - firstLevelBuildIndex) + 1;
         items = new LevelItem[SceneManager.sceneCountInBuildSettings - firstLevelBuildIndex];
         for(int i = 0; i < items.Length; i++)
         {
             items[i] = Instantiate(item, itemsList);
-            items[i].Initialize(i, i + firstLevelBuildIndex, i <= lastAvailableItemIndex);
+            items[i].Initialize(i, i + firstLevelBuildIndex);
         }
-        UpdateItemsAvailability();
+        LastAvailableItemIndex = (GameManager.LastCompletedLevelIndex - firstLevelBuildIndex) + 1;
     }
 
     protected override void OnEnable() 
     {
         base.OnEnable();
-        SelectItem(lastAvailableItemIndex);  
+        SelectItem(LastAvailableItemIndex);  
     }
 
     protected override void SelectItem(int index)

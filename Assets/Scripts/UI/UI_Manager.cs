@@ -3,10 +3,21 @@ using UnityEngine;
 public class UI_Manager<T> : MonoBehaviour where T : UI_Item 
 {
     public T SelectedItem => items[selectedItemIndex];
+    public int LastAvailableItemIndex
+    {
+        get => lastAvailableItemIndex;
+        protected set
+        {
+            value = Mathf.Clamp(value, 0, items.Length - 1);
+            lastAvailableItemIndex = value;
+            UpdateItemsAvailability();
+        }
+    }
 
     protected T[] items;
     protected int selectedItemIndex;
-    protected int lastAvailableItemIndex;
+
+    private int lastAvailableItemIndex;
 
     protected virtual void OnEnable() 
     {
@@ -24,14 +35,8 @@ public class UI_Manager<T> : MonoBehaviour where T : UI_Item
         for(int i = 0; i < items.Length; i++) items[i].Selected = (i == index);
     }
 
-    protected void UpdateItemsAvailability(int lastAvailableItemIndex) 
+    private void UpdateItemsAvailability()
     {
-        this.lastAvailableItemIndex = lastAvailableItemIndex;
-        UpdateItemsAvailability();
-    }
-
-    protected void UpdateItemsAvailability()
-    {
-        for(int i = 0; i < items.Length; i++) items[i].IsAvailable = i <= lastAvailableItemIndex;
+        for(int i = 0; i < items.Length; i++) items[i].IsAvailable = i <= LastAvailableItemIndex;
     }
 }

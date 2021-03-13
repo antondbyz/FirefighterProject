@@ -65,11 +65,11 @@ public class ShopItem : UI_Item
 
     public void UpdateCostTextColor() => priceText.color = EnoughMoneyToBuy ? enoughMoneyColor : notEnoughMoneyColor;
 
-    public void Initialize(PlayerSkin skin, int itemIndex) 
+    public void Initialize(int index, PlayerSkin skin) 
     { 
         Skin = skin;
         previewImage.sprite = Skin.SkinPreview;
-        Index = itemIndex;
+        Index = index;
         priceText.text = $"{skin.Price}$";
         UpdateCostTextColor();
         CurrentState = State.DEFAULT;

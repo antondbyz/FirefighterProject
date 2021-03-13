@@ -27,12 +27,11 @@ public class LevelItem : UI_Item
 
     private Image image;
 
-    public void Initialize(int index, int levelBuildIndex, bool isAvailable)
+    public void Initialize(int index, int levelBuildIndex)
     {
         Index = index;
         levelNumber.text = (index + 1).ToString();
         LevelBuildIndex = levelBuildIndex;
-        IsAvailable = isAvailable;
     }
 
     protected override void Awake() 
