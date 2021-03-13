@@ -35,12 +35,24 @@ public class ShopItem : UI_Item
             }
         }
     }
+    public override bool IsAvailable 
+    { 
+        get => isAvailable; 
+        set
+        { 
+            isAvailable = value; 
+            previewImage.gameObject.SetActive(isAvailable);
+            price.SetActive(isAvailable && CurrentState == State.DEFAULT);
+            lockImage.SetActive(!isAvailable);
+        }
+    }
     public bool EnoughMoneyToBuy => GameManager.PlayerBalance >= Skin.Price;
     [HideInInspector] public PlayerSkin Skin;
 
     [SerializeField] private Color purchasedColor = new Color();
     [SerializeField] private Color usingColor = new Color();
     [SerializeField] private Image previewImage = null;
+    [SerializeField] private GameObject lockImage = null;
     [Header("Price")]
     [SerializeField] private GameObject price = null;
     [SerializeField] private TMP_Text priceText = null;

@@ -1858,6 +1858,7 @@ MonoBehaviour:
   itemsList: {fileID: 4663353911932042177}
   item: {fileID: 2027289062877515824, guid: 06b7cea72606644429334d6b1f83a6a4, type: 3}
   earnedMoney: {fileID: 1569973520}
+  infoPanel: {fileID: 1975577794}
   extinguisherInfo: {fileID: 7843995536694346654}
   lifesInfo: {fileID: 856871451}
   buyButton: {fileID: 2099393119}

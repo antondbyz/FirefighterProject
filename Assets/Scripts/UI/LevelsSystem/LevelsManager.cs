@@ -8,28 +8,25 @@ public class LevelsManager : UI_Manager<LevelItem>
     [SerializeField] private Transform itemsList = null;
     [SerializeField] private GameObject playButton = null;
 
-    private static int lastAvailableLevelIndex;
-
-    public void PlaySelectedLevel() => GameManager.LoadScene(selectedItem.LevelBuildIndex);
+    public void PlaySelectedLevel() => GameManager.LoadScene(SelectedItem.LevelBuildIndex);
 
     private void Awake() 
     {
         if(GameManager.LastCompletedLevelIndex >= firstLevelBuildIndex)
-            lastAvailableLevelIndex = (GameManager.LastCompletedLevelIndex - firstLevelBuildIndex) + 1;
-        Debug.Log(GameManager.LastCompletedLevelIndex);
+            lastAvailableItemIndex = (GameManager.LastCompletedLevelIndex - firstLevelBuildIndex) + 1;
         items = new LevelItem[SceneManager.sceneCountInBuildSettings - firstLevelBuildIndex];
         for(int i = 0; i < items.Length; i++)
         {
             items[i] = Instantiate(item, itemsList);
-            items[i].Initialize(i, i + firstLevelBuildIndex, i <= lastAvailableLevelIndex);
+            items[i].Initialize(i, i + firstLevelBuildIndex, i <= lastAvailableItemIndex);
         }
-        UpdateItemsAvailability(lastAvailableLevelIndex);
+        UpdateItemsAvailability();
     }
 
     protected override void OnEnable() 
     {
         base.OnEnable();
-        SelectItem(0);  
+        SelectItem(lastAvailableItemIndex);  
     }
 
     protected override void SelectItem(int index)
