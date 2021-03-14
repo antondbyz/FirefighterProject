@@ -25,8 +25,9 @@ public class ShopManager : UI_Manager<ShopItem>
             GameManager.PlayerBalance -= SelectedItem.Skin.Price;
             SelectedItem.CurrentState = ShopItem.State.PURCHASED;
             purchasedItemsIndexes.Add(selectedItemIndex);
+            UseSelectedItem();
             UpdateState();
-            LastAvailableItemIndex = purchasedItemsIndexes[purchasedItemsIndexes.Count - 1] + 1;
+            UpdateItemsAvailability(purchasedItemsIndexes[purchasedItemsIndexes.Count - 1] + 1);
         }
     }
 
@@ -41,11 +42,11 @@ public class ShopManager : UI_Manager<ShopItem>
 
     private void Awake() 
     {
-        items = new ShopItem[GameManager.PlayerSkins.Length];
-        for(int i = 0; i < items.Length; i++)
+        for(int i = 0; i < GameManager.PlayerSkins.Length; i++)
         {
-            items[i] = Instantiate(item, itemsList);
-            items[i].Initialize(i, GameManager.PlayerSkins[i]);
+            ShopItem newItem = Instantiate(item, itemsList);
+            newItem.Initialize(i, GameManager.PlayerSkins[i]);
+            items.Add(newItem);
         }
         for(int i = 0; i < purchasedItemsIndexes.Count; i++) 
         {
@@ -53,7 +54,7 @@ public class ShopManager : UI_Manager<ShopItem>
         }
         items[usingItemIndex].CurrentState = ShopItem.State.USING;
         UpdateMoneyText();
-        LastAvailableItemIndex = purchasedItemsIndexes[purchasedItemsIndexes.Count - 1] + 1;
+        UpdateItemsAvailability(purchasedItemsIndexes[purchasedItemsIndexes.Count - 1] + 1);
     }
 
     protected override void OnEnable() 

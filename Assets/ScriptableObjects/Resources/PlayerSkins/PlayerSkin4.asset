@@ -12,10 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15713e9a9f0e5c842a1ca9664980e5e8, type: 3}
   m_Name: PlayerSkin4
   m_EditorClassIdentifier: 
-  SkinPreview: {fileID: 21300000, guid: 3adb8603ee1204e4887b1af586943f58, type: 3}
-  Price: 0
-  LifesAmount: 7
-  ExtinguisherPower: 25
   Head: {fileID: -2311659948842064771, guid: 9a29e360ef686f94cb951032de8a26f9, type: 3}
   Body: {fileID: -6287787046888575383, guid: 9a29e360ef686f94cb951032de8a26f9, type: 3}
   RightArm: {fileID: 7364682651488144517, guid: 9a29e360ef686f94cb951032de8a26f9,
@@ -32,3 +28,7 @@ MonoBehaviour:
     type: 3}
   ExtinguisherHoseDrawn: {fileID: 7021574439977025703, guid: 9a29e360ef686f94cb951032de8a26f9,
     type: 3}
+  Price: 500
+  LifesAmount: 7
+  ExtinguisherPower: 25
+  SkinPreview: {fileID: 21300000, guid: 3adb8603ee1204e4887b1af586943f58, type: 3}

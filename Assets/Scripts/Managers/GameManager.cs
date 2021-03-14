@@ -22,14 +22,13 @@ public class GameManager : MonoBehaviour
     }
     public static PlayerSkin[] PlayerSkins;
     public static PlayerSkin CurrentPlayerSkin;
-    public static int LastCompletedLevelIndex;
 
     private static int playerBalance;
 
     public static void LevelCompleted()
     {
         PlayerBalance = GameController.Instance.NewPlayerBalance;
-        LastCompletedLevelIndex =  GameController.Instance.gameObject.scene.buildIndex;
+        LevelSelectionManager.CurrentLevelCompleted(GameController.Instance.gameObject.scene.buildIndex - 1);
     }
 
     public static void LoadScene(int loadScene)
@@ -40,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake() 
     {
-        PlayerSkins = Resources.LoadAll<PlayerSkin>("PlayerSkins");    
+        PlayerSkins = Resources.LoadAll<PlayerSkin>("PlayerSkins");
         CurrentPlayerSkin = PlayerSkins[0];
         SceneManager.sceneLoaded += SceneLoaded;
         if(SceneManager.sceneCount == 1) SceneManager.LoadScene(1, LoadSceneMode.Additive);

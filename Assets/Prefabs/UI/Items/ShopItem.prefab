@@ -393,8 +393,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skin: {fileID: 0}
-  purchasedColor: {r: 0.25, g: 0.5, b: 0.4583333, a: 1}
-  usingColor: {r: 0.40156865, g: 0.8, b: 0.7341177, a: 1}
+  purchasedColor: {r: 0.2475, g: 0.38085362, b: 0.45, a: 1}
+  usingColor: {r: 0.1875, g: 0.56401217, b: 0.75, a: 1}
   previewImage: {fileID: 95542814932507979}
   lockImage: {fileID: 7301990540521793124}
   price: {fileID: 3926032668665724619}

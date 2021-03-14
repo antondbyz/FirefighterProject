@@ -23,7 +23,7 @@ SpriteAtlas:
     platformSettings:
     - serializedVersion: 3
       m_BuildTarget: DefaultTexturePlatform
-      m_MaxTextureSize: 256
+      m_MaxTextureSize: 512
       m_ResizeAlgorithm: 0
       m_TextureFormat: -1
       m_TextureCompression: 3
@@ -54,6 +54,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ae244e43ab1f32f47ac2c84480a93ec4, type: 3}
   - {fileID: 21300000, guid: 3894b783b8b279d48bccd84f3bff6ec1, type: 3}
   - {fileID: 21300000, guid: 32dcb7e3f2355c44f98f9350b3a3fc92, type: 3}
+  - {fileID: 21300000, guid: 10d233b63d70ef04381711eee933a21a, type: 3}
   - {fileID: 21300000, guid: 942a6899f485f8142a7264a5d665ad4d, type: 3}
   - {fileID: 21300000, guid: a74dacc9bfcf47749a8630eac3456429, type: 3}
   - {fileID: 21300000, guid: c356d10b4a98a33448a9da4bb7bc4990, type: 3}
@@ -66,6 +67,7 @@ SpriteAtlas:
   - Money
   - Lock
   - Arrow
+  - Star
   - Square
   - RoundRect
   - Triangle

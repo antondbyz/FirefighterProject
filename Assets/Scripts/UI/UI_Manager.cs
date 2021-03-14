@@ -1,42 +1,32 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UI_Manager<T> : MonoBehaviour where T : UI_Item 
 {
     public T SelectedItem => items[selectedItemIndex];
-    public int LastAvailableItemIndex
-    {
-        get => lastAvailableItemIndex;
-        protected set
-        {
-            value = Mathf.Clamp(value, 0, items.Length - 1);
-            lastAvailableItemIndex = value;
-            UpdateItemsAvailability();
-        }
-    }
 
-    protected T[] items;
+    protected List<T> items = new List<T>();
     protected int selectedItemIndex;
-
-    private int lastAvailableItemIndex;
 
     protected virtual void OnEnable() 
     {
-        for(int i = 0; i < items.Length; i++) items[i].Clicked += SelectItem;
+        for(int i = 0; i < items.Count; i++) items[i].Clicked += SelectItem;
     }
 
     protected virtual void OnDisable() 
     {
-        for(int i = 0; i < items.Length; i++) items[i].Clicked -= SelectItem;
+        for(int i = 0; i < items.Count; i++) items[i].Clicked -= SelectItem;
     }
 
     protected virtual void SelectItem(int index)
     {
         selectedItemIndex = index;
-        for(int i = 0; i < items.Length; i++) items[i].Selected = (i == index);
+        for(int i = 0; i < items.Count; i++) items[i].Selected = (i == index);
     }
 
-    private void UpdateItemsAvailability()
+    protected void UpdateItemsAvailability(int lastAvailableItemIndex)
     {
-        for(int i = 0; i < items.Length; i++) items[i].IsAvailable = i <= LastAvailableItemIndex;
+        lastAvailableItemIndex = Mathf.Clamp(lastAvailableItemIndex, 0, items.Count - 1);
+        for(int i = 0; i < items.Count; i++) items[i].IsAvailable = i <= lastAvailableItemIndex;
     }
 }
