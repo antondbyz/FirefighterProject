@@ -8,8 +8,6 @@ public class ShopManager : UI_Manager<ShopItem>
     private static List<int> purchasedItemsIndexes = new List<int>() { 0 };
     private static int usingItemIndex = 0;
 
-    [SerializeField] private Transform itemsList = null;
-    [SerializeField] private ShopItem item = null;
     [SerializeField] private TMP_Text earnedMoney = null;
     [SerializeField] private GameObject infoPanel = null;
     [SerializeField] private TMP_Text extinguisherInfo = null;
@@ -44,7 +42,7 @@ public class ShopManager : UI_Manager<ShopItem>
     {
         for(int i = 0; i < GameManager.PlayerSkins.Length; i++)
         {
-            ShopItem newItem = Instantiate(item, itemsList);
+            ShopItem newItem = Instantiate(item, itemsParent);
             newItem.Initialize(i, GameManager.PlayerSkins[i]);
             items.Add(newItem);
         }

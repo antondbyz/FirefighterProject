@@ -1,11 +1,12 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour 
 {
     public static GameController Instance;
-    public static event System.Action LevelCompleted;
+    public static event System.Action<int> LevelCompleted;
 
     public bool IsPaused
     {
@@ -23,15 +24,26 @@ public class GameController : MonoBehaviour
     [SerializeField] private UnityEvent levelCompleted = null;
     [SerializeField] private Player player = null;
     [SerializeField] private GameObject gameUI = null;
+    [SerializeField] private Transform starsContainer = null;
     
     private bool isPaused;
+    private GameObject[] victims;
+    private Image[] stars; 
     private WaitForSeconds delay = new WaitForSeconds(1);
 
     public void CompleteLevel()
     {
         player.gameObject.SetActive(false);
         IsPaused = true;
-        LevelCompleted?.Invoke();
+        int victimsSaved = 0;
+        for(int i = 0; i < victims.Length; i++)
+        {
+            if(victims[i] == null) victimsSaved++;
+        }
+        float victimsSavedCoefficient = (float)victimsSaved / victims.Length;
+        int starsAmount = Mathf.RoundToInt((float)victimsSaved / victims.Length * Level.MAX_STARS);
+        for(int i = 0; i < starsAmount; i++) stars[i].color = Color.yellow;
+        LevelCompleted?.Invoke(starsAmount);
         levelCompleted.Invoke();
     } 
     
@@ -39,8 +51,10 @@ public class GameController : MonoBehaviour
     {
         if(Instance == null) Instance = this;
         else Debug.LogWarning("More than one instance of GameController!");
-
         IsPaused = false;
+        victims = GameObject.FindGameObjectsWithTag("Victim");
+        stars = new Image[starsContainer.childCount];
+        for(int i = 0; i < stars.Length; i++) stars[i] = starsContainer.GetChild(i).GetComponent<Image>();
     }
 
     private void OnEnable() => player.Died += PlayerDied;
@@ -50,14 +64,8 @@ public class GameController : MonoBehaviour
     private void PlayerDied()
     {
         player.gameObject.SetActive(false);
-        if(player.LifesLeft > 0)
-        {
-            StartCoroutine(MoveCharacterToCurrentCheckpoint());
-        }
-        else
-        { 
-            StartCoroutine(FailLevel());
-        }
+        if(player.LifesLeft > 0) StartCoroutine(MoveCharacterToCurrentCheckpoint());
+        else StartCoroutine(FailLevel());
     }
 
     private IEnumerator FailLevel()

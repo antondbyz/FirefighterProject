@@ -5,7 +5,6 @@ public class GameManager : MonoBehaviour
 {
     public const int FIRE_EXTINGUISHED_REWARD = 10;
     public const int VICTIM_SAVED_REWARD = 100;
-
     public static event System.Action PlayerBalanceChanged;
     public static int PlayerBalance 
     {
@@ -22,13 +21,26 @@ public class GameManager : MonoBehaviour
     }
     public static PlayerSkin[] PlayerSkins;
     public static PlayerSkin CurrentPlayerSkin;
+    public static Level[] Levels;
 
     private static int playerBalance;
 
-    public static void LevelCompleted()
+    [SerializeField] private int firstLevelBuildIndex = 2;
+
+    public static void LevelCompleted(int starsAmount)
     {
         PlayerBalance = GameController.Instance.NewPlayerBalance;
-        LevelSelectionManager.CurrentLevelCompleted(GameController.Instance.gameObject.scene.buildIndex - 1);
+        int completedLevelBuildIndex = GameController.Instance.gameObject.scene.buildIndex;
+        for(int i = 0; i < Levels.Length; i++)
+        {
+            if(Levels[i].BuildIndex < completedLevelBuildIndex) Levels[i].Complete();
+            else if(Levels[i].BuildIndex == completedLevelBuildIndex)
+            {
+                Levels[i].Complete();
+                Levels[i].ChangeStarsAmount(starsAmount);
+            }
+            else break;
+        }
     }
 
     public static void LoadScene(int loadScene)
@@ -41,6 +53,8 @@ public class GameManager : MonoBehaviour
     {
         PlayerSkins = Resources.LoadAll<PlayerSkin>("PlayerSkins");
         CurrentPlayerSkin = PlayerSkins[0];
+        Levels = new Level[SceneManager.sceneCountInBuildSettings - firstLevelBuildIndex];
+        for(int i = 0; i < Levels.Length; i++) Levels[i] = new Level(i + firstLevelBuildIndex);
         SceneManager.sceneLoaded += SceneLoaded;
         if(SceneManager.sceneCount == 1) SceneManager.LoadScene(1, LoadSceneMode.Additive);
     }   
