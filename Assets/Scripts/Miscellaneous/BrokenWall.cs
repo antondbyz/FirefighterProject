@@ -11,6 +11,7 @@ public class BrokenWall : MonoBehaviour
     private Transform spikes;
     private Coroutine liveCoroutine;
     private WaitForSeconds disableDelay;
+    private AudioSource audioSource;
 
     public void Initialize(Transform newSpikes, bool dangerous) 
     {
@@ -25,6 +26,7 @@ public class BrokenWall : MonoBehaviour
     {
         myTransform = transform;
         disableDelay = new WaitForSeconds(lifetime);
+        audioSource = GetComponent<AudioSource>();  
     }
 
     private void OnCollisionEnter2D(Collision2D other) 

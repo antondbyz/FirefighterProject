@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PhysicsMaterial2D noFriction = null;
     [SerializeField] private PhysicsMaterial2D fullFriction = null;
     [SerializeField] private LayerMask whatIsGround = new LayerMask();
+    [SerializeField] private LayerMask whatIsLedge = new LayerMask();
     [SerializeField] private float ledgeCheckOffsetY = 0;
     [SerializeField] private float ledgeGrabDistance = 0.1f;
     [SerializeField] private float hangTime = 0.1f;
@@ -94,8 +95,8 @@ public class PlayerController : MonoBehaviour
     private void CheckLedgeGrab()
     {
         float rayDistance = bc.size.x / 2 + ledgeGrabDistance;
-        bool obstacleCheck = Physics2D.Raycast(bc.bounds.center, myTransform.right, rayDistance, whatIsGround);
-        bool ledgeCheck = !Physics2D.Raycast(LedgeCheckPos, myTransform.right, rayDistance, whatIsGround);
+        bool obstacleCheck = Physics2D.Raycast(bc.bounds.center, myTransform.right, rayDistance, whatIsLedge);
+        bool ledgeCheck = !Physics2D.Raycast(LedgeCheckPos, myTransform.right, rayDistance, whatIsLedge);
         IsHoldingLedge = jumpTimer <= 0 && obstacleCheck && (ledgeCheck || IsHoldingLedge);
         if(IsHoldingLedge) 
         {
@@ -106,7 +107,7 @@ public class PlayerController : MonoBehaviour
             if(ledgeCheck)
             {
                 Vector2 verticalRayOrigin = LedgeCheckPos + (Vector2)(myTransform.right * rayDistance);  
-                RaycastHit2D verticalHit = Physics2D.Raycast(verticalRayOrigin, Vector2.down, 0.5f, whatIsGround);
+                RaycastHit2D verticalHit = Physics2D.Raycast(verticalRayOrigin, Vector2.down, 0.5f, whatIsLedge);
                 float offset = verticalHit.point.y - verticalRayOrigin.y - 0.05f;
                 rb.position = new Vector2(rb.position.x, rb.position.y + offset);
             }

@@ -8,7 +8,10 @@ public class BreakableWall : BackdraftObstacle
 
     private Transform myTransform;
 
-    private void Awake() => myTransform = transform;    
+    private void Awake() 
+    { 
+        myTransform = transform;  
+    }
 
     private void OnTriggerEnter2D(Collider2D other) 
     {

@@ -12163,6 +12163,9 @@ MonoBehaviour:
   fullFriction: {fileID: 6200000, guid: 6a87770e4e4e51348b2eb2c769cdba42, type: 2}
   whatIsGround:
     serializedVersion: 2
+    m_Bits: 2049
+  whatIsLedge:
+    serializedVersion: 2
     m_Bits: 1
   ledgeCheckOffsetY: 0.35
   ledgeGrabDistance: 0.1
@@ -12908,7 +12911,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8812885909634976043}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -24.230392, y: -12.999999, z: -10}
+  m_LocalPosition: {x: -21.82843, y: -12.999999, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1462095212}
