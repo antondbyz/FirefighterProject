@@ -38,7 +38,6 @@ public class Player : MonoBehaviour
 
     [SerializeField] private Checkpoint currentCheckpoint = null;
     [SerializeField] private ParticleSystem bloodEffect = null;
-    [SerializeField] private Sound[] deathSounds = null;
     [SerializeField] private TMP_Text lifesLeftText = null;
     [SerializeField] private TMP_Text earnedMoneyText = null;
 
@@ -53,7 +52,6 @@ public class Player : MonoBehaviour
             bloodEffect.transform.position = myTransform.position;
             bloodEffect.Play();
             LifesLeft--;
-            deathSounds[Random.Range(0, deathSounds.Length)].Source.Play();
             Died?.Invoke();
         }
     }
