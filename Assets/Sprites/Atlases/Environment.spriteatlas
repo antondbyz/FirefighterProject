@@ -86,6 +86,7 @@ SpriteAtlas:
   - {fileID: -5531255094857203568, guid: 88f20c7997459bd4ea8b1c0c68de824c, type: 3}
   - {fileID: -8266210562293489259, guid: 0c9df85a45c17d94ebb6eeaf16bcf9eb, type: 3}
   - {fileID: -4065957273654261142, guid: 0c9df85a45c17d94ebb6eeaf16bcf9eb, type: 3}
+  - {fileID: 21300000, guid: 7bf39dca184d7ba42b924efdf0e003c2, type: 3}
   - {fileID: 21300000, guid: e83073da032e3e84594b35f64523a71a, type: 3}
   - {fileID: 21300000, guid: 06de665bc222f6943a91de7d728bb9e3, type: 3}
   - {fileID: 4283495010674395509, guid: c887257bb8087b748a71a34baf2d3285, type: 3}
@@ -126,6 +127,7 @@ SpriteAtlas:
   - BurntCupboard_0
   - BurntArmchair_0
   - BurntArmchair_1
+  - Stairs
   - Key
   - BurntBookcase
   - BurntNightstand_1

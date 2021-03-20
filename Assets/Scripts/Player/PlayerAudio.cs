@@ -27,17 +27,18 @@ public class PlayerAudio : MonoBehaviour
 
     private void Update() 
     {
-        if(controller.NewVelocity.x != 0 && controller.IsGrounded && !GameController.Instance.IsPaused)
-        {
-            if(!runningSound.Source.isPlaying) runningSound.Source.Play();
-        }
-        else runningSound.Source.Stop();    
-        if(extinguisher.IsTurnedOn) 
-        {
-            if(!extinguishingSound.Source.isPlaying) extinguishingSound.Source.Play();
-        }
-        else extinguishingSound.Source.Stop();
+        UpdateSound(runningSound, controller.NewVelocity.x != 0 && controller.IsGrounded && !GameController.Instance.IsPaused);
+        UpdateSound(extinguishingSound, extinguisher.IsTurnedOn);
     }
 
     private void PlayRandomDeathSound() => deathSounds[Random.Range(0, deathSounds.Length)].Source.Play();
+
+    private void UpdateSound(Sound sound, bool condition)
+    {
+        if(condition)
+        {
+            if(!sound.Source.isPlaying) sound.Source.Play();
+        }
+        else sound.Source.Stop(); 
+    }
 }
