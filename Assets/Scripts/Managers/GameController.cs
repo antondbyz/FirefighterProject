@@ -7,12 +7,19 @@ public class GameController : MonoBehaviour
 {
     public static GameController Instance;
     public static event System.Action<int> LevelCompleted;
-
+    
+    public event System.Action GamePaused;
+    public event System.Action GameUnpaused;
     public bool IsPaused
     {
         get => isPaused;
         set
         {
+            if(isPaused != value)
+            {
+                if(value) GamePaused?.Invoke();
+                else GameUnpaused?.Invoke();
+            }
             isPaused = value;
             Time.timeScale = isPaused ? 0 : 1;
             gameUI.SetActive(!isPaused);
@@ -40,7 +47,6 @@ public class GameController : MonoBehaviour
         {
             if(victims[i] == null) victimsSaved++;
         }
-        float victimsSavedCoefficient = (float)victimsSaved / victims.Length;
         int starsAmount = Mathf.RoundToInt((float)victimsSaved / victims.Length * Level.MAX_STARS);
         for(int i = 0; i < starsAmount; i++) stars[i].color = Color.yellow;
         LevelCompleted?.Invoke(starsAmount);

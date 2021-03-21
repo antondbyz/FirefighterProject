@@ -17,6 +17,7 @@ public class Fire : MonoBehaviour
                 UpdateState();
                 if(currentHeat == 0)
                 {
+                    audioSrc.Stop();
                     Extinguished?.Invoke();
                     ps.Stop();
                     Destroy(myCollider);
@@ -31,6 +32,7 @@ public class Fire : MonoBehaviour
     private BoxCollider2D myCollider;
     private ParticleSystem ps;
     private ParticleSystem.MainModule main;
+    private AudioSource audioSrc;
 
     public void Initialize()
     {
@@ -47,5 +49,9 @@ public class Fire : MonoBehaviour
         myCollider.offset = Vector2.Lerp(settings.MinColliderOffset, settings.MaxColliderOffset, currentHeat / MAX_HEAT);
     }
 
-    private void Awake() => Initialize();
+    private void Awake() 
+    { 
+        Initialize();
+        audioSrc = GetComponent<AudioSource>();
+    }
 }
