@@ -1489,6 +1489,10 @@ PrefabInstance:
       propertyPath: m_BoundingShape2D
       value: 
       objectReference: {fileID: 1594829179}
+    - target: {fileID: 1140644648, guid: 30ab64c9273e09f408fe8f99e318a2ef, type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5950847092380134345, guid: 30ab64c9273e09f408fe8f99e318a2ef,
         type: 3}
       propertyPath: currentCheckpoint
@@ -1497,7 +1501,17 @@ PrefabInstance:
     - target: {fileID: 8812885909634976040, guid: 30ab64c9273e09f408fe8f99e318a2ef,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.230392
+      value: -26.007355
+      objectReference: {fileID: 0}
+    - target: {fileID: 8812885909634976040, guid: 30ab64c9273e09f408fe8f99e318a2ef,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8812885909634976041, guid: 30ab64c9273e09f408fe8f99e318a2ef,
+        type: 3}
+      propertyPath: orthographic size
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 9221799522365304708, guid: 30ab64c9273e09f408fe8f99e318a2ef,
         type: 3}

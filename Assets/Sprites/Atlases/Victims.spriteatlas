@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Victims
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 7783d2c32452a7b4abb53c323bea6e49, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 7091566475817151718, guid: d8a5218877db57a41b265a7d830c797c, type: 3}
+  - {fileID: 3726153186847278519, guid: d8a5218877db57a41b265a7d830c797c, type: 3}
+  - {fileID: 8313181630761228587, guid: d8a5218877db57a41b265a7d830c797c, type: 3}
+  - {fileID: -7691673812401212505, guid: d8a5218877db57a41b265a7d830c797c, type: 3}
+  - {fileID: 8348649040173944389, guid: d8a5218877db57a41b265a7d830c797c, type: 3}
+  - {fileID: 528769991297701629, guid: d8a5218877db57a41b265a7d830c797c, type: 3}
+  - {fileID: 7091566475817151718, guid: c613f6d84dc94c049ad8476015675e6b, type: 3}
+  - {fileID: 3726153186847278519, guid: c613f6d84dc94c049ad8476015675e6b, type: 3}
+  - {fileID: 8313181630761228587, guid: c613f6d84dc94c049ad8476015675e6b, type: 3}
+  - {fileID: -7691673812401212505, guid: c613f6d84dc94c049ad8476015675e6b, type: 3}
+  - {fileID: 8348649040173944389, guid: c613f6d84dc94c049ad8476015675e6b, type: 3}
+  - {fileID: 528769991297701629, guid: c613f6d84dc94c049ad8476015675e6b, type: 3}
+  - {fileID: 7091566475817151718, guid: 2628faea8639d9d4089bf5424472dace, type: 3}
+  - {fileID: 3726153186847278519, guid: 2628faea8639d9d4089bf5424472dace, type: 3}
+  - {fileID: 8313181630761228587, guid: 2628faea8639d9d4089bf5424472dace, type: 3}
+  - {fileID: -7691673812401212505, guid: 2628faea8639d9d4089bf5424472dace, type: 3}
+  - {fileID: 8348649040173944389, guid: 2628faea8639d9d4089bf5424472dace, type: 3}
+  - {fileID: 528769991297701629, guid: 2628faea8639d9d4089bf5424472dace, type: 3}
+  - {fileID: 7091566475817151718, guid: 31a4513fe1fcee84f85f3f392a54579a, type: 3}
+  - {fileID: 3726153186847278519, guid: 31a4513fe1fcee84f85f3f392a54579a, type: 3}
+  - {fileID: 8313181630761228587, guid: 31a4513fe1fcee84f85f3f392a54579a, type: 3}
+  - {fileID: -7691673812401212505, guid: 31a4513fe1fcee84f85f3f392a54579a, type: 3}
+  - {fileID: 8348649040173944389, guid: 31a4513fe1fcee84f85f3f392a54579a, type: 3}
+  - {fileID: 528769991297701629, guid: 31a4513fe1fcee84f85f3f392a54579a, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Head
+  - L_Leg
+  - R_Leg
+  - Body
+  - R_Arm
+  - L_Arm
+  - Head
+  - L_Leg
+  - R_Leg
+  - Body
+  - R_Arm
+  - L_Arm
+  - Head
+  - L_Leg
+  - R_Leg
+  - Body
+  - R_Arm
+  - L_Arm
+  - Head
+  - L_Leg
+  - R_Leg
+  - Body
+  - R_Arm
+  - L_Arm
+  m_Tag: Victims
+  m_IsVariant: 0
