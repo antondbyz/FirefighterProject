@@ -34,7 +34,6 @@ public class GameController : MonoBehaviour
     [SerializeField] private Transform starsContainer = null;
     
     private bool isPaused;
-    private GameObject[] victims;
     private Image[] stars; 
     private WaitForSeconds delay = new WaitForSeconds(1);
 
@@ -42,12 +41,7 @@ public class GameController : MonoBehaviour
     {
         player.gameObject.SetActive(false);
         IsPaused = true;
-        int victimsSaved = 0;
-        for(int i = 0; i < victims.Length; i++)
-        {
-            if(victims[i] == null) victimsSaved++;
-        }
-        int starsAmount = Mathf.RoundToInt((float)victimsSaved / victims.Length * Level.MAX_STARS);
+        int starsAmount = Mathf.RoundToInt((float)player.VictimsSaved / player.VictimsAmount * Level.MAX_STARS);
         for(int i = 0; i < starsAmount; i++) stars[i].color = Color.yellow;
         LevelCompleted?.Invoke(starsAmount);
         levelCompleted.Invoke();
@@ -58,7 +52,6 @@ public class GameController : MonoBehaviour
         if(Instance == null) Instance = this;
         else Debug.LogWarning("More than one instance of GameController!");
         IsPaused = false;
-        victims = GameObject.FindGameObjectsWithTag("Victim");
         stars = new Image[starsContainer.childCount];
         for(int i = 0; i < stars.Length; i++) stars[i] = starsContainer.GetChild(i).GetComponent<Image>();
     }

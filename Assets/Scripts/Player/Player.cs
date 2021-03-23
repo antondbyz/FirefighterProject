@@ -4,6 +4,19 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public event System.Action Died;
+    public Checkpoint CurrentCheckpoint
+    {
+        get => currentCheckpoint;
+        set
+        {
+            if(currentCheckpoint != value)
+            {
+                currentCheckpoint.IsActive = false;
+                currentCheckpoint = value;
+                currentCheckpoint.IsActive = true;
+            }
+        }
+    }
     public int LifesLeft
     {
         get => lifesLeft;
@@ -22,28 +35,27 @@ public class Player : MonoBehaviour
             earnedMoneyText.text = earnedMoney.ToString();
         }
     }
-    public Checkpoint CurrentCheckpoint
+    public int VictimsSaved
     {
-        get => currentCheckpoint;
-        set
+        get => victimsSaved;
+        private set
         {
-            if(currentCheckpoint != value)
-            {
-                currentCheckpoint.IsActive = false;
-                currentCheckpoint = value;
-                currentCheckpoint.IsActive = true;
-            }
+            victimsSaved = value;
+            victimsSavedText.text = $"{victimsSaved}/{VictimsAmount}";
         }
     }
+    public int VictimsAmount { get; private set; }
 
     [SerializeField] private Checkpoint currentCheckpoint = null;
     [SerializeField] private ParticleSystem bloodEffect = null;
     [SerializeField] private TMP_Text lifesLeftText = null;
     [SerializeField] private TMP_Text earnedMoneyText = null;
+    [SerializeField] private TMP_Text victimsSavedText = null;
 
     private Transform myTransform;
     private int lifesLeft;
     private int earnedMoney;
+    private int victimsSaved;
 
     public void Die() 
     {
@@ -64,6 +76,8 @@ public class Player : MonoBehaviour
         LifesLeft = GameManager.CurrentPlayerSkin.LifesAmount;
         EarnedMoney = GameManager.PlayerBalance;
         currentCheckpoint.IsActive = true;
+        VictimsAmount = GameObject.FindGameObjectsWithTag("Victim").Length;
+        VictimsSaved = 0;
         MoveToCurrentCheckpoint();   
     }
 
@@ -77,6 +91,7 @@ public class Player : MonoBehaviour
         {
             Destroy(other.gameObject);
             EarnedMoney += GameManager.VICTIM_SAVED_REWARD;
+            VictimsSaved++;
         } 
         else if(other.CompareTag("Finish")) GameController.Instance.CompleteLevel();
         else if(other.CompareTag("DeathZone")) Die();
