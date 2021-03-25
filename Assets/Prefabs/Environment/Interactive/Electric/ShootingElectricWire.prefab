@@ -213,6 +213,80 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 375972765}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &979954360224826620
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6741473001967388430}
+    m_Modifications:
+    - target: {fileID: 4583525935991442583, guid: f058fcf6e961fe340a79cda1b18603d4,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3832df0362a9ebc4a8ab98ef66873998, type: 3}
+    - target: {fileID: 4727241992904807836, guid: f058fcf6e961fe340a79cda1b18603d4,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioSource3D
+      objectReference: {fileID: 0}
+    - target: {fileID: 6608626472093021852, guid: f058fcf6e961fe340a79cda1b18603d4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6608626472093021852, guid: f058fcf6e961fe340a79cda1b18603d4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6608626472093021852, guid: f058fcf6e961fe340a79cda1b18603d4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6608626472093021852, guid: f058fcf6e961fe340a79cda1b18603d4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6608626472093021852, guid: f058fcf6e961fe340a79cda1b18603d4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6608626472093021852, guid: f058fcf6e961fe340a79cda1b18603d4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6608626472093021852, guid: f058fcf6e961fe340a79cda1b18603d4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6608626472093021852, guid: f058fcf6e961fe340a79cda1b18603d4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6608626472093021852, guid: f058fcf6e961fe340a79cda1b18603d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6608626472093021852, guid: f058fcf6e961fe340a79cda1b18603d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6608626472093021852, guid: f058fcf6e961fe340a79cda1b18603d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f058fcf6e961fe340a79cda1b18603d4, type: 3}
 --- !u!1001 &7917726977036616031
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -229,6 +303,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ElectricShotEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490271322039944782, guid: 3d1e00c75cd58ae49b5172d3b3aad6f1,
+        type: 3}
+      propertyPath: looping
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3490271322039944782, guid: 3d1e00c75cd58ae49b5172d3b3aad6f1,
         type: 3}
