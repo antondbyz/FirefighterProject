@@ -12401,13 +12401,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f584adfec3323b148936156695104b13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extinguisher: {fileID: 9050182828195329828}
-  deathSounds:
-  - {fileID: 11400000, guid: 1b93f299f7b2d104cad15200dae162a0, type: 2}
-  - {fileID: 11400000, guid: acd7009c5d14ed744b1571fc52743a57, type: 2}
-  - {fileID: 11400000, guid: ebaf29d2c71efab4c9594326322cd64c, type: 2}
+  deathSound: {fileID: 11400000, guid: b0906af9ef0c72344a246cae4c0c5339, type: 2}
   runningSound: {fileID: 11400000, guid: 759f396d1fe81ad48b57a0bdeab7e24c, type: 2}
+  extinguisher: {fileID: 9050182828195329828}
   extinguishingSound: {fileID: 11400000, guid: 5e2391db5c0f22b48b4474ac266cedf6, type: 2}
+  jumpSound: {fileID: 11400000, guid: f20d47a9d452aec4dba5425dd47a981b, type: 2}
+  jumpVoice: {fileID: 11400000, guid: fb26292674393374a9bb23e0c093f707, type: 2}
+  jumpVoiceProbability: 0.2
 --- !u!1 &5950847092642859567
 GameObject:
   m_ObjectHideFlags: 0

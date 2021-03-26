@@ -2,10 +2,15 @@
 
 public class PlayerAudio : MonoBehaviour
 {
-    [SerializeField] private Extinguisher extinguisher = null;
-    [SerializeField] private Sound[] deathSounds = null;
+    [SerializeField] private Sound deathSound = null;
     [SerializeField] private Sound runningSound = null;
+    [Header("Extinguisher")]
+    [SerializeField] private Extinguisher extinguisher = null;
     [SerializeField] private Sound extinguishingSound = null;
+    [Header("Jump")]
+    [SerializeField] private Sound jumpSound = null;
+    [SerializeField] private Sound jumpVoice = null;
+    [SerializeField] [Range(0, 1)] private float jumpVoiceProbability = 0.5f;
 
     private PlayerController controller;
     private Player player;
@@ -16,11 +21,16 @@ public class PlayerAudio : MonoBehaviour
         player = GetComponent<Player>(); 
     }
 
-    private void OnEnable() => player.Died += PlayRandomDeathSound;
+    private void OnEnable() 
+    { 
+        player.Died += PlayDeathSound;
+        controller.Jumped += PlayJumpSound;
+    }
 
     private void OnDisable() 
     {
-        player.Died -= PlayRandomDeathSound;
+        player.Died -= PlayDeathSound;
+        controller.Jumped -= PlayJumpSound;
         if(runningSound.Source != null) runningSound.Source.Stop();    
         if(extinguishingSound.Source != null) extinguishingSound.Source.Stop();
     }
@@ -28,10 +38,16 @@ public class PlayerAudio : MonoBehaviour
     private void Update() 
     {
         UpdateSound(runningSound, controller.NewVelocity.x != 0 && controller.IsGrounded && !GameController.Instance.IsPaused);
-        UpdateSound(extinguishingSound, extinguisher.IsTurnedOn);
+        UpdateSound(extinguishingSound, extinguisher.IsTurnedOn && !GameController.Instance.IsPaused);
     }
 
-    private void PlayRandomDeathSound() => deathSounds[Random.Range(0, deathSounds.Length)].Source.Play();
+    private void PlayDeathSound() => deathSound.PlayRandomClip();
+
+    private void PlayJumpSound()
+    {
+        jumpSound.Source.Play();
+        if(Random.Range(0f, 1f) <= jumpVoiceProbability) jumpVoice.PlayRandomClip();
+    }
 
     private void UpdateSound(Sound sound, bool condition)
     {

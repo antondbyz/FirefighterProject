@@ -2,6 +2,7 @@
 
 public class PlayerController : MonoBehaviour
 {
+    public event System.Action Jumped;
     public bool FlipX 
     {
         get => flipX;
@@ -126,6 +127,7 @@ public class PlayerController : MonoBehaviour
                 jumpTimer = jumpTime;
                 NewVelocity.y = jumpForce;
                 rb.velocity = NewVelocity;
+                Jumped?.Invoke();
             }
         }
     }
