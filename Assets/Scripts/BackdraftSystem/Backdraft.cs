@@ -5,6 +5,7 @@ public class Backdraft : MonoBehaviour
 {
     [SerializeField] private ParticleSystem smokeStream = null;
     [SerializeField] private ParticleSystem smokeInRoom = null;
+    [SerializeField] private AudioSource backdraftAudio = null;
     [SerializeField] private float delayBeforeExplosion = 1;
     [SerializeField] private float duration = 2;
     [SerializeField] private BackdraftObstacle obstacle = null;
@@ -37,8 +38,10 @@ public class Backdraft : MonoBehaviour
         yield return new WaitForSeconds(delayBeforeExplosion);
         for(int i = 0; i < fireInRoom.Length; i++) fireInRoom[i].gameObject.SetActive(true);
         backdraft.Play(false);
+        backdraftAudio.Play();
         yield return new WaitForSeconds(duration);
         backdraft.Stop(false);
         smokeStream.Stop();
+        backdraftAudio.Stop();
     }
 }

@@ -18,7 +18,11 @@ public class PlayerDoorsUnlocker : MonoBehaviour
         if(currentLockedDoor != null)
         {
             if(!openButton.activeSelf) openButton.SetActive(true);
-            if(InputManager.OpenPressed) currentLockedDoor.TryUnlock(myTransform.position.x);    
+            if(InputManager.OpenPressed) 
+            {
+                bool unlocked = currentLockedDoor.TryUnlock(myTransform.position.x);    
+                if(unlocked) currentLockedDoor = null;
+            }
         }
         else if(openButton.activeSelf) openButton.SetActive(false);
     }
@@ -26,21 +30,11 @@ public class PlayerDoorsUnlocker : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) 
     {
         if(other.CompareTag("Key")) Destroy(other.gameObject);    
-        else if(other.CompareTag("UnlockZone"))
-        {
-            currentLockedDoor = other.GetComponentInParent<LockedDoor>();
-            currentLockedDoor.Unlocked += ResetCurrentLockedDoor;
-        }
+        else if(other.CompareTag("UnlockZone")) currentLockedDoor = other.GetComponentInParent<LockedDoor>();
     }
 
     private void OnTriggerExit2D(Collider2D other) 
     {
-        if(other.CompareTag("UnlockZone")) 
-        {
-            currentLockedDoor.Unlocked -= ResetCurrentLockedDoor;
-            currentLockedDoor = null;
-        }
+        if(other.CompareTag("UnlockZone")) currentLockedDoor = null;
     }
-
-    private void ResetCurrentLockedDoor() => currentLockedDoor = null;
 }

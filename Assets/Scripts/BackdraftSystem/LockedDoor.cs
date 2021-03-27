@@ -2,10 +2,11 @@
 
 public class LockedDoor : BackdraftObstacle
 {
-    public event System.Action Unlocked;
-
     [SerializeField] private Sprite opened = null;
     [SerializeField] private GameObject unlockZone = null;
+    [SerializeField] private AudioSource audioSource = null;
+    [SerializeField] private AudioClip unlockedClip = null;
+    [SerializeField] private AudioClip lockedClip = null;
     [SerializeField] private GameObject key = null;
 
     private Collider2D myCollider;
@@ -19,7 +20,7 @@ public class LockedDoor : BackdraftObstacle
         myTransform = transform;    
     }
 
-    public void TryUnlock(float unlockerXPos)
+    public bool TryUnlock(float unlockerXPos)
     {
         if(key == null)
         {
@@ -27,8 +28,13 @@ public class LockedDoor : BackdraftObstacle
             myRenderer.flipX = unlockerXPos > myTransform.position.x;
             myRenderer.sprite = opened;
             unlockZone.SetActive(false);
+            audioSource.clip = unlockedClip;
+            audioSource.Play();
             InvokeObstacleDisappeared();
-            Unlocked?.Invoke();
+            return true;
         }
+        audioSource.clip = lockedClip;
+        audioSource.Play();
+        return false;
     }
 }

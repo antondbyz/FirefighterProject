@@ -433,6 +433,18 @@ Transform:
   m_Father: {fileID: 127760046}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &152509100 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2024456285913254247, guid: fde6179932700c647a76cc5147997e93,
+    type: 3}
+  m_PrefabInstance: {fileID: 1500461733}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d73e4065062b63949a64e81293755a87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &215083891 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 56786548193046294, guid: 35189114f3f59d14c82b79042743f892,
@@ -1499,6 +1511,11 @@ PrefabInstance:
       propertyPath: currentCheckpoint
       value: 
       objectReference: {fileID: 1217412634}
+    - target: {fileID: 8812885909634976040, guid: 30ab64c9273e09f408fe8f99e318a2ef,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -26.007355
+      objectReference: {fileID: 0}
     - target: {fileID: 9221799522365304708, guid: 30ab64c9273e09f408fe8f99e318a2ef,
         type: 3}
       propertyPath: m_Name
@@ -2955,18 +2972,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1500461733}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1288743416 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2024456285913254247, guid: fde6179932700c647a76cc5147997e93,
-    type: 3}
-  m_PrefabInstance: {fileID: 1500461733}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d73e4065062b63949a64e81293755a87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1319145088 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3479006780370822081, guid: 39fb9fa292b8ba040959cd056e5599a9,
@@ -53148,12 +53153,7 @@ PrefabInstance:
         type: 3}
       propertyPath: obstacle
       value: 
-      objectReference: {fileID: 1288743416}
-    - target: {fileID: 3479006780370821948, guid: 39fb9fa292b8ba040959cd056e5599a9,
-        type: 3}
-      propertyPath: breakable
-      value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 152509100}
     - target: {fileID: 3479006780370821948, guid: 39fb9fa292b8ba040959cd056e5599a9,
         type: 3}
       propertyPath: fireInRoom.Array.data[0]
@@ -53361,11 +53361,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -35
-      objectReference: {fileID: 0}
-    - target: {fileID: 6748093335708121315, guid: 3c3ded4195f16ef45b6dea73ccf983d0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c3ded4195f16ef45b6dea73ccf983d0, type: 3}
