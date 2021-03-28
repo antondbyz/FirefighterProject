@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class LockedDoor : BackdraftObstacle
+public class LockedDoor : Obstacle
 {
     [SerializeField] private Sprite opened = null;
     [SerializeField] private GameObject unlockZone = null;

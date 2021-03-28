@@ -1511,11 +1511,6 @@ PrefabInstance:
       propertyPath: currentCheckpoint
       value: 
       objectReference: {fileID: 1217412634}
-    - target: {fileID: 8812885909634976040, guid: 30ab64c9273e09f408fe8f99e318a2ef,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -26.007355
-      objectReference: {fileID: 0}
     - target: {fileID: 9221799522365304708, guid: 30ab64c9273e09f408fe8f99e318a2ef,
         type: 3}
       propertyPath: m_Name
@@ -3398,6 +3393,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2024456285913254247, guid: fde6179932700c647a76cc5147997e93,
+        type: 3}
+      propertyPath: backdraft
+      value: 
+      objectReference: {fileID: 1797689962}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fde6179932700c647a76cc5147997e93, type: 3}
 --- !u!4 &1512776519 stripped
@@ -45436,6 +45436,18 @@ Transform:
   m_Father: {fileID: 1113024929}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1797689962 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3479006780370821948, guid: 39fb9fa292b8ba040959cd056e5599a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 3479006779471113537}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b0105db9762f8a46bba3593591bbbe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1813966921
 PrefabInstance:
   m_ObjectHideFlags: 0

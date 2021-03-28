@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BreakableWall : BackdraftObstacle
+public class BreakableWall : Obstacle
 {
     [SerializeField] private Transform spikes = null;
     [SerializeField] private Pool brokenWallsPool = null;

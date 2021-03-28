@@ -8,10 +8,11 @@ public class Backdraft : MonoBehaviour
     [SerializeField] private AudioSource backdraftAudio = null;
     [SerializeField] private float delayBeforeExplosion = 1;
     [SerializeField] private float duration = 2;
-    [SerializeField] private BackdraftObstacle obstacle = null;
+    [SerializeField] private Obstacle obstacle = null;
     [SerializeField] private ParticleSystem[] fireInRoom = null;
 
     private ParticleSystem backdraft;
+    private Coroutine explosionCoroutine;
 
     private void Awake() 
     {
@@ -24,14 +25,18 @@ public class Backdraft : MonoBehaviour
             main.prewarm = false;
         }
     }
+
+    private void OnEnable() => obstacle.Disappeared += StartExplosion;
+
+    private void OnDisable() => obstacle.Disappeared -= StartExplosion;
     
-    private void OnEnable() => obstacle.ObstacleDisappeared += StartExplosion;
+    private void StartExplosion() 
+    {
+        if(explosionCoroutine == null) 
+           explosionCoroutine = StartCoroutine(Explode());
+    } 
 
-    private void OnDisable() => obstacle.ObstacleDisappeared -= StartExplosion;
-
-    private void StartExplosion() => StartCoroutine(Explode());
-
-    private IEnumerator Explode()
+    public IEnumerator Explode()
     {
         smokeStream.Play();
         smokeInRoom.Stop();

@@ -17,9 +17,9 @@ public class Sound : ScriptableObject
         Source.volume = volume;
     }
 
-    public void PlayRandomClip()
+    public void Play()
     {
-        Source.clip = clips[Random.Range(0, clips.Length)];
+        if(clips.Length > 1) Source.clip = clips[Random.Range(0, clips.Length)];
         Source.Play();
     }
 }
