@@ -8,7 +8,7 @@ public class Backdraft : MonoBehaviour
     [SerializeField] private AudioSource backdraftAudio = null;
     [SerializeField] private float delayBeforeExplosion = 1;
     [SerializeField] private float duration = 2;
-    [SerializeField] private Obstacle obstacle = null;
+    [SerializeField] private BackdraftObstacle obstacle = null;
     [SerializeField] private ParticleSystem[] fireInRoom = null;
 
     private ParticleSystem backdraft;

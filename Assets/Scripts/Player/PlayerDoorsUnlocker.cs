@@ -28,9 +28,8 @@ public class PlayerDoorsUnlocker : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
-    {
-        if(other.CompareTag("Key")) Destroy(other.gameObject);    
-        else if(other.CompareTag("UnlockZone")) currentLockedDoor = other.GetComponentInParent<LockedDoor>();
+    {  
+        if(other.CompareTag("UnlockZone")) currentLockedDoor = other.GetComponentInParent<LockedDoor>();
     }
 
     private void OnTriggerExit2D(Collider2D other) 

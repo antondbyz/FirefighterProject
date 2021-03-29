@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BreakableWall : Obstacle
+public class BreakableWall : BackdraftObstacle
 {
     [SerializeField] private Transform spikes = null;
     [SerializeField] private Pool brokenWallsPool = null;
@@ -28,7 +28,7 @@ public class BreakableWall : Obstacle
         BrokenWall newBrokenWall = brokenWallsPool.SpawnObject(myTransform.position).GetComponent<BrokenWall>(); 
         newBrokenWall.Initialize(spikes, dangerous);
         wallBrokeEffectsPool.SpawnObject(myTransform.position);
-        InvokeObstacleDisappeared();
+        Disappeared?.Invoke();
         Destroy(gameObject);
     }
 }

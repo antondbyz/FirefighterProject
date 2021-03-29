@@ -10,12 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceff81301c0f56f419f3c60817cb45aa, type: 3}
-  m_Name: PlayerDied
+  m_Name: KeyCollected
   m_EditorClassIdentifier: 
   Source: {fileID: 0}
   clips:
-  - {fileID: 8300000, guid: 2df35deae65058342b2cc35e199e2e10, type: 3}
-  - {fileID: 8300000, guid: d042aeca7d7a34346820909bf426f284, type: 3}
-  - {fileID: 8300000, guid: 1cedbf356bc40f343b971b09d611c4b8, type: 3}
+  - {fileID: 8300000, guid: 8e7a62f7cdc1ecf45ab9514712ebb197, type: 3}
   loop: 0
   volume: 1

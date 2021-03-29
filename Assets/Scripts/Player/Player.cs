@@ -4,6 +4,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public event System.Action Died;
+    public event System.Action KeyCollected;
+    public event System.Action VictimSaved;
     public Checkpoint CurrentCheckpoint
     {
         get => currentCheckpoint;
@@ -11,7 +13,7 @@ public class Player : MonoBehaviour
         {
             if(currentCheckpoint != value)
             {
-                currentCheckpoint.IsActive = false;
+                if(currentCheckpoint != null) currentCheckpoint.IsActive = false;
                 currentCheckpoint = value;
                 currentCheckpoint.IsActive = true;
             }
@@ -75,10 +77,13 @@ public class Player : MonoBehaviour
         myTransform = transform;  
         LifesLeft = GameManager.CurrentPlayerSkin.LifesAmount;
         EarnedMoney = GameManager.PlayerBalance;
-        currentCheckpoint.IsActive = true;
         VictimsAmount = GameObject.FindGameObjectsWithTag("Victim").Length;
         VictimsSaved = 0;
-        MoveToCurrentCheckpoint();   
+        if(currentCheckpoint != null)
+        { 
+            currentCheckpoint.IsActive = true;
+            MoveToCurrentCheckpoint();   
+        }
     }
 
     private void OnEnable() => Fire.Extinguished += FireExtinguished;
@@ -92,9 +97,15 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
             EarnedMoney += GameManager.VICTIM_SAVED_REWARD;
             VictimsSaved++;
+            VictimSaved?.Invoke();
         } 
         else if(other.CompareTag("Finish")) GameController.Instance.CompleteLevel();
         else if(other.CompareTag("DeathZone")) Die();
+        else if(other.CompareTag("Key"))
+        {
+            Destroy(other.gameObject);  
+            KeyCollected?.Invoke();
+        }
     }
 
     private void OnParticleCollision(GameObject other) 

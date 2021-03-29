@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class LockedDoor : Obstacle
+public class LockedDoor : BackdraftObstacle
 {
     [SerializeField] private Sprite opened = null;
     [SerializeField] private GameObject unlockZone = null;
@@ -30,7 +30,7 @@ public class LockedDoor : Obstacle
             unlockZone.SetActive(false);
             audioSource.clip = unlockedClip;
             audioSource.Play();
-            InvokeObstacleDisappeared();
+            Disappeared?.Invoke();
             return true;
         }
         audioSource.clip = lockedClip;

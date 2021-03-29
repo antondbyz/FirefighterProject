@@ -1506,11 +1506,6 @@ PrefabInstance:
       propertyPath: m_BoundingShape2D
       value: 
       objectReference: {fileID: 1594829179}
-    - target: {fileID: 5950847092380134345, guid: 30ab64c9273e09f408fe8f99e318a2ef,
-        type: 3}
-      propertyPath: currentCheckpoint
-      value: 
-      objectReference: {fileID: 1217412634}
     - target: {fileID: 9221799522365304708, guid: 30ab64c9273e09f408fe8f99e318a2ef,
         type: 3}
       propertyPath: m_Name
@@ -2859,18 +2854,6 @@ Transform:
   m_Father: {fileID: 127760046}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1217412634 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7003432932282559136, guid: 390fcc7175b78684eaec676383faaa75,
-    type: 3}
-  m_PrefabInstance: {fileID: 1975013915}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c4ca32e152dad64c9ddf59410b58823, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1233268553 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7836517175129876154, guid: 35193e43e35180047a29f7d71fd8f500,

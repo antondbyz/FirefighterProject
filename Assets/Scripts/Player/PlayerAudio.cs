@@ -6,6 +6,8 @@ public class PlayerAudio : MonoBehaviour
     [SerializeField] private Sound runningSound = null;
     [SerializeField] private Sound jumpSound = null;
     [SerializeField] private Sound extinguishingSound = null;
+    [SerializeField] private Sound keyCollectedSound = null;
+    [SerializeField] private Sound victimSaved = null;
 
     private PlayerController controller;
     private Player player;
@@ -20,14 +22,18 @@ public class PlayerAudio : MonoBehaviour
 
     private void OnEnable() 
     { 
-        player.Died += PlayDeathSound;
-        controller.Jumped += PlayJumpSound;
+        player.Died += deathSound.Play;
+        player.KeyCollected += keyCollectedSound.Play;
+        player.VictimSaved += victimSaved.Play;
+        controller.Jumped += jumpSound.Play;
     }
 
     private void OnDisable() 
     {
-        player.Died -= PlayDeathSound;
-        controller.Jumped -= PlayJumpSound;
+        player.Died -= deathSound.Play;
+        player.KeyCollected -= keyCollectedSound.Play;
+        player.VictimSaved -= victimSaved.Play;
+        controller.Jumped -= jumpSound.Play;
         if(runningSound.Source != null) runningSound.Source.Stop();    
         if(extinguishingSound.Source != null) extinguishingSound.Source.Stop();
     }
@@ -37,10 +43,6 @@ public class PlayerAudio : MonoBehaviour
         UpdateSound(runningSound, controller.NewVelocity.x != 0 && controller.IsGrounded && !GameController.Instance.IsPaused);
         UpdateSound(extinguishingSound, extinguisher.IsTurnedOn && !GameController.Instance.IsPaused);
     }
-
-    private void PlayDeathSound() => deathSound.Play();
-
-    private void PlayJumpSound() => jumpSound.Play();
 
     private void UpdateSound(Sound sound, bool condition)
     {
