@@ -57,11 +57,7 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < Levels.Length; i++) Levels[i] = new Level(i + firstLevelBuildIndex);
         SceneManager.sceneLoaded += SceneLoaded;
         if(SceneManager.sceneCount == 1) SceneManager.LoadScene(1, LoadSceneMode.Additive);
-    }   
-
-    private void OnEnable() => GameController.LevelCompleted += LevelCompleted;
-
-    private void OnDisable() => GameController.LevelCompleted -= LevelCompleted;
+    }
 
     private void SceneLoaded(Scene scene, LoadSceneMode mode) => SceneManager.SetActiveScene(scene);
 }

@@ -6,6 +6,8 @@ public class PlayerAudio : MonoBehaviour
     [SerializeField] private AudioClip jumpClip = null;
     [SerializeField] private AudioClip keyCollectedClip = null;
     [SerializeField] private AudioClip victimSavedClip = null;
+    [SerializeField] private AudioClip levelCompletedClip = null;
+    [SerializeField] private AudioClip levelFailedClip = null;
     [SerializeField] private ControlledSound runningSound = null;
     [SerializeField] private ControlledSound extinguishingSound = null;
 
@@ -18,6 +20,8 @@ public class PlayerAudio : MonoBehaviour
         controller = GetComponent<PlayerController>();   
         player = GetComponent<Player>();
         extinguisher = GetComponentInChildren<Extinguisher>(); 
+        GameController.Instance.LevelCompleted.AddListener(PlayLevelCompleted);
+        GameController.Instance.LevelFailed.AddListener(PlayLevelFailed);
     }
 
     private void OnEnable() 
@@ -51,6 +55,10 @@ public class PlayerAudio : MonoBehaviour
     private void PlayVictimSaved() => AudioManager.Instance.PlayClip(victimSavedClip);
 
     private void PlayJump() => AudioManager.Instance.PlayClip(jumpClip);
+
+    private void PlayLevelCompleted() => AudioManager.Instance.PlayClip(levelCompletedClip);
+
+    private void PlayLevelFailed() => AudioManager.Instance.PlayClip(levelFailedClip);
 
     private void UpdateSound(ControlledSound sound, bool condition)
     {

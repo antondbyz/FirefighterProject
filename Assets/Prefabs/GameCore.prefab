@@ -12409,6 +12409,8 @@ MonoBehaviour:
   jumpClip: {fileID: 8300000, guid: 658d2ae84287ac34db920ffd21240183, type: 3}
   keyCollectedClip: {fileID: 8300000, guid: 8e7a62f7cdc1ecf45ab9514712ebb197, type: 3}
   victimSavedClip: {fileID: 8300000, guid: 2df35deae65058342b2cc35e199e2e10, type: 3}
+  levelCompletedClip: {fileID: 8300000, guid: 6bf9118f4661f5a4eb9c5c662886ee4c, type: 3}
+  levelFailedClip: {fileID: 8300000, guid: 2df35deae65058342b2cc35e199e2e10, type: 3}
   runningSound: {fileID: 11400000, guid: 759f396d1fe81ad48b57a0bdeab7e24c, type: 2}
   extinguishingSound: {fileID: 11400000, guid: 5e2391db5c0f22b48b4474ac266cedf6, type: 2}
 --- !u!1 &5950847092642859567
@@ -13596,7 +13598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 033fdf504949678469c37ad2cf74a6ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelFailed:
+  LevelFailed:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 9143833498117507333}
@@ -13611,7 +13613,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  levelCompleted:
+  LevelCompleted:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2079440330788902689}

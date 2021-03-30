@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour 
 {
     public static GameController Instance;
-    public static event System.Action<int> LevelCompleted;
     
     public event System.Action GamePaused;
     public event System.Action GameUnpaused;
@@ -26,16 +25,16 @@ public class GameController : MonoBehaviour
         }
     }
     public int NewPlayerBalance => player.EarnedMoney;
-
-    [SerializeField] private UnityEvent levelFailed = null;
-    [SerializeField] private UnityEvent levelCompleted = null;
+    
+    public UnityEvent LevelFailed;
+    public UnityEvent LevelCompleted;
     [SerializeField] private Player player = null;
     [SerializeField] private GameObject gameUI = null;
     [SerializeField] private Transform starsContainer = null;
     
     private bool isPaused;
     private Image[] stars; 
-    private WaitForSeconds delay = new WaitForSeconds(1);
+    private WaitForSeconds delayAfterDeath = new WaitForSeconds(1);
 
     public void CompleteLevel()
     {
@@ -43,8 +42,8 @@ public class GameController : MonoBehaviour
         IsPaused = true;
         int starsAmount = Mathf.RoundToInt((float)player.VictimsSaved / player.VictimsAmount * Level.MAX_STARS);
         for(int i = 0; i < starsAmount; i++) stars[i].color = Color.yellow;
-        LevelCompleted?.Invoke(starsAmount);
-        levelCompleted.Invoke();
+        GameManager.LevelCompleted(starsAmount);
+        LevelCompleted.Invoke();
     } 
     
     private void Awake() 
@@ -69,14 +68,14 @@ public class GameController : MonoBehaviour
 
     private IEnumerator FailLevel()
     {
-        yield return delay;
+        yield return delayAfterDeath;
         IsPaused = true;
-        levelFailed.Invoke();
+        LevelFailed.Invoke();
     }
 
     private IEnumerator MoveCharacterToCurrentCheckpoint()
     {
-        yield return delay;
+        yield return delayAfterDeath;
         player.MoveToCurrentCheckpoint();
         player.gameObject.SetActive(true);
     }   
