@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -24,10 +25,16 @@ public class UI_Item : MonoBehaviour, IPointerClickHandler
 
     protected bool isAvailable;
 
+    [SerializeField] private UnityEvent clicked = new UnityEvent();
+
     private bool selected;
     private Outline outline;
 
-    public void OnPointerClick(PointerEventData eventData) => Clicked?.Invoke(Index);
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Clicked?.Invoke(Index);
+        clicked.Invoke();
+    }
 
     protected virtual void Awake() 
     {

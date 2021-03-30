@@ -7,7 +7,6 @@ public class Checkpoint : MonoBehaviour
         get => isActive;
         set
         {
-            if(!isActive && value) AudioManager.Instance.PlayClip(activatedClip); 
             isActive = value;
             exitSign.color = isActive ? activeColor : notActiveColor;
         }
@@ -19,6 +18,12 @@ public class Checkpoint : MonoBehaviour
     [SerializeField] private AudioClip activatedClip = null;
 
     private bool isActive;
+
+    public void Activate()
+    {
+        AudioManager.Instance.PlayClip(activatedClip); 
+        IsActive = true;
+    }
 
     private void OnTriggerEnter2D(Collider2D other) 
     {

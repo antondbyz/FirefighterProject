@@ -13,9 +13,9 @@ public class Player : MonoBehaviour
         {
             if(currentCheckpoint != value)
             {
-                if(currentCheckpoint != null) currentCheckpoint.IsActive = false;
+                currentCheckpoint.IsActive = false;
                 currentCheckpoint = value;
-                currentCheckpoint.IsActive = true;
+                currentCheckpoint.Activate();
             }
         }
     }

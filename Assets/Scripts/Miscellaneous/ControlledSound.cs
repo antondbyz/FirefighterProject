@@ -8,9 +8,9 @@ public class ControlledSound : ScriptableObject
     [SerializeField] private AudioClip clip = null;
     [SerializeField] private bool loop = false;
 
-    public void Initialize(GameObject audioSources)
+    public void Initialize(AudioSource audioSource)
     {
-        Source = audioSources.AddComponent<AudioSource>();
+        Source = audioSource;
         Source.clip = clip;
         Source.loop = loop;
     }
