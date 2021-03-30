@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: Extinguishing
   m_EditorClassIdentifier: 
   Source: {fileID: 0}
-  clips:
-  - {fileID: 8300000, guid: 6f175175839669c44a49bf08e41085b0, type: 3}
+  clip: {fileID: 8300000, guid: 6f175175839669c44a49bf08e41085b0, type: 3}
   loop: 1

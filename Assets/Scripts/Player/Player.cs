@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
     public int VictimsAmount { get; private set; }
 
     [SerializeField] private Checkpoint currentCheckpoint = null;
+    [SerializeField] private bool moveToCurrentCheckpointOnAwake = true;
     [SerializeField] private ParticleSystem bloodEffect = null;
     [SerializeField] private TMP_Text lifesLeftText = null;
     [SerializeField] private TMP_Text earnedMoneyText = null;
@@ -79,11 +80,8 @@ public class Player : MonoBehaviour
         EarnedMoney = GameManager.PlayerBalance;
         VictimsAmount = GameObject.FindGameObjectsWithTag("Victim").Length;
         VictimsSaved = 0;
-        if(currentCheckpoint != null)
-        { 
-            currentCheckpoint.IsActive = true;
-            MoveToCurrentCheckpoint();   
-        }
+        currentCheckpoint.IsActive = true;
+        if(moveToCurrentCheckpointOnAwake) MoveToCurrentCheckpoint();   
     }
 
     private void OnEnable() => Fire.Extinguished += FireExtinguished;

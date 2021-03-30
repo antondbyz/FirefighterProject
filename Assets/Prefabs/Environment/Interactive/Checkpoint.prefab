@@ -208,4 +208,4 @@ MonoBehaviour:
   exitSign: {fileID: 114171827}
   activeColor: {r: 0, g: 1, b: 0.13333344, a: 1}
   notActiveColor: {r: 1, g: 0, b: 0, a: 1}
-  activateSound: {fileID: 11400000, guid: e1ee4bf225c12fb4e89605f56629de89, type: 2}
+  activatedClip: {fileID: 8300000, guid: 6bf9118f4661f5a4eb9c5c662886ee4c, type: 3}

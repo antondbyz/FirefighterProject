@@ -7,7 +7,7 @@ public class Checkpoint : MonoBehaviour
         get => isActive;
         set
         {
-            if(!isActive && value) activateSound.Play(); 
+            if(!isActive && value) AudioManager.Instance.PlayClip(activatedClip); 
             isActive = value;
             exitSign.color = isActive ? activeColor : notActiveColor;
         }
@@ -16,7 +16,7 @@ public class Checkpoint : MonoBehaviour
     [SerializeField] private SpriteRenderer exitSign = null;
     [SerializeField] private Color activeColor = Color.white;
     [SerializeField] private Color notActiveColor = Color.white;
-    [SerializeField] private Sound activateSound = null;
+    [SerializeField] private AudioClip activatedClip = null;
 
     private bool isActive;
 

@@ -13,7 +13,5 @@ MonoBehaviour:
   m_Name: PlayerRunning
   m_EditorClassIdentifier: 
   Source: {fileID: 0}
-  clips:
-  - {fileID: 8300000, guid: 1334f9c849360554e9ee4b0af4b5d2f0, type: 3}
+  clip: {fileID: 8300000, guid: 1334f9c849360554e9ee4b0af4b5d2f0, type: 3}
   loop: 1
-  volume: 1

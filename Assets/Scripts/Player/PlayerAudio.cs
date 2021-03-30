@@ -2,12 +2,12 @@
 
 public class PlayerAudio : MonoBehaviour
 {
-    [SerializeField] private Sound deathSound = null;
-    [SerializeField] private Sound runningSound = null;
-    [SerializeField] private Sound jumpSound = null;
-    [SerializeField] private Sound extinguishingSound = null;
-    [SerializeField] private Sound keyCollectedSound = null;
-    [SerializeField] private Sound victimSaved = null;
+    [SerializeField] private AudioClip[] deathClips = null;
+    [SerializeField] private AudioClip jumpClip = null;
+    [SerializeField] private AudioClip keyCollectedClip = null;
+    [SerializeField] private AudioClip victimSavedClip = null;
+    [SerializeField] private ControlledSound runningSound = null;
+    [SerializeField] private ControlledSound extinguishingSound = null;
 
     private PlayerController controller;
     private Player player;
@@ -22,18 +22,18 @@ public class PlayerAudio : MonoBehaviour
 
     private void OnEnable() 
     { 
-        player.Died += deathSound.Play;
-        player.KeyCollected += keyCollectedSound.Play;
-        player.VictimSaved += victimSaved.Play;
-        controller.Jumped += jumpSound.Play;
+        player.Died += PlayRandomDeath;
+        player.KeyCollected += PlayKeyCollected;
+        player.VictimSaved += PlayVictimSaved;
+        controller.Jumped += PlayJump;
     }
 
     private void OnDisable() 
     {
-        player.Died -= deathSound.Play;
-        player.KeyCollected -= keyCollectedSound.Play;
-        player.VictimSaved -= victimSaved.Play;
-        controller.Jumped -= jumpSound.Play;
+        player.Died -= PlayRandomDeath;
+        player.KeyCollected -= PlayKeyCollected;
+        player.VictimSaved -= PlayVictimSaved;
+        controller.Jumped -= PlayJump;
         if(runningSound.Source != null) runningSound.Source.Stop();    
         if(extinguishingSound.Source != null) extinguishingSound.Source.Stop();
     }
@@ -44,11 +44,19 @@ public class PlayerAudio : MonoBehaviour
         UpdateSound(extinguishingSound, extinguisher.IsTurnedOn && !GameController.Instance.IsPaused);
     }
 
-    private void UpdateSound(Sound sound, bool condition)
+    private void PlayRandomDeath() => AudioManager.Instance.PlayClip(deathClips[Random.Range(0, deathClips.Length)]);
+
+    private void PlayKeyCollected() => AudioManager.Instance.PlayClip(keyCollectedClip);
+
+    private void PlayVictimSaved() => AudioManager.Instance.PlayClip(victimSavedClip);
+
+    private void PlayJump() => AudioManager.Instance.PlayClip(jumpClip);
+
+    private void UpdateSound(ControlledSound sound, bool condition)
     {
         if(condition)
         {
-            if(!sound.Source.isPlaying) sound.Play();
+            if(!sound.Source.isPlaying) sound.Source.Play();
         }
         else sound.Source.Stop(); 
     }

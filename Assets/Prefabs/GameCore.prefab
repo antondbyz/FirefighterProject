@@ -12291,6 +12291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCheckpoint: {fileID: 0}
+  moveToCurrentCheckpointOnAwake: 0
   bloodEffect: {fileID: 1532860760}
   lifesLeftText: {fileID: 1588279336406196845}
   earnedMoneyText: {fileID: 6294406262005951721}
@@ -12401,12 +12402,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f584adfec3323b148936156695104b13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathSound: {fileID: 11400000, guid: b0906af9ef0c72344a246cae4c0c5339, type: 2}
+  deathClips:
+  - {fileID: 8300000, guid: 2df35deae65058342b2cc35e199e2e10, type: 3}
+  - {fileID: 8300000, guid: d042aeca7d7a34346820909bf426f284, type: 3}
+  - {fileID: 8300000, guid: 1cedbf356bc40f343b971b09d611c4b8, type: 3}
+  jumpClip: {fileID: 8300000, guid: 658d2ae84287ac34db920ffd21240183, type: 3}
+  keyCollectedClip: {fileID: 8300000, guid: 8e7a62f7cdc1ecf45ab9514712ebb197, type: 3}
+  victimSavedClip: {fileID: 8300000, guid: 2df35deae65058342b2cc35e199e2e10, type: 3}
   runningSound: {fileID: 11400000, guid: 759f396d1fe81ad48b57a0bdeab7e24c, type: 2}
-  jumpSound: {fileID: 11400000, guid: f20d47a9d452aec4dba5425dd47a981b, type: 2}
   extinguishingSound: {fileID: 11400000, guid: 5e2391db5c0f22b48b4474ac266cedf6, type: 2}
-  keyCollectedSound: {fileID: 11400000, guid: 51197fdbd19ccc54485272e7412c5523, type: 2}
-  victimSaved: {fileID: 11400000, guid: e74497a1bfb5a3442b7126b9c9114cca, type: 2}
 --- !u!1 &5950847092642859567
 GameObject:
   m_ObjectHideFlags: 0
