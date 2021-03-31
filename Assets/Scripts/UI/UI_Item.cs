@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Outline))]
-public class UI_Item : MonoBehaviour, IPointerClickHandler
+[RequireComponent(typeof(Outline), typeof(Button))]
+public class UI_Item : MonoBehaviour
 {
     public event System.Action<int> Clicked;
     public bool Selected
@@ -25,20 +23,15 @@ public class UI_Item : MonoBehaviour, IPointerClickHandler
 
     protected bool isAvailable;
 
-    [SerializeField] private UnityEvent clicked = new UnityEvent();
-
     private bool selected;
     private Outline outline;
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        Clicked?.Invoke(Index);
-        clicked.Invoke();
-    }
-
     protected virtual void Awake() 
     {
+        GetComponent<Button>().onClick.AddListener(InvokeClicked);
         outline = GetComponent<Outline>();
         Selected = false;
     }
+
+    private void InvokeClicked() => Clicked?.Invoke(Index);
 }

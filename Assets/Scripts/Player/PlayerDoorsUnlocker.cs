@@ -15,13 +15,12 @@ public class PlayerDoorsUnlocker : MonoBehaviour
 
     private void Update() 
     {
-        if(currentLockedDoor != null)
+        if(currentLockedDoor != null && currentLockedDoor.CanBeUnlocked)
         {
             if(!openButton.activeSelf) openButton.SetActive(true);
             if(InputManager.OpenPressed) 
             {
-                bool unlocked = currentLockedDoor.TryUnlock(myTransform.position.x);    
-                if(unlocked) currentLockedDoor = null;
+                if(currentLockedDoor.TryUnlock(myTransform.position.x)) currentLockedDoor = null;
             }
         }
         else if(openButton.activeSelf) openButton.SetActive(false);
