@@ -12409,8 +12409,8 @@ MonoBehaviour:
   jumpClip: {fileID: 8300000, guid: 658d2ae84287ac34db920ffd21240183, type: 3}
   keyCollectedClip: {fileID: 8300000, guid: 6b7ef134ad10fe14e867f963e38485cf, type: 3}
   victimSavedClip: {fileID: 8300000, guid: 0a57320f9e1a8ca4681e89566274f316, type: 3}
-  levelCompletedClip: {fileID: 8300000, guid: 6bf9118f4661f5a4eb9c5c662886ee4c, type: 3}
-  levelFailedClip: {fileID: 8300000, guid: 2df35deae65058342b2cc35e199e2e10, type: 3}
+  levelCompletedClip: {fileID: 8300000, guid: 738f141bf8e8fe94d987ae6244cf432c, type: 3}
+  levelFailedClip: {fileID: 8300000, guid: c729965b223de784d847e065111cf4a8, type: 3}
   runningSound: {fileID: 11400000, guid: 759f396d1fe81ad48b57a0bdeab7e24c, type: 2}
   extinguishingSound: {fileID: 11400000, guid: 5e2391db5c0f22b48b4474ac266cedf6, type: 2}
 --- !u!1 &5950847092642859567
