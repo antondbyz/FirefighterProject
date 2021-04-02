@@ -43,12 +43,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static void LoadScene(int loadScene)
-    {
-        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-        SceneManager.LoadScene(loadScene, LoadSceneMode.Additive);
-    }
-
     private void Awake() 
     {
         PlayerSkins = Resources.LoadAll<PlayerSkin>("PlayerSkins");
@@ -62,9 +56,7 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < controlledSounds.Length; i++) 
             controlledSounds[i].Initialize(controlledSources.AddComponent<AudioSource>());
 
-        SceneManager.sceneLoaded += SceneLoaded;
+        SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) => SceneManager.SetActiveScene(scene);
         if(SceneManager.sceneCount == 1) SceneManager.LoadScene(1, LoadSceneMode.Additive);
     }
-
-    private void SceneLoaded(Scene scene, LoadSceneMode mode) => SceneManager.SetActiveScene(scene);
 }

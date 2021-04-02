@@ -9,7 +9,7 @@ public class LevelSelectionManager : UI_Manager<LevelItem>
     public void PlaySelectedLevel() 
     { 
         currentLevelIndex = selectedItemIndex;
-        GameManager.LoadScene(SelectedItem.LevelBuildIndex);
+        SceneLoader.ReplaceCurrentScene(SelectedItem.LevelBuildIndex);
     }
 
     private void Awake() 
