@@ -8,6 +8,7 @@ public class UI_Manager<T> : MonoBehaviour where T : UI_Item
 
     [SerializeField] protected T item = null;
     [SerializeField] protected RectTransform itemsParent = null;
+    [SerializeField] protected AudioClip selectItemClip = null;
 
     protected List<T> items = new List<T>();
     protected int selectedItemIndex;
@@ -23,10 +24,18 @@ public class UI_Manager<T> : MonoBehaviour where T : UI_Item
         for(int i = 0; i < items.Count; i++) items[i].Clicked -= SelectItem;
     }
 
-    protected virtual void SelectItem(int index)
+    protected virtual void SelectItem(int index, bool playSound)
     {
         selectedItemIndex = index;
-        for(int i = 0; i < items.Count; i++) items[i].Selected = (i == index);
+        for(int i = 0; i < items.Count; i++) 
+        {
+            if(i == index)
+            {
+                if(playSound && !items[i].Selected) AudioManager.Instance.PlayClip(selectItemClip);
+                items[i].Selected = true;
+            }
+            else items[i].Selected = false;
+        }
     }
 
     protected void UpdateItemsAvailability(int lastAvailableItemIndex)

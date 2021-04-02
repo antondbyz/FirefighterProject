@@ -59,7 +59,7 @@ public class ShopManager : UI_Manager<ShopItem>
     {
         base.OnEnable();
         GameManager.PlayerBalanceChanged += UpdateMoneyText;
-        SelectItem(usingItemIndex);
+        SelectItem(usingItemIndex, false);
     }
 
     protected override void OnDisable() 
@@ -68,9 +68,9 @@ public class ShopManager : UI_Manager<ShopItem>
         GameManager.PlayerBalanceChanged -= UpdateMoneyText;
     }
 
-    protected override void SelectItem(int index)
+    protected override void SelectItem(int index, bool playSound)
     {
-        base.SelectItem(index);
+        base.SelectItem(index, playSound);
         infoPanel.SetActive(items[index].IsAvailable);
         extinguisherInfo.text = items[index].Skin.ExtinguisherPower.ToString();
         lifesInfo.text = items[index].Skin.LifesAmount.ToString();

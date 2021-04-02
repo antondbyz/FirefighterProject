@@ -32,12 +32,12 @@ public class LevelSelectionManager : UI_Manager<LevelItem>
     protected override void OnEnable() 
     {
         base.OnEnable();
-        SelectItem(currentLevelIndex);  
+        SelectItem(currentLevelIndex, false);  
     }
 
-    protected override void SelectItem(int index)
+    protected override void SelectItem(int index, bool playSound)
     {
-        base.SelectItem(index);
+        base.SelectItem(index, playSound);
         playButton.SetActive(items[index].IsAvailable);
     }
 }

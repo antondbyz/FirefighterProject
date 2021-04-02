@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Outline), typeof(Button))]
-public class UI_Item : MonoBehaviour
+[RequireComponent(typeof(Outline))]
+public class UI_Item : MonoBehaviour, IPointerClickHandler
 {
-    public event System.Action<int> Clicked;
+    public event System.Action<int, bool> Clicked;
     public bool Selected
     {
         get => selected;
@@ -26,12 +27,11 @@ public class UI_Item : MonoBehaviour
     private bool selected;
     private Outline outline;
 
+    public void OnPointerClick(PointerEventData eventData) => Clicked?.Invoke(Index, true);
+
     protected virtual void Awake() 
     {
-        GetComponent<Button>().onClick.AddListener(InvokeClicked);
         outline = GetComponent<Outline>();
         Selected = false;
     }
-
-    private void InvokeClicked() => Clicked?.Invoke(Index);
 }
