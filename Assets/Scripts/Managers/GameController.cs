@@ -57,7 +57,11 @@ public class GameController : MonoBehaviour
 
     private void OnEnable() => player.Died += PlayerDied;
 
-    private void OnDisable() => player.Died -= PlayerDied;
+    private void OnDisable() 
+    { 
+        player.Died -= PlayerDied;
+        IsPaused = false;
+    }
 
     private void PlayerDied()
     {

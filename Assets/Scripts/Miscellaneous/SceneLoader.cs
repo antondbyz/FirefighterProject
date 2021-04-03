@@ -1,15 +1,11 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class SceneLoader : MonoBehaviour 
 {
     private const int LoadingSceneIndex = 2;
     private static int sceneIndexToLoad;
-    private static WaitForSeconds minLoadingDuration = new WaitForSeconds(1);
-
-    [SerializeField] private TMP_Text loadingValueText = null;
 
     public static void ReplaceCurrentScene(int newSceneIndex)
     {
@@ -18,19 +14,16 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(LoadingSceneIndex, LoadSceneMode.Additive);
     }
 
-    private void Awake() 
-    {
-        StartCoroutine(LoadScene());   
-    }   
-
-    private void OnEnable() {
-        
-    }
+    private void Awake() => StartCoroutine(LoadScene());
 
     private IEnumerator LoadScene()
     {
         yield return null;
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndexToLoad, LoadSceneMode.Additive);
-        operation.completed += (AsyncOperation o) => SceneManager.UnloadSceneAsync(gameObject.scene);
+        operation.allowSceneActivation = false;
+        yield return new WaitForSeconds(1);
+        operation.allowSceneActivation = true;
+        if(operation.isDone) SceneManager.UnloadSceneAsync(gameObject.scene);
+        else operation.completed += (AsyncOperation o) => SceneManager.UnloadSceneAsync(gameObject.scene);
     } 
 }

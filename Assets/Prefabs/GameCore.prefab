@@ -12450,7 +12450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCheckpoint: {fileID: 0}
-  moveToCurrentCheckpointOnAwake: 0
+  moveToCurrentCheckpointOnAwake: 1
   bloodEffect: {fileID: 1532860760}
   lifesLeftText: {fileID: 1588279336406196845}
   earnedMoneyText: {fileID: 6294406262005951721}
