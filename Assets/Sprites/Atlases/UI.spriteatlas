@@ -61,6 +61,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c356d10b4a98a33448a9da4bb7bc4990, type: 3}
   - {fileID: 21300000, guid: 105aa01b1530a1e48ba3df5d4a1cae8b, type: 3}
   - {fileID: 21300000, guid: 0ca8a2be0f327564fb4739d1f05fb0f9, type: 3}
+  - {fileID: 21300000, guid: b4ec5f3f0c8c9ac40a64a427a7b5cf9c, type: 3}
   m_PackedSpriteNamesToIndex:
   - Victim
   - Pause
@@ -75,5 +76,6 @@ SpriteAtlas:
   - Triangle
   - Circle
   - OpenDoor
+  - Gear
   m_Tag: UI
   m_IsVariant: 0

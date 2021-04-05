@@ -1514,10 +1514,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 900291319, guid: 30ab64c9273e09f408fe8f99e318a2ef, type: 3}
-      propertyPath: m_BoundingShape2D
-      value: 
-      objectReference: {fileID: 1594829179}
     - target: {fileID: 5950847092380134345, guid: 30ab64c9273e09f408fe8f99e318a2ef,
         type: 3}
       propertyPath: currentCheckpoint
