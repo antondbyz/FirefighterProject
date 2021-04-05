@@ -25,14 +25,14 @@ public class CustomAudioSettings : MonoBehaviour
 
     private void OnEnable() 
     {
-        audioSource.volume = type == AudioType.Music ? Settings.MusicVolume : Settings.SoundsVolume;
+        audioSource.volume = type == AudioType.Music ? SettingsManager.MusicVolume : SettingsManager.SoundsVolume;
         if(GameController.Instance != null && pauseWithGame)
         {
             GameController.Instance.GamePaused += audioSource.Pause;
             GameController.Instance.GameUnpaused += audioSource.UnPause;
         }
-        if(type == AudioType.Music) Settings.MusicVolumeChanged += SetVolume;
-        else Settings.SoundsVolumeChanged += SetVolume;
+        if(type == AudioType.Music) SettingsManager.MusicVolumeChanged += SetVolume;
+        else SettingsManager.SoundsVolumeChanged += SetVolume;
     }
 
     private void OnDisable() 
@@ -42,8 +42,8 @@ public class CustomAudioSettings : MonoBehaviour
             GameController.Instance.GamePaused -= audioSource.Pause;
             GameController.Instance.GameUnpaused -= audioSource.UnPause;
         }
-        if(type == AudioType.Music) Settings.MusicVolumeChanged -= SetVolume;
-        else Settings.SoundsVolumeChanged -= SetVolume;
+        if(type == AudioType.Music) SettingsManager.MusicVolumeChanged -= SetVolume;
+        else SettingsManager.SoundsVolumeChanged -= SetVolume;
     } 
 
     private void SetVolume(float volume) => audioSource.volume = volume;

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class Settings : MonoBehaviour
+public class SettingsManager : MonoBehaviour
 {
     public static float MusicVolume = 1;
     public static float SoundsVolume = 1;
