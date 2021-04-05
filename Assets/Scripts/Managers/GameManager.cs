@@ -51,11 +51,6 @@ public class GameManager : MonoBehaviour
         Levels = new Level[SceneManager.sceneCountInBuildSettings - firstLevelBuildIndex];
         for(int i = 0; i < Levels.Length; i++) Levels[i] = new Level(i + firstLevelBuildIndex);
 
-        GameObject controlledSources = new GameObject("ControlledAudioSources");
-        ControlledSound[] controlledSounds = Resources.LoadAll<ControlledSound>("ControlledSounds");
-        for(int i = 0; i < controlledSounds.Length; i++) 
-            controlledSounds[i].Initialize(controlledSources.AddComponent<AudioSource>());
-
         SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) => SceneManager.SetActiveScene(scene);
         if(SceneManager.sceneCount == 1) SceneManager.LoadScene(1, LoadSceneMode.Additive);
     }

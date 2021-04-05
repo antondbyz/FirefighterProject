@@ -8,8 +8,8 @@ public class PlayerAudio : MonoBehaviour
     [SerializeField] private AudioClip victimSavedClip = null;
     [SerializeField] private AudioClip levelCompletedClip = null;
     [SerializeField] private AudioClip levelFailedClip = null;
-    [SerializeField] private ControlledSound runningSound = null;
-    [SerializeField] private ControlledSound extinguishingSound = null;
+    [SerializeField] private AudioSource runningSource = null;
+    [SerializeField] private AudioSource extinguishingSource = null;
 
     private PlayerController controller;
     private Player player;
@@ -38,14 +38,14 @@ public class PlayerAudio : MonoBehaviour
         player.KeyCollected -= PlayKeyCollected;
         player.VictimSaved -= PlayVictimSaved;
         controller.Jumped -= PlayJump;
-        if(runningSound.Source != null) runningSound.Source.Stop();    
-        if(extinguishingSound.Source != null) extinguishingSound.Source.Stop();
+        runningSource.Stop();    
+        extinguishingSource.Stop();
     }
 
     private void Update() 
     {
-        UpdateSound(runningSound, controller.NewVelocity.x != 0 && controller.IsGrounded && !GameController.Instance.IsPaused);
-        UpdateSound(extinguishingSound, extinguisher.IsTurnedOn && !GameController.Instance.IsPaused);
+        UpdateSource(runningSource, controller.NewVelocity.x != 0 && controller.IsGrounded && !GameController.Instance.IsPaused);
+        UpdateSource(extinguishingSource, extinguisher.IsTurnedOn && !GameController.Instance.IsPaused);
     }
 
     private void PlayRandomDeath() => AudioManager.Instance.PlayClip(deathClips[Random.Range(0, deathClips.Length)]);
@@ -60,12 +60,12 @@ public class PlayerAudio : MonoBehaviour
 
     private void PlayLevelFailed() => AudioManager.Instance.PlayClip(levelFailedClip);
 
-    private void UpdateSound(ControlledSound sound, bool condition)
+    private void UpdateSource(AudioSource source, bool condition)
     {
         if(condition)
         {
-            if(!sound.Source.isPlaying) sound.Source.Play();
+            if(!source.isPlaying) source.Play();
         }
-        else sound.Source.Stop(); 
+        else source.Stop(); 
     }
 }
