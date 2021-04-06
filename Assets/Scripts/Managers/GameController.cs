@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -24,13 +25,16 @@ public class GameController : MonoBehaviour
             gameUI.SetActive(!isPaused);
         }
     }
-    public int NewPlayerBalance => player.EarnedMoney;
     
     public UnityEvent LevelFailed;
     public UnityEvent LevelCompleted;
     [SerializeField] private Player player = null;
+    [Header("UI")]
     [SerializeField] private GameObject gameUI = null;
     [SerializeField] private Transform starsContainer = null;
+    [SerializeField] private TMP_Text totalVictimsSavedText = null;
+    [SerializeField] private TMP_Text totalFiresExtinguishedText = null;
+    [SerializeField] private TMP_Text totalMoneyEarnedText = null;
     
     private bool isPaused;
     private Image[] stars; 
@@ -40,9 +44,13 @@ public class GameController : MonoBehaviour
     {
         player.gameObject.SetActive(false);
         IsPaused = true;
-        int starsAmount = Mathf.RoundToInt((float)player.VictimsSaved / player.VictimsAmount * Level.MAX_STARS);
+        totalVictimsSavedText.text = $"{player.VictimsSaved}/{player.VictimsAmount}";
+        totalFiresExtinguishedText.text = $"{player.FiresExtinguished}/{player.FiresAmount}";
+        totalMoneyEarnedText.text = player.EarnedMoney.ToString();
+        float levelCompletionCoefficient = (float)(player.VictimsSaved + player.FiresExtinguished) / (player.VictimsAmount + player.FiresAmount);
+        int starsAmount = Mathf.RoundToInt(levelCompletionCoefficient * Level.MAX_STARS);
         for(int i = 0; i < starsAmount; i++) stars[i].color = Color.yellow;
-        GameManager.LevelCompleted(starsAmount);
+        GameManager.LevelCompleted(starsAmount, player.EarnedMoney);
         LevelCompleted.Invoke();
     } 
     

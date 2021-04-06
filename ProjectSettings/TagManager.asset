@@ -9,6 +9,8 @@ TagManager:
   - Extinguisher
   - Key
   - UnlockZone
+  - VictimsContainer
+  - FiresContainer
   layers:
   - Default
   - TransparentFX

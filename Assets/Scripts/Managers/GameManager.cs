@@ -27,9 +27,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int firstLevelBuildIndex = 2;
 
-    public static void LevelCompleted(int starsAmount)
+    public static void LevelCompleted(int starsAmount, int earnedMoney)
     {
-        PlayerBalance = GameController.Instance.NewPlayerBalance;
+        PlayerBalance += earnedMoney;
         int completedLevelBuildIndex = GameController.Instance.gameObject.scene.buildIndex;
         for(int i = 0; i < Levels.Length; i++)
         {

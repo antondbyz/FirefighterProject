@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
         private set
         {
             earnedMoney = value;
-            earnedMoneyText.text = earnedMoney.ToString();
+            earnedMoneyText.text = (GameManager.PlayerBalance + earnedMoney).ToString();
         }
     }
     public int VictimsSaved
@@ -47,6 +47,8 @@ public class Player : MonoBehaviour
         }
     }
     public int VictimsAmount { get; private set; }
+    public int FiresExtinguished { get; private set; }
+    public int FiresAmount { get; private set; }
 
     [SerializeField] private Checkpoint currentCheckpoint = null;
     [SerializeField] private bool moveToCurrentCheckpointOnAwake = true;
@@ -77,9 +79,10 @@ public class Player : MonoBehaviour
     {
         myTransform = transform;  
         LifesLeft = GameManager.CurrentPlayerSkin.LifesAmount;
-        EarnedMoney = GameManager.PlayerBalance;
-        VictimsAmount = GameObject.FindGameObjectsWithTag("Victim").Length;
+        EarnedMoney = 0;
+        VictimsAmount = GameObject.FindWithTag("VictimsContainer").transform.childCount;
         VictimsSaved = 0;
+        FiresAmount = GameObject.FindWithTag("FiresContainer").transform.childCount;
         currentCheckpoint.IsActive = true;
         if(moveToCurrentCheckpointOnAwake) MoveToCurrentCheckpoint();   
     }
@@ -111,5 +114,9 @@ public class Player : MonoBehaviour
         if(other.CompareTag("DeathZone")) Die();    
     }
 
-    private void FireExtinguished() => EarnedMoney += GameManager.FIRE_EXTINGUISHED_REWARD;
+    private void FireExtinguished() 
+    { 
+        EarnedMoney += GameManager.FIRE_EXTINGUISHED_REWARD;
+        FiresExtinguished++;
+    }
 }
