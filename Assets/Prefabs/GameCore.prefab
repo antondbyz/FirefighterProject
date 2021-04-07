@@ -8468,7 +8468,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 732cb0f956e77914a8f43e5bf89cea6f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e0c985b854695334cab0f724d27f1842, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14832,7 +14832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCheckpoint: {fileID: 0}
-  moveToCurrentCheckpointOnAwake: 1
+  moveToCurrentCheckpointOnAwake: 0
   bloodEffect: {fileID: 1532860760}
   lifesLeftText: {fileID: 1588279336406196845}
   earnedMoneyText: {fileID: 6294406262005951721}
@@ -16356,6 +16356,7 @@ MonoBehaviour:
   totalVictimsSavedText: {fileID: 452264637}
   totalFiresExtinguishedText: {fileID: 644411543}
   totalMoneyEarnedText: {fileID: 285997199}
+  gameBackground: {fileID: 1952505381}
 --- !u!114 &7294885463404969176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19442,7 +19443,7 @@ PrefabInstance:
     - target: {fileID: 3661705885411468777, guid: 49434d96ff5f024428aa4f9db9420fc5,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -90.00012
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 3661705885411468777, guid: 49434d96ff5f024428aa4f9db9420fc5,
         type: 3}

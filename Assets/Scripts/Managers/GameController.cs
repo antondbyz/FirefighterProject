@@ -35,7 +35,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private TMP_Text totalVictimsSavedText = null;
     [SerializeField] private TMP_Text totalFiresExtinguishedText = null;
     [SerializeField] private TMP_Text totalMoneyEarnedText = null;
-    
+    [SerializeField] private Image gameBackground = null;
+
     private bool isPaused;
     private Image[] stars; 
     private WaitForSeconds delayAfterDeath = new WaitForSeconds(1);
@@ -61,6 +62,8 @@ public class GameController : MonoBehaviour
         IsPaused = false;
         stars = new Image[starsContainer.childCount];
         for(int i = 0; i < stars.Length; i++) stars[i] = starsContainer.GetChild(i).GetComponent<Image>();
+        Sprite[] gameBackgrounds = Resources.LoadAll<Sprite>("GameBackgrounds");
+        gameBackground.sprite = gameBackgrounds[Random.Range(0, gameBackgrounds.Length)];
     }
 
     private void OnEnable() => player.Died += PlayerDied;
