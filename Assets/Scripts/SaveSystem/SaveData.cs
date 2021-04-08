@@ -8,6 +8,8 @@ public class SaveData
     private int CurrentLevelIndex;
     private List<int> PurchasedItemsIndexes;
     private int UsingItemIndex;
+    private float MusicVolume;
+    private float SoundsVolume;
 
     public SaveData()
     {
@@ -16,6 +18,8 @@ public class SaveData
         CurrentLevelIndex = LevelSelectionManager.CurrentLevelIndex;
         PurchasedItemsIndexes = ShopManager.PurchasedItemsIndexes;
         UsingItemIndex = ShopManager.UsingItemIndex;
+        MusicVolume = SettingsManager.MusicVolume;
+        SoundsVolume = SettingsManager.SoundsVolume;
     }
 
     public void LoadSavedData()
@@ -25,5 +29,7 @@ public class SaveData
         LevelSelectionManager.CurrentLevelIndex = CurrentLevelIndex;
         ShopManager.PurchasedItemsIndexes = PurchasedItemsIndexes;
         ShopManager.UsingItemIndex = UsingItemIndex;
+        SettingsManager.MusicVolume = MusicVolume;
+        SettingsManager.SoundsVolume = SoundsVolume;
     }
 }
