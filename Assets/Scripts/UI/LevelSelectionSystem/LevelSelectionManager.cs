@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class LevelSelectionManager : UI_Manager<LevelItem>
 {
-    [SerializeField] private GameObject playButton = null;
+    public static int CurrentLevelIndex = 0;
 
-    private static int currentLevelIndex = 0;
+    [SerializeField] private GameObject playButton = null;
 
     public void PlaySelectedLevel() 
     { 
-        currentLevelIndex = selectedItemIndex;
+        CurrentLevelIndex = selectedItemIndex;
         SceneLoader.ReplaceCurrentScene(SelectedItem.LevelBuildIndex);
     }
 
@@ -32,7 +32,7 @@ public class LevelSelectionManager : UI_Manager<LevelItem>
     protected override void OnEnable() 
     {
         base.OnEnable();
-        SelectItem(currentLevelIndex, false);  
+        SelectItem(CurrentLevelIndex, false);  
     }
 
     protected override void SelectItem(int index, bool playSound)

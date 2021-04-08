@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[System.Serializable]
 public struct Level
 {
     public const int MAX_STARS = 3;

@@ -19,13 +19,13 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    public static PlayerSkin CurrentPlayerSkin => PlayerSkins[ShopManager.UsingItemIndex];
     public static PlayerSkin[] PlayerSkins;
-    public static PlayerSkin CurrentPlayerSkin;
     public static Level[] Levels;
 
     private static int playerBalance;
 
-    [SerializeField] private int firstLevelBuildIndex = 2;
+    [SerializeField] private int firstLevelBuildIndex = 3;
 
     public static void LevelCompleted(int starsAmount, int earnedMoney)
     {
@@ -46,10 +46,12 @@ public class GameManager : MonoBehaviour
     private void Awake() 
     {
         PlayerSkins = Resources.LoadAll<PlayerSkin>("PlayerSkins");
-        CurrentPlayerSkin = PlayerSkins[0];
 
-        Levels = new Level[SceneManager.sceneCountInBuildSettings - firstLevelBuildIndex];
-        for(int i = 0; i < Levels.Length; i++) Levels[i] = new Level(i + firstLevelBuildIndex);
+        if(Levels == null)
+        {
+            Levels = new Level[SceneManager.sceneCountInBuildSettings - firstLevelBuildIndex];
+            for(int i = 0; i < Levels.Length; i++) Levels[i] = new Level(i + firstLevelBuildIndex);
+        }
 
         SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) => SceneManager.SetActiveScene(scene);
         if(SceneManager.sceneCount == 1) SceneManager.LoadScene(1, LoadSceneMode.Additive);
