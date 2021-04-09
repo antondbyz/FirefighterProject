@@ -5,29 +5,47 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class SaveManager : MonoBehaviour
 {
     [SerializeField] private string saveFileName = "save";
-    [SerializeField] private bool loadSavedGameOnAwake = true;
 
-    private string path;
+    private static string path;
 
     private void Awake() 
     {
         path = Application.persistentDataPath + "/" + saveFileName + ".bin";
-        if(loadSavedGameOnAwake && File.Exists(path)) 
+        LoadGame();
+    }
+
+    private void OnApplicationQuit() 
+    {
+        SaveGame();
+    }    
+
+    public static void ResetGame()
+    {
+        SaveData data = new SaveData();
+        data.ResetDataExceptSettings();
+        data.LoadGameData();
+        SerializeData(data);
+    }
+
+    public static void SaveGame() => SerializeData(new SaveData());
+
+    public static void LoadGame()
+    {
+        if(File.Exists(path)) 
         {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
             SaveData data = (SaveData)(formatter.Deserialize(stream));
-            data.LoadSavedData();
+            data.LoadGameData();
             stream.Close();
         }
     }
 
-    private void OnDestroy() 
+    private static void SerializeData(SaveData data)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream stream = new FileStream(path, FileMode.Create);
-        SaveData data = new SaveData();
         formatter.Serialize(stream, data);
         stream.Close();
-    }    
+    }
 }

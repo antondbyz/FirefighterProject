@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
     public const int FIRE_EXTINGUISHED_REWARD = 10;
     public const int VICTIM_SAVED_REWARD = 100;
     public static event System.Action PlayerBalanceChanged;
@@ -43,17 +44,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void InitializeLevels()
+    {
+        Levels = new Level[SceneManager.sceneCountInBuildSettings - firstLevelBuildIndex];
+        for(int i = 0; i < Levels.Length; i++) Levels[i] = new Level(i + firstLevelBuildIndex);
+    }
+
     private void Awake() 
     {
+        if(Instance == null) Instance = this;
+        else Debug.LogWarning("More than one instance of GameManager!");
+
         PlayerSkins = Resources.LoadAll<PlayerSkin>("PlayerSkins");
-
-        if(Levels == null)
+        if(Levels == null) InitializeLevels();
+        SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) => 
         {
-            Levels = new Level[SceneManager.sceneCountInBuildSettings - firstLevelBuildIndex];
-            for(int i = 0; i < Levels.Length; i++) Levels[i] = new Level(i + firstLevelBuildIndex);
-        }
-
-        SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) => SceneManager.SetActiveScene(scene);
+            SceneManager.SetActiveScene(scene);
+            if(scene.buildIndex >= firstLevelBuildIndex) SaveManager.SaveGame();
+        };
+        SceneManager.sceneUnloaded += (Scene scene) =>
+        {
+            if(scene.buildIndex >= firstLevelBuildIndex) SaveManager.SaveGame();
+        };
         if(SceneManager.sceneCount == 1) SceneManager.LoadScene(1, LoadSceneMode.Additive);
     }
 }

@@ -22,7 +22,17 @@ public class SaveData
         SoundsVolume = SettingsManager.SoundsVolume;
     }
 
-    public void LoadSavedData()
+    public void ResetDataExceptSettings()
+    {
+        PlayerBalance = 0;
+        GameManager.Instance.InitializeLevels();
+        Levels = GameManager.Levels;
+        CurrentLevelIndex = 0;
+        PurchasedItemsIndexes = new List<int>() { 0 };
+        UsingItemIndex = 0;
+    }
+
+    public void LoadGameData()
     {
         GameManager.PlayerBalance = PlayerBalance;
         GameManager.Levels = Levels;
