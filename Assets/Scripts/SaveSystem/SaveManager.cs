@@ -14,10 +14,17 @@ public class SaveManager : MonoBehaviour
         LoadGame();
     }
 
+#if UNITY_EDITOR || UNITY_STANDALONE
     private void OnApplicationQuit() 
     {
-        SaveGame();
-    }    
+        SaveGame();    
+    }
+#else
+    private void OnApplicationPause(bool pauseStatus) 
+    {
+        if(pauseStatus) SaveGame();
+    }  
+#endif
 
     public static void ResetGame()
     {
