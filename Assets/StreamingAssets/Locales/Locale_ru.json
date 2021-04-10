@@ -1,0 +1,12 @@
+{
+"items":
+	[{"key": "id_levels", "value": "Уровни"},
+	{"key": "id_shop", "value": "Магазин"},
+	{"key": "id_newGame", "value": "Новая игра"},
+	{"key": "id_play", "value": "Играть"},
+	{"key": "id_newGameConfirmation", "value": "Вы уверены, что хотите начать новую игру? Весь прогресс будет утерян."},
+	{"key": "id_yes", "value": "Да"},
+	{"key": "id_no", "value": "Нет"},
+	{"key": "id_musicVolume", "value": "Громкость музыки"},
+	{"key": "id_soundsVolume", "value": "Громкость звуков"}]
+}
