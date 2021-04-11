@@ -226,7 +226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c10929aa1607d4c936771741b0dbf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingValueText: {fileID: 0}
 --- !u!4 &106202112
 Transform:
   m_ObjectHideFlags: 0
@@ -417,6 +416,7 @@ GameObject:
   - component: {fileID: 1813568267}
   - component: {fileID: 1813568269}
   - component: {fileID: 1813568268}
+  - component: {fileID: 1813568270}
   m_Layer: 5
   m_Name: LoadingText
   m_TagString: Untagged
@@ -540,3 +540,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1813568266}
   m_CullTransparentMesh: 0
+--- !u!114 &1813568270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813568266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f35a0a908d6df1408b58030d8ea4672, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizationKey: id_loading

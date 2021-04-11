@@ -1,0 +1,24 @@
+{
+"items":
+	[
+	{"key": "id_levels", "value": "Levels"},
+	{"key": "id_shop", "value": "Shop"},
+	{"key": "id_newGame", "value": "New game"},
+	{"key": "id_play", "value": "Play"},
+	{"key": "id_newGameConfirmation", "value": "Are you sure you want to start a new game? All progress will be lost."},
+	{"key": "id_yes", "value": "Yes"},
+	{"key": "id_no", "value": "No"},
+	{"key": "id_musicVolume", "value": "Music volume"},
+	{"key": "id_soundsVolume", "value": "Sounds volume"},
+	{"key": "id_loading", "value": "Loading..."},
+	{"key": "id_continue", "value": "Continue"},
+	{"key": "id_restart", "value": "Restart"},
+	{"key": "id_mainMenu", "value": "Main menu"},
+	{"key": "id_tryAgain", "value": "Try again"},
+	{"key": "id_doubleMoney", "value": "Double money"},
+	{"key": "id_levelCompleted", "value": "Level completed"},
+	{"key": "id_levelFailed", "value": "Level failed"},
+	{"key": "id_buy", "value": "Buy"},
+	{"key": "id_use", "value": "Use"}
+	]
+}

@@ -1,12 +1,24 @@
 {
 "items":
-	[{"key": "id_levels", "value": "Уровни"},
+	[
+	{"key": "id_levels", "value": "Уровни"},
 	{"key": "id_shop", "value": "Магазин"},
 	{"key": "id_newGame", "value": "Новая игра"},
 	{"key": "id_play", "value": "Играть"},
-	{"key": "id_newGameConfirmation", "value": "Вы уверены, что хотите начать новую игру? Весь прогресс будет утерян."},
+	{"key": "id_newGameConfirmation", "value": "Вы уверены, что хотите начать новую игру? Весь прогресс будет потерян."},
 	{"key": "id_yes", "value": "Да"},
 	{"key": "id_no", "value": "Нет"},
 	{"key": "id_musicVolume", "value": "Громкость музыки"},
-	{"key": "id_soundsVolume", "value": "Громкость звуков"}]
+	{"key": "id_soundsVolume", "value": "Громкость звуков"},
+	{"key": "id_loading", "value": "Загрузка..."},
+	{"key": "id_continue", "value": "Продолжить"},
+	{"key": "id_restart", "value": "Перезагрузить"},
+	{"key": "id_mainMenu", "value": "Главное меню"},
+	{"key": "id_tryAgain", "value": "Попробовать снова"},
+	{"key": "id_doubleMoney", "value": "Удвоить деньги"},
+	{"key": "id_levelCompleted", "value": "Уровень пройден"},
+	{"key": "id_levelFailed", "value": "Уровень провален"},
+	{"key": "id_buy", "value": "Купить"},
+	{"key": "id_use", "value": "Использовать"}
+	]
 }
