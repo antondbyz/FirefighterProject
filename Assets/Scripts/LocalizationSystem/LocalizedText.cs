@@ -9,6 +9,11 @@ public class LocalizedText : MonoBehaviour
     private void Awake() 
     {
         myText = GetComponent<TMP_Text>();
-        myText.text = LocalizationManager.GetLocalizedText(localizationKey);
-    }    
+        UpdateText();
+        LocalizationManager.Instance.LocaleChanged += UpdateText;
+    } 
+
+    private void OnDestroy() => LocalizationManager.Instance.LocaleChanged -= UpdateText;
+
+    private void UpdateText() => myText.text = LocalizationManager.Instance.GetLocalizedText(localizationKey);
 }

@@ -7,4 +7,9 @@ public class MainMenuManager : MonoBehaviour
         SaveManager.ResetGame();
         SceneLoader.ReplaceCurrentScene(gameObject.scene.buildIndex);
     }
+
+    public void ChangeLanguage()
+    {
+        LocalizationManager.Instance.SwitchLocale();
+    }
 }

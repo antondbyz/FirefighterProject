@@ -1,35 +1,54 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
 
 public class LocalizationManager : MonoBehaviour
 {
-    [SerializeField] private string localeFileName = "Locale";
+    public static LocalizationManager Instance;
+    public event System.Action LocaleChanged;
 
-    private static Dictionary<string, string> localizedText;
-    private static string localesPath = Application.streamingAssetsPath + "/Locales";
+    [SerializeField] private string defaultLocaleName = "Locale_";
+    private TextAsset[] locales;
+    private Dictionary<string, string> localizedText;
     private const string missingLocalizationKey = "Localization key not found";
 
-    public static string GetLocalizedText(string key)
+    private int currentLocaleIndex = 0;
+
+    public string GetLocalizedText(string key)
     {
         string result = missingLocalizationKey;
         if(localizedText.ContainsKey(key)) result = localizedText[key];
         return result;
     }
 
+    public void SwitchLocale()
+    {
+        currentLocaleIndex++;
+        if(currentLocaleIndex >= locales.Length) currentLocaleIndex = 0;
+        LoadCurrentLocale();
+        LocaleChanged?.Invoke();
+    }
+
     private void Awake() 
     {
-        localizedText = new Dictionary<string, string>();
-        string localePath = $"{localesPath}/{localeFileName}.json";
-        if(File.Exists(localePath))
+        if(Instance == null) Instance = this;
+        else Debug.LogWarning("More than one instance of LocalizationManager");
+
+        locales = Resources.LoadAll<TextAsset>("Locales");
+        for(int i = 0; i < locales.Length; i++) 
         {
-            string jsonData = File.ReadAllText(localePath);
-            LocalizationData localizationData = JsonUtility.FromJson<LocalizationData>(jsonData);
-            for (int i = 0; i < localizationData.items.Length; i++)
-            {
-                localizedText.Add(localizationData.items[i].key, localizationData.items[i].value);
-            }
+            if(locales[i].name == defaultLocaleName) currentLocaleIndex = i;
         }
-        else Debug.LogError("Locale " + localePath + " doesnt exist"); 
+        LoadCurrentLocale();
+    }
+
+    private void LoadCurrentLocale()
+    {
+        localizedText = new Dictionary<string, string>();
+        string jsonData = locales[currentLocaleIndex].text;
+        LocalizationData localizationData = JsonUtility.FromJson<LocalizationData>(jsonData);
+        for (int i = 0; i < localizationData.items.Length; i++)
+        {
+            localizedText.Add(localizationData.items[i].key, localizationData.items[i].value);
+        }
     }
 }
