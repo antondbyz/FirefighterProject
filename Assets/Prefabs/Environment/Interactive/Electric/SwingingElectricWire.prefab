@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 2707955391437551065}
   - component: {fileID: 2707955391437551064}
   - component: {fileID: 1231330481}
+  - component: {fileID: 5118589319068625905}
   m_Layer: 0
   m_Name: Wire
   m_TagString: Untagged
@@ -128,9 +129,22 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: dac468ea5a6c1e64cbd5101df4daf47b, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &5118589319068625905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2707955391437551071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eb89a81da29a8a46b3533a49c8055ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 0
 --- !u!1001 &8535481193534813943
 PrefabInstance:
   m_ObjectHideFlags: 0

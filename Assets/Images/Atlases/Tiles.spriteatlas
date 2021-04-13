@@ -48,6 +48,7 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 3914693016000628799, guid: d762c544ede626d4a81f0d272528c693, type: 3}
   - {fileID: 5661934994238220498, guid: d762c544ede626d4a81f0d272528c693, type: 3}
   - {fileID: 197298030915183396, guid: d762c544ede626d4a81f0d272528c693, type: 3}
   - {fileID: 6163353665255179149, guid: d762c544ede626d4a81f0d272528c693, type: 3}
@@ -57,6 +58,7 @@ SpriteAtlas:
   - {fileID: 961210159572563268, guid: d762c544ede626d4a81f0d272528c693, type: 3}
   - {fileID: -1370150288747598966, guid: d762c544ede626d4a81f0d272528c693, type: 3}
   m_PackedSpriteNamesToIndex:
+  - Environment_8
   - Environment_7
   - Environment_6
   - Environment_5
