@@ -10,6 +10,7 @@ public class SaveData
     private int UsingItemIndex;
     private float MusicVolume;
     private float SoundsVolume;
+    private bool IsInstructionShown;
 
     public SaveData()
     {
@@ -20,6 +21,7 @@ public class SaveData
         UsingItemIndex = ShopManager.UsingItemIndex;
         MusicVolume = SettingsManager.MusicVolume;
         SoundsVolume = SettingsManager.SoundsVolume;
+        IsInstructionShown = InstructionManager.IsInstructionShown;
     }
 
     public void ResetDataExceptSettings()
@@ -30,9 +32,10 @@ public class SaveData
         CurrentLevelIndex = 0;
         PurchasedItemsIndexes = new List<int>() { 0 };
         UsingItemIndex = 0;
+        IsInstructionShown = false;
     }
 
-    public void LoadGameData()
+    public void InitializeGameData()
     {
         GameManager.PlayerBalance = PlayerBalance;
         GameManager.Levels = Levels;
@@ -41,5 +44,6 @@ public class SaveData
         ShopManager.UsingItemIndex = UsingItemIndex;
         SettingsManager.MusicVolume = MusicVolume;
         SettingsManager.SoundsVolume = SoundsVolume;
+        InstructionManager.IsInstructionShown = IsInstructionShown;
     }
 }

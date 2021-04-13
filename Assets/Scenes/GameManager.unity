@@ -182,6 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveFileName: save
+  loadGameOnAwake: 1
 --- !u!114 &11675318
 MonoBehaviour:
   m_ObjectHideFlags: 0

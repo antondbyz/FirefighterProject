@@ -5,13 +5,14 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class SaveManager : MonoBehaviour
 {
     [SerializeField] private string saveFileName = "save";
+    [SerializeField] private bool loadGameOnAwake = true;
 
     private static string path;
 
     private void Awake() 
     {
         path = Application.persistentDataPath + "/" + saveFileName + ".bin";
-        LoadGame();
+        if(loadGameOnAwake) LoadGame();
     }
 
 #if UNITY_EDITOR || UNITY_STANDALONE
@@ -30,7 +31,7 @@ public class SaveManager : MonoBehaviour
     {
         SaveData data = new SaveData();
         data.ResetDataExceptSettings();
-        data.LoadGameData();
+        data.InitializeGameData();
         SerializeData(data);
     }
 
@@ -43,7 +44,7 @@ public class SaveManager : MonoBehaviour
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
             SaveData data = (SaveData)(formatter.Deserialize(stream));
-            data.LoadGameData();
+            data.InitializeGameData();
             stream.Close();
         }
     }
