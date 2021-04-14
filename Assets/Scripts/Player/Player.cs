@@ -50,7 +50,6 @@ public class Player : MonoBehaviour
     public int FiresExtinguished { get; private set; }
     public int FiresAmount { get; private set; }
 
-    [SerializeField] private Checkpoint currentCheckpoint = null;
     [SerializeField] private bool moveToCurrentCheckpointOnAwake = true;
     [SerializeField] private ParticleSystem bloodEffect = null;
     [SerializeField] private TMP_Text lifesLeftText = null;
@@ -61,6 +60,7 @@ public class Player : MonoBehaviour
     private int lifesLeft;
     private int earnedMoney;
     private int victimsSaved;
+    private Checkpoint currentCheckpoint;
 
     public void Die() 
     {
@@ -83,6 +83,7 @@ public class Player : MonoBehaviour
         VictimsAmount = GameObject.FindWithTag("VictimsContainer").transform.childCount;
         VictimsSaved = 0;
         FiresAmount = GameObject.FindWithTag("FiresContainer").transform.childCount;
+        currentCheckpoint = GameObject.FindWithTag("CheckpointsContainer").transform.GetChild(0).GetComponent<Checkpoint>();
         currentCheckpoint.IsActive = true;
         if(moveToCurrentCheckpointOnAwake) MoveToCurrentCheckpoint();   
     }

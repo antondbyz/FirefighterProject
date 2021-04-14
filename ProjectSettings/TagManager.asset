@@ -11,6 +11,7 @@ TagManager:
   - UnlockZone
   - VictimsContainer
   - FiresContainer
+  - CheckpointsContainer
   layers:
   - Default
   - TransparentFX

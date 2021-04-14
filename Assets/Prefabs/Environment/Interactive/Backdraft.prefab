@@ -14392,9 +14392,7 @@ MonoBehaviour:
   delayBeforeExplosion: 1
   duration: 2
   obstacle: {fileID: 0}
-  fireInRoom:
-  - {fileID: 0}
-  - {fileID: 0}
+  fireInRoom: []
 --- !u!199 &571007871369613389
 ParticleSystemRenderer:
   serializedVersion: 6
