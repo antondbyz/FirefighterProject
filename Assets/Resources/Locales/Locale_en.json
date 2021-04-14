@@ -19,6 +19,16 @@
 	{"key": "id_levelCompleted", "value": "Level completed"},
 	{"key": "id_levelFailed", "value": "Level failed"},
 	{"key": "id_buy", "value": "Buy"},
-	{"key": "id_use", "value": "Use"}
+	{"key": "id_use", "value": "Use"},
+	{"key": "id_tapToContinue", "value": "Tap the screen to continue"},
+	{"key": "id_livesLeft", "value": "Lives left"},
+	{"key": "id_victimsSaved", "value": "People rescued"},
+	{"key": "id_moneyEarned", "value": "Money earned"},
+	{"key": "id_pause", "value": "Pause"},
+	{"key": "id_moveRight", "value": "Move right"},
+	{"key": "id_moveLeft", "value": "Move left"},
+	{"key": "id_jump", "value": "Jump"},
+	{"key": "id_openDoor", "value": "Open door"},
+	{"key": "id_extinguisherInstruction", "value": "1. Tap the screen to activate the fire extinguisher\n2. Swipe up and down to aim"}
 	]
 }
