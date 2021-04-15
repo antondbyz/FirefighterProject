@@ -3,6 +3,7 @@
 public class PlayerDoorsUnlocker : MonoBehaviour
 {
     [SerializeField] private GameObject openButton = null;
+    [SerializeField] private GameObject needKeyMessage = null; 
 
     private Transform myTransform;
     private LockedDoor currentLockedDoor;
@@ -15,15 +16,21 @@ public class PlayerDoorsUnlocker : MonoBehaviour
 
     private void Update() 
     {
-        if(currentLockedDoor != null && currentLockedDoor.CanBeUnlocked)
+        if(currentLockedDoor != null)
         {
-            if(!openButton.activeSelf) openButton.SetActive(true);
-            if(InputManager.OpenPressed) 
+            if(currentLockedDoor.CanBeUnlocked)
             {
-                if(currentLockedDoor.TryUnlock(myTransform.position.x)) currentLockedDoor = null;
+                if(!openButton.activeSelf) openButton.SetActive(true);
+                if(InputManager.OpenPressed && currentLockedDoor.TryUnlock(myTransform.position.x)) 
+                    currentLockedDoor = null;
             }
+            else if(!needKeyMessage.activeSelf) needKeyMessage.SetActive(true);
         }
-        else if(openButton.activeSelf) openButton.SetActive(false);
+        else 
+        {
+            if(openButton.activeSelf) openButton.SetActive(false);
+            if(needKeyMessage.activeSelf) needKeyMessage.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
