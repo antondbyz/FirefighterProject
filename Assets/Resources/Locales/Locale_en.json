@@ -29,6 +29,7 @@
 	{"key": "id_moveLeft", "value": "Move left"},
 	{"key": "id_jump", "value": "Jump"},
 	{"key": "id_openDoor", "value": "Open door"},
-	{"key": "id_extinguisherInstruction", "value": "1. Tap the screen to activate the fire extinguisher\n2. Swipe up and down to aim"}
+	{"key": "id_extinguisherInstruction", "value": "1. Tap the screen to activate the fire extinguisher\n2. Swipe up and down to aim"},
+	{"key": "id_needKey", "value": "You need a key"}
 	]
 }

@@ -14,6 +14,8 @@ public class PlayerDoorsUnlocker : MonoBehaviour
         openButton.SetActive(false);   
     }
 
+    private void OnDisable() => currentLockedDoor = null;
+
     private void Update() 
     {
         if(currentLockedDoor != null)
