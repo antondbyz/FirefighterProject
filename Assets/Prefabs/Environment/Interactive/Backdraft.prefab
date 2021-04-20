@@ -14473,6 +14473,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4583525935991442583, guid: f058fcf6e961fe340a79cda1b18603d4,
         type: 3}
+      propertyPath: MaxDistance
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4583525935991442583, guid: f058fcf6e961fe340a79cda1b18603d4,
+        type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: fb73142d1e4723a449fa6f7765583705, type: 3}
@@ -14480,6 +14485,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4583525935991442583, guid: f058fcf6e961fe340a79cda1b18603d4,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].time
+      value: 0.26666668
       objectReference: {fileID: 0}
     - target: {fileID: 4727241992904807836, guid: f058fcf6e961fe340a79cda1b18603d4,
         type: 3}
