@@ -14489,7 +14489,7 @@ PrefabInstance:
     - target: {fileID: 4583525935991442583, guid: f058fcf6e961fe340a79cda1b18603d4,
         type: 3}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].time
-      value: 0.26666668
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4727241992904807836, guid: f058fcf6e961fe340a79cda1b18603d4,
         type: 3}
