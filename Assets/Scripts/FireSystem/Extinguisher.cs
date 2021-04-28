@@ -34,7 +34,7 @@ public class Extinguisher : MonoBehaviour
         myTransform = transform;
         ps = GetComponent<ParticleSystem>();
         aim = myTransform.parent.GetComponent<PlayerAim>();
-        power = GameManager.CurrentPlayerSkin.ExtinguisherPower;
+        power = PlayerSkinInitializer.CurrentPlayerSkin.ExtinguisherPower;
     }
 
     private void OnEnable() => StartCoroutine(Extinguishing());

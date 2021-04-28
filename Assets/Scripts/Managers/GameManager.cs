@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    public static PlayerSkin CurrentPlayerSkin => PlayerSkins[ShopManager.UsingItemIndex];
     public static PlayerSkin[] PlayerSkins;
     public static Level[] Levels;
 

@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
     private void Awake() 
     {
         myTransform = transform;  
-        LifesLeft = GameManager.CurrentPlayerSkin.LifesAmount;
+        LifesLeft = PlayerSkinInitializer.CurrentPlayerSkin.LifesAmount;
         EarnedMoney = 0;
         VictimsAmount = GameObject.FindWithTag("VictimsContainer").transform.childCount;
         VictimsSaved = 0;

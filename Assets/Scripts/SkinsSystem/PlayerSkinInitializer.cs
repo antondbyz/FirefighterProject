@@ -2,6 +2,9 @@
 
 public class PlayerSkinInitializer : SkinInitializer
 {
+    public static PlayerSkin CurrentPlayerSkin;
+
+    [SerializeField] private bool loadCurrentSkinOnAwake = true;
     [SerializeField] private SpriteRenderer extinguisherBalloon = null;
     [SerializeField] private SpriteRenderer extinguisherHoseHidden = null;
     [SerializeField] private SpriteRenderer extinguisherHoseDrawn = null;
@@ -9,15 +12,15 @@ public class PlayerSkinInitializer : SkinInitializer
     public override void UpdateSkin()
     {
         base.UpdateSkin();
-        PlayerSkin skin = (PlayerSkin)currentSkin;
-        extinguisherBalloon.sprite = skin.ExtinguisherBalloon;
-        extinguisherHoseHidden.sprite = skin.ExtinguisherHoseHidden;
-        extinguisherHoseDrawn.sprite = skin.ExtinguisherHoseDrawn;
+        extinguisherBalloon.sprite = CurrentPlayerSkin.ExtinguisherBalloon;
+        extinguisherHoseHidden.sprite = CurrentPlayerSkin.ExtinguisherHoseHidden;
+        extinguisherHoseDrawn.sprite = CurrentPlayerSkin.ExtinguisherHoseDrawn;
     }
 
     private void Awake() 
     { 
-        currentSkin = GameManager.CurrentPlayerSkin;
+        if(loadCurrentSkinOnAwake) currentSkin = GameManager.PlayerSkins[ShopManager.UsingItemIndex];
+        CurrentPlayerSkin = (PlayerSkin)currentSkin;
         UpdateSkin();
     }
 }
