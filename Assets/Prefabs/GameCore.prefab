@@ -345,7 +345,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2386e4dfa9e5e3146892c85f4440864e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f998c82095b1fd04093579373140bb29, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -13830,6 +13830,7 @@ MonoBehaviour:
   leftArm: {fileID: 1342087856}
   rightLeg: {fileID: 364322003}
   leftLeg: {fileID: 1589291129}
+  loadCurrentSkinOnAwake: 1
   extinguisherBalloon: {fileID: 6469325642226313477}
   extinguisherHoseHidden: {fileID: 2035996805660615639}
   extinguisherHoseDrawn: {fileID: 6899347767329750609}
@@ -14901,7 +14902,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8812885909634976043}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25.23301, y: -12.61, z: -10}
+  m_LocalPosition: {x: -23.7, y: -11.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 218351192}

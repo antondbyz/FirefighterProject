@@ -8410,10 +8410,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 55, y: 25}
-      - {x: -43, y: 25}
-      - {x: -43, y: -23}
-      - {x: 55, y: -23}
+    - - {x: 51, y: 25}
+      - {x: -40, y: 25}
+      - {x: -40, y: -23}
+      - {x: 51, y: -23}
 --- !u!4 &878648504
 Transform:
   m_ObjectHideFlags: 0
@@ -10837,6 +10837,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 900291319, guid: 30ab64c9273e09f408fe8f99e318a2ef, type: 3}
+      propertyPath: m_BoundingShape2D
+      value: 
+      objectReference: {fileID: 878648503}
     - target: {fileID: 1952505379, guid: 30ab64c9273e09f408fe8f99e318a2ef, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -10857,7 +10861,7 @@ PrefabInstance:
     - target: {fileID: 8812885909634976040, guid: 30ab64c9273e09f408fe8f99e318a2ef,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -23.7
+      value: -22.23301
       objectReference: {fileID: 0}
     - target: {fileID: 8812885909634976040, guid: 30ab64c9273e09f408fe8f99e318a2ef,
         type: 3}
