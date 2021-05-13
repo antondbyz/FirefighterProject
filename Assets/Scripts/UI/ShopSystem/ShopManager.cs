@@ -35,8 +35,9 @@ public class ShopManager : UI_Manager<ShopItem>
         UpdateActionButton();
     }
 
-    private void Awake() 
+    protected override void Awake() 
     {
+        base.Awake();
         for(int i = 0; i < GameManager.PlayerSkins.Length; i++)
         {
             ShopItem newItem = Instantiate(item, itemsParent);

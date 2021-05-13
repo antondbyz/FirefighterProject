@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_Manager<T> : MonoBehaviour where T : UI_Item 
 {
@@ -12,6 +13,13 @@ public class UI_Manager<T> : MonoBehaviour where T : UI_Item
 
     protected List<T> items = new List<T>();
     protected int selectedItemIndex;
+
+    private float canvasReferenceWidth;
+
+    protected virtual void Awake()
+    {
+        canvasReferenceWidth = transform.root.GetComponent<CanvasScaler>().referenceResolution.x;
+    }
 
     protected virtual void OnEnable() 
     {
@@ -47,7 +55,7 @@ public class UI_Manager<T> : MonoBehaviour where T : UI_Item
     private IEnumerator MakeSelectedItemVisible()
     {
         yield return new WaitForEndOfFrame();
-        float newXPos = -Mathf.Lerp(0, itemsParent.sizeDelta.x, (float)selectedItemIndex / (items.Count - 1));
+        float newXPos = -(SelectedItem.transform.localPosition.x - canvasReferenceWidth / 2);
         itemsParent.anchoredPosition = new Vector2(newXPos, itemsParent.anchoredPosition.y);
     }
 }

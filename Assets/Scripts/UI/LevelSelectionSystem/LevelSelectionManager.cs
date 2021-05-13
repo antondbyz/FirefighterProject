@@ -12,8 +12,9 @@ public class LevelSelectionManager : UI_Manager<LevelItem>
         SceneLoader.ReplaceCurrentScene(SelectedItem.LevelBuildIndex);
     }
 
-    private void Awake() 
+    protected override void Awake() 
     {
+        base.Awake();
         int lastAvailableLevelIndex = 0;
         for(int i = 0; i < GameManager.Levels.Length; i++)
         {
