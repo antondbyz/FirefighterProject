@@ -14,11 +14,11 @@ public class UI_Manager<T> : MonoBehaviour where T : UI_Item
     protected List<T> items = new List<T>();
     protected int selectedItemIndex;
 
-    private float canvasReferenceWidth;
+    private float canvasCenter;
 
     protected virtual void Awake()
     {
-        canvasReferenceWidth = transform.root.GetComponent<CanvasScaler>().referenceResolution.x;
+        canvasCenter = transform.root.GetComponent<CanvasScaler>().referenceResolution.x / 2;
     }
 
     protected virtual void OnEnable() 
@@ -55,7 +55,7 @@ public class UI_Manager<T> : MonoBehaviour where T : UI_Item
     private IEnumerator MakeSelectedItemVisible()
     {
         yield return new WaitForEndOfFrame();
-        float newXPos = -(SelectedItem.transform.localPosition.x - canvasReferenceWidth / 2);
+        float newXPos = -(SelectedItem.transform.localPosition.x - canvasCenter);
         itemsParent.anchoredPosition = new Vector2(newXPos, itemsParent.anchoredPosition.y);
     }
 }

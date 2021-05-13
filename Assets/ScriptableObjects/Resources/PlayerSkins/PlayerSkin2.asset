@@ -28,7 +28,7 @@ MonoBehaviour:
     type: 3}
   ExtinguisherHoseDrawn: {fileID: 7021574439977025703, guid: b1a02a10f1af660468f6788e7b643167,
     type: 3}
-  Price: 100
+  Price: 500
   LifesAmount: 5
-  ExtinguisherPower: 16
+  ExtinguisherPower: 14
   SkinPreview: {fileID: 21300000, guid: 8ed122ab01de78548a66d9919f253833, type: 3}

@@ -47,7 +47,7 @@ public class GameController : MonoBehaviour
         IsPaused = true;
         totalVictimsSavedText.text = $"{player.VictimsSaved}/{player.VictimsAmount}";
         totalFiresExtinguishedText.text = $"{player.FiresExtinguished}/{player.FiresAmount}";
-        totalMoneyEarnedText.text = player.EarnedMoney.ToString();
+        totalMoneyEarnedText.text = $"+{player.EarnedMoney.ToString()}$";
         float levelCompletionCoefficient = (float)(player.VictimsSaved + player.FiresExtinguished) / (player.VictimsAmount + player.FiresAmount);
         int starsAmount = Mathf.RoundToInt(levelCompletionCoefficient * Level.MAX_STARS);
         for(int i = 0; i < starsAmount; i++) stars[i].color = Color.yellow;

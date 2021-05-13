@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public const int FIRE_EXTINGUISHED_REWARD = 10;
-    public const int VICTIM_SAVED_REWARD = 100;
+    public const int VICTIM_SAVED_REWARD = 50;
     public static event System.Action PlayerBalanceChanged;
     public static int PlayerBalance 
     {

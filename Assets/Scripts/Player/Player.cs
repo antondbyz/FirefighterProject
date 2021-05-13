@@ -46,8 +46,16 @@ public class Player : MonoBehaviour
             victimsSavedText.text = $"{victimsSaved}/{VictimsAmount}";
         }
     }
+    public int FiresExtinguished 
+    { 
+        get => firesExtinguished;
+        private set
+        {
+            firesExtinguished = value;
+            firesExtinguishedText.text = $"{firesExtinguished}/{FiresAmount}";
+        }
+    }
     public int VictimsAmount { get; private set; }
-    public int FiresExtinguished { get; private set; }
     public int FiresAmount { get; private set; }
 
     [SerializeField] private bool moveToCurrentCheckpointOnAwake = true;
@@ -55,11 +63,13 @@ public class Player : MonoBehaviour
     [SerializeField] private TMP_Text lifesLeftText = null;
     [SerializeField] private TMP_Text earnedMoneyText = null;
     [SerializeField] private TMP_Text victimsSavedText = null;
+    [SerializeField] private TMP_Text firesExtinguishedText = null;
 
     private Transform myTransform;
     private int lifesLeft;
     private int earnedMoney;
     private int victimsSaved;
+    private int firesExtinguished;
     private Checkpoint currentCheckpoint;
 
     public void Die() 
@@ -77,12 +87,13 @@ public class Player : MonoBehaviour
 
     private void Awake() 
     {
-        myTransform = transform;  
+        myTransform = transform;
+        VictimsAmount = GameObject.FindWithTag("VictimsContainer").transform.childCount;
+        FiresAmount = GameObject.FindWithTag("FiresContainer").transform.childCount;  
         LifesLeft = PlayerSkinInitializer.CurrentPlayerSkin.LifesAmount;
         EarnedMoney = 0;
-        VictimsAmount = GameObject.FindWithTag("VictimsContainer").transform.childCount;
         VictimsSaved = 0;
-        FiresAmount = GameObject.FindWithTag("FiresContainer").transform.childCount;
+        FiresExtinguished = 0;
         currentCheckpoint = GameObject.FindWithTag("CheckpointsContainer").transform.GetChild(0).GetComponent<Checkpoint>();
         currentCheckpoint.IsActive = true;
         if(moveToCurrentCheckpointOnAwake) MoveToCurrentCheckpoint();   
