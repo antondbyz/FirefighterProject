@@ -4,7 +4,7 @@
 	{"key": "id_levels", "value": "Levels"},
 	{"key": "id_shop", "value": "Shop"},
 	{"key": "id_newGame", "value": "New game"},
-	{"key": "id_play", "value": "Play"},
+	{"key": "id_play", "value": "Play!"},
 	{"key": "id_newGameConfirmation", "value": "Are you sure you want to start a new game? All progress will be lost."},
 	{"key": "id_yes", "value": "Yes"},
 	{"key": "id_no", "value": "No"},
@@ -20,7 +20,6 @@
 	{"key": "id_levelFailed", "value": "Level failed"},
 	{"key": "id_buy", "value": "Buy"},
 	{"key": "id_use", "value": "Use"},
-	{"key": "id_tapToContinue", "value": "Tap the screen to continue"},
 	{"key": "id_livesLeft", "value": "Lives left"},
 	{"key": "id_victimsSaved", "value": "People rescued"},
 	{"key": "id_firesExtinguished", "value": "Extinguished fire"},
@@ -30,7 +29,12 @@
 	{"key": "id_moveLeft", "value": "Move left"},
 	{"key": "id_jump", "value": "Jump"},
 	{"key": "id_openDoor", "value": "Open door"},
-	{"key": "id_extinguisherInstruction", "value": "1. Tap the screen to activate the fire extinguisher\n2. Swipe up and down to aim"},
-	{"key": "id_needKey", "value": "You need a key"}
+	{"key": "id_extinguisherInstruction", "value": "To activate the fire extinguisher, you need to touch the screen. When the fire extinguisher is activated, swipe up and down to aim."},
+	{"key": "id_needKey", "value": "You need a key"},
+	{"key": "id_goal", "value": "Your goal is to rescue as many people as possible, extinguish as much fire as possible and get to the escape ladder."},
+	{"key": "id_backdraftInstruction", "value": "If there is smoke in the room, then if you open the door a stream of fire will burst out of the room. This is called backdraft."},
+	{"key": "id_wallInstruction", "value": "If you see a part of the wall that is damaged and may fall, you can knock it down with a stream of extinguisher."},
+	{"key": "id_checkpointInstruction", "value": "This is a checkpoint. If you die, the game will resume from the last activated checkpoint."},
+	{"key": "id_ledgeInstruction", "value": "While in the air, you can grab onto a ledge."}
 	]
 }
