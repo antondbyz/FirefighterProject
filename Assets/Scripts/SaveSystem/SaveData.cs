@@ -35,7 +35,7 @@ public class SaveData
         IsInstructionShown = false;
     }
 
-    public void InitializeGameData()
+    public void LoadDataToTheGame()
     {
         GameManager.PlayerBalance = PlayerBalance;
         GameManager.Levels = Levels;

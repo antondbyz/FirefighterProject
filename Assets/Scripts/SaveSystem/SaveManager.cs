@@ -31,7 +31,7 @@ public class SaveManager : MonoBehaviour
     {
         SaveData data = new SaveData();
         data.ResetDataExceptSettings();
-        data.InitializeGameData();
+        data.LoadDataToTheGame();
         SerializeData(data);
     }
 
@@ -44,7 +44,7 @@ public class SaveManager : MonoBehaviour
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
             SaveData data = (SaveData)(formatter.Deserialize(stream));
-            data.InitializeGameData();
+            data.LoadDataToTheGame();
             stream.Close();
         }
     }

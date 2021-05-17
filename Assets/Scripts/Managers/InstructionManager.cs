@@ -6,14 +6,12 @@ public class InstructionManager : MonoBehaviour
 
     [SerializeField] private GameObject instructionUI = null;
     [SerializeField] private GameObject player = null;
-    [SerializeField] private GameObject gameUI = null;
 
     private void Awake() 
     {
         if(!IsInstructionShown) 
         {
             player.SetActive(false);
-            gameUI.SetActive(false);
             instructionUI.SetActive(true);
         }
     }
@@ -22,7 +20,6 @@ public class InstructionManager : MonoBehaviour
     {
         IsInstructionShown = true;
         player.SetActive(true);
-        gameUI.SetActive(true);
         instructionUI.SetActive(false);
     }
 }

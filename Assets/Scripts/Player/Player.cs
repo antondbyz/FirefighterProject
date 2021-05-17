@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     public int LifesLeft
     {
         get => lifesLeft;
-        private set
+        set
         {
             lifesLeft = value;
             lifesLeftText.text = lifesLeft.ToString();

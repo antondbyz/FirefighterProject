@@ -27,14 +27,13 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int firstLevelBuildIndex = 3;
 
-    public static void LevelCompleted(int starsAmount, int earnedMoney)
+    public static void FinishLevel(int finishedLevelBuildIndex, int starsAmount, int earnedMoney)
     {
         PlayerBalance += earnedMoney;
-        int completedLevelBuildIndex = GameController.Instance.gameObject.scene.buildIndex;
         for(int i = 0; i < Levels.Length; i++)
         {
-            if(Levels[i].BuildIndex < completedLevelBuildIndex) Levels[i].Complete();
-            else if(Levels[i].BuildIndex == completedLevelBuildIndex)
+            if(Levels[i].BuildIndex < finishedLevelBuildIndex) Levels[i].Complete();
+            else if(Levels[i].BuildIndex == finishedLevelBuildIndex)
             {
                 Levels[i].Complete();
                 Levels[i].ChangeStarsAmount(starsAmount);

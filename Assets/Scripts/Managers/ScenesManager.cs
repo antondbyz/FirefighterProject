@@ -6,5 +6,5 @@ public class ScenesManager : MonoBehaviour
 
     public void RestartCurrentScene() => SceneLoader.ReplaceCurrentScene(gameObject.scene.buildIndex);   
 
-    public void ToTheMainMenu() => LoadScene(1); 
+    public void ToTheMainMenu() => LoadScene(1);
 }
