@@ -25,25 +25,6 @@ public class GameController : MonoBehaviour
             gameUI.SetActive(!isPaused);
         }
     }
-    public int TotalEarnedMoney
-    {
-        get => totalEarnedMoney;
-        set
-        {
-            if(value < 0) value = 0;
-            totalEarnedMoney = value;
-            totalMoneyEarnedText.text = $"+{totalEarnedMoney.ToString()}";
-        }
-    }
-    public int StarsAmount
-    {
-        get => starsAmount;
-        private set
-        {
-            starsAmount = Mathf.Clamp(value, 0, Level.MAX_STARS);
-            for(int i = 0; i < starsAmount; i++) stars[i].color = Color.yellow;
-        }
-    }
     
     public UnityEvent LevelFailed;
     public UnityEvent LevelCompleted;
@@ -58,17 +39,9 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject getExtraLivesPanel = null;
 
     private bool isPaused;
-    private int totalEarnedMoney;
-    private int starsAmount;
     private Image[] stars; 
     private WaitForSeconds delayAfterDeath = new WaitForSeconds(1);
-    private bool isLevelCompleted = false;
     private bool gotExtraLives = false;
-
-    public void FinishLevel()
-    {
-        if(isLevelCompleted) GameManager.FinishLevel(gameObject.scene.buildIndex, starsAmount, totalEarnedMoney);
-    }
 
     public void CompleteLevel()
     {
@@ -76,25 +49,29 @@ public class GameController : MonoBehaviour
         IsPaused = true;
         totalVictimsSavedText.text = $"{player.VictimsSaved}/{player.VictimsAmount}";
         totalFiresExtinguishedText.text = $"{player.FiresExtinguished}/{player.FiresAmount}";
-        TotalEarnedMoney = player.EarnedMoney;
+        totalMoneyEarnedText.text = $"+{player.EarnedMoney.ToString()}";
         float levelCompletionCoefficient = (float)(player.VictimsSaved + player.FiresExtinguished) / (player.VictimsAmount + player.FiresAmount);
-        StarsAmount = Mathf.RoundToInt(levelCompletionCoefficient * Level.MAX_STARS);
-        isLevelCompleted = true;
+        int starsAmount = Mathf.RoundToInt(levelCompletionCoefficient * Level.MAX_STARS);
+        for(int i = 0; i < starsAmount; i++) stars[i].color = Color.yellow;
+        GameManager.FinishLevel(gameObject.scene.buildIndex, starsAmount, player.EarnedMoney);
         LevelCompleted.Invoke();
     } 
 
-    public void FailLevel()
-    {
-        LevelFailed.Invoke();
-    }
+    public void FailLevel() => LevelFailed.Invoke();
 
-    public void GetExtraLives()
+    public void GetExtraLivesForAd()
     {
+        AdsManager.ShowRewardedAd();
         player.LifesLeft += 2;
         player.MoveToCurrentCheckpoint();
         player.gameObject.SetActive(true);
         gotExtraLives = true;
-        IsPaused = false;
+    }
+
+    public void CloseLevelAfterhAd()
+    {
+        AdsManager.ShowInterstitialAd();
+        ScenesManager.Instance.ToTheMainMenu();
     }
     
     private void Awake() 

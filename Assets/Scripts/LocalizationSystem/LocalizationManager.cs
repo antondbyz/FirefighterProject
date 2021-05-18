@@ -8,7 +8,7 @@ public class LocalizationManager : MonoBehaviour
 
     [SerializeField] private string defaultLocaleName = "Locale_";
     private TextAsset[] locales;
-    private Dictionary<string, string> localizedText;
+    private Dictionary<string, string> localizedText = new Dictionary<string, string>();
     private const string missingLocalizationKey = "Localization key not found";
 
     private int currentLocaleIndex = 0;
@@ -43,7 +43,7 @@ public class LocalizationManager : MonoBehaviour
 
     private void LoadCurrentLocale()
     {
-        localizedText = new Dictionary<string, string>();
+        localizedText.Clear();
         string jsonData = locales[currentLocaleIndex].text;
         LocalizationData localizationData = JsonUtility.FromJson<LocalizationData>(jsonData);
         for (int i = 0; i < localizationData.items.Length; i++)
