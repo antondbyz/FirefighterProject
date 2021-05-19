@@ -66,6 +66,7 @@ public class GameController : MonoBehaviour
         player.MoveToCurrentCheckpoint();
         player.gameObject.SetActive(true);
         gotExtraLives = true;
+        IsPaused = false;
     }
 
     public void CloseLevelAfterhAd()
