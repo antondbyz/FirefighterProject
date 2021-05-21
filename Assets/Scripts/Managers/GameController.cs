@@ -61,17 +61,16 @@ public class GameController : MonoBehaviour
 
     public void GetExtraLivesForAd()
     {
-        AdsManager.ShowRewardedAd();
+        AdsManager.Instance.ShowRewardedAd();
         player.LifesLeft += 2;
         player.MoveToCurrentCheckpoint();
         player.gameObject.SetActive(true);
         gotExtraLives = true;
-        IsPaused = false;
     }
 
     public void CloseLevelAfterhAd()
     {
-        AdsManager.ShowInterstitialAd();
+        AdsManager.Instance.ShowInterstitialAfterLevel(gotExtraLives);
         ScenesManager.Instance.ToTheMainMenu();
     }
     

@@ -4,9 +4,11 @@ using UnityEngine.Advertisements;
 public class AdsManager : MonoBehaviour, IUnityAdsListener
 {
     public static AdsManager Instance;
-
+    public static int CurrentInterstitialCall = 1;
     private const string interstitialId = "video";
     private const string rewardedId = "rewardedVideo"; 
+
+    [SerializeField] private int interstitialCallsSkip = 3; 
 
     private void Awake() 
     {
@@ -22,14 +24,18 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
         Advertisement.RemoveListener(this);    
     }
 
-    public static void ShowRewardedAd()
-    {
-        Advertisement.Show(rewardedId);
-    }
+    public void ShowRewardedAd() => Advertisement.Show(rewardedId);
 
-    public static void ShowInterstitialAd()
+    public void ShowInterstitialAd() => Advertisement.Show(interstitialId);
+
+    public void ShowInterstitialAfterLevel(bool isRewardedShown)
     {
-        Advertisement.Show(interstitialId);
+        if(!isRewardedShown && CurrentInterstitialCall >= interstitialCallsSkip) 
+        {
+            ShowInterstitialAd();
+            CurrentInterstitialCall = 1;
+        }
+        else CurrentInterstitialCall++;
     }
 
     public void OnUnityAdsReady(string placementId)
