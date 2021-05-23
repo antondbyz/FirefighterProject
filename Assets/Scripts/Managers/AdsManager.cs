@@ -4,7 +4,7 @@ using UnityEngine.Advertisements;
 public class AdsManager : MonoBehaviour, IUnityAdsListener
 {
     public static AdsManager Instance;
-    public static int CurrentInterstitialCall = 1;
+    public static int CurrentInterstitialCall = 0;
     private const string interstitialId = "video";
     private const string rewardedId = "rewardedVideo"; 
 
@@ -33,7 +33,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
         if(!isRewardedShown && CurrentInterstitialCall >= interstitialCallsSkip) 
         {
             ShowInterstitialAd();
-            CurrentInterstitialCall = 1;
+            CurrentInterstitialCall = 0;
         }
         else CurrentInterstitialCall++;
     }

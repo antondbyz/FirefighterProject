@@ -3,47 +3,50 @@ using System.Collections.Generic;
 [System.Serializable]
 public class SaveData
 {
-    private int PlayerBalance;
-    private Level[] Levels;
-    private int CurrentLevelIndex;
-    private List<int> PurchasedItemsIndexes;
-    private int UsingItemIndex;
-    private float MusicVolume;
-    private float SoundsVolume;
-    private bool IsInstructionShown;
+    private int playerBalance;
+    private Level[] levels;
+    private int currentLevelIndex;
+    private List<int> purchasedItemsIndexes;
+    private int usingItemIndex;
+    private float musicVolume;
+    private float soundsVolume;
+    private bool isInstructionShown;
+    private int currentInterstitialAdCall;
 
     public SaveData()
     {
-        PlayerBalance = GameManager.PlayerBalance;
-        Levels = GameManager.Levels;
-        CurrentLevelIndex = LevelSelectionManager.CurrentLevelIndex;
-        PurchasedItemsIndexes = ShopManager.PurchasedItemsIndexes;
-        UsingItemIndex = ShopManager.UsingItemIndex;
-        MusicVolume = SettingsManager.MusicVolume;
-        SoundsVolume = SettingsManager.SoundsVolume;
-        IsInstructionShown = InstructionManager.IsInstructionShown;
+        playerBalance = GameManager.PlayerBalance;
+        levels = GameManager.Levels;
+        currentLevelIndex = LevelSelectionManager.CurrentLevelIndex;
+        purchasedItemsIndexes = ShopManager.PurchasedItemsIndexes;
+        usingItemIndex = ShopManager.UsingItemIndex;
+        musicVolume = SettingsManager.MusicVolume;
+        soundsVolume = SettingsManager.SoundsVolume;
+        isInstructionShown = InstructionManager.IsInstructionShown;
+        currentInterstitialAdCall = AdsManager.CurrentInterstitialCall;
     }
 
     public void ResetDataExceptSettings()
     {
-        PlayerBalance = 0;
+        playerBalance = 0;
         GameManager.Instance.InitializeLevels();
-        Levels = GameManager.Levels;
-        CurrentLevelIndex = 0;
-        PurchasedItemsIndexes = new List<int>() { 0 };
-        UsingItemIndex = 0;
-        IsInstructionShown = false;
+        levels = GameManager.Levels;
+        currentLevelIndex = 0;
+        purchasedItemsIndexes = new List<int>() { 0 };
+        usingItemIndex = 0;
+        isInstructionShown = false;
     }
 
     public void LoadDataToTheGame()
     {
-        GameManager.PlayerBalance = PlayerBalance;
-        GameManager.Levels = Levels;
-        LevelSelectionManager.CurrentLevelIndex = CurrentLevelIndex;
-        ShopManager.PurchasedItemsIndexes = PurchasedItemsIndexes;
-        ShopManager.UsingItemIndex = UsingItemIndex;
-        SettingsManager.MusicVolume = MusicVolume;
-        SettingsManager.SoundsVolume = SoundsVolume;
-        InstructionManager.IsInstructionShown = IsInstructionShown;
+        GameManager.PlayerBalance = playerBalance;
+        GameManager.Levels = levels;
+        LevelSelectionManager.CurrentLevelIndex = currentLevelIndex;
+        ShopManager.PurchasedItemsIndexes = purchasedItemsIndexes;
+        ShopManager.UsingItemIndex = usingItemIndex;
+        SettingsManager.MusicVolume = musicVolume;
+        SettingsManager.SoundsVolume = soundsVolume;
+        InstructionManager.IsInstructionShown = isInstructionShown;
+        AdsManager.CurrentInterstitialCall = currentInterstitialAdCall;
     }
 }

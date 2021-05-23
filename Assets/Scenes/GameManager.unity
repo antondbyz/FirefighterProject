@@ -209,4 +209,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a95348ab312f345bec4f777ea6e266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interstitialCallsSkip: 2
+  interstitialCallsSkip: 1

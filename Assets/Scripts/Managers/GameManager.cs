@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     {
         if(Instance == null) Instance = this;
         else Debug.LogWarning("More than one instance of GameManager!");
-
+        
         PlayerSkins = Resources.LoadAll<PlayerSkin>("PlayerSkins");
         if(Levels == null) InitializeLevels();
         SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) => 
