@@ -13,7 +13,7 @@ public class InputManager : MonoBehaviour
 
     private void Update() 
     {
-        #if UNITY_EDITOR
+        #if UNITY_EDITOR || UNITY_STANDALONE
         ProcessKeyboardInput();
         #else 
         ProcessCustomButtonsInput();
