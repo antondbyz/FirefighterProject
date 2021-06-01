@@ -12,6 +12,7 @@ public class PlayerDoorsUnlocker : MonoBehaviour
     {
         myTransform = transform; 
         openButton.SetActive(false);   
+        needKeyMessage.SetActive(false);
     }
 
     private void OnDisable() => currentLockedDoor = null;
@@ -22,17 +23,24 @@ public class PlayerDoorsUnlocker : MonoBehaviour
         {
             if(currentLockedDoor.CanBeUnlocked)
             {
+                #if !UNITY_STANDALONE
                 if(!openButton.activeSelf) openButton.SetActive(true);
+                #endif
+
                 if(InputManager.OpenPressed && currentLockedDoor.TryUnlock(myTransform.position.x)) 
                     currentLockedDoor = null;
             }
+            #if !UNITY_STANDALONE
             else if(!needKeyMessage.activeSelf) needKeyMessage.SetActive(true);
+            #endif
         }
+        #if !UNITY_STANDALONE
         else 
         {
             if(openButton.activeSelf) openButton.SetActive(false);
             if(needKeyMessage.activeSelf) needKeyMessage.SetActive(false);
         }
+        #endif
     }
 
     private void OnTriggerEnter2D(Collider2D other) 

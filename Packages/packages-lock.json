@@ -98,15 +98,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.recorder": {
-      "version": "2.5.5",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.timeline": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.test-framework": {
       "version": "1.1.19",
       "depth": 0,
@@ -135,13 +126,6 @@
       "dependencies": {
         "com.unity.ugui": "1.0.0"
       },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.timeline": {
-      "version": "1.2.6",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.ugui": {

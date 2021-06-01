@@ -57,11 +57,16 @@ public class PlayerController : MonoBehaviour
 
     private void Update() 
     {
-        if(jumpTimer > 0) jumpTimer -= Time.deltaTime;
         NewVelocity.y = rb.velocity.y;
         CheckInput();
         IsGrounded = Physics2D.BoxCast(bc.bounds.center, bc.size, 0, Vector2.down, groundCheckDistance, whatIsGround);
         rb.sharedMaterial = NewVelocity.x != 0 || !IsGrounded ? noFriction : fullFriction;
+        if(jumpTimer > 0) jumpTimer -= Time.deltaTime;
+        if(!IsGrounded && hangTimer > 0) hangTimer -= Time.deltaTime;
+    }
+
+    private void FixedUpdate() 
+    {
         if(IsGrounded)
         {
             if(jumpTimer <= 0) CheckSlope();
@@ -70,12 +75,8 @@ public class PlayerController : MonoBehaviour
         else
         {
             CheckLedgeGrab();
-            if(hangTimer > 0) hangTimer -= Time.deltaTime;
+            NewVelocity.y = rb.velocity.y;
         }
-    }
-
-    private void FixedUpdate() 
-    {
         rb.velocity = NewVelocity;
     }
 
