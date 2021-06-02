@@ -64,6 +64,6 @@ public class GameManager : MonoBehaviour
         {
             if(scene.buildIndex >= firstLevelBuildIndex) SaveManager.SaveGame();
         };
-        if(SceneManager.sceneCount == 1) SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        if(SceneManager.sceneCount == 1) SceneLoader.LoadNewScene(1);
     }
 }

@@ -14,6 +14,12 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(LoadingSceneIndex, LoadSceneMode.Additive);
     }
 
+    public static void LoadNewScene(int newSceneIndex)
+    {
+        sceneIndexToLoad = newSceneIndex;
+        SceneManager.LoadScene(LoadingSceneIndex, LoadSceneMode.Additive);
+    }
+
     private void Awake() => StartCoroutine(LoadScene());
 
     private IEnumerator LoadScene()
