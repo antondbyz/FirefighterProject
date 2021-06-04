@@ -40,9 +40,11 @@ SpriteAtlas:
       allowAlphaSplitting: 0
       enableRotation: 1
       enableTightPacking: 0
+    secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 663d19477e736c146b37d465b97e9960, type: 3}
+    totalSpriteSurfaceArea: 134608
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -83,5 +85,6 @@ SpriteAtlas:
   - OpenDoor
   - Gear
   - FireIcon
+  m_RenderDataMap: {}
   m_Tag: UI
   m_IsVariant: 0

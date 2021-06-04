@@ -16,7 +16,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
         else Debug.LogWarning("More than one instance of AdsManager!");
         
         Advertisement.AddListener(this);
-        Advertisement.Initialize("4132181", true);   
+        Advertisement.Initialize("4132181", false);   
     }
 
     private void OnDisable() 

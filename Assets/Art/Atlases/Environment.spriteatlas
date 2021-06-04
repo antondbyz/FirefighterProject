@@ -52,9 +52,11 @@ SpriteAtlas:
       allowAlphaSplitting: 0
       enableRotation: 0
       enableTightPacking: 0
+    secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: ab58069271fa0b544a22489f1cf23b9f, type: 3}
+    totalSpriteSurfaceArea: 140699
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -143,5 +145,6 @@ SpriteAtlas:
   - BurntChair
   - Bookcase
   - Wire
+  m_RenderDataMap: {}
   m_Tag: Environment
   m_IsVariant: 0
