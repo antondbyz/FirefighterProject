@@ -44,7 +44,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 663d19477e736c146b37d465b97e9960, type: 3}
-    totalSpriteSurfaceArea: 134608
+    totalSpriteSurfaceArea: 114128
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -57,11 +57,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ae244e43ab1f32f47ac2c84480a93ec4, type: 3}
   - {fileID: 21300000, guid: 3894b783b8b279d48bccd84f3bff6ec1, type: 3}
   - {fileID: 21300000, guid: 32dcb7e3f2355c44f98f9350b3a3fc92, type: 3}
-  - {fileID: 21300000, guid: 26137b369f57eab4bb4d538e6e1dc759, type: 3}
   - {fileID: 21300000, guid: 10d233b63d70ef04381711eee933a21a, type: 3}
   - {fileID: 21300000, guid: 942a6899f485f8142a7264a5d665ad4d, type: 3}
   - {fileID: 21300000, guid: a74dacc9bfcf47749a8630eac3456429, type: 3}
-  - {fileID: 21300000, guid: dbc3f38a76a997e4aa250dc7e4a13227, type: 3}
   - {fileID: 21300000, guid: c356d10b4a98a33448a9da4bb7bc4990, type: 3}
   - {fileID: 21300000, guid: 105aa01b1530a1e48ba3df5d4a1cae8b, type: 3}
   - {fileID: 21300000, guid: 0ca8a2be0f327564fb4739d1f05fb0f9, type: 3}
@@ -75,11 +73,9 @@ SpriteAtlas:
   - Money
   - Lock
   - Arrow
-  - OppositeArrows
   - Star
   - Square
   - RoundRect
-  - ForefingerIcon
   - Triangle
   - Circle
   - OpenDoor

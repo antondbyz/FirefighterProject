@@ -2,18 +2,14 @@
 
 public class InstructionManager : MonoBehaviour
 {
-    [SerializeField] private GameObject instructionUI = null;
-    [SerializeField] private GameObject player = null;
-
     private void Awake() 
     {
-        player.SetActive(false);
-        instructionUI.SetActive(true);
+        GameController.Instance.IsPaused = true;
     }
 
     public void FinishInstruction()
     {
-        player.SetActive(true);
-        instructionUI.SetActive(false);
+        GameController.Instance.IsPaused = false;
+        gameObject.SetActive(false);
     }
 }

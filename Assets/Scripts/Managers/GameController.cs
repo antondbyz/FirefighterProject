@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour 
@@ -25,6 +26,7 @@ public class GameController : MonoBehaviour
             gameUI.SetActive(!isPaused);
         }
     }
+    public Player Player => player;
     
     public UnityEvent LevelFailed;
     public UnityEvent LevelCompleted;
@@ -37,11 +39,11 @@ public class GameController : MonoBehaviour
     [SerializeField] private TMP_Text totalMoneyEarnedText = null;
     [SerializeField] private Image gameBackground = null;
     [SerializeField] private GameObject getExtraLivesPanel = null;
+    [SerializeField] private GameObject noInternetMessage = null;
 
     private bool isPaused;
     private Image[] stars; 
     private WaitForSeconds delayAfterDeath = new WaitForSeconds(1);
-    private bool gotExtraLives = false;
 
     public void CompleteLevel()
     {
@@ -59,18 +61,22 @@ public class GameController : MonoBehaviour
 
     public void FailLevel() => LevelFailed.Invoke();
 
-    public void GetExtraLivesForAd()
+    public void GetExtraLivesForAd() 
     {
-        AdsManager.Instance.ShowRewardedAd();
-        player.LifesLeft += 2;
-        player.MoveToCurrentCheckpoint();
-        player.gameObject.SetActive(true);
-        gotExtraLives = true;
+        StartCoroutine(CheckInternetConnection((bool isConnected) => 
+        {
+            if(isConnected) 
+            {
+                getExtraLivesPanel.SetActive(false);
+                AdsManager.Instance.ShowRewardedAd();
+            }
+            else noInternetMessage.SetActive(true);
+        })); 
     }
 
-    public void CloseLevelAfterhAd()
+    public void CloseLevelWithAd()
     {
-        AdsManager.Instance.ShowInterstitialAfterLevel(gotExtraLives);
+        AdsManager.Instance.ShowInterstitialAd();
         ScenesManager.Instance.ToTheMainMenu();
     }
     
@@ -78,6 +84,7 @@ public class GameController : MonoBehaviour
     {
         if(Instance == null) Instance = this;
         else Debug.LogWarning("More than one instance of GameController!");
+        
         IsPaused = false;
         stars = new Image[starsContainer.childCount];
         for(int i = 0; i < stars.Length; i++) stars[i] = starsContainer.GetChild(i).GetComponent<Image>();
@@ -104,7 +111,7 @@ public class GameController : MonoBehaviour
     {
         yield return delayAfterDeath;
         IsPaused = true;
-        if(!gotExtraLives) getExtraLivesPanel.SetActive(true);
+        if(!AdsManager.Instance.IsRewardedShown) getExtraLivesPanel.SetActive(true);
         else FailLevel();
     }
 
@@ -114,4 +121,11 @@ public class GameController : MonoBehaviour
         player.MoveToCurrentCheckpoint();
         player.gameObject.SetActive(true);
     }   
+
+    private IEnumerator CheckInternetConnection(System.Action<bool> action)
+    {
+        UnityWebRequest www = new UnityWebRequest("http://google.com");
+        yield return www.SendWebRequest();
+        action(www.error == null);
+    }
 }

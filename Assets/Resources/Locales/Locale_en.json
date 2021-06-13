@@ -30,13 +30,15 @@
 	{"key": "id_moveLeft", "value": "Move left"},
 	{"key": "id_jump", "value": "Jump"},
 	{"key": "id_openDoor", "value": "Open door"},
-	{"key": "id_extinguisherInstruction", "value": "To activate the fire extinguisher, you need to touch the screen. When the fire extinguisher is activated, swipe up and down to aim."},
+	{"key": "id_extinguisherInstruction", "value": "Touch the screen to activate the fire extinguisher. When the fire extinguisher is activated, swipe up and down to aim."},
 	{"key": "id_needKey", "value": "You need a key"},
 	{"key": "id_goal", "value": "Your goal is to rescue as many people as possible, extinguish as much fire as possible and get to the escape ladder."},
 	{"key": "id_backdraftInstruction", "value": "If there is smoke in the room, then if you open the door a stream of fire will burst out of the room. This is called backdraft."},
 	{"key": "id_wallInstruction", "value": "If you see a part of the wall that is damaged and may fall, you can knock it down with a stream of extinguisher."},
 	{"key": "id_checkpointInstruction", "value": "This is a checkpoint. If you die, the game will resume from the last activated checkpoint."},
 	{"key": "id_ledgeInstruction", "value": "While in the air, you can grab onto a ledge."},
-	{"key": "id_adForExtraLives", "value": "Watch the ad and get 2 extra lives!"}
+	{"key": "id_lastInstruction", "value": "You are now ready to fight fire and rescue people!"},
+	{"key": "id_adForExtraLives", "value": "Watch the ad and get 2 extra lives!"},
+	{"key": "id_noInternet", "value": "No internet connection"}
 	]
 }

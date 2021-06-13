@@ -1,60 +1,98 @@
 using UnityEngine;
-using UnityEngine.Advertisements;
+using GoogleMobileAds.Api;
+using UnityEngine.SceneManagement;
+using System;
+using System.Collections;
 
-public class AdsManager : MonoBehaviour, IUnityAdsListener
+public class AdsManager : MonoBehaviour
 {
     public static AdsManager Instance;
     public static int CurrentInterstitialCall = 0;
-    private const string interstitialId = "video";
-    private const string rewardedId = "rewardedVideo"; 
+
+    public bool IsRewardedShown { get; private set; }
 
     [SerializeField] private int interstitialCallsSkip = 3; 
+
+    private const string INTERSTITIAL_ID = "ca-app-pub-4333931459484038/3828086609";
+    private const string REWARDED_ID = "ca-app-pub-4333931459484038/1578409359";
+    private InterstitialAd interstitial;
+    private RewardedAd rewarded;
 
     private void Awake() 
     {
         if(Instance == null) Instance = this;
         else Debug.LogWarning("More than one instance of AdsManager!");
-        
-        Advertisement.AddListener(this);
-        Advertisement.Initialize("4132181", false);   
+    
+        MobileAds.Initialize(initStatus => { });
+        CreateAndLoadInterstitialAd();
+        CreateAndLoadRewardedAd();
+        SceneManager.sceneUnloaded += (Scene scene) => IsRewardedShown = false;
     }
 
-    private void OnDisable() 
-    {
-        Advertisement.RemoveListener(this);    
+    public void ShowRewardedAd() 
+    { 
+        if(rewarded.IsLoaded()) rewarded.Show();
     }
 
-    public void ShowRewardedAd() => Advertisement.Show(rewardedId);
-
-    public void ShowInterstitialAd() => Advertisement.Show(interstitialId);
-
-    public void ShowInterstitialAfterLevel(bool isRewardedShown)
+    public void ShowInterstitialAd()
     {
-        if(!isRewardedShown && CurrentInterstitialCall >= interstitialCallsSkip) 
+        if(!IsRewardedShown && CurrentInterstitialCall >= interstitialCallsSkip) 
         {
-            ShowInterstitialAd();
+            if(interstitial.IsLoaded()) interstitial.Show();
             CurrentInterstitialCall = 0;
         }
         else CurrentInterstitialCall++;
     }
 
-    public void OnUnityAdsReady(string placementId)
+    private void RewardPlayer(object sender, Reward reward)
     {
-        
+        GameController.Instance.Player.LifesLeft += (int)(reward.Amount);
+        IsRewardedShown = true;
     }
 
-    public void OnUnityAdsDidError(string message)
+    private void CreateAndLoadInterstitialAd()
     {
-        
+        if(interstitial != null) interstitial.Destroy();
+        interstitial = new InterstitialAd(INTERSTITIAL_ID);
+        interstitial.OnAdClosed += HandleInterstitialAdClosed;
+        AdRequest request = new AdRequest.Builder().Build();
+        interstitial.LoadAd(request);
     }
 
-    public void OnUnityAdsDidStart(string placementId)
+    private void CreateAndLoadRewardedAd()
     {
-
+        if(rewarded != null) rewarded.Destroy();
+        rewarded = new RewardedAd(REWARDED_ID);
+        rewarded.OnUserEarnedReward += RewardPlayer;
+        rewarded.OnAdClosed += HandleRewardedAdClosed;
+        AdRequest request = new AdRequest.Builder().Build();
+        rewarded.LoadAd(request);
     }
 
-    public void OnUnityAdsDidFinish(string placementId, ShowResult showResult)
+    private void HandleRewardedAdClosed(object sender, EventArgs args) 
+    { 
+        CreateAndLoadRewardedAd();
+        if(IsRewardedShown) 
+        {
+            GameController.Instance.Player.MoveToCurrentCheckpoint();
+            GameController.Instance.Player.gameObject.SetActive(true);
+            GameController.Instance.IsPaused = false;
+        }
+        else
+        {
+            StartCoroutine(InvokeFailLevel());
+        }
+    }
+
+    private void HandleInterstitialAdClosed(object sender, EventArgs args) 
     {
-        if(GameController.Instance != null) GameController.Instance.IsPaused = false;
+        CreateAndLoadInterstitialAd();
+    }
+
+    private IEnumerator InvokeFailLevel()
+    {
+        yield return null;
+        GameController.Instance.IsPaused = true;
+        GameController.Instance.FailLevel();
     }
 }

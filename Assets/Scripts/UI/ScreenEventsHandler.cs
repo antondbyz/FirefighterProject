@@ -8,14 +8,21 @@ public class ScreenEventsHandler : MonoBehaviour, IDragHandler, IPointerDownHand
     public static event System.Action Drag;
     public static Vector2 DragDelta { get; private set; }
 
+    [SerializeField] private Camera mainCamera = null;
+
+    private Vector2 previousPointerPos;
+
     public void OnDrag(PointerEventData eventData)
-    {
-        DragDelta = eventData.delta;       
+    {   
+        Vector2 newPos = mainCamera.ScreenToWorldPoint(eventData.position);
+        DragDelta = newPos - previousPointerPos;  
+        previousPointerPos = newPos;
         Drag?.Invoke(); 
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        previousPointerPos = mainCamera.ScreenToWorldPoint(eventData.position);
         PointerDown?.Invoke();
     }
 

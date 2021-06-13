@@ -22,10 +22,11 @@ public class GameManager : MonoBehaviour
     }
     public static PlayerSkin[] PlayerSkins;
     public static Level[] Levels;
-
-    private static int playerBalance;
+    public int FirstLevelBuildIndex => firstLevelBuildIndex;
 
     [SerializeField] private int firstLevelBuildIndex = 3;
+
+    private static int playerBalance;
 
     public static void FinishLevel(int finishedLevelBuildIndex, int starsAmount, int earnedMoney)
     {
