@@ -11,6 +11,7 @@ public class SaveData
     private float musicVolume;
     private float soundsVolume;
     private int currentInterstitialAdCall;
+    private int currentLanguageIndex;
 
     public SaveData()
     {
@@ -22,6 +23,7 @@ public class SaveData
         musicVolume = SettingsManager.MusicVolume;
         soundsVolume = SettingsManager.SoundsVolume;
         currentInterstitialAdCall = AdsManager.CurrentInterstitialCall;
+        currentLanguageIndex = LocalizationManager.CurrentLanguageIndex;
     }
 
     public void ResetDataExceptSettings()
@@ -44,5 +46,6 @@ public class SaveData
         SettingsManager.MusicVolume = musicVolume;
         SettingsManager.SoundsVolume = soundsVolume;
         AdsManager.CurrentInterstitialCall = currentInterstitialAdCall;
+        LocalizationManager.CurrentLanguageIndex = currentLanguageIndex;
     }
 }

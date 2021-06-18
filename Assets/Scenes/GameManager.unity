@@ -196,7 +196,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42cd282dd53af754d99b2223f10b3239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultLocaleName: Locale_en
+  languages:
+  - LocaleName: Locale_en
+    LanguageFlag: {fileID: 21300000, guid: 5aabf9cb6b0c6774281ddc07234808c9, type: 3}
+  - LocaleName: Locale_ru
+    LanguageFlag: {fileID: 21300000, guid: 27500ee21e6b2ab4f8f4b9945661a4fd, type: 3}
 --- !u!114 &11675319
 MonoBehaviour:
   m_ObjectHideFlags: 0

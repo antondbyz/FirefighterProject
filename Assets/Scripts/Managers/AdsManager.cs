@@ -32,6 +32,11 @@ public class AdsManager : MonoBehaviour
     public void ShowRewardedAd() 
     { 
         if(rewarded.IsLoaded()) rewarded.Show();
+        else 
+        {
+            CreateAndLoadRewardedAd();
+            rewarded.OnAdLoaded += HandleRewardedAdLoaded;
+        }
     }
 
     public void ShowInterstitialAd()
@@ -88,6 +93,8 @@ public class AdsManager : MonoBehaviour
     {
         CreateAndLoadInterstitialAd();
     }
+
+    private void HandleRewardedAdLoaded(object sender, EventArgs args) => rewarded.Show();
 
     private IEnumerator InvokeFailLevel()
     {
