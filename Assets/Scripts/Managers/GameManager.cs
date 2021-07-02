@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) => 
         {
             SceneManager.SetActiveScene(scene);
-            if(scene.buildIndex >= firstLevelBuildIndex) SaveManager.SaveGame();
         };
         SceneManager.sceneUnloaded += (Scene scene) =>
         {

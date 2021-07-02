@@ -2,7 +2,6 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour 
@@ -39,7 +38,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private TMP_Text totalMoneyEarnedText = null;
     [SerializeField] private Image gameBackground = null;
     [SerializeField] private GameObject getExtraLivesPanel = null;
-    [SerializeField] private GameObject noInternetMessage = null;
+    [SerializeField] private BlinkingText cantLoadAdMessage = null;
 
     private bool isPaused;
     private Image[] stars; 
@@ -63,15 +62,13 @@ public class GameController : MonoBehaviour
 
     public void GetExtraLivesForAd() 
     {
-        StartCoroutine(CheckInternetConnection((bool isConnected) => 
+        bool success = AdsManager.Instance.ShowRewardedAd();
+        if(success) getExtraLivesPanel.SetActive(false);
+        else 
         {
-            if(isConnected) 
-            {
-                getExtraLivesPanel.SetActive(false);
-                AdsManager.Instance.ShowRewardedAd();
-            }
-            else noInternetMessage.SetActive(true);
-        })); 
+            if(!cantLoadAdMessage.gameObject.activeSelf) cantLoadAdMessage.gameObject.SetActive(true);
+            cantLoadAdMessage.Blink(1);
+        }
     }
 
     public void CloseLevelWithAd()
@@ -121,11 +118,4 @@ public class GameController : MonoBehaviour
         player.MoveToCurrentCheckpoint();
         player.gameObject.SetActive(true);
     }   
-
-    private IEnumerator CheckInternetConnection(System.Action<bool> action)
-    {
-        UnityWebRequest www = new UnityWebRequest("http://google.com");
-        yield return www.SendWebRequest();
-        action(www.error == null);
-    }
 }
