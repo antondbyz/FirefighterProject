@@ -10,7 +10,6 @@ public class SaveData
     private int usingItemIndex;
     private float musicVolume;
     private float soundsVolume;
-    private int currentInterstitialAdCall;
     private int currentLanguageIndex;
 
     public SaveData()
@@ -22,7 +21,6 @@ public class SaveData
         usingItemIndex = ShopManager.UsingItemIndex;
         musicVolume = SettingsManager.MusicVolume;
         soundsVolume = SettingsManager.SoundsVolume;
-        currentInterstitialAdCall = AdsManager.CurrentInterstitialCall;
         currentLanguageIndex = LocalizationManager.CurrentLanguageIndex;
     }
 
@@ -45,7 +43,6 @@ public class SaveData
         ShopManager.UsingItemIndex = usingItemIndex;
         SettingsManager.MusicVolume = musicVolume;
         SettingsManager.SoundsVolume = soundsVolume;
-        AdsManager.CurrentInterstitialCall = currentInterstitialAdCall;
         LocalizationManager.CurrentLanguageIndex = currentLanguageIndex;
     }
 }

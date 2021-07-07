@@ -4,7 +4,8 @@ using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
-    [SerializeField] private Dropdown localesDropdown = null; 
+    [SerializeField] private Dropdown localesDropdown = null;
+    [SerializeField] private GameObject removeAdsButton = null; 
 
     private void Awake() 
     {
@@ -20,14 +21,26 @@ public class MainMenuManager : MonoBehaviour
         localesDropdown.onValueChanged.AddListener(ChangeLanguage);
     }
 
+    private void OnEnable() 
+    {
+        if(!PurchaseManager.Instance.HasPurchasedProduct(PurchaseManager.RemoveAdsId)) 
+        {
+            removeAdsButton.SetActive(true);
+            PurchaseManager.Instance.RemoveAdsPurchaseCompleted += HandleAdsRemoved;
+        }
+    }
+
+    private void OnDisable() => PurchaseManager.Instance.RemoveAdsPurchaseCompleted -= HandleAdsRemoved;
+
     public void NewGame()
     {
         SaveManager.ResetGame();
         SceneLoader.ReplaceCurrentScene(gameObject.scene.buildIndex);
     }
 
-    private void ChangeLanguage(int index)
-    {
-        LocalizationManager.Instance.LoadLanguage(index);
-    }
+    public void RemoveAds() => PurchaseManager.Instance.PurchaseProduct(PurchaseManager.RemoveAdsId);
+
+    private void ChangeLanguage(int index) => LocalizationManager.Instance.LoadLanguage(index);
+
+    private void HandleAdsRemoved() => removeAdsButton.SetActive(false);
 }

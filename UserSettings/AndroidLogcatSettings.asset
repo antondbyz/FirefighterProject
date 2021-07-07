@@ -1,31 +1,13 @@
 {
     "m_SelectedDeviceId": "920120b588d0c34a",
     "m_SelectedPackage": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "920120b588d0c34a",
+        "name": "com.Eighter.Rescuer",
+        "processId": 11435,
         "exited": false
     },
     "m_SelectedPriority": 1,
     "m_KnownPackagesForSerialization": [
-        {
-            "deviceId": "920120b588d0c34a",
-            "name": "com.android.settings",
-            "processId": 6859,
-            "exited": true
-        },
-        {
-            "deviceId": "920120b588d0c34a",
-            "name": "com.Eighter.Rescuer",
-            "processId": 7094,
-            "exited": true
-        },
-        {
-            "deviceId": "920120b588d0c34a",
-            "name": "com.sec.android.app.launcher",
-            "processId": 1181,
-            "exited": false
-        },
         {
             "deviceId": "920120b588d0c34a",
             "name": "com.Eighter.Rescuer",
@@ -36,6 +18,30 @@
             "deviceId": "920120b588d0c34a",
             "name": "com.Eighter.Rescuer",
             "processId": 17437,
+            "exited": true
+        },
+        {
+            "deviceId": "920120b588d0c34a",
+            "name": "com.sec.android.app.launcher",
+            "processId": 3823,
+            "exited": true
+        },
+        {
+            "deviceId": "920120b588d0c34a",
+            "name": "com.Eighter.Rescuer",
+            "processId": 6085,
+            "exited": true
+        },
+        {
+            "deviceId": "920120b588d0c34a",
+            "name": "com.Eighter.Rescuer",
+            "processId": 8906,
+            "exited": true
+        },
+        {
+            "deviceId": "920120b588d0c34a",
+            "name": "com.Eighter.Rescuer",
+            "processId": 11435,
             "exited": false
         }
     ],

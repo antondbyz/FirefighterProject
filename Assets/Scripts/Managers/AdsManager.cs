@@ -7,19 +7,8 @@ using System.Collections;
 public class AdsManager : MonoBehaviour
 {
     public static AdsManager Instance;
-    public static int CurrentInterstitialCall = 0;
 
-    public bool IsRewardedLoaded 
-    {
-        get 
-        {
-            if(rewarded == null) return false;
-            return rewarded.IsLoaded();
-        }
-    } 
     public bool IsRewardedShown { get; private set; }
-
-    [SerializeField] private int interstitialCallsSkip = 1; 
 
     private const string INTERSTITIAL_ID = "ca-app-pub-4333931459484038/3828086609";
     private const string REWARDED_ID = "ca-app-pub-4333931459484038/1578409359";
@@ -39,6 +28,7 @@ public class AdsManager : MonoBehaviour
 
     public bool ShowRewardedAd() 
     { 
+        if(rewarded == null) return false;
         bool isAdLoaded = rewarded.IsLoaded();
         if(isAdLoaded) rewarded.Show();
         return isAdLoaded;
@@ -46,15 +36,11 @@ public class AdsManager : MonoBehaviour
 
     public void ShowInterstitialAd()
     {
-        if(!IsRewardedShown && CurrentInterstitialCall >= interstitialCallsSkip) 
+        if(PurchaseManager.Instance.HasPurchasedProduct(PurchaseManager.RemoveAdsId) || interstitial == null) return;
+        if(!IsRewardedShown) 
         {
-            if(interstitial.IsLoaded()) 
-            {
-                interstitial.Show();
-                CurrentInterstitialCall = 0;
-            }
+            if(interstitial.IsLoaded()) interstitial.Show();
         }
-        else CurrentInterstitialCall++;
     }
 
     private void RewardPlayer(object sender, Reward reward)
@@ -65,6 +51,7 @@ public class AdsManager : MonoBehaviour
 
     private void CreateAndLoadInterstitialAd()
     {
+        if(PurchaseManager.Instance.HasPurchasedProduct(PurchaseManager.RemoveAdsId)) return;
         if(interstitial != null) interstitial.Destroy();
         interstitial = new InterstitialAd(INTERSTITIAL_ID);
         interstitial.OnAdClosed += HandleInterstitialAdClosed;

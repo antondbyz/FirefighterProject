@@ -30,7 +30,6 @@ public class GameController : MonoBehaviour
     public UnityEvent LevelFailed;
     public UnityEvent LevelCompleted;
     [SerializeField] private Player player = null;
-    [Header("UI")]
     [SerializeField] private GameObject gameUI = null;
     [SerializeField] private Transform starsContainer = null;
     [SerializeField] private TMP_Text totalVictimsSavedText = null;
