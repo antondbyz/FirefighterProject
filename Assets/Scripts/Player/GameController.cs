@@ -29,6 +29,7 @@ public class GameController : MonoBehaviour
     
     public UnityEvent LevelFailed;
     public UnityEvent LevelCompleted;
+
     [SerializeField] private Player player = null;
     [SerializeField] private GameObject gameUI = null;
     [SerializeField] private Transform starsContainer = null;
@@ -37,7 +38,9 @@ public class GameController : MonoBehaviour
     [SerializeField] private TMP_Text totalMoneyEarnedText = null;
     [SerializeField] private Image gameBackground = null;
     [SerializeField] private GameObject getExtraLivesPanel = null;
-    [SerializeField] private BlinkingText cantLoadAdMessage = null;
+    [SerializeField] private GameObject showRewardedAdButton = null;
+    [SerializeField] private GameObject failedToLoadAdMessage = null;
+    [SerializeField] private GameObject loadingAdMessage = null;
 
     private bool isPaused;
     private Image[] stars; 
@@ -61,12 +64,13 @@ public class GameController : MonoBehaviour
 
     public void GetExtraLivesForAd() 
     {
+        failedToLoadAdMessage.SetActive(false);
         bool success = AdsManager.Instance.ShowRewardedAd();
         if(success) getExtraLivesPanel.SetActive(false);
         else 
         {
-            if(!cantLoadAdMessage.gameObject.activeSelf) cantLoadAdMessage.gameObject.SetActive(true);
-            cantLoadAdMessage.Blink(1);
+            showRewardedAdButton.SetActive(false);
+            loadingAdMessage.SetActive(true);
         }
     }
 
@@ -88,12 +92,19 @@ public class GameController : MonoBehaviour
         gameBackground.sprite = gameBackgrounds[Random.Range(0, gameBackgrounds.Length)];
     }
 
-    private void OnEnable() => player.Died += PlayerDied;
+    private void OnEnable() 
+    {
+        player.Died += PlayerDied;
+        AdsManager.Instance.FailedToLoadRewardedAd += HandleRewardedAdFailedToLoad;
+        AdsManager.Instance.LoadedRewardedAd += HandleRewardedAdLoaded;
+    }
 
     private void OnDisable() 
     { 
         player.Died -= PlayerDied;
         IsPaused = false;
+        AdsManager.Instance.FailedToLoadRewardedAd -= HandleRewardedAdFailedToLoad;
+        AdsManager.Instance.LoadedRewardedAd -= HandleRewardedAdLoaded;
     }
 
     private void PlayerDied()
@@ -101,6 +112,31 @@ public class GameController : MonoBehaviour
         player.gameObject.SetActive(false);
         if(player.LifesLeft > 0) StartCoroutine(MoveCharacterToCurrentCheckpoint());
         else StartCoroutine(TryFailLevel());
+    }
+
+    private void HandleRewardedAdFailedToLoad()
+    {
+        if(getExtraLivesPanel.activeSelf)
+        {
+            StartCoroutine(DoNextFrame(() => 
+            {
+                failedToLoadAdMessage.SetActive(true);
+                loadingAdMessage.SetActive(false);
+                showRewardedAdButton.SetActive(true);
+            }));
+        }
+    }
+
+    private void HandleRewardedAdLoaded()
+    {
+        if(getExtraLivesPanel.activeSelf)
+        {
+            StartCoroutine(DoNextFrame(() => 
+            {
+                AdsManager.Instance.ShowRewardedAd();
+                getExtraLivesPanel.SetActive(false);
+            }));
+        }
     }
 
     private IEnumerator TryFailLevel()
@@ -117,4 +153,10 @@ public class GameController : MonoBehaviour
         player.MoveToCurrentCheckpoint();
         player.gameObject.SetActive(true);
     }   
+
+    private IEnumerator DoNextFrame(System.Action action)
+    {
+        yield return null;
+        action?.Invoke();
+    }
 }

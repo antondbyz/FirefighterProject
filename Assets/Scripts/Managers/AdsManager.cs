@@ -3,10 +3,14 @@ using GoogleMobileAds.Api;
 using UnityEngine.SceneManagement;
 using System;
 using System.Collections;
+using TMPro;
 
 public class AdsManager : MonoBehaviour
 {
     public static AdsManager Instance;
+
+    public event Action FailedToLoadRewardedAd;
+    public event Action LoadedRewardedAd;
 
     public bool IsRewardedShown { get; private set; }
 
@@ -28,18 +32,25 @@ public class AdsManager : MonoBehaviour
 
     public bool ShowRewardedAd() 
     { 
-        if(rewarded == null) return false;
-        bool isAdLoaded = rewarded.IsLoaded();
-        if(isAdLoaded) rewarded.Show();
-        return isAdLoaded;
+        if(rewarded == null || !rewarded.IsLoaded()) 
+        {
+            CreateAndLoadRewardedAd();
+            return false;
+        }
+        rewarded.Show();
+        return true;
     }
 
     public void ShowInterstitialAd()
     {
-        if(PurchaseManager.Instance.HasPurchasedProduct(PurchaseManager.RemoveAdsId) || interstitial == null) return;
-        if(!IsRewardedShown) 
+        if(interstitial == null || !interstitial.IsLoaded())
         {
-            if(interstitial.IsLoaded()) interstitial.Show();
+            CreateAndLoadInterstitialAd();
+            return;
+        }
+        if(!PurchaseManager.Instance.IsProductPurchased(PurchaseManager.RemoveAdsId) && !IsRewardedShown)
+        {
+            interstitial.Show();
         }
     }
 
@@ -51,11 +62,9 @@ public class AdsManager : MonoBehaviour
 
     private void CreateAndLoadInterstitialAd()
     {
-        if(PurchaseManager.Instance.HasPurchasedProduct(PurchaseManager.RemoveAdsId)) return;
         if(interstitial != null) interstitial.Destroy();
         interstitial = new InterstitialAd(INTERSTITIAL_ID);
         interstitial.OnAdClosed += HandleInterstitialAdClosed;
-        interstitial.OnAdFailedToLoad += HandleInterstitialFailedToLoad;
         AdRequest request = new AdRequest.Builder().Build();
         interstitial.LoadAd(request);
     }
@@ -67,8 +76,14 @@ public class AdsManager : MonoBehaviour
         rewarded.OnUserEarnedReward += RewardPlayer;
         rewarded.OnAdClosed += HandleRewardedAdClosed;
         rewarded.OnAdFailedToLoad += HandleRewardedFailedToLoad;
+        rewarded.OnAdLoaded += HandleRewardedLoaded;
         AdRequest request = new AdRequest.Builder().Build();
         rewarded.LoadAd(request);
+    }
+
+    private void HandleInterstitialAdClosed(object sender, EventArgs args) 
+    {
+        CreateAndLoadInterstitialAd();
     }
 
     private void HandleRewardedAdClosed(object sender, EventArgs args) 
@@ -86,20 +101,9 @@ public class AdsManager : MonoBehaviour
         }
     }
 
-    private void HandleInterstitialAdClosed(object sender, EventArgs args) 
-    {
-        CreateAndLoadInterstitialAd();
-    }
+    private void HandleRewardedFailedToLoad(object sender, AdFailedToLoadEventArgs args) => FailedToLoadRewardedAd?.Invoke();
 
-    private void HandleRewardedFailedToLoad(object sender, AdFailedToLoadEventArgs e)
-    {
-        CreateAndLoadRewardedAd();
-    }
-
-    private void HandleInterstitialFailedToLoad(object sender, AdFailedToLoadEventArgs e)
-    {
-        CreateAndLoadInterstitialAd();
-    }
+    private void HandleRewardedLoaded(object sender, EventArgs e) => LoadedRewardedAd?.Invoke();
 
     private IEnumerator InvokeFailLevel()
     {

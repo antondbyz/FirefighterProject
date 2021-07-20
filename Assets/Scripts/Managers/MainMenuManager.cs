@@ -23,11 +23,12 @@ public class MainMenuManager : MonoBehaviour
 
     private void OnEnable() 
     {
-        if(!PurchaseManager.Instance.HasPurchasedProduct(PurchaseManager.RemoveAdsId)) 
+        if(!PurchaseManager.Instance.IsProductPurchased(PurchaseManager.RemoveAdsId)) 
         {
             removeAdsButton.SetActive(true);
             PurchaseManager.Instance.RemoveAdsPurchaseCompleted += HandleAdsRemoved;
         }
+        else removeAdsButton.SetActive(false);
     }
 
     private void OnDisable() => PurchaseManager.Instance.RemoveAdsPurchaseCompleted -= HandleAdsRemoved;

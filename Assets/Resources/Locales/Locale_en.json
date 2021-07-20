@@ -40,6 +40,7 @@
 	{"key": "id_lastInstruction", "value": "You are now ready to fight fire and rescue people!"},
 	{"key": "id_adForExtraLives", "value": "Watch the ad and get 2 extra lives!"},
 	{"key": "id_cantLoadAd", "value": "Failed to load the ad. Check your internet connection."},
-	{"key": "id_removeAds", "value": "Remove Ads"}
+	{"key": "id_removeAds", "value": "Remove Ads"},
+	{"key": "id_loadingAd", "value": "Loading Ad..."}
 	]
 }

@@ -17,7 +17,7 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
 
         ConfigurationBuilder builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
         builder.AddProduct(RemoveAdsId, ProductType.NonConsumable);
-        UnityPurchasing.Initialize (this, builder);
+        UnityPurchasing.Initialize(this, builder);
     }
 
     public void PurchaseProduct(string productId)
@@ -25,13 +25,16 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
         controller.InitiatePurchase(productId);
     }
 
-    public bool HasPurchasedProduct(string productId)
+    public bool IsProductPurchased(string productId)
     {
-        for(int i = 0; i < controller.products.all.Length; i++)
+        if(controller != null)
         {
-            if(controller.products.all[i].definition.id == productId)
+            for(int i = 0; i < controller.products.all.Length; i++)
             {
-                return controller.products.all[i].hasReceipt;
+                if(controller.products.all[i].definition.id == productId)
+                {
+                    return controller.products.all[i].hasReceipt;
+                }
             }
         }
         return false;
