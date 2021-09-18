@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     
     public event System.Action GamePaused;
     public event System.Action GameUnpaused;
+    public event System.Action ElectricityDisabled;
     public bool IsPaused
     {
         get => isPaused;
@@ -65,7 +66,7 @@ public class GameController : MonoBehaviour
     public void GetExtraLivesForAd() 
     {
         failedToLoadAdMessage.SetActive(false);
-        bool success = AdsManager.Instance.ShowRewardedAd();
+        bool success = AdsManager.Instance.ShowRewardedLivesAd();
         if(success) getExtraLivesPanel.SetActive(false);
         else 
         {
@@ -78,6 +79,11 @@ public class GameController : MonoBehaviour
     {
         AdsManager.Instance.ShowInterstitialAd();
         ScenesManager.Instance.ToTheMainMenu();
+    }
+
+    public void TurnOffElectricity()
+    {
+        ElectricityDisabled?.Invoke();
     }
     
     private void Awake() 
@@ -95,16 +101,16 @@ public class GameController : MonoBehaviour
     private void OnEnable() 
     {
         player.Died += PlayerDied;
-        AdsManager.Instance.FailedToLoadRewardedAd += HandleRewardedAdFailedToLoad;
-        AdsManager.Instance.LoadedRewardedAd += HandleRewardedAdLoaded;
+        AdsManager.Instance.FailedToLoadRewardedLivesAd += HandleRewardedAdFailedToLoad;
+        AdsManager.Instance.LoadedRewardedLivesAd += HandleRewardedAdLoaded;
     }
 
     private void OnDisable() 
     { 
         player.Died -= PlayerDied;
         IsPaused = false;
-        AdsManager.Instance.FailedToLoadRewardedAd -= HandleRewardedAdFailedToLoad;
-        AdsManager.Instance.LoadedRewardedAd -= HandleRewardedAdLoaded;
+        AdsManager.Instance.FailedToLoadRewardedLivesAd -= HandleRewardedAdFailedToLoad;
+        AdsManager.Instance.LoadedRewardedLivesAd -= HandleRewardedAdLoaded;
     }
 
     private void PlayerDied()
@@ -133,7 +139,7 @@ public class GameController : MonoBehaviour
         {
             StartCoroutine(DoNextFrame(() => 
             {
-                AdsManager.Instance.ShowRewardedAd();
+                AdsManager.Instance.ShowRewardedLivesAd();
                 getExtraLivesPanel.SetActive(false);
             }));
         }
@@ -143,7 +149,7 @@ public class GameController : MonoBehaviour
     {
         yield return delayAfterDeath;
         IsPaused = true;
-        if(!AdsManager.Instance.IsRewardedShown) getExtraLivesPanel.SetActive(true);
+        if(!AdsManager.Instance.IsRewardedLivesShown) getExtraLivesPanel.SetActive(true);
         else FailLevel();
     }
 

@@ -3,21 +3,22 @@ using GoogleMobileAds.Api;
 using UnityEngine.SceneManagement;
 using System;
 using System.Collections;
-using TMPro;
 
 public class AdsManager : MonoBehaviour
 {
     public static AdsManager Instance;
 
-    public event Action FailedToLoadRewardedAd;
-    public event Action LoadedRewardedAd;
+    public event Action FailedToLoadRewardedLivesAd;
+    public event Action LoadedRewardedLivesAd;
 
-    public bool IsRewardedShown { get; private set; }
+    public bool IsRewardedLivesShown { get; private set; }
 
     private const string INTERSTITIAL_ID = "ca-app-pub-4333931459484038/3828086609";
-    private const string REWARDED_ID = "ca-app-pub-4333931459484038/1578409359";
+    private const string REWARDED_LIVES_ID = "ca-app-pub-4333931459484038/1578409359";
+    private const string REWARDED_ELECTRICITY_ID = "ca-app-pub-4333931459484038/2046434715";
     private InterstitialAd interstitial;
-    private RewardedAd rewarded;
+    private RewardedAd rewardedLives;
+    private RewardedAd rewardedElectricity;
 
     private void Awake() 
     {
@@ -26,18 +27,18 @@ public class AdsManager : MonoBehaviour
     
         MobileAds.Initialize(initStatus => { });
         CreateAndLoadInterstitialAd();
-        CreateAndLoadRewardedAd();
-        SceneManager.sceneUnloaded += (Scene scene) => IsRewardedShown = false;
+        CreateAndLoadRewardedLivesAd();
+        SceneManager.sceneUnloaded += (Scene scene) => IsRewardedLivesShown = false;
     }
 
-    public bool ShowRewardedAd() 
+    public bool ShowRewardedLivesAd() 
     { 
-        if(rewarded == null || !rewarded.IsLoaded()) 
+        if(rewardedLives == null || !rewardedLives.IsLoaded()) 
         {
-            CreateAndLoadRewardedAd();
+            CreateAndLoadRewardedLivesAd();
             return false;
         }
-        rewarded.Show();
+        rewardedLives.Show();
         return true;
     }
 
@@ -48,16 +49,16 @@ public class AdsManager : MonoBehaviour
             CreateAndLoadInterstitialAd();
             return;
         }
-        if(!PurchaseManager.Instance.IsProductPurchased(PurchaseManager.RemoveAdsId) && !IsRewardedShown)
+        if(!PurchaseManager.Instance.IsProductPurchased(PurchaseManager.RemoveAdsId))
         {
             interstitial.Show();
         }
     }
 
-    private void RewardPlayer(object sender, Reward reward)
+    private void RewardPlayerWithLives(object sender, Reward reward)
     {
         GameController.Instance.Player.LifesLeft += (int)(reward.Amount);
-        IsRewardedShown = true;
+        IsRewardedLivesShown = true;
     }
 
     private void CreateAndLoadInterstitialAd()
@@ -69,16 +70,16 @@ public class AdsManager : MonoBehaviour
         interstitial.LoadAd(request);
     }
 
-    private void CreateAndLoadRewardedAd()
+    private void CreateAndLoadRewardedLivesAd()
     {
-        if(rewarded != null) rewarded.Destroy();
-        rewarded = new RewardedAd(REWARDED_ID);
-        rewarded.OnUserEarnedReward += RewardPlayer;
-        rewarded.OnAdClosed += HandleRewardedAdClosed;
-        rewarded.OnAdFailedToLoad += HandleRewardedFailedToLoad;
-        rewarded.OnAdLoaded += HandleRewardedLoaded;
+        if(rewardedLives != null) rewardedLives.Destroy();
+        rewardedLives = new RewardedAd(REWARDED_LIVES_ID);
+        rewardedLives.OnUserEarnedReward += RewardPlayerWithLives;
+        rewardedLives.OnAdClosed += HandleRewardedLivesAdClosed;
+        rewardedLives.OnAdFailedToLoad += HandleRewardedLivesFailedToLoad;
+        rewardedLives.OnAdLoaded += HandleRewardedLivesLoaded;
         AdRequest request = new AdRequest.Builder().Build();
-        rewarded.LoadAd(request);
+        rewardedLives.LoadAd(request);
     }
 
     private void HandleInterstitialAdClosed(object sender, EventArgs args) 
@@ -86,10 +87,10 @@ public class AdsManager : MonoBehaviour
         CreateAndLoadInterstitialAd();
     }
 
-    private void HandleRewardedAdClosed(object sender, EventArgs args) 
+    private void HandleRewardedLivesAdClosed(object sender, EventArgs args) 
     { 
-        CreateAndLoadRewardedAd();
-        if(IsRewardedShown) 
+        CreateAndLoadRewardedLivesAd();
+        if(IsRewardedLivesShown) 
         {
             GameController.Instance.Player.MoveToCurrentCheckpoint();
             GameController.Instance.Player.gameObject.SetActive(true);
@@ -101,9 +102,9 @@ public class AdsManager : MonoBehaviour
         }
     }
 
-    private void HandleRewardedFailedToLoad(object sender, AdFailedToLoadEventArgs args) => FailedToLoadRewardedAd?.Invoke();
+    private void HandleRewardedLivesFailedToLoad(object sender, AdFailedToLoadEventArgs args) => FailedToLoadRewardedLivesAd?.Invoke();
 
-    private void HandleRewardedLoaded(object sender, EventArgs e) => LoadedRewardedAd?.Invoke();
+    private void HandleRewardedLivesLoaded(object sender, EventArgs e) => LoadedRewardedLivesAd?.Invoke();
 
     private IEnumerator InvokeFailLevel()
     {

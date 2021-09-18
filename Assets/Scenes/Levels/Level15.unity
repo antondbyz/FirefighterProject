@@ -6763,6 +6763,7 @@ TilemapRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -20592,6 +20593,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1952505379, guid: 30ab64c9273e09f408fe8f99e318a2ef, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4979396982435567563, guid: 30ab64c9273e09f408fe8f99e318a2ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -20620,7 +20625,7 @@ PrefabInstance:
     - target: {fileID: 8812885909634976040, guid: 30ab64c9273e09f408fe8f99e318a2ef,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -25.23301
+      value: -19.508537
       objectReference: {fileID: 0}
     - target: {fileID: 8812885909634976040, guid: 30ab64c9273e09f408fe8f99e318a2ef,
         type: 3}
@@ -20732,6 +20737,7 @@ TilemapRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0

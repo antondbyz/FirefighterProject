@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2077416772}
   - component: {fileID: 910234793}
   - component: {fileID: 8614935280585071125}
+  - component: {fileID: 7678250693430139129}
   m_Layer: 2
   m_Name: ShootingElectricWire
   m_TagString: DeathZone
@@ -47,6 +48,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -142,6 +144,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 0
+--- !u!114 &7678250693430139129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6741473002468321258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcf988c8ec38467ef9a3f40a0a3cc6d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyObjects:
+  - {fileID: 6741473001967388435}
+  - {fileID: 2014932441947458155}
+  destroyComponents:
+  - {fileID: 8614935280585071125}
+  - {fileID: 910234793}
+  - {fileID: 2077416772}
 --- !u!1001 &375972765
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -221,6 +242,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f06f07dd69d5245a44a5eaa0f9512b, type: 3}
+--- !u!1 &2014932441947458155 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2014932442319202806, guid: 53f06f07dd69d5245a44a5eaa0f9512b,
+    type: 3}
+  m_PrefabInstance: {fileID: 375972765}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2014932441947458152 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2014932442319202805, guid: 53f06f07dd69d5245a44a5eaa0f9512b,
@@ -415,6 +442,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d1e00c75cd58ae49b5172d3b3aad6f1, type: 3}
+--- !u!1 &6741473001967388435 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3490271322039944780, guid: 3d1e00c75cd58ae49b5172d3b3aad6f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 7917726977036616031}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6741473001967388430 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3490271322039944785, guid: 3d1e00c75cd58ae49b5172d3b3aad6f1,

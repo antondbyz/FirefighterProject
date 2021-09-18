@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 2707955391437551064}
   - component: {fileID: 1231330481}
   - component: {fileID: 5118589319068625905}
+  - component: {fileID: 7514078183623583079}
   m_Layer: 0
   m_Name: Wire
   m_TagString: Untagged
@@ -76,6 +77,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -145,6 +147,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 0
+--- !u!114 &7514078183623583079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2707955391437551071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcf988c8ec38467ef9a3f40a0a3cc6d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyObjects:
+  - {fileID: 5582915685929620053}
+  destroyComponents:
+  - {fileID: 0}
 --- !u!1001 &8535481193534813943
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -214,6 +232,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eef2dbc5bf29e4645baa2cfb161c7e28, type: 3}
+--- !u!1 &5582915685929620053 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4255513317078066338, guid: eef2dbc5bf29e4645baa2cfb161c7e28,
+    type: 3}
+  m_PrefabInstance: {fileID: 8535481193534813943}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1628801917153888861 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6984718374744210602, guid: eef2dbc5bf29e4645baa2cfb161c7e28,
