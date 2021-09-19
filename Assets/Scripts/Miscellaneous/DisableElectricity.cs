@@ -7,7 +7,7 @@ public class DisableElectricity : MonoBehaviour
 
     private void Awake()
     {
-        GameController.Instance.ElectricityDisabled += TurnOff;
+        AdsManager.Instance.ElectricityDisabled += TurnOff;
     }
 
     private void TurnOff()
@@ -16,5 +16,6 @@ public class DisableElectricity : MonoBehaviour
             Destroy(destroyObjects[i]);
         for(int i = 0; i < destroyComponents.Length; i++)
             Destroy(destroyComponents[i]);
+        AdsManager.Instance.ElectricityDisabled -= TurnOff;
     }
 }

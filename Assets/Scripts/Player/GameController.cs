@@ -10,7 +10,6 @@ public class GameController : MonoBehaviour
     
     public event System.Action GamePaused;
     public event System.Action GameUnpaused;
-    public event System.Action ElectricityDisabled;
     public bool IsPaused
     {
         get => isPaused;
@@ -83,7 +82,7 @@ public class GameController : MonoBehaviour
 
     public void TurnOffElectricity()
     {
-        ElectricityDisabled?.Invoke();
+        AdsManager.Instance.ShowRewardedElectricityAd();
     }
     
     private void Awake() 
