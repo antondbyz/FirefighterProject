@@ -63,6 +63,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 959bfa6aee9ed2643ba7e54636fb367f, type: 3}
   - {fileID: 21300000, guid: c356d10b4a98a33448a9da4bb7bc4990, type: 3}
   - {fileID: 21300000, guid: 105aa01b1530a1e48ba3df5d4a1cae8b, type: 3}
+  - {fileID: 21300000, guid: 6f2a371c0126e6e6f985fe103d945d46, type: 3}
   - {fileID: 21300000, guid: 0ca8a2be0f327564fb4739d1f05fb0f9, type: 3}
   - {fileID: 21300000, guid: b4ec5f3f0c8c9ac40a64a427a7b5cf9c, type: 3}
   - {fileID: 21300000, guid: d08646bf5eb00564db7c4ef00ab2c3b5, type: 3}
@@ -80,6 +81,7 @@ SpriteAtlas:
   - Arrow2
   - Triangle
   - Circle
+  - DeEnergize
   - OpenDoor
   - Gear
   - FireIcon

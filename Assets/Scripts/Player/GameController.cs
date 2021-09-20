@@ -37,10 +37,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private TMP_Text totalFiresExtinguishedText = null;
     [SerializeField] private TMP_Text totalMoneyEarnedText = null;
     [SerializeField] private Image gameBackground = null;
-    [SerializeField] private GameObject getExtraLivesPanel = null;
-    [SerializeField] private GameObject showRewardedAdButton = null;
-    [SerializeField] private GameObject failedToLoadAdMessage = null;
-    [SerializeField] private GameObject loadingAdMessage = null;
+    [SerializeField] private ExtraLivesController extraLives = null;
 
     private bool isPaused;
     private Image[] stars; 
@@ -61,18 +58,6 @@ public class GameController : MonoBehaviour
     } 
 
     public void FailLevel() => LevelFailed.Invoke();
-
-    public void GetExtraLivesForAd() 
-    {
-        failedToLoadAdMessage.SetActive(false);
-        bool success = AdsManager.Instance.ShowRewardedLivesAd();
-        if(success) getExtraLivesPanel.SetActive(false);
-        else 
-        {
-            showRewardedAdButton.SetActive(false);
-            loadingAdMessage.SetActive(true);
-        }
-    }
 
     public void CloseLevelWithAd()
     {
@@ -100,16 +85,12 @@ public class GameController : MonoBehaviour
     private void OnEnable() 
     {
         player.Died += PlayerDied;
-        AdsManager.Instance.FailedToLoadRewardedLivesAd += HandleRewardedAdFailedToLoad;
-        AdsManager.Instance.LoadedRewardedLivesAd += HandleRewardedAdLoaded;
     }
 
     private void OnDisable() 
     { 
         player.Died -= PlayerDied;
         IsPaused = false;
-        AdsManager.Instance.FailedToLoadRewardedLivesAd -= HandleRewardedAdFailedToLoad;
-        AdsManager.Instance.LoadedRewardedLivesAd -= HandleRewardedAdLoaded;
     }
 
     private void PlayerDied()
@@ -119,36 +100,11 @@ public class GameController : MonoBehaviour
         else StartCoroutine(TryFailLevel());
     }
 
-    private void HandleRewardedAdFailedToLoad()
-    {
-        if(getExtraLivesPanel.activeSelf)
-        {
-            StartCoroutine(DoNextFrame(() => 
-            {
-                failedToLoadAdMessage.SetActive(true);
-                loadingAdMessage.SetActive(false);
-                showRewardedAdButton.SetActive(true);
-            }));
-        }
-    }
-
-    private void HandleRewardedAdLoaded()
-    {
-        if(getExtraLivesPanel.activeSelf)
-        {
-            StartCoroutine(DoNextFrame(() => 
-            {
-                AdsManager.Instance.ShowRewardedLivesAd();
-                getExtraLivesPanel.SetActive(false);
-            }));
-        }
-    }
-
     private IEnumerator TryFailLevel()
     {
         yield return delayAfterDeath;
         IsPaused = true;
-        if(!AdsManager.Instance.IsRewardedLivesShown) getExtraLivesPanel.SetActive(true);
+        if(!AdsManager.Instance.IsRewardedLivesShown) extraLives.ShowExtraLivesPanel();
         else FailLevel();
     }
 
@@ -158,10 +114,4 @@ public class GameController : MonoBehaviour
         player.MoveToCurrentCheckpoint();
         player.gameObject.SetActive(true);
     }   
-
-    private IEnumerator DoNextFrame(System.Action action)
-    {
-        yield return null;
-        action?.Invoke();
-    }
 }

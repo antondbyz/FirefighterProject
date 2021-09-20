@@ -1330,7 +1330,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.3333334, y: 1}
+    m_SensorSize: {x: 1.7779887, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -9093,7 +9093,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 80, y: 80}
+  m_SizeDelta: {x: 140, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1288616598771361441
 CanvasRenderer:
@@ -9123,7 +9123,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 6f2a371c0126e6e6f985fe103d945d46, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14635,7 +14635,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Watch an ad and the building will be de-energized!
+  m_text: 'Watch the ad and the building will be de-energized!
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14716,7 +14718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f35a0a908d6df1408b58030d8ea4672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localizationKey: id_adForExtraLives
+  localizationKey: id_adForDeEnergize
 --- !u!1 &5693020637381767599
 GameObject:
   m_ObjectHideFlags: 0
@@ -15973,9 +15975,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 346420576946013968}
-        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: TurnOffElectricity
+      - m_Target: {fileID: 8664240571158562438}
+        m_TargetAssemblyTypeName: DeEnergizeController, Assembly-CSharp
+        m_MethodName: DeEnergizeForAd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16701,8 +16703,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 346420576946013968}
-        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+      - m_Target: {fileID: 2865699730468139133}
+        m_TargetAssemblyTypeName: ExtraLivesController, Assembly-CSharp
         m_MethodName: GetExtraLivesForAd
         m_Mode: 1
         m_Arguments:
@@ -18017,6 +18019,8 @@ GameObject:
   - component: {fileID: 7294885463404969176}
   - component: {fileID: 6559946703700603260}
   - component: {fileID: 2669057690670323653}
+  - component: {fileID: 2865699730468139133}
+  - component: {fileID: 8664240571158562438}
   m_Layer: 0
   m_Name: GameCore
   m_TagString: GameController
@@ -18112,10 +18116,7 @@ MonoBehaviour:
   totalFiresExtinguishedText: {fileID: 644411543}
   totalMoneyEarnedText: {fileID: 285997199}
   gameBackground: {fileID: 1952505381}
-  getExtraLivesPanel: {fileID: 6191819633598211019}
-  showRewardedAdButton: {fileID: 7075641680262805721}
-  failedToLoadAdMessage: {fileID: 5081275245634595590}
-  loadingAdMessage: {fileID: 7247571751255494925}
+  extraLives: {fileID: 2865699730468139133}
 --- !u!114 &7294885463404969176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18158,6 +18159,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicVolumeSlider: {fileID: 8095840994272915805}
   soundsVolumeSlider: {fileID: 5658930279827816424}
+--- !u!114 &2865699730468139133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9221799522365304708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1326618ad44ee2468a157af99d679b5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getExtraLivesPanel: {fileID: 6191819633598211019}
+  showRewardedAdButton: {fileID: 7075641680262805721}
+  failedToLoadAdMessage: {fileID: 5081275245634595590}
+  loadingAdMessage: {fileID: 7247571751255494925}
+--- !u!114 &8664240571158562438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9221799522365304708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 175d247ed5756ca968bb944c461d0439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deEnergizePanel: {fileID: 6540884567677447574}
+  showRewardedAdButton: {fileID: 6383738186053043701}
+  failedToLoadAdMessage: {fileID: 8352579644273091057}
+  loadingAdMessage: {fileID: 1991222012971007757}
+  showDeEnergizePanelButton: {fileID: 1445681561684201426}
 --- !u!1001 &224707784
 PrefabInstance:
   m_ObjectHideFlags: 0
