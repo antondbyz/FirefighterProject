@@ -15,7 +15,6 @@ public class AdsManager : MonoBehaviour
     public event Action ElectricityDisabled;
 
     public bool IsRewardedLivesShown { get; private set; }
-    private bool isRewardedElectricityShown;
 
     private const string INTERSTITIAL_ID = "ca-app-pub-4333931459484038/3828086609";
     private const string REWARDED_LIVES_ID = "ca-app-pub-4333931459484038/1578409359";
@@ -38,7 +37,6 @@ public class AdsManager : MonoBehaviour
         SceneManager.sceneUnloaded += (Scene scene) =>
         { 
             IsRewardedLivesShown = false;
-            isRewardedElectricityShown = false;
         };
     }
 
@@ -115,7 +113,6 @@ public class AdsManager : MonoBehaviour
     private void HandleRewardedElectricityShown(object sender, Reward reward) 
     { 
         ElectricityDisabled?.Invoke();
-        isRewardedElectricityShown = true;
     }
 
     private void HandleRewardedLivesAdClosed(object sender, EventArgs args) 
