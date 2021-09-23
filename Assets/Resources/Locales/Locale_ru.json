@@ -42,6 +42,7 @@
 	{"key": "id_cantLoadAd", "value": "Не удалось загрузить рекламу. Проверьте подключение к интернету."},
 	{"key": "id_removeAds", "value": "Убрать рекламу"},
 	{"key": "id_loadingAd", "value": "Загрузка рекламы..."},
-	{"key": "id_adForDeEnergize", "value": "Посмотрите рекламу и здание будет обесточено!"}
+	{"key": "id_adForDeEnergize", "value": "Посмотрите рекламу и здание будет обесточено!"},
+	{"key": "id_deEnergize", "value": "Обесточить здание"}
 	]
 }

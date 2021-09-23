@@ -30,10 +30,8 @@ public class AdsManager : MonoBehaviour
     
         MobileAds.Initialize(initStatus => { });
         CreateAndLoadInterstitialAd();
-        CreateAndLoadRewardedAd(rewardedLives, REWARDED_LIVES_ID, HandleRewardedLivesShown, HandleRewardedLivesAdClosed, HandleRewardedLivesFailedToLoad,
-                                HandleRewardedLivesLoaded);
-        CreateAndLoadRewardedAd(rewardedElectricity, REWARDED_ELECTRICITY_ID, HandleRewardedElectricityShown, HandleRewardedElectricityAdClosed,
-                                    HandleRewardedElectricityFailedToLoad, HandleRewardedElectricityLoaded);
+        CreateAndLoadRewardedLivesAd();
+        CreateAndLoadRewardedElectricityAd();
         SceneManager.sceneUnloaded += (Scene scene) =>
         { 
             IsRewardedLivesShown = false;
@@ -44,8 +42,7 @@ public class AdsManager : MonoBehaviour
     { 
         if(rewardedLives == null || !rewardedLives.IsLoaded()) 
         {
-            CreateAndLoadRewardedAd(rewardedLives, REWARDED_LIVES_ID, HandleRewardedLivesShown, HandleRewardedLivesAdClosed, HandleRewardedLivesFailedToLoad,
-                                HandleRewardedLivesLoaded);
+            CreateAndLoadRewardedLivesAd();
             return false;
         }
         rewardedLives.Show();
@@ -56,8 +53,7 @@ public class AdsManager : MonoBehaviour
     { 
         if(rewardedElectricity == null || !rewardedElectricity.IsLoaded()) 
         {
-            CreateAndLoadRewardedAd(rewardedElectricity, REWARDED_ELECTRICITY_ID, HandleRewardedElectricityShown, HandleRewardedElectricityAdClosed,
-                                    HandleRewardedElectricityFailedToLoad, HandleRewardedElectricityLoaded);
+            CreateAndLoadRewardedElectricityAd();
             return false;
         }
         rewardedElectricity.Show();
@@ -86,17 +82,28 @@ public class AdsManager : MonoBehaviour
         interstitial.LoadAd(request);
     }
 
-    private void CreateAndLoadRewardedAd(RewardedAd ad, string id, EventHandler<Reward> earnedReward = null, EventHandler<EventArgs> adClosed = null, 
-                                        EventHandler<AdFailedToLoadEventArgs> failedToLoad = null, EventHandler<EventArgs> loaded = null)
+    private void CreateAndLoadRewardedLivesAd()
     {
-        if(ad != null) ad.Destroy();
-        ad = new RewardedAd(id);
-        if(earnedReward != null) ad.OnUserEarnedReward += earnedReward;
-        if(adClosed != null) ad.OnAdClosed += adClosed;
-        if(failedToLoad != null) ad.OnAdFailedToLoad += failedToLoad;
-        if(loaded != null) ad.OnAdLoaded += loaded;
+        if(rewardedLives != null) rewardedLives.Destroy();
+        rewardedLives = new RewardedAd(REWARDED_LIVES_ID);
+        rewardedLives.OnUserEarnedReward += HandleRewardedLivesShown;
+        rewardedLives.OnAdClosed += HandleRewardedLivesClosed;
+        rewardedLives.OnAdFailedToLoad += HandleRewardedLivesFailedToLoad;
+        rewardedLives.OnAdLoaded += HandleRewardedLivesLoaded;
         AdRequest request = new AdRequest.Builder().Build();
-        ad.LoadAd(request);
+        rewardedLives.LoadAd(request);
+    }
+
+    private void CreateAndLoadRewardedElectricityAd()
+    {
+        if(rewardedElectricity != null) rewardedElectricity.Destroy();
+        rewardedElectricity = new RewardedAd(REWARDED_ELECTRICITY_ID);
+        rewardedElectricity.OnUserEarnedReward += HandleRewardedElectricityShown;
+        rewardedElectricity.OnAdClosed += HandleRewardedElectricityClosed;
+        rewardedElectricity.OnAdFailedToLoad += HandleRewardedElectricityFailedToLoad;
+        rewardedElectricity.OnAdLoaded += HandleRewardedElectricityLoaded;
+        AdRequest request = new AdRequest.Builder().Build();
+        rewardedElectricity.LoadAd(request);
     }
 
     private void HandleInterstitialAdClosed(object sender, EventArgs args) 
@@ -115,10 +122,9 @@ public class AdsManager : MonoBehaviour
         ElectricityDisabled?.Invoke();
     }
 
-    private void HandleRewardedLivesAdClosed(object sender, EventArgs args) 
+    private void HandleRewardedLivesClosed(object sender, EventArgs args) 
     { 
-        CreateAndLoadRewardedAd(rewardedLives, REWARDED_LIVES_ID, HandleRewardedLivesShown, HandleRewardedLivesAdClosed, HandleRewardedLivesFailedToLoad,
-                                HandleRewardedLivesLoaded);
+        CreateAndLoadRewardedLivesAd();
         if(IsRewardedLivesShown) 
         {
             GameController.Instance.Player.MoveToCurrentCheckpoint();
@@ -131,10 +137,9 @@ public class AdsManager : MonoBehaviour
         }
     }
 
-    private void HandleRewardedElectricityAdClosed(object sender, EventArgs args) 
+    private void HandleRewardedElectricityClosed(object sender, EventArgs args) 
     { 
-        CreateAndLoadRewardedAd(rewardedElectricity, REWARDED_ELECTRICITY_ID, HandleRewardedElectricityShown, HandleRewardedElectricityAdClosed,
-                                    HandleRewardedElectricityFailedToLoad, HandleRewardedElectricityLoaded);
+        CreateAndLoadRewardedElectricityAd();
         GameController.Instance.IsPaused = false;
     }
 

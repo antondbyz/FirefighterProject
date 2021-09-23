@@ -42,6 +42,7 @@
 	{"key": "id_cantLoadAd", "value": "Failed to load the ad. Check your internet connection."},
 	{"key": "id_removeAds", "value": "Remove Ads"},
 	{"key": "id_loadingAd", "value": "Loading Ad..."},
-	{"key": "id_adForDeEnergize", "value": "Watch the ad and the building will be de-energized!"}
+	{"key": "id_adForDeEnergize", "value": "Watch the ad and the building will be de-energized!"},
+	{"key": "id_deEnergize", "value": "De-energize the building"}
 	]
 }

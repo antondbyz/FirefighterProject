@@ -162,7 +162,8 @@ MonoBehaviour:
   destroyObjects:
   - {fileID: 5582915685929620053}
   destroyComponents:
-  - {fileID: 0}
+  - {fileID: 5118589319068625905}
+  - {fileID: 1231330481}
 --- !u!1001 &8535481193534813943
 PrefabInstance:
   m_ObjectHideFlags: 0
