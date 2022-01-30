@@ -1,70 +1,76 @@
-using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DeEnergizeController : MonoBehaviour
 {
+    public static event System.Action CanDeenergize;
+
     [SerializeField] private GameObject deEnergizePanel = null;
-    [SerializeField] private GameObject showRewardedAdButton = null;
+    [SerializeField] private Button showAdButton = null;
     [SerializeField] private GameObject failedToLoadAdMessage = null;
     [SerializeField] private GameObject loadingAdMessage = null;
     [SerializeField] private GameObject showDeEnergizePanelButton = null;
 
+    private bool isPlayerRewarded;
+
     private void OnEnable()
     {
-        AdsManager.Instance.FailedToLoadRewardedElectricityAd += HandleRewardedAdFailedToLoad;
-        AdsManager.Instance.LoadedRewardedElectricityAd += HandleRewardedAdLoaded;
-        AdsManager.Instance.ElectricityDisabled += HideDeEnergizeButton;
+        AdsManager.Instance.ElectricityAdClosed += OnElectricityAdClosed;
+        AdsManager.Instance.ElectricityAdShowed += OnElectricityAdShowed;
     }
 
     private void OnDisable()
     {
-        AdsManager.Instance.FailedToLoadRewardedElectricityAd -= HandleRewardedAdFailedToLoad;
-        AdsManager.Instance.LoadedRewardedElectricityAd -= HandleRewardedAdLoaded;
-        AdsManager.Instance.ElectricityDisabled -= HideDeEnergizeButton;
+        AdsManager.Instance.ElectricityAdFailedToLoad -= OnElectricityAdFailedToLoad;
+        AdsManager.Instance.ElectricityAdLoaded -= OnElectricityAdLoaded;
+        AdsManager.Instance.ElectricityAdClosed -= OnElectricityAdClosed;
+        AdsManager.Instance.ElectricityAdShowed -= OnElectricityAdShowed;
     }
 
     public void DeEnergizeForAd() 
     {
+        AdsManager.Instance.ElectricityAdFailedToLoad -= OnElectricityAdFailedToLoad;
+        AdsManager.Instance.ElectricityAdLoaded -= OnElectricityAdLoaded;
         failedToLoadAdMessage.SetActive(false);
-        bool success = AdsManager.Instance.ShowRewardedElectricityAd();
-        if(success) deEnergizePanel.SetActive(false);
-        else 
+
+        bool success = AdsManager.Instance.ShowElectricityAd();
+        if(!success) 
         {
-            showRewardedAdButton.SetActive(false);
+            AdsManager.Instance.ElectricityAdLoaded += OnElectricityAdLoaded;
+            AdsManager.Instance.ElectricityAdFailedToLoad += OnElectricityAdFailedToLoad;
+            showAdButton.interactable = false;
             loadingAdMessage.SetActive(true);
+            StartCoroutine(GameManager.DoAfterDelay(new WaitForSecondsRealtime(5), () => showAdButton.interactable = true));
         }
     }
 
-    private void HideDeEnergizeButton() => showDeEnergizePanelButton.SetActive(false);
-
-    private void HandleRewardedAdFailedToLoad()
-    {
-        if(deEnergizePanel.activeSelf)
+#region Ads callbacks
+    private void OnElectricityAdClosed() 
+    { 
+        GameController.Instance.IsPaused = false;
+        if(isPlayerRewarded)
         {
-            StartCoroutine(DoNextFrame(() => 
-            {
-                failedToLoadAdMessage.SetActive(true);
-                loadingAdMessage.SetActive(false);
-                showRewardedAdButton.SetActive(true);
-            }));
+            showDeEnergizePanelButton.SetActive(false);
+            CanDeenergize?.Invoke();
         }
+        deEnergizePanel.SetActive(false);
     }
 
-    private void HandleRewardedAdLoaded()
+    private void OnElectricityAdShowed()
     {
-        if(deEnergizePanel.activeSelf)
-        {
-            StartCoroutine(DoNextFrame(() => 
-            {
-                AdsManager.Instance.ShowRewardedElectricityAd();
-                deEnergizePanel.SetActive(false);
-            }));
-        }
+        isPlayerRewarded = true;
     }
 
-    private IEnumerator DoNextFrame(System.Action action)
+    private void OnElectricityAdFailedToLoad()
     {
-        yield return null;
-        action?.Invoke();
+        loadingAdMessage.SetActive(false);
+        failedToLoadAdMessage.SetActive(true);
+        showAdButton.interactable = true;
     }
+
+    private void OnElectricityAdLoaded()
+    {
+        AdsManager.Instance.ShowElectricityAd();
+    }
+#endregion
 }

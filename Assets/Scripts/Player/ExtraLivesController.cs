@@ -1,67 +1,83 @@
-using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ExtraLivesController : MonoBehaviour
 {
+    public bool IsPlayerRewarded => isPlayerRewarded;
+
     [SerializeField] private GameObject getExtraLivesPanel = null;
-    [SerializeField] private GameObject showRewardedAdButton = null;
+    [SerializeField] private Button showAdButton = null;
     [SerializeField] private GameObject failedToLoadAdMessage = null;
     [SerializeField] private GameObject loadingAdMessage = null;
 
+    private bool isPlayerRewarded;
+
     private void OnEnable()
     {
-        AdsManager.Instance.FailedToLoadRewardedLivesAd += HandleRewardedAdFailedToLoad;
-        AdsManager.Instance.LoadedRewardedLivesAd += HandleRewardedAdLoaded;
+        AdsManager.Instance.LivesAdClosed += OnLivesAdClosed;
+        AdsManager.Instance.LivesAdShowed += OnLivesAdShowed;
     }
 
     private void OnDisable()
     {
-        AdsManager.Instance.FailedToLoadRewardedLivesAd -= HandleRewardedAdFailedToLoad;
-        AdsManager.Instance.LoadedRewardedLivesAd -= HandleRewardedAdLoaded;
+        AdsManager.Instance.LivesAdFailedToLoad -= OnLivesAdFailedToLoad;
+        AdsManager.Instance.LivesAdLoaded -= OnLivesAdLoaded;
+        AdsManager.Instance.LivesAdClosed -= OnLivesAdClosed;
+        AdsManager.Instance.LivesAdShowed -= OnLivesAdShowed;
     }
 
     public void ShowExtraLivesPanel() => getExtraLivesPanel.SetActive(true);
 
     public void GetExtraLivesForAd() 
     {
+        AdsManager.Instance.LivesAdFailedToLoad -= OnLivesAdFailedToLoad;
+        AdsManager.Instance.LivesAdLoaded -= OnLivesAdLoaded;
         failedToLoadAdMessage.SetActive(false);
-        bool success = AdsManager.Instance.ShowRewardedLivesAd();
-        if(success) getExtraLivesPanel.SetActive(false);
-        else 
+
+        bool success = AdsManager.Instance.ShowLivesAd();
+        if(!success) 
         {
-            showRewardedAdButton.SetActive(false);
+            AdsManager.Instance.LivesAdFailedToLoad += OnLivesAdFailedToLoad;
+            AdsManager.Instance.LivesAdLoaded += OnLivesAdLoaded;
+            showAdButton.interactable = false;
             loadingAdMessage.SetActive(true);
+            StartCoroutine(GameManager.DoAfterDelay(new WaitForSecondsRealtime(5), () => showAdButton.interactable = true));
         }
     }
 
-    private void HandleRewardedAdFailedToLoad()
+#region Ads callbacks
+    private void OnLivesAdFailedToLoad()
     {
-        if(getExtraLivesPanel.activeSelf)
+        loadingAdMessage.SetActive(false);
+        failedToLoadAdMessage.SetActive(true);
+        showAdButton.interactable = true;
+    }
+
+    private void OnLivesAdLoaded()
+    {
+        AdsManager.Instance.ShowLivesAd();
+    }
+
+    private void OnLivesAdShowed()
+    {
+        GameController.Instance.Player.LifesLeft += 2;
+        isPlayerRewarded = true;
+    }
+
+    private void OnLivesAdClosed()
+    {
+        if(isPlayerRewarded)
         {
-            StartCoroutine(DoNextFrame(() => 
-            {
-                failedToLoadAdMessage.SetActive(true);
-                loadingAdMessage.SetActive(false);
-                showRewardedAdButton.SetActive(true);
-            }));
+            GameController.Instance.Player.MoveToCurrentCheckpoint();
+            GameController.Instance.Player.gameObject.SetActive(true);
+            GameController.Instance.IsPaused = false;
         }
-    }
-
-    private void HandleRewardedAdLoaded()
-    {
-        if(getExtraLivesPanel.activeSelf)
+        else
         {
-            StartCoroutine(DoNextFrame(() => 
-            {
-                AdsManager.Instance.ShowRewardedLivesAd();
-                getExtraLivesPanel.SetActive(false);
-            }));
+            GameController.Instance.FailLevel();
+            GameController.Instance.IsPaused = true;
         }
+        getExtraLivesPanel.SetActive(false);
     }
-
-    private IEnumerator DoNextFrame(System.Action action)
-    {
-        yield return null;
-        action?.Invoke();
-    }
+#endregion
 }

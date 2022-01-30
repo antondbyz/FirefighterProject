@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -41,6 +44,18 @@ public class GameManager : MonoBehaviour
             }
             else break;
         }
+    }
+
+    public static IEnumerator DoAfterDelay(IEnumerator enumerator, Action action)
+    {
+        yield return enumerator;
+        action?.Invoke();
+    }
+
+    public static IEnumerator DoAfterDelay(YieldInstruction instruction, Action action)
+    {
+        yield return instruction;
+        action?.Invoke();
     }
 
     public void InitializeLevels()

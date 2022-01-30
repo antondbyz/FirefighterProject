@@ -60,6 +60,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -69,8 +70,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -91,6 +92,8 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
@@ -152,10 +155,14 @@ TextureImporter:
       tessellationDetail: 0
       bones:
       - name: Head
+        guid: 
         position: {x: 33.580048, y: 14.245544, z: 0}
         rotation: {x: 0, y: 0, z: 0.6786536, w: 0.7344585}
         length: 52.63226
         parentId: -1
+        color:
+          serializedVersion: 2
+          rgba: 0
       spriteID: d7465c336855befd0800000000000000
       internalID: -2311659948842064771
       vertices:
@@ -486,15 +493,23 @@ TextureImporter:
       tessellationDetail: 0
       bones:
       - name: R_UpperArm
+        guid: 
         position: {x: 40.858, y: 97.97247, z: 0}
         rotation: {x: 0, y: 0, z: -0.87984383, w: 0.4752629}
         length: 47.004303
         parentId: -1
+        color:
+          serializedVersion: 2
+          rgba: 0
       - name: R_LowerArm
+        guid: 
         position: {x: 47.00431, y: -0.0000027116898, z: 0}
         rotation: {x: 0, y: 0, z: 0.38569796, w: 0.9226251}
         length: 54.056835
         parentId: 0
+        color:
+          serializedVersion: 2
+          rgba: 0
       spriteID: 58cce6d0adb943660800000000000000
       internalID: 7364682651488144517
       vertices:
@@ -1013,15 +1028,23 @@ TextureImporter:
       tessellationDetail: 0
       bones:
       - name: LowerBody
+        guid: 
         position: {x: 27.286926, y: 5.4121094, z: 0}
         rotation: {x: 0, y: 0, z: 0.64788365, w: 0.7617393}
         length: 49.389725
         parentId: -1
+        color:
+          serializedVersion: 2
+          rgba: 0
       - name: UpperBody
+        guid: 
         position: {x: 49.389725, y: -0.000010811878, z: 0}
         rotation: {x: 0, y: 0, z: 0.0027995713, w: 0.9999961}
         length: 61.381115
         parentId: 0
+        color:
+          serializedVersion: 2
+          rgba: 0
       spriteID: 96e67e6befa4db8a0800000000000000
       internalID: -6287787046888575383
       vertices:
@@ -1361,15 +1384,23 @@ TextureImporter:
       tessellationDetail: 0
       bones:
       - name: L_UpperArm
+        guid: 
         position: {x: 20.37497, y: 93.75845, z: 0}
         rotation: {x: 0, y: 0, z: -0.7123249, w: 0.7018499}
         length: 47.373337
         parentId: -1
+        color:
+          serializedVersion: 2
+          rgba: 0
       - name: L_LowerArm
+        guid: 
         position: {x: 47.373337, y: 0.000006327765, z: 0}
         rotation: {x: 0, y: 0, z: 0.39377606, w: 0.91920644}
         length: 53.5931
         parentId: 0
+        color:
+          serializedVersion: 2
+          rgba: 0
       spriteID: 434a8c45d46c59fe0800000000000000
       internalID: -1182821291677670348
       vertices:
@@ -1806,15 +1837,23 @@ TextureImporter:
       tessellationDetail: 0
       bones:
       - name: R_UpperLeg
+        guid: 
         position: {x: 28.462433, y: 93.797455, z: 0}
         rotation: {x: 0, y: 0, z: -0.76552874, w: 0.6434017}
         length: 31.859434
         parentId: -1
+        color:
+          serializedVersion: 2
+          rgba: 0
       - name: R_LowerLeg
+        guid: 
         position: {x: 31.85943, y: 0.000008164079, z: 0}
         rotation: {x: 0, y: 0, z: 0.010139669, w: 0.9999486}
         length: 58.22163
         parentId: 0
+        color:
+          serializedVersion: 2
+          rgba: 0
       spriteID: 612e34feb56a4aeb0800000000000000
       internalID: -4709456396536258026
       vertices:
@@ -2255,15 +2294,23 @@ TextureImporter:
       tessellationDetail: 0
       bones:
       - name: L_UpperLeg
+        guid: 
         position: {x: 15.441437, y: 80.36139, z: 0}
         rotation: {x: 0, y: 0, z: -0.64855045, w: 0.7611717}
         length: 21.989916
         parentId: -1
+        color:
+          serializedVersion: 2
+          rgba: 0
       - name: L_LowerLeg
+        guid: 
         position: {x: 21.989914, y: -0.00000008984193, z: 0}
         rotation: {x: 0, y: 0, z: -0.09142378, w: 0.9958121}
         length: 55.10423
         parentId: 0
+        color:
+          serializedVersion: 2
+          rgba: 0
       spriteID: 2e13877b0fb9521c0800000000000000
       internalID: -4529042392078601758
       vertices:
@@ -2743,6 +2790,16 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Extinguisher_HoseHidden: 3618381209196284247
+      Player_Body: -6287787046888575383
+      Player_R_Leg: -4709456396536258026
+      Player_L_Arm: -1182821291677670348
+      Player_L_Leg: -4529042392078601758
+      Extinguisher_HoseDrawn: 7021574439977025703
+      Player_Head: -2311659948842064771
+      Extinguisher_Balloon: -2340975581702683568
+      Player_R_Arm: 7364682651488144517
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

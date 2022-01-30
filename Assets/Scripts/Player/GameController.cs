@@ -61,13 +61,11 @@ public class GameController : MonoBehaviour
 
     public void CloseLevelWithAd()
     {
-        AdsManager.Instance.ShowInterstitialAd();
-        ScenesManager.Instance.ToTheMainMenu();
-    }
-
-    public void TurnOffElectricity()
-    {
-        AdsManager.Instance.ShowRewardedElectricityAd();
+        bool success = AdsManager.Instance.ShowInterstitialAd();
+        if(success)
+            AdsManager.Instance.InterstitialClosed += ScenesManager.Instance.ToTheMainMenu;
+        else 
+            ScenesManager.Instance.ToTheMainMenu();
     }
     
     private void Awake() 
@@ -90,13 +88,14 @@ public class GameController : MonoBehaviour
     private void OnDisable() 
     { 
         player.Died -= PlayerDied;
+        AdsManager.Instance.InterstitialClosed -= ScenesManager.Instance.ToTheMainMenu;
         IsPaused = false;
     }
 
     private void PlayerDied()
     {
         player.gameObject.SetActive(false);
-        if(player.LifesLeft > 0) StartCoroutine(MoveCharacterToCurrentCheckpoint());
+        if(player.LifesLeft > 0) StartCoroutine(MovePlayerToCurrentCheckpoint());
         else StartCoroutine(TryFailLevel());
     }
 
@@ -104,14 +103,14 @@ public class GameController : MonoBehaviour
     {
         yield return delayAfterDeath;
         IsPaused = true;
-        if(!AdsManager.Instance.IsRewardedLivesShown) extraLives.ShowExtraLivesPanel();
+        if(!extraLives.IsPlayerRewarded) extraLives.ShowExtraLivesPanel();
         else FailLevel();
     }
 
-    private IEnumerator MoveCharacterToCurrentCheckpoint()
+    private IEnumerator MovePlayerToCurrentCheckpoint()
     {
         yield return delayAfterDeath;
         player.MoveToCurrentCheckpoint();
         player.gameObject.SetActive(true);
-    }   
+    }
 }

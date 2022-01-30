@@ -1,160 +1,179 @@
 using UnityEngine;
-using GoogleMobileAds.Api;
 using UnityEngine.SceneManagement;
+using GoogleMobileAds.Api;
 using System;
-using System.Collections;
 
 public class AdsManager : MonoBehaviour
 {
     public static AdsManager Instance;
 
-    public event Action FailedToLoadRewardedLivesAd;
-    public event Action FailedToLoadRewardedElectricityAd;
-    public event Action LoadedRewardedLivesAd;
-    public event Action LoadedRewardedElectricityAd;
-    public event Action ElectricityDisabled;
-
-    public bool IsRewardedLivesShown { get; private set; }
+    public event Action LivesAdFailedToLoad;
+    public event Action LivesAdLoaded;
+    public event Action LivesAdClosed;
+    public event Action LivesAdShowed;
+    public event Action ElectricityAdFailedToLoad;
+    public event Action ElectricityAdLoaded;
+    public event Action ElectricityAdClosed;
+    public event Action ElectricityAdShowed;
+    public event Action InterstitialFailedToLoad;
+    public event Action InterstitialClosed;
 
     private const string INTERSTITIAL_ID = "ca-app-pub-4333931459484038/3828086609";
     private const string REWARDED_LIVES_ID = "ca-app-pub-4333931459484038/1578409359";
     private const string REWARDED_ELECTRICITY_ID = "ca-app-pub-4333931459484038/2046434715";
+
     private InterstitialAd interstitial;
     private RewardedAd rewardedLives;
     private RewardedAd rewardedElectricity;
-
+    
     private void Awake() 
     {
         if(Instance == null) Instance = this;
         else Debug.LogWarning("More than one instance of AdsManager!");
-    
         MobileAds.Initialize(initStatus => { });
-        CreateAndLoadInterstitial();
-        CreateAndLoadRewardedLives();
-        CreateAndLoadRewardedElectricity();
-        SceneManager.sceneUnloaded += (Scene scene) =>
-        { 
-            IsRewardedLivesShown = false;
+        SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) =>
+        {
+            if(scene.buildIndex >= GameManager.Instance.FirstLevelBuildIndex)
+            {
+                CreateAndLoadInterstitial();
+                CreateAndLoadLivesAd();
+                CreateAndLoadElectricityAd();
+            }
         };
     }
 
-    public bool ShowRewardedLivesAd() 
+    public bool ShowLivesAd() 
     { 
         if(rewardedLives == null || !rewardedLives.IsLoaded()) 
         {
-            CreateAndLoadRewardedLives();
+            CreateAndLoadLivesAd();
             return false;
         }
         rewardedLives.Show();
         return true;
     }
 
-    public bool ShowRewardedElectricityAd() 
+    public bool ShowElectricityAd() 
     { 
         if(rewardedElectricity == null || !rewardedElectricity.IsLoaded()) 
         {
-            CreateAndLoadRewardedElectricity();
+            CreateAndLoadElectricityAd();
             return false;
         }
         rewardedElectricity.Show();
         return true;
     }
 
-    public void ShowInterstitialAd()
+    public bool ShowInterstitialAd()
     {
-        if(interstitial == null || !interstitial.IsLoaded())
-        {
-            CreateAndLoadInterstitial();
-            return;
-        }
         if(!PurchaseManager.Instance.IsProductPurchased(PurchaseManager.RemoveAdsId))
         {
+            if(interstitial == null || !interstitial.IsLoaded())
+            {
+                CreateAndLoadInterstitial();
+                return false;
+            }
             interstitial.Show();
+            return true;
         }
+        return false;
     }
 
     private void CreateAndLoadInterstitial()
     {
         if(interstitial != null) interstitial.Destroy();
         interstitial = new InterstitialAd(INTERSTITIAL_ID);
-        interstitial.OnAdClosed += HandleInterstitialClosed;
+        interstitial.OnAdClosed += OnInterstitialClosed;
+        interstitial.OnAdFailedToLoad += OnInterstitialFailedToLoad;
         AdRequest request = new AdRequest.Builder().Build();
         interstitial.LoadAd(request);
     }
 
-    private void CreateAndLoadRewardedElectricity()
+    private void CreateAndLoadElectricityAd()
     {
         if(rewardedElectricity != null) rewardedElectricity.Destroy();
         rewardedElectricity = new RewardedAd(REWARDED_ELECTRICITY_ID);
-        rewardedElectricity.OnUserEarnedReward += HandleRewardedElectricityShown;
-        rewardedElectricity.OnAdClosed += HandleRewardedElectricityClosed;
-        rewardedElectricity.OnAdFailedToLoad += HandleRewardedElectricityFailedToLoad;
-        rewardedElectricity.OnAdLoaded += HandleRewardedElectricityLoaded;
+        rewardedElectricity.OnUserEarnedReward += OnElectricityAdShowed;
+        rewardedElectricity.OnAdClosed += OnElectricityAdClosed;
+        rewardedElectricity.OnAdFailedToLoad += OnElectricityAdFailedToLoad;
+        rewardedElectricity.OnAdLoaded += OnElectricityAdLoaded;
         AdRequest request = new AdRequest.Builder().Build();
         rewardedElectricity.LoadAd(request);
     }
 
-    private void CreateAndLoadRewardedLives()
+    private void CreateAndLoadLivesAd()
     {
         if(rewardedLives != null) rewardedLives.Destroy();
         rewardedLives = new RewardedAd(REWARDED_LIVES_ID);
-        rewardedLives.OnUserEarnedReward += HandleRewardedLivesShown;
-        rewardedLives.OnAdClosed += HandleRewardedLivesClosed;
-        rewardedLives.OnAdFailedToLoad += HandleRewardedLivesFailedToLoad;
-        rewardedLives.OnAdLoaded += HandleRewardedLivesLoaded;
+        rewardedLives.OnUserEarnedReward += OnLivesAdShowed;
+        rewardedLives.OnAdClosed += OnLivesAdClosed;
+        rewardedLives.OnAdFailedToLoad += OnLivesAdFailedToLoad;
+        rewardedLives.OnAdLoaded += OnLivesAdLoaded;
         AdRequest request = new AdRequest.Builder().Build();
         rewardedLives.LoadAd(request);
     }
 
-    private void HandleInterstitialClosed(object sender, EventArgs args) 
+#region Ads callbacks
+    private void OnLivesAdShowed(object sender, Reward reward)
     {
-        CreateAndLoadInterstitial();
+        StartCoroutine(GameManager.DoAfterDelay(instruction: null, () => LivesAdShowed?.Invoke()));
     }
 
-    private void HandleRewardedLivesShown(object sender, Reward reward)
-    {
-        GameController.Instance.Player.LifesLeft += (int)(reward.Amount);
-        IsRewardedLivesShown = true;
-    }
-
-    private void HandleRewardedElectricityShown(object sender, Reward reward) 
+    private void OnLivesAdClosed(object sender, EventArgs args) 
     { 
-        ElectricityDisabled?.Invoke();
-    }
-
-    private void HandleRewardedLivesClosed(object sender, EventArgs args) 
-    { 
-        CreateAndLoadRewardedLives();
-        if(IsRewardedLivesShown) 
+        StartCoroutine(GameManager.DoAfterDelay(instruction: null, () => 
         {
-            GameController.Instance.Player.MoveToCurrentCheckpoint();
-            GameController.Instance.Player.gameObject.SetActive(true);
-            GameController.Instance.IsPaused = false;
-        }
-        else
-        {
-            StartCoroutine(InvokeFailLevel());
-        }
+            CreateAndLoadLivesAd();
+            LivesAdClosed?.Invoke();
+        }));
     }
 
-    private void HandleRewardedElectricityClosed(object sender, EventArgs args) 
+    private void OnLivesAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
     { 
-        CreateAndLoadRewardedElectricity();
-        GameController.Instance.IsPaused = false;
+        StartCoroutine(GameManager.DoAfterDelay(instruction: null, () => LivesAdFailedToLoad?.Invoke()));
     }
 
-    private void HandleRewardedLivesFailedToLoad(object sender, AdFailedToLoadEventArgs args) => FailedToLoadRewardedLivesAd?.Invoke();
+    private void OnLivesAdLoaded(object sender, EventArgs e) 
+    { 
+        StartCoroutine(GameManager.DoAfterDelay(instruction: null, () => LivesAdLoaded?.Invoke()));
+    }
 
-    private void HandleRewardedElectricityFailedToLoad(object sender, AdFailedToLoadEventArgs args) => FailedToLoadRewardedElectricityAd?.Invoke();
+    private void OnElectricityAdShowed(object sender, Reward reward) 
+    { 
+        StartCoroutine(GameManager.DoAfterDelay(instruction: null, () => ElectricityAdShowed?.Invoke()));
+    }
 
-    private void HandleRewardedLivesLoaded(object sender, EventArgs e) => LoadedRewardedLivesAd?.Invoke();
+    private void OnElectricityAdClosed(object sender, EventArgs args) 
+    { 
+        StartCoroutine(GameManager.DoAfterDelay(instruction: null, () => 
+        {
+            CreateAndLoadElectricityAd();
+            ElectricityAdClosed?.Invoke();
+        }));
+    }
 
-    private void HandleRewardedElectricityLoaded(object sender, EventArgs e) => LoadedRewardedElectricityAd?.Invoke();
+    private void OnElectricityAdFailedToLoad(object sender, AdFailedToLoadEventArgs args) 
+    { 
+        StartCoroutine(GameManager.DoAfterDelay(instruction: null, () => ElectricityAdFailedToLoad?.Invoke()));
+    }
 
-    private IEnumerator InvokeFailLevel()
+    private void OnElectricityAdLoaded(object sender, EventArgs e) 
+    { 
+        StartCoroutine(GameManager.DoAfterDelay(instruction: null, () => ElectricityAdLoaded?.Invoke()));
+    }
+
+    private void OnInterstitialClosed(object sender, EventArgs args) 
     {
-        yield return null;
-        GameController.Instance.IsPaused = true;
-        GameController.Instance.FailLevel();
+        StartCoroutine(GameManager.DoAfterDelay(instruction: null, () => 
+        {
+            CreateAndLoadInterstitial();
+            InterstitialClosed?.Invoke();
+        }));
     }
+
+    private void OnInterstitialFailedToLoad(object sender, AdFailedToLoadEventArgs args)
+    {
+        StartCoroutine(GameManager.DoAfterDelay(instruction: null, () => InterstitialFailedToLoad?.Invoke()));
+    }
+#endregion
 }

@@ -8,8 +8,6 @@ public class BlinkingText : MonoBehaviour
     
     private TMP_Text myText;
     private float t = 1;
-    private float newAlpha;
-    private Color newColor;
     private bool reverseTimer = true;
     private int blinkTimes;
     private int blinksCounter;
@@ -31,9 +29,8 @@ public class BlinkingText : MonoBehaviour
             }
             if(reverseTimer) t -= Time.unscaledDeltaTime * blinkSpeed;
             else t += Time.unscaledDeltaTime * blinkSpeed;
-            newAlpha = Mathf.Lerp(0, 1, t);
-            newColor = myText.color;
-            newColor.a = newAlpha;
+            Color newColor = myText.color;
+            newColor.a = Mathf.Lerp(0, 1, t);
             myText.color = newColor;
         }
     }
