@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using GoogleMobileAds.Api;
 using System;
 
@@ -25,21 +24,16 @@ public class AdsManager : MonoBehaviour
     private InterstitialAd interstitial;
     private RewardedAd rewardedLives;
     private RewardedAd rewardedElectricity;
+    private WaitForSecondsRealtime rewardedClosedDelay = new WaitForSecondsRealtime(0.1f);
     
     private void Awake() 
     {
         if(Instance == null) Instance = this;
         else Debug.LogWarning("More than one instance of AdsManager!");
         MobileAds.Initialize(initStatus => { });
-        SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) =>
-        {
-            if(scene.buildIndex >= GameManager.Instance.FirstLevelBuildIndex)
-            {
-                CreateAndLoadInterstitial();
-                CreateAndLoadLivesAd();
-                CreateAndLoadElectricityAd();
-            }
-        };
+        CreateAndLoadInterstitial();
+        CreateAndLoadElectricityAd();
+        CreateAndLoadLivesAd();
     }
 
     public bool ShowLivesAd() 
@@ -114,6 +108,8 @@ public class AdsManager : MonoBehaviour
     }
 
 #region Ads callbacks
+
+    #region Lives ad
     private void OnLivesAdShowed(object sender, Reward reward)
     {
         StartCoroutine(GameManager.DoAfterDelay(instruction: null, () => LivesAdShowed?.Invoke()));
@@ -121,7 +117,7 @@ public class AdsManager : MonoBehaviour
 
     private void OnLivesAdClosed(object sender, EventArgs args) 
     { 
-        StartCoroutine(GameManager.DoAfterDelay(instruction: null, () => 
+        StartCoroutine(GameManager.DoAfterDelay(rewardedClosedDelay, () => 
         {
             CreateAndLoadLivesAd();
             LivesAdClosed?.Invoke();
@@ -137,7 +133,9 @@ public class AdsManager : MonoBehaviour
     { 
         StartCoroutine(GameManager.DoAfterDelay(instruction: null, () => LivesAdLoaded?.Invoke()));
     }
+    #endregion
 
+    #region Electricity ad
     private void OnElectricityAdShowed(object sender, Reward reward) 
     { 
         StartCoroutine(GameManager.DoAfterDelay(instruction: null, () => ElectricityAdShowed?.Invoke()));
@@ -145,7 +143,7 @@ public class AdsManager : MonoBehaviour
 
     private void OnElectricityAdClosed(object sender, EventArgs args) 
     { 
-        StartCoroutine(GameManager.DoAfterDelay(instruction: null, () => 
+        StartCoroutine(GameManager.DoAfterDelay(rewardedClosedDelay, () => 
         {
             CreateAndLoadElectricityAd();
             ElectricityAdClosed?.Invoke();
@@ -161,7 +159,9 @@ public class AdsManager : MonoBehaviour
     { 
         StartCoroutine(GameManager.DoAfterDelay(instruction: null, () => ElectricityAdLoaded?.Invoke()));
     }
+    #endregion
 
+    #region Interstitial ad
     private void OnInterstitialClosed(object sender, EventArgs args) 
     {
         StartCoroutine(GameManager.DoAfterDelay(instruction: null, () => 
@@ -175,5 +175,7 @@ public class AdsManager : MonoBehaviour
     {
         StartCoroutine(GameManager.DoAfterDelay(instruction: null, () => InterstitialFailedToLoad?.Invoke()));
     }
+    #endregion
+
 #endregion
 }

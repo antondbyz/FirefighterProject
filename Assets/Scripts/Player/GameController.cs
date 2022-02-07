@@ -58,22 +58,13 @@ public class GameController : MonoBehaviour
     } 
 
     public void FailLevel() => LevelFailed.Invoke();
-
-    public void CloseLevelWithAd()
-    {
-        bool success = AdsManager.Instance.ShowInterstitialAd();
-        if(success)
-            AdsManager.Instance.InterstitialClosed += ScenesManager.Instance.ToTheMainMenu;
-        else 
-            ScenesManager.Instance.ToTheMainMenu();
-    }
     
     private void Awake() 
     {
         if(Instance == null) Instance = this;
         else Debug.LogWarning("More than one instance of GameController!");
         
-        IsPaused = false;
+        IsPaused = false;  
         stars = new Image[starsContainer.childCount];
         for(int i = 0; i < stars.Length; i++) stars[i] = starsContainer.GetChild(i).GetComponent<Image>();
         Sprite[] gameBackgrounds = Resources.LoadAll<Sprite>("GameBackgrounds");
@@ -110,7 +101,7 @@ public class GameController : MonoBehaviour
     private IEnumerator MovePlayerToCurrentCheckpoint()
     {
         yield return delayAfterDeath;
-        player.MoveToCurrentCheckpoint();
+        player.MoveToCurrentCheckpoint(); 
         player.gameObject.SetActive(true);
     }
 }
