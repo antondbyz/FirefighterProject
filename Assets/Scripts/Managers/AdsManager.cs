@@ -6,24 +6,43 @@ public class AdsManager : MonoBehaviour
 {
     public static AdsManager Instance;
 
+#region Ads events
+    #region Money ad
+    public event Action MoneyAdFailedToLoad;
+    public event Action MoneyAdLoaded;
+    public event Action MoneyAdClosed;
+    public event Action MoneyAdShowed;
+    #endregion
+
+    #region Lives ad
     public event Action LivesAdFailedToLoad;
     public event Action LivesAdLoaded;
     public event Action LivesAdClosed;
     public event Action LivesAdShowed;
+    #endregion
+
+    #region Electricity ad
     public event Action ElectricityAdFailedToLoad;
     public event Action ElectricityAdLoaded;
     public event Action ElectricityAdClosed;
     public event Action ElectricityAdShowed;
+    #endregion
+
+    #region Interstitial ad
     public event Action InterstitialFailedToLoad;
     public event Action InterstitialClosed;
+    #endregion
+#endregion
 
     private const string INTERSTITIAL_ID = "ca-app-pub-4333931459484038/3828086609";
     private const string REWARDED_LIVES_ID = "ca-app-pub-4333931459484038/1578409359";
     private const string REWARDED_ELECTRICITY_ID = "ca-app-pub-4333931459484038/2046434715";
+    private const string REWARDED_MONEY_ID = "ca-app-pub-4333931459484038/6840725038";
 
     private InterstitialAd interstitial;
     private RewardedAd rewardedLives;
     private RewardedAd rewardedElectricity;
+    private RewardedAd rewardedMoney;
     private WaitForSecondsRealtime rewardedClosedDelay = new WaitForSecondsRealtime(0.1f);
     
     private void Awake() 
@@ -34,6 +53,18 @@ public class AdsManager : MonoBehaviour
         CreateAndLoadInterstitial();
         CreateAndLoadElectricityAd();
         CreateAndLoadLivesAd();
+    }
+
+#region Show ads
+    public bool ShowMoneyAd()
+    {
+        if(rewardedMoney == null || !rewardedMoney.IsLoaded()) 
+        {
+            CreateAndLoadMoneyAd();
+            return false;
+        }
+        rewardedMoney.Show();
+        return true;
     }
 
     public bool ShowLivesAd() 
@@ -72,27 +103,19 @@ public class AdsManager : MonoBehaviour
         }
         return false;
     }
+#endregion
 
-    private void CreateAndLoadInterstitial()
+#region Load ads
+    private void CreateAndLoadMoneyAd()
     {
-        if(interstitial != null) interstitial.Destroy();
-        interstitial = new InterstitialAd(INTERSTITIAL_ID);
-        interstitial.OnAdClosed += OnInterstitialClosed;
-        interstitial.OnAdFailedToLoad += OnInterstitialFailedToLoad;
+        if(rewardedMoney != null) rewardedMoney.Destroy();
+        rewardedMoney = new RewardedAd(REWARDED_MONEY_ID);
+        rewardedMoney.OnUserEarnedReward += OnMoneyAdShowed;
+        rewardedMoney.OnAdClosed += OnMoneyAdClosed;
+        rewardedMoney.OnAdFailedToLoad += OnMoneyAdFailedToLoad;
+        rewardedMoney.OnAdLoaded += OnMoneyAdLoaded;
         AdRequest request = new AdRequest.Builder().Build();
-        interstitial.LoadAd(request);
-    }
-
-    private void CreateAndLoadElectricityAd()
-    {
-        if(rewardedElectricity != null) rewardedElectricity.Destroy();
-        rewardedElectricity = new RewardedAd(REWARDED_ELECTRICITY_ID);
-        rewardedElectricity.OnUserEarnedReward += OnElectricityAdShowed;
-        rewardedElectricity.OnAdClosed += OnElectricityAdClosed;
-        rewardedElectricity.OnAdFailedToLoad += OnElectricityAdFailedToLoad;
-        rewardedElectricity.OnAdLoaded += OnElectricityAdLoaded;
-        AdRequest request = new AdRequest.Builder().Build();
-        rewardedElectricity.LoadAd(request);
+        rewardedMoney.LoadAd(request);
     }
 
     private void CreateAndLoadLivesAd()
@@ -107,12 +130,60 @@ public class AdsManager : MonoBehaviour
         rewardedLives.LoadAd(request);
     }
 
+    private void CreateAndLoadElectricityAd()
+    {
+        if(rewardedElectricity != null) rewardedElectricity.Destroy();
+        rewardedElectricity = new RewardedAd(REWARDED_ELECTRICITY_ID);
+        rewardedElectricity.OnUserEarnedReward += OnElectricityAdShowed;
+        rewardedElectricity.OnAdClosed += OnElectricityAdClosed;
+        rewardedElectricity.OnAdFailedToLoad += OnElectricityAdFailedToLoad;
+        rewardedElectricity.OnAdLoaded += OnElectricityAdLoaded;
+        AdRequest request = new AdRequest.Builder().Build();
+        rewardedElectricity.LoadAd(request);
+    }
+
+    private void CreateAndLoadInterstitial()
+    {
+        if(interstitial != null) interstitial.Destroy();
+        interstitial = new InterstitialAd(INTERSTITIAL_ID);
+        interstitial.OnAdClosed += OnInterstitialClosed;
+        interstitial.OnAdFailedToLoad += OnInterstitialFailedToLoad;
+        AdRequest request = new AdRequest.Builder().Build();
+        interstitial.LoadAd(request);
+    }
+#endregion
+
 #region Ads callbacks
+    #region Money ad
+    private void OnMoneyAdShowed(object sender, Reward reward)
+    {
+        MoneyAdShowed?.Invoke();
+    }
+
+    private void OnMoneyAdClosed(object sender, EventArgs args) 
+    { 
+        StartCoroutine(GameManager.DoAfterDelay(rewardedClosedDelay, () => 
+        {
+            CreateAndLoadMoneyAd();
+            MoneyAdClosed?.Invoke();
+        }));
+    }
+
+    private void OnMoneyAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
+    { 
+        StartCoroutine(GameManager.DoAfterDelay(instruction: null, () => MoneyAdFailedToLoad?.Invoke()));
+    }
+
+    private void OnMoneyAdLoaded(object sender, EventArgs e) 
+    { 
+        StartCoroutine(GameManager.DoAfterDelay(instruction: null, () => MoneyAdLoaded?.Invoke()));
+    }
+    #endregion
 
     #region Lives ad
     private void OnLivesAdShowed(object sender, Reward reward)
     {
-        StartCoroutine(GameManager.DoAfterDelay(instruction: null, () => LivesAdShowed?.Invoke()));
+        LivesAdShowed?.Invoke();
     }
 
     private void OnLivesAdClosed(object sender, EventArgs args) 
@@ -138,7 +209,7 @@ public class AdsManager : MonoBehaviour
     #region Electricity ad
     private void OnElectricityAdShowed(object sender, Reward reward) 
     { 
-        StartCoroutine(GameManager.DoAfterDelay(instruction: null, () => ElectricityAdShowed?.Invoke()));
+        ElectricityAdShowed?.Invoke();
     }
 
     private void OnElectricityAdClosed(object sender, EventArgs args) 
@@ -176,6 +247,5 @@ public class AdsManager : MonoBehaviour
         StartCoroutine(GameManager.DoAfterDelay(instruction: null, () => InterstitialFailedToLoad?.Invoke()));
     }
     #endregion
-
 #endregion
 }

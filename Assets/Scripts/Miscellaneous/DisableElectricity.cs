@@ -7,15 +7,15 @@ public class DisableElectricity : MonoBehaviour
 
     private void OnEnable()
     {
-        DeEnergizeController.CanDeenergize += Deenergize;
+        DeEnergizeController.Deenergize += OnDeenergize;
     }
 
     private void OnDisable()
     {
-        DeEnergizeController.CanDeenergize -= Deenergize;
+        DeEnergizeController.Deenergize -= OnDeenergize;
     }
 
-    private void Deenergize()
+    private void OnDeenergize()
     {
         transform.rotation = Quaternion.Euler(0, 0, 0);
         for(int i = 0; i < destroyObjects.Length; i++)

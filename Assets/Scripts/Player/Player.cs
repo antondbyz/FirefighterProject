@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     public int EarnedMoney
     {
         get => earnedMoney;
-        private set
+        set
         {
             earnedMoney = value;
             earnedMoneyText.text = (GameManager.PlayerBalance + earnedMoney).ToString();

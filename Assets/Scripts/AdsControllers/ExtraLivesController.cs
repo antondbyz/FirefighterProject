@@ -5,7 +5,6 @@ public class ExtraLivesController : MonoBehaviour
 {
     public bool IsPlayerRewarded => isPlayerRewarded;
 
-    [SerializeField] private GameObject getExtraLivesPanel = null;
     [SerializeField] private Button showAdButton = null;
     [SerializeField] private GameObject failedToLoadAdMessage = null;
     [SerializeField] private GameObject loadingAdMessage = null;
@@ -14,31 +13,29 @@ public class ExtraLivesController : MonoBehaviour
 
     private void OnEnable()
     {
-        AdsManager.Instance.LivesAdClosed += OnLivesAdClosed;
-        AdsManager.Instance.LivesAdShowed += OnLivesAdShowed;
+        AdsManager.Instance.LivesAdClosed += OnAdClosed;
+        AdsManager.Instance.LivesAdShowed += OnAdShowed;
     }
 
     private void OnDisable()
     {
-        AdsManager.Instance.LivesAdFailedToLoad -= OnLivesAdFailedToLoad;
-        AdsManager.Instance.LivesAdLoaded -= OnLivesAdLoaded;
-        AdsManager.Instance.LivesAdClosed -= OnLivesAdClosed;
-        AdsManager.Instance.LivesAdShowed -= OnLivesAdShowed;
+        AdsManager.Instance.LivesAdFailedToLoad -= OnAdFailedToLoad;
+        AdsManager.Instance.LivesAdLoaded -= OnAdLoaded;
+        AdsManager.Instance.LivesAdClosed -= OnAdClosed;
+        AdsManager.Instance.LivesAdShowed -= OnAdShowed;
     }
-
-    public void ShowExtraLivesPanel() => getExtraLivesPanel.SetActive(true);
 
     public void GetExtraLivesForAd() 
     {
-        AdsManager.Instance.LivesAdFailedToLoad -= OnLivesAdFailedToLoad;
-        AdsManager.Instance.LivesAdLoaded -= OnLivesAdLoaded;
+        AdsManager.Instance.LivesAdFailedToLoad -= OnAdFailedToLoad;
+        AdsManager.Instance.LivesAdLoaded -= OnAdLoaded;
         failedToLoadAdMessage.SetActive(false);
 
         bool success = AdsManager.Instance.ShowLivesAd();
         if(!success) 
         {
-            AdsManager.Instance.LivesAdFailedToLoad += OnLivesAdFailedToLoad;
-            AdsManager.Instance.LivesAdLoaded += OnLivesAdLoaded;
+            AdsManager.Instance.LivesAdFailedToLoad += OnAdFailedToLoad;
+            AdsManager.Instance.LivesAdLoaded += OnAdLoaded;
             showAdButton.interactable = false;
             loadingAdMessage.SetActive(true);
             StartCoroutine(GameManager.DoAfterDelay(new WaitForSecondsRealtime(5), () => showAdButton.interactable = true));
@@ -46,25 +43,25 @@ public class ExtraLivesController : MonoBehaviour
     }
 
 #region Ads callbacks
-    private void OnLivesAdFailedToLoad()
+    private void OnAdFailedToLoad()
     {
         loadingAdMessage.SetActive(false);
         failedToLoadAdMessage.SetActive(true);
         showAdButton.interactable = true;
     }
 
-    private void OnLivesAdLoaded()
+    private void OnAdLoaded()
     {
         AdsManager.Instance.ShowLivesAd();
     }
 
-    private void OnLivesAdShowed()
+    private void OnAdShowed()
     {
         GameController.Instance.Player.LifesLeft += 2;
         isPlayerRewarded = true;
     }
 
-    private void OnLivesAdClosed()
+    private void OnAdClosed()
     {
         if(isPlayerRewarded)
         {
@@ -77,7 +74,7 @@ public class ExtraLivesController : MonoBehaviour
             GameController.Instance.FailLevel();
             GameController.Instance.IsPaused = true;
         }
-        getExtraLivesPanel.SetActive(false);
+        gameObject.SetActive(false);
     }
 #endregion
 }

@@ -16780,7 +16780,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1326618ad44ee2468a157af99d679b5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  getExtraLivesPanel: {fileID: 6191819633598211019}
   showAdButton: {fileID: 5030534395387446383}
   failedToLoadAdMessage: {fileID: 5081275245634595590}
   loadingAdMessage: {fileID: 7247571751255494925}
@@ -17210,11 +17209,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 175d247ed5756ca968bb944c461d0439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deEnergizePanel: {fileID: 6540884567677447574}
   showAdButton: {fileID: 4685976978089404243}
   failedToLoadAdMessage: {fileID: 8352579644273091057}
   loadingAdMessage: {fileID: 1991222012971007757}
-  showDeEnergizePanelButton: {fileID: 1445681561684201426}
+  showPanelButton: {fileID: 1445681561684201426}
 --- !u!1 &6742013257668903415
 GameObject:
   m_ObjectHideFlags: 0
@@ -17962,6 +17960,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada67eb4871d75a499fda94cee1c1a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 5950847092380134345}
+  showAdButton: {fileID: 1272467053971823574}
+  failedToLoadAdMessage: {fileID: 7655416454719609059}
+  loadingAdMessage: {fileID: 8492493149721745426}
+  showPanelButton: {fileID: 2304951297920719882}
 --- !u!1 &7183717127273479098
 GameObject:
   m_ObjectHideFlags: 0

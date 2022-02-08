@@ -6,8 +6,13 @@ public class InterstitialController : MonoBehaviour
     {
         bool success = AdsManager.Instance.ShowInterstitialAd();
         if(success)
-            AdsManager.Instance.InterstitialClosed += ScenesManager.Instance.ToTheMainMenu;
+            AdsManager.Instance.InterstitialClosed += GameController.Instance.CloseLevel;
         else 
-            ScenesManager.Instance.ToTheMainMenu();
+            GameController.Instance.CloseLevel();
+    }
+
+    private void OnDisable()
+    {
+        AdsManager.Instance.InterstitialClosed -= GameController.Instance.CloseLevel;
     }
 }

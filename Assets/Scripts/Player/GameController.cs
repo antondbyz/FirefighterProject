@@ -40,6 +40,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private ExtraLivesController extraLives = null;
 
     private bool isPaused;
+    private bool isLevelCompleted;
+    private int  starsAmount;
     private Image[] stars; 
     private WaitForSeconds delayAfterDeath = new WaitForSeconds(1);
 
@@ -49,15 +51,26 @@ public class GameController : MonoBehaviour
         IsPaused = true;
         totalVictimsSavedText.text = $"{player.VictimsSaved}/{player.VictimsAmount}";
         totalFiresExtinguishedText.text = $"{player.FiresExtinguished}/{player.FiresAmount}";
-        totalMoneyEarnedText.text = $"+{player.EarnedMoney.ToString()}";
+        UpdateEarnedMoneyText();
         float levelCompletionCoefficient = (float)(player.VictimsSaved + player.FiresExtinguished) / (player.VictimsAmount + player.FiresAmount);
-        int starsAmount = Mathf.RoundToInt(levelCompletionCoefficient * Level.MAX_STARS);
+        starsAmount = Mathf.RoundToInt(levelCompletionCoefficient * Level.MAX_STARS);
         for(int i = 0; i < starsAmount; i++) stars[i].color = Color.yellow;
-        GameManager.FinishLevel(gameObject.scene.buildIndex, starsAmount, player.EarnedMoney);
+        isLevelCompleted = true;
         LevelCompleted.Invoke();
     } 
 
+    public void CloseLevel()
+    {
+        if(isLevelCompleted)
+        {
+            GameManager.FinishLevel(gameObject.scene.buildIndex, starsAmount, player.EarnedMoney);
+        }
+        ScenesManager.Instance.ToTheMainMenu();
+    }
+
     public void FailLevel() => LevelFailed.Invoke();
+
+    public void UpdateEarnedMoneyText() => totalMoneyEarnedText.text = $"+{player.EarnedMoney.ToString()}";
     
     private void Awake() 
     {
@@ -94,7 +107,7 @@ public class GameController : MonoBehaviour
     {
         yield return delayAfterDeath;
         IsPaused = true;
-        if(!extraLives.IsPlayerRewarded) extraLives.ShowExtraLivesPanel();
+        if(!extraLives.IsPlayerRewarded) extraLives.gameObject.SetActive(true);
         else FailLevel();
     }
 
