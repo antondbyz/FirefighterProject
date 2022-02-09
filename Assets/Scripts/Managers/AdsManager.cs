@@ -50,6 +50,7 @@ public class AdsManager : MonoBehaviour
         if(Instance == null) Instance = this;
         else Debug.LogWarning("More than one instance of AdsManager!");
         MobileAds.Initialize(initStatus => { });
+        CreateAndLoadMoneyAd();
         CreateAndLoadInterstitial();
         CreateAndLoadElectricityAd();
         CreateAndLoadLivesAd();

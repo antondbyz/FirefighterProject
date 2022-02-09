@@ -43,6 +43,7 @@
 	{"key": "id_removeAds", "value": "Убрать рекламу"},
 	{"key": "id_loadingAd", "value": "Загрузка рекламы..."},
 	{"key": "id_adForDeEnergize", "value": "Посмотрите рекламу и здание будет обесточено!"},
-	{"key": "id_deEnergize", "value": "Обесточить здание"}
+	{"key": "id_deEnergize", "value": "Обесточить здание"},
+	{"key": "id_adForDoubleMoney", "value": "Посмотрите рекламу и заработанные деньги удвоятся!"}
 	]
 }

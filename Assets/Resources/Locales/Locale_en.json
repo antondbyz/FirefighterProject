@@ -43,6 +43,7 @@
 	{"key": "id_removeAds", "value": "Remove Ads"},
 	{"key": "id_loadingAd", "value": "Loading Ad..."},
 	{"key": "id_adForDeEnergize", "value": "Watch the ad and the building will be de-energized!"},
-	{"key": "id_deEnergize", "value": "De-energize the building"}
+	{"key": "id_deEnergize", "value": "De-energize the building"},
+	{"key": "id_adForDoubleMoney", "value": "Watch the ad and the money you earned will be doubled!"}
 	]
 }

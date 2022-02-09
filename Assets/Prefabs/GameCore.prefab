@@ -8254,12 +8254,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1564140774718960956}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f35a0a908d6df1408b58030d8ea4672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localizationKey: id_adForDeEnergize
+  localizationKey: id_adForDoubleMoney
 --- !u!1 &1888453402131287592
 GameObject:
   m_ObjectHideFlags: 0
@@ -17960,7 +17960,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada67eb4871d75a499fda94cee1c1a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 5950847092380134345}
   showAdButton: {fileID: 1272467053971823574}
   failedToLoadAdMessage: {fileID: 7655416454719609059}
   loadingAdMessage: {fileID: 8492493149721745426}
